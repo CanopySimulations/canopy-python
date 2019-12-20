@@ -1,0 +1,158 @@
+# swagger_client.PoolApi
+
+All URIs are relative to *https://api.canopysimulations.com*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**pool_get_pool_status**](PoolApi.md#pool_get_pool_status) | **GET** /pools/{tenantId} | 
+[**pool_get_pools**](PoolApi.md#pool_get_pools) | **GET** /pools | 
+[**pool_get_test_auto_scale_formula**](PoolApi.md#pool_get_test_auto_scale_formula) | **GET** /pools/autoscale/test | 
+
+
+# **pool_get_pool_status**
+> GetPoolStatusQueryResult pool_get_pool_status(tenant_id, pool_type=pool_type)
+
+
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = swagger_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = swagger_client.PoolApi(swagger_client.ApiClient(configuration))
+tenant_id = 'tenant_id_example' # str | 
+pool_type = 'pool_type_example' # str |  (optional)
+
+try:
+    api_response = api_instance.pool_get_pool_status(tenant_id, pool_type=pool_type)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling PoolApi->pool_get_pool_status: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **str**|  | 
+ **pool_type** | **str**|  | [optional] 
+
+### Return type
+
+[**GetPoolStatusQueryResult**](GetPoolStatusQueryResult.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **pool_get_pools**
+> GetPoolsQueryResult pool_get_pools()
+
+
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = swagger_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = swagger_client.PoolApi(swagger_client.ApiClient(configuration))
+
+try:
+    api_response = api_instance.pool_get_pools()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling PoolApi->pool_get_pools: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetPoolsQueryResult**](GetPoolsQueryResult.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **pool_get_test_auto_scale_formula**
+> TestAutoScaleFormulaQueryResult pool_get_test_auto_scale_formula(pool_id, formula=formula)
+
+
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = swagger_client.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = swagger_client.PoolApi(swagger_client.ApiClient(configuration))
+pool_id = 'pool_id_example' # str | 
+formula = 'formula_example' # str |  (optional)
+
+try:
+    api_response = api_instance.pool_get_test_auto_scale_formula(pool_id, formula=formula)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling PoolApi->pool_get_test_auto_scale_formula: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pool_id** | **str**|  | 
+ **formula** | **str**|  | [optional] 
+
+### Return type
+
+[**TestAutoScaleFormulaQueryResult**](TestAutoScaleFormulaQueryResult.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
