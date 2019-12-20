@@ -17,8 +17,8 @@ Don't forget to revert changes to `Canopy.Api.Swagger.SwaggerConfig`.
 
 Next you can use the Dockerfile in this repository to create a docker image to easily generate the new API stubs:
 ```
-docker image build -t canopy-python-api-gen:1 .
-docker container run -i -t --mount type=bind,src='c:\dev\canopy\canopy-python-api',dst=/usr/src/app/repo canopy-python-api-gen:1 /bin/bash
+docker image build -t canopy-python-gen:1 .
+docker container run -i -t --mount type=bind,src='c:\dev\canopy\canopy-python',dst=/usr/src/app/repo canopy-python-gen:1 /bin/bash
 
 java -jar swagger-codegen-cli.jar generate -l python -i ./canopy-swagger-no-allof.json -o ./gen
 cp -r gen/swagger_client repo
@@ -36,9 +36,9 @@ This has currently only been tested on Python 3.x but may work on 2.x.
 If the python package is hosted on Github, you can install directly from Github
 
 ```sh
-pip install git+https://github.com/CanopySimulations/canopy-python-api.git
+pip install git+https://github.com/CanopySimulations/canopy-python.git
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/CanopySimulations/canopy-python-api.git`)
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/CanopySimulations/canopy-python.git`)
 
 Then see `canopy/__main__.py` for example usage.
 
@@ -58,8 +58,6 @@ Then see `canopy/__main__.py` for example usage.
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 Then see `canopy/__main__.py` for example usage.
-
-```
 
 ## Documentation for API Endpoints
 
@@ -345,6 +343,4 @@ Class | Method | HTTP request | Description
 - **Flow**: password
 - **Authorization URL**: https://api.canopysimulations.com/token
 - **Scopes**: N/A
-
-
 
