@@ -5,7 +5,7 @@ import getpass
 import datetime
 
 
-class Api(object):
+class Session(object):
     def __init__(self, client=None, client_id=None, client_secret=None, user_name=None, tenant_name=None):
         if client is None:
             client = ApiClient()
