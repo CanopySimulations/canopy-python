@@ -1,4 +1,5 @@
 class StudyJobDataResult:
-    def __init__(self, job, channels):
+    def __init__(self, job, data, units):
         self.job = job
-        self.channels = channels
+        self.data = data
+        self.units = units

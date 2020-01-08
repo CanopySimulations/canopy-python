@@ -1,5 +1,6 @@
 import swagger_client
 import canopy
+import pandas as pd
 
 
 def load_study_job_data(session, study_id, sim_type, channel_names, job_index=0, tenant_id=None):
@@ -18,10 +19,14 @@ def load_study_job_data(session, study_id, sim_type, channel_names, job_index=0,
     if vector_metadata is None:
         return None
 
-    channels = {}
+    channels_data = {}
+    channels_units = {}
     for channel_name in channel_names:
         loaded_channel = canopy.load_channel(session, job_url, sas, sim_type, channel_name, vector_metadata=vector_metadata)
         if loaded_channel is not None:
-            channels[channel_name] = loaded_channel
+            channels_data[channel_name] = loaded_channel.data
+            channels_units[channel_name] = loaded_channel.units
 
-    return canopy.StudyJobDataResult(job_result.study_job, channels)
+    channels_data_frame = pd.DataFrame(channels_data)
+
+    return canopy.StudyJobDataResult(job_result.study_job, channels_data_frame, channels_units)
