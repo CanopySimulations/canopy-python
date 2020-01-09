@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import swagger_client
 
 from canopy.session import Session
+from canopy.units import Units
 from canopy.load_study_data import load_study_data
 from canopy.load_study_job_data import load_study_job_data
 from canopy.load_channel import load_channel
