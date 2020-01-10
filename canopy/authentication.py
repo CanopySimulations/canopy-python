@@ -1,0 +1,104 @@
+from __future__ import absolute_import
+
+from typing import Optional
+
+import canopy
+from swagger_client.api_client import ApiClient
+import getpass
+import datetime
+
+
+class Authentication(object):
+    _client: ApiClient
+
+    def __init__(
+            self,
+            client: ApiClient,
+            client_id: Optional[str] = None,
+            client_secret: Optional[str] = None,
+            user_name: Optional[str] = None,
+            tenant_name: Optional[str] = None):
+        self._client = client
+        self._client_id = client_id
+        self._client_secret = client_secret
+        self._user_name = user_name
+        self._tenant_name = tenant_name
+        self._identity = None
+        self._expires: datetime.datetime = datetime.datetime.min
+
+    def authenticate(self):
+        if self._identity is None or self._expires is None:
+            self.sign_in()
+        elif datetime.datetime.now() >= self._expires:
+            self.refresh_access_token()
+
+    def sign_in(self):
+        if self._client_id is None:
+            self._client_id = input('Client ID:')
+        if self._client_secret is None:
+            self._client_secret = getpass.getpass(prompt='Client Secret:')
+
+        if self._user_name is None:
+            self._user_name = input('Username:')
+        if self._tenant_name is None:
+            self._tenant_name = self._client_id
+
+        password = getpass.getpass(prompt='Password:')
+
+        post_params = {
+            'grant_type': 'password',
+            'username': self._user_name,
+            'tenant': self._tenant_name,
+            'password': password,
+            'client_id': self._client_id,
+            'client_secret': self._client_secret,
+        }
+
+        header_params = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+
+        token_result = self._client.call_api('/token', 'POST', post_params=post_params, header_params=header_params,
+                                             response_type=object)
+        self._identity = token_result[0]
+        self.__update_from_identity()
+
+    def refresh_access_token(self):
+        if self._identity is None:
+            raise RuntimeError('You must call authenticate before refreshing the access token.')
+
+        post_params = {
+            'grant_type': 'refresh_token',
+            'refresh_token': self._identity['refresh_token'],
+            'tenant': self._identity['tenant_id'],
+            'client_id': self._client_id,
+            'client_secret': self._client_secret,
+        }
+
+        header_params = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+
+        token_result = self._client.call_api('/token', 'POST', post_params=post_params, header_params=header_params,
+                                             response_type=object)
+        self._identity = token_result[0]
+        self.__update_from_identity()
+
+    def __update_from_identity(self):
+        self._client.configuration.access_token = self._identity['access_token']
+        expires_delta = datetime.timedelta(seconds=self._identity['expires_in'])
+        self._expires = datetime.datetime.now() + expires_delta
+
+    @property
+    def tenant_id(self) -> str:
+        if self._identity is None:
+            raise RuntimeError('You must call authenticate before requesting tenant ID.')
+
+        return self._identity['tenant_id']
+
+    @property
+    def user_id(self) -> str:
+        if self._identity is None:
+            raise RuntimeError('You must call authenticate before requesting user ID.')
+
+        return self._identity['user_id']

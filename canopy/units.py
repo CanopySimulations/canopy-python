@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import math
 import pandas as pd
+import numpy as np
 from typing import Optional
 
 
@@ -159,6 +160,17 @@ class Units(object):
     def convert_value_between_units(self, value: float, source_unit: str, target_unit: str, apply_factor_only: bool = False) -> float:
         return self.convert_value_from_si(self.convert_value_to_si(value, source_unit, apply_factor_only), target_unit, apply_factor_only)
 
+    def convert_values_to_si(self, values: np.array, source_unit: str):
+        conversion_to_si = self.get_conversion_to_si(source_unit)
+        factor = conversion_to_si.factor
+        offset = conversion_to_si.offset
+
+        if factor != 1:
+            values *= factor
+
+        if offset != 0:
+            values += offset
+
     def convert_column_to_si(self, df: pd.DataFrame, column_name: str, source_unit: str):
         conversion_to_si = self.get_conversion_to_si(source_unit)
         factor = conversion_to_si.factor
@@ -169,6 +181,17 @@ class Units(object):
 
         df[column_name] = df[column_name] * factor + offset
 
+    def convert_values_from_si(self, values: np.array, target_unit: str):
+        conversion_to_si = self.get_conversion_to_si(target_unit)
+        factor = conversion_to_si.factor
+        offset = conversion_to_si.offset
+
+        if offset != 0:
+            values -= offset
+
+        if factor != 1:
+            values /= factor
+
     def convert_column_from_si(self, df: pd.DataFrame, column_name: str, target_unit: str):
         conversion_to_si = self.get_conversion_to_si(target_unit)
         factor = conversion_to_si.factor
@@ -178,6 +201,22 @@ class Units(object):
             return
 
         df[column_name] = (df[column_name] - offset) / factor
+
+    def convert_values_between_units(self, values: np.array, source_unit: str, target_unit: str):
+        conversion = self.get_conversion_between_units(source_unit, target_unit)
+        if not conversion.is_conversion_required:
+            return
+
+        combined_offset = conversion.offset_to_si - conversion.offset_from_si
+
+        if conversion.factor_to_si != 1:
+            values *= conversion.factor_to_si
+
+        if combined_offset != 0:
+            values += combined_offset
+
+        if conversion.factor_from_si != 1:
+            values /= conversion.factor_from_si
 
     def convert_column_between_units(self, df: pd.DataFrame, column_name: str, source_unit: str, target_unit: str):
         conversion = self.get_conversion_between_units(source_unit, target_unit)

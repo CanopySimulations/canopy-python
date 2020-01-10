@@ -36,6 +36,11 @@ def load_channel(
     else:
         data_type = np.float64
 
-    channel_data = np.frombuffer(channel_result.data, data_type)
+    channel_data: np.array = np.frombuffer(channel_result.data, data_type)
+
+    desired_units = session.user_settings.get_channel_units(channel_name)
+    if desired_units is not None:
+        session.units.convert_values_from_si(channel_data, desired_units)
+
     loaded_channel = canopy.LoadedChannel(channel_name, units, channel_data)
     return loaded_channel

@@ -1,4 +1,4 @@
-from collections import Mapping
+from typing import Mapping
 
 import swagger_client
 import pandas as pd

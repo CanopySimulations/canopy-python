@@ -12,10 +12,10 @@ def load_study_job_data(
         channel_names: List[str],
         job_index: int = 0,
         tenant_id: str = None) -> canopy.StudyJobDataResult:
-    session.authenticate()
+    session.authentication.authenticate()
 
     if tenant_id is None:
-        tenant_id = session.tenant_id
+        tenant_id = session.authentication.tenant_id
 
     study_api = swagger_client.StudyApi(session.client)
     job_result: swagger_client.GetStudyJobMetadataQueryResult = study_api.study_get_study_job_metadata(tenant_id, study_id, job_index)

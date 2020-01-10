@@ -3,13 +3,14 @@ from __future__ import absolute_import
 import unittest
 import canopy
 import pandas as pd
+import numpy as np
 
 temperatureK = 373.15
-temperatureC = 100
-temperatureF = 212
+temperatureC = 100.0
+temperatureF = 212.0
 temperatureK2 = 473.15
-temperatureC2 = 200
-temperatureF2 = 392
+temperatureC2 = 200.0
+temperatureF2 = 392.0
 
 
 class TestUnits(unittest.TestCase):
@@ -50,6 +51,13 @@ class TestUnits(unittest.TestCase):
 
         self.assertEqual(self.units.convert_value_from_si(temperatureK, 'K'), temperatureK)
 
+    def test_convert_values_from_si(self):
+        data = np.array([temperatureK, temperatureK2])
+        self.units.convert_values_from_si(data, 'F')
+        self.assertEqual(len(data), 2)
+        self.assertAlmostEqual(data[0], temperatureF, delta=0.01)
+        self.assertAlmostEqual(data[1], temperatureF2, delta=0.01)
+
     def test_convert_column_from_si(self):
         data = pd.DataFrame({'temp': [temperatureK, temperatureK2]})
         self.units.convert_column_from_si(data, 'temp', 'F')
@@ -68,6 +76,13 @@ class TestUnits(unittest.TestCase):
 
         self.assertEqual(self.units.convert_value_to_si(temperatureK, 'K'), temperatureK)
 
+    def test_convert_values_to_si(self):
+        data = np.array([temperatureF, temperatureF2])
+        self.units.convert_values_to_si(data, 'F')
+        self.assertEqual(len(data), 2)
+        self.assertAlmostEqual(data[0], temperatureK, delta=0.01)
+        self.assertAlmostEqual(data[1], temperatureK2, delta=0.01)
+
     def test_convert_column_to_si(self):
         data = pd.DataFrame({'temp': [temperatureF, temperatureF2]})
         self.units.convert_column_to_si(data, 'temp', 'F')
@@ -78,6 +93,20 @@ class TestUnits(unittest.TestCase):
     def test_convert_value_between_units(self):
         self.assertAlmostEqual(self.units.convert_value_between_units(temperatureC, 'C', 'F'), temperatureF, delta=0.01)
 
+    def test_convert_values_between_units(self):
+        data = np.array([temperatureC, temperatureC2])
+        self.units.convert_values_between_units(data, 'C', 'F')
+        self.assertEqual(len(data), 2)
+        self.assertAlmostEqual(data[0], temperatureF, delta=0.01)
+        self.assertAlmostEqual(data[1], temperatureF2, delta=0.01)
+
+        # It should convert between non-si units when only factor
+        data = np.array([1000.0, 2000.0])
+        self.units.convert_values_between_units(data, 'mm', 'km')
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0], 0.001)
+        self.assertEqual(data[1], 0.002)
+
     def test_convert_column_between_units(self):
         data = pd.DataFrame({'temp': [temperatureC, temperatureC2]})
         self.units.convert_column_between_units(data, 'temp', 'C', 'F')
@@ -86,7 +115,7 @@ class TestUnits(unittest.TestCase):
         self.assertAlmostEqual(data.temp[1], temperatureF2, delta=0.01)
 
         # It should convert between non-si units when only factor
-        data = pd.DataFrame({'temp': [1000, 2000]})
+        data = pd.DataFrame({'temp': [1000.0, 2000.0]})
         self.units.convert_column_between_units(data, 'temp', 'mm', 'km')
         self.assertEqual(len(data.temp), 2)
         self.assertEqual(data.temp[0], 0.001)

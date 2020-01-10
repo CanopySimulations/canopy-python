@@ -12,10 +12,10 @@ def load_study_data(
         sim_type: str,
         channel_names: List[str],
         tenant_id: Optional[str] = None) -> canopy.StudyDataResult:
-    session.authenticate()
+    session.authentication.authenticate()
 
     if tenant_id is None:
-        tenant_id = session.tenant_id
+        tenant_id = session.authentication.tenant_id
 
     study_api = swagger_client.StudyApi(session.client)
     study_result: swagger_client.GetStudyQueryResult = study_api.study_get_study_metadata(tenant_id, study_id)
