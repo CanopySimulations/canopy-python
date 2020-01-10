@@ -1,8 +1,16 @@
+from typing import Optional
+
 import numpy as np
 import canopy
 
 
-def load_channel(session, job_url, sas, sim_type, channel_name, vector_metadata=None):
+def load_channel(
+        session: canopy.Session,
+        job_url: str,
+        sas: str,
+        sim_type: str,
+        channel_name: str,
+        vector_metadata=None) -> Optional[canopy.LoadedChannel]:
 
     if vector_metadata is None:
         vector_metadata = canopy.load_vector_metadata(job_url, sas, sim_type)
@@ -16,8 +24,8 @@ def load_channel(session, job_url, sas, sim_type, channel_name, vector_metadata=
 
     channel_metadata = vector_metadata.xs(channel_name)
 
-    points_count = channel_metadata['NPtsInChannel']
-    units = channel_metadata['units']
+    points_count: int = channel_metadata['NPtsInChannel']
+    units: str = channel_metadata['units']
     if units == '()':
         units = ''
 

@@ -1,12 +1,22 @@
 from __future__ import absolute_import
 
+from typing import Optional
+
 from swagger_client.api_client import ApiClient
 import getpass
 import datetime
 
 
 class Session(object):
-    def __init__(self, client=None, client_id=None, client_secret=None, user_name=None, tenant_name=None):
+    client: ApiClient
+
+    def __init__(
+            self,
+            client: Optional[ApiClient] = None,
+            client_id: Optional[str] = None,
+            client_secret: Optional[str] = None,
+            user_name: Optional[str] = None,
+            tenant_name: Optional[str] = None):
         if client is None:
             client = ApiClient()
         self.client = client
@@ -15,7 +25,7 @@ class Session(object):
         self.user_name = user_name
         self.tenant_name = tenant_name
         self.identity = None
-        self.expires = None
+        self.expires: datetime.datetime = datetime.datetime.min
 
     def authenticate(self):
         if self.identity is None or self.expires is None:
@@ -69,8 +79,8 @@ class Session(object):
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
-        tokenResult = self.client.call_api('/token', 'POST', post_params=post_params, header_params=header_params, response_type=object)
-        self.identity = tokenResult[0]
+        token_result = self.client.call_api('/token', 'POST', post_params=post_params, header_params=header_params, response_type=object)
+        self.identity = token_result[0]
         self.__update_from_identity()
 
     def __update_from_identity(self):
@@ -79,14 +89,14 @@ class Session(object):
         self.expires = datetime.datetime.now() + expires_delta
 
     @property
-    def tenant_id(self):
+    def tenant_id(self) -> str:
         if self.identity is None:
             raise RuntimeError('You must call authenticate before requesting tenant ID.')
 
         return self.identity['tenant_id']
 
     @property
-    def user_id(self):
+    def user_id(self) -> str:
         if self.identity is None:
             raise RuntimeError('You must call authenticate before requesting user ID.')
 

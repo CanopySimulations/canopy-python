@@ -1,9 +1,10 @@
+from typing import Optional
 from urllib.error import HTTPError
 
 import pandas as pd
 
 
-def load_vector_metadata(job_url, sas, sim_type):
+def load_vector_metadata(job_url: str, sas: str, sim_type: str) -> Optional[pd.DataFrame]:
     file_name = ''.join([sim_type, '_VectorMetadata.csv'])
     try:
         vector_metadata_url = ''.join([job_url, file_name, sas])
