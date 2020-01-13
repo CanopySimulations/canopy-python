@@ -2,7 +2,6 @@ from __future__ import absolute_import
 
 from typing import List, Optional
 
-import swagger_client
 import canopy
 import logging
 
@@ -20,8 +19,8 @@ def load_study_data(
     if tenant_id is None:
         tenant_id = session.authentication.tenant_id
 
-    study_api = swagger_client.StudyApi(session.client)
-    study_result: swagger_client.GetStudyQueryResult = study_api.study_get_study_metadata(tenant_id, study_id)
+    study_api = canopy.swagger.StudyApi(session.client)
+    study_result: canopy.swagger.GetStudyQueryResult = study_api.study_get_study_metadata(tenant_id, study_id)
 
     jobs = []
     study_document = canopy.get_study_document(session, study_result.study)

@@ -1,6 +1,6 @@
-# swagger_client.UserSettingsApi
+# canopy.swagger.UserSettingsApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,16 +17,16 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.UserSettingsApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.UserSettingsApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 
@@ -68,19 +68,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.UserSettingsApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.UserSettingsApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
-data = swagger_client.UpdatedUserSettings() # UpdatedUserSettings | 
+data = canopy.swagger.UpdatedUserSettings() # UpdatedUserSettings | 
 
 try:
     api_response = api_instance.user_settings_put_user_settings(tenant_id, user_id, data)

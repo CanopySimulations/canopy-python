@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **object** |  | [optional] 
+**name** | [**DocumentName**](DocumentName.md) |  | [optional] 
 **configs** | [**list[WorksheetConfig]**](WorksheetConfig.md) |  | [optional] 
-**study** | **object** |  | [optional] 
+**study** | [**WorksheetStudy**](WorksheetStudy.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

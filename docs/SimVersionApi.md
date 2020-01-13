@@ -1,6 +1,6 @@
-# swagger_client.SimVersionApi
+# canopy.swagger.SimVersionApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -20,16 +20,16 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SimVersionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SimVersionApi(canopy.swagger.ApiClient(configuration))
 sim_version = 'sim_version_example' # str | 
 document_path = 'document_path_example' # str | 
 tenant_id = 'tenant_id_example' # str |  (optional)
@@ -73,16 +73,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SimVersionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SimVersionApi(canopy.swagger.ApiClient(configuration))
 sim_version = 'sim_version_example' # str | 
 tenant_id = 'tenant_id_example' # str |  (optional)
 
@@ -124,16 +124,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SimVersionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SimVersionApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str |  (optional)
 
 try:
@@ -173,16 +173,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SimVersionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SimVersionApi(canopy.swagger.ApiClient(configuration))
 wiki_version = 'wiki_version_example' # str | 
 document_path = 'document_path_example' # str | 
 tenant_id = 'tenant_id_example' # str |  (optional)
@@ -226,17 +226,17 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SimVersionApi(swagger_client.ApiClient(configuration))
-sim_version_data = swagger_client.NewSimVersionData() # NewSimVersionData | 
+api_instance = canopy.swagger.SimVersionApi(canopy.swagger.ApiClient(configuration))
+sim_version_data = canopy.swagger.NewSimVersionData() # NewSimVersionData | 
 
 try:
     api_instance.sim_version_post_sim_version(sim_version_data)

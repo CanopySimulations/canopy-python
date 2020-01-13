@@ -1,6 +1,6 @@
-# swagger_client.SupportSessionApi
+# canopy.swagger.SupportSessionApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -20,16 +20,16 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SupportSessionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SupportSessionApi(canopy.swagger.ApiClient(configuration))
 
 try:
     api_response = api_instance.support_session_get_all_support_sessions()
@@ -65,16 +65,16 @@ This endpoint does not need any parameter.
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SupportSessionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SupportSessionApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 document_id = 'document_id_example' # str | 
 
@@ -116,16 +116,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SupportSessionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SupportSessionApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 document_id = 'document_id_example' # str | 
@@ -169,19 +169,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SupportSessionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SupportSessionApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 document_id = 'document_id_example' # str | 
-data = swagger_client.SupportSessionData() # SupportSessionData | 
+data = canopy.swagger.SupportSessionData() # SupportSessionData | 
 
 try:
     api_instance.support_session_put_support_session(tenant_id, document_id, data)
@@ -221,20 +221,20 @@ void (empty response body)
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.SupportSessionApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.SupportSessionApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 document_id = 'document_id_example' # str | 
-data = swagger_client.SupportSessionData() # SupportSessionData | 
+data = canopy.swagger.SupportSessionData() # SupportSessionData | 
 
 try:
     api_instance.support_session_put_support_session_deprecated(tenant_id, user_id, document_id, data)

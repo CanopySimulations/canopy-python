@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | **object** |  | [optional] 
+**error** | [**AutoScaleRunError**](AutoScaleRunError.md) |  | [optional] 
 **results** | **str** |  | [optional] 
 **timestamp** | **datetime** |  | [optional] 
 

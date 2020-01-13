@@ -1,6 +1,6 @@
-# swagger_client.AccountSettingsApi
+# canopy.swagger.AccountSettingsApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,16 +17,16 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.AccountSettingsApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.AccountSettingsApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 
@@ -68,19 +68,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.AccountSettingsApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.AccountSettingsApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
-updated_account_settings_data = swagger_client.UpdatedAccountSettings() # UpdatedAccountSettings | 
+updated_account_settings_data = canopy.swagger.UpdatedAccountSettings() # UpdatedAccountSettings | 
 
 try:
     api_instance.account_settings_put(tenant_id, user_id, updated_account_settings_data)

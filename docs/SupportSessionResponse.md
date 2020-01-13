@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tenant_id** | **object** |  | [optional] 
-**user_id** | **object** |  | [optional] 
+**tenant_id** | [**TenantId**](TenantId.md) |  | [optional] 
+**user_id** | [**UserId**](UserId.md) |  | [optional] 
 **creation_date** | **datetime** |  | [optional] 
 **message** | **str** |  | [optional] 
 

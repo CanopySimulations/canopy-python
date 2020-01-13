@@ -1,6 +1,6 @@
-# swagger_client.EndToEndTestInboxApi
+# canopy.swagger.EndToEndTestInboxApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,16 +16,16 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.EndToEndTestInboxApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.EndToEndTestInboxApi(canopy.swagger.ApiClient(configuration))
 mailbox_name = 'mailbox_name_example' # str | 
 
 try:

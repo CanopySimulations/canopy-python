@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sim_version** | **object** |  | [optional] 
+**sim_version** | [**SimVersion**](SimVersion.md) |  | [optional] 
 **documents** | [**list[TextDocumentOptionalContent]**](TextDocumentOptionalContent.md) |  | [optional] 
 **units** | **dict(str, str)** |  | [optional] 
 

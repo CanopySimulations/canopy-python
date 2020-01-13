@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **object** |  | [optional] 
-**username** | **object** |  | [optional] 
-**email** | **object** |  | [optional] 
+**user_id** | [**UserId**](UserId.md) |  | [optional] 
+**username** | [**Username**](Username.md) |  | [optional] 
+**email** | [**Email**](Email.md) |  | [optional] 
 **roles** | **list[str]** |  | [optional] 
 **is_enabled** | **bool** |  | [optional] 
 

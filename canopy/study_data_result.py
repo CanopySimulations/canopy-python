@@ -2,17 +2,16 @@ from __future__ import absolute_import
 
 from typing import List, Sequence
 
-import swagger_client
 import canopy
 
 
 class StudyDataResult:
-    def __init__(self, study: swagger_client.CanopyDocument, jobs: Sequence[canopy.StudyJobDataResult]):
+    def __init__(self, study: canopy.swagger.CanopyDocument, jobs: Sequence[canopy.StudyJobDataResult]):
         self._study = study
         self._jobs = jobs
 
     @property
-    def study(self) -> swagger_client.CanopyDocument:
+    def study(self) -> canopy.swagger.CanopyDocument:
         return self._study
 
     @property

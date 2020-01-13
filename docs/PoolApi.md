@@ -1,12 +1,12 @@
-# swagger_client.PoolApi
+# canopy.swagger.PoolApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**pool_get_pool_status**](PoolApi.md#pool_get_pool_status) | **GET** /pools/{tenantId} | 
 [**pool_get_pools**](PoolApi.md#pool_get_pools) | **GET** /pools | 
-[**pool_get_test_auto_scale_formula**](PoolApi.md#pool_get_test_auto_scale_formula) | **GET** /pools/autoscale/test | 
+[**pool_get_test_auto_scale_formula**](PoolApi.md#pool_get_test_auto_scale_formula) | **GET** /pools/{tenantId}/autoscale/test | 
 
 
 # **pool_get_pool_status**
@@ -18,16 +18,16 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.PoolApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.PoolApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 pool_type = 'pool_type_example' # str |  (optional)
 
@@ -69,16 +69,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.PoolApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.PoolApi(canopy.swagger.ApiClient(configuration))
 
 try:
     api_response = api_instance.pool_get_pools()
@@ -106,7 +106,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pool_get_test_auto_scale_formula**
-> TestAutoScaleFormulaQueryResult pool_get_test_auto_scale_formula(pool_id, formula=formula)
+> TestAutoScaleFormulaQueryResult pool_get_test_auto_scale_formula(tenant_id, pool_id, formula=formula)
 
 
 
@@ -114,21 +114,22 @@ This endpoint does not need any parameter.
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.PoolApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.PoolApi(canopy.swagger.ApiClient(configuration))
+tenant_id = 'tenant_id_example' # str | 
 pool_id = 'pool_id_example' # str | 
 formula = 'formula_example' # str |  (optional)
 
 try:
-    api_response = api_instance.pool_get_test_auto_scale_formula(pool_id, formula=formula)
+    api_response = api_instance.pool_get_test_auto_scale_formula(tenant_id, pool_id, formula=formula)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PoolApi->pool_get_test_auto_scale_formula: %s\n" % e)
@@ -138,6 +139,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **tenant_id** | **str**|  | 
  **pool_id** | **str**|  | 
  **formula** | **str**|  | [optional] 
 

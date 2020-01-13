@@ -3,17 +3,16 @@ from __future__ import absolute_import
 from typing import Optional
 
 import canopy
-from swagger_client.api_client import ApiClient
 import getpass
 import datetime
 
 
 class Authentication(object):
-    _client: ApiClient
+    _client: canopy.swagger.ApiClient
 
     def __init__(
             self,
-            client: ApiClient,
+            client: canopy.swagger.ApiClient,
             client_id: Optional[str] = None,
             client_secret: Optional[str] = None,
             user_name: Optional[str] = None,

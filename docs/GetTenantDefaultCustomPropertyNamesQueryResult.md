@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**settings** | **object** |  | [optional] 
+**settings** | [**TenantDefaultCustomPropertyNames**](TenantDefaultCustomPropertyNames.md) |  | [optional] 
 **custom_property_groups** | [**list[DocumentTypeCustomPropertyGroups]**](DocumentTypeCustomPropertyGroups.md) |  | [optional] 
 **study_types** | **list[str]** |  | [optional] 
 **config_types** | [**list[DocumentSubType]**](DocumentSubType.md) |  | [optional] 

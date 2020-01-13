@@ -1,6 +1,5 @@
 from typing import List
 
-import swagger_client
 import canopy
 import pandas as pd
 
@@ -17,8 +16,8 @@ def load_study_job_data(
     if tenant_id is None:
         tenant_id = session.authentication.tenant_id
 
-    study_api = swagger_client.StudyApi(session.client)
-    job_result: swagger_client.GetStudyJobMetadataQueryResult = study_api.study_get_study_job_metadata(tenant_id, study_id, job_index)
+    study_api = canopy.swagger.StudyApi(session.client)
+    job_result: canopy.swagger.GetStudyJobMetadataQueryResult = study_api.study_get_study_job_metadata(tenant_id, study_id, job_index)
 
     job_url = job_result.access_information.url
     sas = job_result.access_information.access_signature

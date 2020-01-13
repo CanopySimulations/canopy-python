@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | **object** |  | [optional] 
+**config_type** | [**DocumentSubType**](DocumentSubType.md) |  | [optional] 
 **reference** | [**ConfigReference**](ConfigReference.md) |  | [optional] 
 **inherit_reference** | **bool** |  | [optional] 
 

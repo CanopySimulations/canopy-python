@@ -1,6 +1,6 @@
-# swagger_client.ConfigApi
+# canopy.swagger.ConfigApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -35,16 +35,16 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 data = NULL # object | 
 
 try:
@@ -84,16 +84,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 config_id = 'config_id_example' # str | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
@@ -138,16 +138,16 @@ void (empty response body)
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 config_id = 'config_id_example' # str | 
@@ -194,16 +194,16 @@ void (empty response body)
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 data = NULL # object | 
 description = 'description_example' # str |  (optional)
 
@@ -245,16 +245,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 config_id = 'config_id_example' # str | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
@@ -302,16 +302,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 config_id = 'config_id_example' # str | 
@@ -361,16 +361,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 config_type = 'config_type_example' # str | 
 result_type = 'result_type_example' # str | 
@@ -418,16 +418,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 config_id = 'config_id_example' # str | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
@@ -471,16 +471,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 config_id = 'config_id_example' # str | 
@@ -526,16 +526,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 config_id = 'config_id_example' # str | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
@@ -583,16 +583,16 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 config_type = 'config_type_example' # str | 
 filter = 'filter_example' # str |  (optional)
@@ -640,18 +640,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
-data = swagger_client.NewConfigData() # NewConfigData | 
+data = canopy.swagger.NewConfigData() # NewConfigData | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
 
 try:
@@ -693,19 +693,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
-data = swagger_client.NewConfigData() # NewConfigData | 
+data = canopy.swagger.NewConfigData() # NewConfigData | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
 
 try:
@@ -748,18 +748,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
-data = swagger_client.NewBatchConfigData() # NewBatchConfigData | 
+data = canopy.swagger.NewBatchConfigData() # NewBatchConfigData | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
 
 try:
@@ -801,19 +801,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
-data = swagger_client.NewBatchConfigData() # NewBatchConfigData | 
+data = canopy.swagger.NewBatchConfigData() # NewBatchConfigData | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
 
 try:
@@ -856,19 +856,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 config_id = 'config_id_example' # str | 
-data = swagger_client.UpdatedConfigData() # UpdatedConfigData | 
+data = canopy.swagger.UpdatedConfigData() # UpdatedConfigData | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
 
 try:
@@ -910,20 +910,20 @@ void (empty response body)
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 config_id = 'config_id_example' # str | 
-data = swagger_client.UpdatedConfigData() # UpdatedConfigData | 
+data = canopy.swagger.UpdatedConfigData() # UpdatedConfigData | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
 
 try:
@@ -966,19 +966,19 @@ void (empty response body)
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 config_id = 'config_id_example' # str | 
-owner_data = swagger_client.ConfigOwnerData() # ConfigOwnerData | 
+owner_data = canopy.swagger.ConfigOwnerData() # ConfigOwnerData | 
 
 try:
     api_instance.config_put_config_owner(tenant_id, config_id, owner_data)
@@ -1018,19 +1018,19 @@ void (empty response body)
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 target_sim_version = 'target_sim_version_example' # str | 
-data = swagger_client.UpgradeConfigData() # UpgradeConfigData | 
+data = canopy.swagger.UpgradeConfigData() # UpgradeConfigData | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
 
 try:
@@ -1073,18 +1073,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.ConfigApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.ConfigApi(canopy.swagger.ApiClient(configuration))
 target_sim_version = 'target_sim_version_example' # str | 
-data = swagger_client.UpgradeConfigData() # UpgradeConfigData | 
+data = canopy.swagger.UpgradeConfigData() # UpgradeConfigData | 
 sub_tree_path = 'sub_tree_path_example' # str |  (optional)
 
 try:

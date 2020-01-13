@@ -3,14 +3,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tenant_id** | **object** |  | [optional] 
-**user_id** | **object** |  | [optional] 
-**worksheet_id** | **object** |  | [optional] 
+**tenant_id** | [**TenantId**](TenantId.md) |  | [optional] 
+**user_id** | [**UserId**](UserId.md) |  | [optional] 
+**worksheet_id** | [**DocumentId**](DocumentId.md) |  | [optional] 
 **name** | **str** |  | [optional] 
-**outline** | **object** |  | [optional] 
-**resolved_labels** | **object** |  | [optional] 
-**resolved_references** | **object** |  | [optional] 
-**support_session** | **object** |  | [optional] 
+**outline** | [**WorksheetOutline**](WorksheetOutline.md) |  | [optional] 
+**resolved_labels** | [**CollatedWorksheetLabels**](CollatedWorksheetLabels.md) |  | [optional] 
+**resolved_references** | [**WorksheetResolvedReferences**](WorksheetResolvedReferences.md) |  | [optional] 
+**support_session** | [**SupportSession**](SupportSession.md) |  | [optional] 
 **properties** | **object** |  | [optional] 
 **notes** | **str** |  | [optional] 
 

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reference** | **object** |  | [optional] 
+**reference** | [**ConfigReference**](ConfigReference.md) |  | [optional] 
 **hashes** | [**list[ConfigHash]**](ConfigHash.md) |  | [optional] 
 **resolved_labels** | [**list[ResolvedLabel]**](ResolvedLabel.md) |  | [optional] 
 

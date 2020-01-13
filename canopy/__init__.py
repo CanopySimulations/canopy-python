@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-import swagger_client
+import canopy.swagger
 
 from canopy.study_job_data_result import StudyJobDataResult
 from canopy.study_data_result import StudyDataResult

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pool_id** | **object** |  | [optional] 
+**pool_id** | [**PoolId**](PoolId.md) |  | [optional] 
 **pool_state** | **str** |  | [optional] 
 **allocation_state** | **str** |  | [optional] 
 **current_dedicated** | **int** |  | [optional] 

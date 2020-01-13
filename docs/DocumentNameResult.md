@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
-**config_id** | **object** |  | [optional] 
-**user_id** | **object** |  | [optional] 
+**config_id** | [**DocumentId**](DocumentId.md) |  | [optional] 
+**user_id** | [**UserId**](UserId.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

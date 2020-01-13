@@ -1,6 +1,6 @@
-# swagger_client.AvailabilityApi
+# canopy.swagger.AvailabilityApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **availability_get**
-> AvailabilityResult availability_get(full=full)
+> AvailabilityResult availability_get(full=full, ping=ping)
 
 
 
@@ -17,16 +17,17 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.AvailabilityApi()
+api_instance = canopy.swagger.AvailabilityApi()
 full = true # bool |  (optional)
+ping = true # bool |  (optional)
 
 try:
-    api_response = api_instance.availability_get(full=full)
+    api_response = api_instance.availability_get(full=full, ping=ping)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AvailabilityApi->availability_get: %s\n" % e)
@@ -37,6 +38,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **full** | **bool**|  | [optional] 
+ **ping** | **bool**|  | [optional] 
 
 ### Return type
 
@@ -62,12 +64,12 @@ No authorization required
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.AvailabilityApi()
+api_instance = canopy.swagger.AvailabilityApi()
 
 try:
     api_response = api_instance.availability_head()

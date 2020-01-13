@@ -3,30 +3,31 @@ from __future__ import absolute_import
 from typing import Optional
 
 import canopy
-from swagger_client.api_client import ApiClient
 import getpass
 import datetime
 
 
 class Session(object):
-    _client: ApiClient
+    _client: canopy.swagger.ApiClient
 
     def __init__(
             self,
-            client: Optional[ApiClient] = None,
+            client: Optional[canopy.swagger.ApiClient] = None,
             client_id: Optional[str] = None,
             client_secret: Optional[str] = None,
             user_name: Optional[str] = None,
             tenant_name: Optional[str] = None):
         if client is None:
-            client = ApiClient()
+            configuration = canopy.swagger.Configuration()
+            configuration.host = 'https://api.canopysimulations.com/'
+            client = canopy.swagger.ApiClient(configuration=configuration)
         self._client = client
         self._authentication = canopy.Authentication(client, client_id, client_secret, user_name, tenant_name)
         self._user_settings = canopy.UserSettingsManager(client, self._authentication)
         self._units = canopy.Units()
 
     @property
-    def client(self) -> ApiClient:
+    def client(self) -> canopy.swagger.ApiClient:
         return self._client
 
     @property

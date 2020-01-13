@@ -20,8 +20,12 @@ Next you can use the Dockerfile in this repository to create a docker image to e
 docker image build -t canopy-python-gen:1 .
 docker container run -i -t --mount type=bind,src='c:\dev\canopy\canopy-python',dst=/usr/src/app/repo canopy-python-gen:1 /bin/bash
 
-java -jar swagger-codegen-cli.jar generate -l python -i ./canopy-swagger-no-allof.json -o ./gen
-cp -r gen/swagger_client repo
+java -jar swagger-codegen-cli.jar generate -l python -i ./canopy-swagger-no-allof.json -o ./gen -DpackageName="canopy.swagger"
+rsync -av gen/canopy.swagger/ gen/canopy/swagger/
+rm -r repo/canopy/swagger
+rm -r repo/docs
+cp -r gen/canopy/swagger repo/canopy
+cp -r gen/docs repo
 ```
 
 Finally update `models/configuration.py` host URL to `https://api.canopysimulations.com`.

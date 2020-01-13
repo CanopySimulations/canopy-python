@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**label_definitions** | **object** |  | [optional] 
+**label_definitions** | [**CollatedLabelDefinitions**](CollatedLabelDefinitions.md) |  | [optional] 
 **configs** | [**list[ConfigResolvedLabels]**](ConfigResolvedLabels.md) |  | [optional] 
 **studies** | [**list[StudyResolvedLabels]**](StudyResolvedLabels.md) |  | [optional] 
 

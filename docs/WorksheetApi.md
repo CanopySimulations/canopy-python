@@ -1,6 +1,6 @@
-# swagger_client.WorksheetApi
+# canopy.swagger.WorksheetApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,16 +19,16 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.WorksheetApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.WorksheetApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 worksheet_id = 'worksheet_id_example' # str | 
 config_version = 'config_version_example' # str |  (optional)
@@ -72,19 +72,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.WorksheetApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.WorksheetApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 worksheet_id = 'worksheet_id_example' # str | 
-data = swagger_client.DuplicateConfigsData() # DuplicateConfigsData | 
+data = canopy.swagger.DuplicateConfigsData() # DuplicateConfigsData | 
 sim_version = 'sim_version_example' # str |  (optional)
 
 try:
@@ -127,18 +127,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.WorksheetApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.WorksheetApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
-data = swagger_client.NewWorksheetData() # NewWorksheetData | 
+data = canopy.swagger.NewWorksheetData() # NewWorksheetData | 
 
 try:
     api_response = api_instance.worksheet_post_worksheet(tenant_id, data)
@@ -178,19 +178,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.WorksheetApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.WorksheetApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 worksheet_id = 'worksheet_id_example' # str | 
-data = swagger_client.UpdatedWorksheetData() # UpdatedWorksheetData | 
+data = canopy.swagger.UpdatedWorksheetData() # UpdatedWorksheetData | 
 
 try:
     api_response = api_instance.worksheet_put_worksheet(tenant_id, worksheet_id, data)

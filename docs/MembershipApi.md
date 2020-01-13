@@ -1,6 +1,6 @@
-# swagger_client.MembershipApi
+# canopy.swagger.MembershipApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *https://localhost:44300*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,12 +24,12 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi()
+api_instance = canopy.swagger.MembershipApi()
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 
@@ -70,12 +70,12 @@ No authorization required
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi()
+api_instance = canopy.swagger.MembershipApi()
 user_id = 'user_id_example' # str | 
 token = 'token_example' # str | 
 
@@ -117,16 +117,16 @@ No authorization required
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.MembershipApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 
@@ -168,13 +168,13 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi()
-identified_user_data = swagger_client.IdentifiedUserData() # IdentifiedUserData | 
+api_instance = canopy.swagger.MembershipApi()
+identified_user_data = canopy.swagger.IdentifiedUserData() # IdentifiedUserData | 
 
 try:
     api_response = api_instance.membership_post_identified_user(identified_user_data)
@@ -213,12 +213,12 @@ No authorization required
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi()
+api_instance = canopy.swagger.MembershipApi()
 
 try:
     api_instance.membership_post_initialize()
@@ -253,13 +253,13 @@ No authorization required
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi()
-password_reset_confirmation_data = swagger_client.PasswordResetConfirmationData() # PasswordResetConfirmationData | 
+api_instance = canopy.swagger.MembershipApi()
+password_reset_confirmation_data = canopy.swagger.PasswordResetConfirmationData() # PasswordResetConfirmationData | 
 
 try:
     api_response = api_instance.membership_post_password_reset_confirmation(password_reset_confirmation_data)
@@ -298,13 +298,13 @@ No authorization required
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi()
-password_reset_request_data = swagger_client.PasswordResetRequestData() # PasswordResetRequestData | 
+api_instance = canopy.swagger.MembershipApi()
+password_reset_request_data = canopy.swagger.PasswordResetRequestData() # PasswordResetRequestData | 
 
 try:
     api_response = api_instance.membership_post_password_reset_request(password_reset_request_data)
@@ -343,17 +343,17 @@ No authorization required
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi(swagger_client.ApiClient(configuration))
-registration_data = swagger_client.RegistrationData() # RegistrationData | 
+api_instance = canopy.swagger.MembershipApi(canopy.swagger.ApiClient(configuration))
+registration_data = canopy.swagger.RegistrationData() # RegistrationData | 
 
 try:
     api_response = api_instance.membership_post_registration(registration_data)
@@ -392,19 +392,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import canopy.swagger
+from canopy.swagger.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: oauth2
-configuration = swagger_client.Configuration()
+configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = swagger_client.MembershipApi(swagger_client.ApiClient(configuration))
+api_instance = canopy.swagger.MembershipApi(canopy.swagger.ApiClient(configuration))
 tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
-role_data = swagger_client.UserRoleData() # UserRoleData | 
+role_data = canopy.swagger.UserRoleData() # UserRoleData | 
 
 try:
     api_instance.membership_put_user_role(tenant_id, user_id, role_data)

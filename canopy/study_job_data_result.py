@@ -1,17 +1,17 @@
 from typing import Mapping
 
-import swagger_client
+import canopy
 import pandas as pd
 
 
 class StudyJobDataResult:
-    def __init__(self, job: swagger_client.CanopyDocument, data: pd.DataFrame, units: Mapping[str, str]):
+    def __init__(self, job: canopy.swagger.CanopyDocument, data: pd.DataFrame, units: Mapping[str, str]):
         self._job = job
         self._data = data
         self._units = units
 
     @property
-    def job(self) -> swagger_client.CanopyDocument:
+    def job(self) -> canopy.swagger.CanopyDocument:
         return self._job
 
     @property
