@@ -2,6 +2,9 @@ from typing import Optional
 from urllib.error import HTTPError
 
 import pandas as pd
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def load_vector_metadata(job_url: str, sas: str, sim_type: str) -> Optional[pd.DataFrame]:
@@ -12,6 +15,6 @@ def load_vector_metadata(job_url: str, sas: str, sim_type: str) -> Optional[pd.D
         vector_metadata.set_index(['name'], inplace=True)
         return vector_metadata
     except HTTPError:
-        print('Not found: ' + file_name)
+        logger.warning('Not found: %s', file_name)
         return None
 

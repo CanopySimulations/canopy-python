@@ -2,6 +2,9 @@ from typing import Optional
 
 import numpy as np
 import canopy
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def load_channel(
@@ -19,15 +22,13 @@ def load_channel(
         return None
 
     if channel_name not in vector_metadata.index:
-        print('Channel not found: ' + channel_name)
+        logger.warning('Channel not found: %s', channel_name)
         return None
 
     channel_metadata = vector_metadata.xs(channel_name)
 
     points_count: int = channel_metadata['NPtsInChannel']
     units: str = channel_metadata['units']
-    if units == '()':
-        units = ''
 
     channel_url = ''.join([job_url, sim_type, '_', channel_name, '.bin', sas])
     channel_result = session.client.rest_client.pool_manager.request('GET', channel_url)
@@ -41,6 +42,10 @@ def load_channel(
     desired_units = session.user_settings.get_channel_units(channel_name)
     if desired_units is not None:
         session.units.convert_values_from_si(channel_data, desired_units)
+        units = desired_units
+
+    if units == '()':
+        units = ''
 
     loaded_channel = canopy.LoadedChannel(channel_name, units, channel_data)
     return loaded_channel

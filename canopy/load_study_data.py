@@ -4,6 +4,9 @@ from typing import List, Optional
 
 import swagger_client
 import canopy
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def load_study_data(
@@ -23,7 +26,7 @@ def load_study_data(
     jobs = []
     study_document = canopy.get_study_document(session, study_result.study)
     for index in range(canopy.job_count_to_simulation_count(study_document.job_count)):
-        print(''.join(['Loading job index ', str(index)]))
+        logger.info('Loading job index %d', index)
         job = canopy.load_study_job_data(session, study_id, sim_type, channel_names, index, tenant_id=tenant_id)
         jobs.append(job)
 
