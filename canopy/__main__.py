@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 
 import canopy
-import canopy.load_study_job_data
 
 
 def run():

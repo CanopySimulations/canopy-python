@@ -28,8 +28,6 @@ cp -r gen/canopy/swagger repo/canopy
 cp -r gen/docs repo
 ```
 
-Finally update `models/configuration.py` host URL to `https://api.canopysimulations.com`.
-
 ## Requirements.
 
 This has currently only been tested on Python 3.x but may work on 2.x.
