@@ -58,7 +58,7 @@ jobs:
       displayName: 'Install dependencies'
 
     - script: |
-        python setup.py sdist bdist_wheel
+        python setup.py sdist
       displayName: 'Artifact creation'
 
     - script: |
