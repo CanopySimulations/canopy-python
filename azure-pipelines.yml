@@ -58,5 +58,17 @@ jobs:
       displayName: 'Install dependencies'
 
     - script: |
-        python setup.py sdist
+        python setup.py sdist bdist_wheel
       displayName: 'Artifact creation'
+
+    - script: |
+        pip install twine
+      displayName: 'Install twine'
+
+    - task: TwineAuthenticate@1
+      inputs:
+        pythonUploadServiceConnection: 'PyPI'
+
+    - script: |
+        twine upload -r PyPI --config-file $(PYPIRC_PATH) $(BUILD_SOURCESDIRECTORY)/dist/*
+      displayName: 'Install twine'
