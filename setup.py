@@ -18,7 +18,7 @@ from setuptools import setup, find_packages  # noqa: H301
 with open('README.md') as f:
     long_description = f.read()
 
-NAME = "canopy-api"
+NAME = "canopy-client"
 VERSION = "0.0.1"
 
 REQUIRES = [
@@ -41,7 +41,7 @@ setup(
     author='James Thurley',
     author_email="james.thurley@canopysimulations.com",
     url="https://github.com/canopysimulations/canopy-python/",
-    keywords=["Canopy API", "Canopy Simulations"],
+    keywords=["Canopy API", "Canopy Simulations", "Canopy Client"],
     install_requires=REQUIRES,
     #include_package_data=True,
     classifiers=[
