@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  python.buildVersion: '3.7'
+
 jobs:
   - job: Test
     strategy:
@@ -38,10 +41,20 @@ jobs:
         pytest
       displayName: 'pytest'
 
-  - job: Deploy
+  - job: Build
     dependsOn: Test
 
     steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.buildVersion)'
+      displayName: 'Use Python $(python.buildVersion)'
+
+    - script: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+      displayName: 'Install dependencies'
+
     - script: |
         python setup.py sdist
       displayName: 'Artifact creation'
