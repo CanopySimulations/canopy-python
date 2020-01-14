@@ -30,7 +30,7 @@ cp -r gen/docs repo
 
 ## Requirements.
 
-This has currently only been tested on Python 3.x but may work on 2.x.
+This has currently been tested on Python 3.6 and higher.
 
 ## Installation & Usage
 ### pip install
