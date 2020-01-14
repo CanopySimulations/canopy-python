@@ -12,16 +12,22 @@ pool:
 variables:
   python.buildVersion: '3.7'
 
+  major: 1
+  minor: $[counter(variables.major, 0)]
+  buildVersion: $[format('{0}.{1}', variables.major, variables.minor)]
+
+name: '$(buildVersion)'
+
 jobs:
   - job: Test
     strategy:
       matrix:
-        #Python27:
-        #  python.version: '2.7'
-        #Python35:
-        #  python.version: '3.5'
-        #Python36:
-        #  python.version: '3.6'
+        Python27:
+          python.version: '2.7'
+        Python35:
+          python.version: '3.5'
+        Python36:
+          python.version: '3.6'
         Python37:
           python.version: '3.7'
 
