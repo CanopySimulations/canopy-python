@@ -70,5 +70,5 @@ jobs:
         pythonUploadServiceConnection: 'PyPI'
 
     - script: |
-        twine upload -r PyPI --config-file $(PYPIRC_PATH) $(BUILD_SOURCESDIRECTORY)/dist/*
-      displayName: 'Install twine'
+        twine upload --config-file $(PYPIRC_PATH) $(BUILD_SOURCESDIRECTORY)/dist/*
+      displayName: 'Upload package'
