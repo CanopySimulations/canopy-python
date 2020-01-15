@@ -72,7 +72,7 @@ jobs:
 
     - task: TwineAuthenticate@1
       inputs:
-        pythonUploadServiceConnection: 'Set PyPI authentication'
+        pythonUploadServiceConnection: 'PyPI'
 
     #- script: |
     #    cat $(PYPIRC_PATH)
