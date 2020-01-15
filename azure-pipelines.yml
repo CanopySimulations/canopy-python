@@ -78,6 +78,6 @@ jobs:
         cat setup.py
       displayName: 'Update version'
 
-    #- script: |
-    #    twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi
-    #  displayName: 'Upload package'
+    - script: |
+        twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi
+      displayName: 'Upload package'
