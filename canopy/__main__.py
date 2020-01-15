@@ -4,7 +4,9 @@ import canopy
 
 
 def run():
-    session = canopy.Session(client_id='canopy', user_name='james.thurley')
+    session = canopy.Session(
+        client_id='canopy',
+        user_name='james.thurley')
 
     study_job_data = canopy.load_study_job_data(session, 'd08403aec32847de974af1008cef86cc', 'DynamicLap', ['sRun', 'vCar', 'blah'], 0)
     print(study_job_data.job.name)

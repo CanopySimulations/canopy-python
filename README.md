@@ -11,7 +11,7 @@ Currently the library is split into two parts:
  - One folder up from that in the "canopy" folder we are adding helper functions which wrap common use cases in simple functions.
    You can also use these functions as a reference to using the swagger generated code.
 
-The basic premise for using the library is to start by creating a `canopy.Session` object. 
+When using the library you generally start by creating a `canopy.Session` object. 
 The session object manages authentication, and the caching of user settings.
 Calling `session.authentication.authenticate()` before calling Swagger generated client functions ensures that you are
 authenticated and that any expired access tokens are refreshed.
@@ -30,7 +30,7 @@ study_data = canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun'
 ```
 
 When running this code you will be prompted for your client secret (which you can request from us) and your password if 
-it is the first time `session.authentication.authenticate()` has been called.
+it is the first time `session.authentication.authenticate()` has been called for this session instance.
 
 # Requirements.
 
@@ -60,10 +60,10 @@ python setup.py install --user
 
 See `canopy/__main__.py` for example usage.
 
-# Generating API Client
+# Updating the Swagger Client
 
-The Swagger generated part of the client may occasionally need to be regenerated as the Canopy API is updated.
-Due to [a bug](https://github.com/swagger-api/swagger-codegen-generators/issues/462) in the python code generator,
+The Swagger generated part of this library may occasionally need to be regenerated as the Canopy API is updated.
+Due to [a bug](https://github.com/swagger-api/swagger-codegen-generators/issues/462) in the python code generator
 we cannot generate the client from the public API. Instead we can update the repository file `canopy-swagger-no-allof.json` to 
 contain the latest swagger definition with the `allOf` references removed and generate from that.
 
@@ -71,9 +71,8 @@ Currently the easiest way to do this is with access to the Canopy source code, w
 Therefore if you believe the Swagger client requires updating you should ask us to update this library.
  
 For Canopy employees: To remove `allOf` references, comment out the line `c.SchemaFilter<FixReadOnlyRefSchemaFilter>();` in 
-`Canopy.Api.Swagger.SwaggerConfig`, run locally, and copy the output of `https://localhost:44300/swagger/docs/v1`.
-
-Don't forget to revert changes to `Canopy.Api.Swagger.SwaggerConfig` afterwards. 
+`Canopy.Api.Swagger.SwaggerConfig`, run locally, copy the output of `https://localhost:44300/swagger/docs/v1`, and then discard
+ the changes to `Canopy.Api.Swagger.SwaggerConfig`. 
 
 Once you have an up to date `canopy-swagger-no-allof.json` file you can use the Dockerfile in this repository to 
 create a docker image to generate the new API stubs:

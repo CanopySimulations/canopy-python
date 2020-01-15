@@ -16,12 +16,14 @@ class Authentication(object):
             client_id: Optional[str] = None,
             client_secret: Optional[str] = None,
             user_name: Optional[str] = None,
-            tenant_name: Optional[str] = None):
+            tenant_name: Optional[str] = None,
+            password: Optional[str] = None):
         self._client = client
         self._client_id = client_id
         self._client_secret = client_secret
         self._user_name = user_name
         self._tenant_name = tenant_name
+        self._password = password
         self._identity = None
         self._expires: datetime.datetime = datetime.datetime.min
 
@@ -42,13 +44,14 @@ class Authentication(object):
         if self._tenant_name is None:
             self._tenant_name = self._client_id
 
-        password = getpass.getpass(prompt='Password:')
+        if self._password is None:
+            self._password = getpass.getpass(prompt='Password:')
 
         post_params = {
             'grant_type': 'password',
             'username': self._user_name,
             'tenant': self._tenant_name,
-            'password': password,
+            'password': self._password,
             'client_id': self._client_id,
             'client_secret': self._client_secret,
         }
@@ -57,8 +60,13 @@ class Authentication(object):
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
-        token_result = self._client.call_api('/token', 'POST', post_params=post_params, header_params=header_params,
-                                             response_type=object)
+        token_result = self._client.call_api(
+            '/token',
+            'POST',
+            post_params=post_params,
+            header_params=header_params,
+            response_type=object)
+
         self._identity = token_result[0]
         self.__update_from_identity()
 
@@ -78,8 +86,13 @@ class Authentication(object):
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
-        token_result = self._client.call_api('/token', 'POST', post_params=post_params, header_params=header_params,
-                                             response_type=object)
+        token_result = self._client.call_api(
+            '/token',
+            'POST',
+            post_params=post_params,
+            header_params=header_params,
+            response_type=object)
+
         self._identity = token_result[0]
         self.__update_from_identity()
 
