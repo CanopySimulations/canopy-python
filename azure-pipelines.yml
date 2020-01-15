@@ -70,5 +70,9 @@ jobs:
         pythonUploadServiceConnection: 'PyPI'
 
     - script: |
+        cat $(PYPIRC_PATH)
+      displayName: 'Output PYPIRC'
+
+    - script: |
         twine upload --config-file $(PYPIRC_PATH) dist/*
       displayName: 'Upload package'
