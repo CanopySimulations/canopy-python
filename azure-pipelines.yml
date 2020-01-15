@@ -74,5 +74,5 @@ jobs:
       displayName: 'Output PYPIRC'
 
     - script: |
-        twine upload --config-file $(PYPIRC_PATH) dist/*
+        twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi
       displayName: 'Upload package'

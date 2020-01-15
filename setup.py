@@ -18,8 +18,8 @@ from setuptools import setup, find_packages  # noqa: H301
 with open('README.md') as f:
     long_description = f.read()
 
-NAME = "canopy-client"
-VERSION = "0.0.1"
+NAME = "canopy"
+VERSION = "0.1"
 
 REQUIRES = [
     "numpy",
