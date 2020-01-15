@@ -72,11 +72,11 @@ jobs:
 
     - task: TwineAuthenticate@1
       inputs:
-        pythonUploadServiceConnection: 'PyPI'
+        pythonUploadServiceConnection: 'Set PyPI authentication'
 
-    - script: |
-        cat $(PYPIRC_PATH)
-      displayName: 'Output PYPIRC'
+    #- script: |
+    #    cat $(PYPIRC_PATH)
+    #  displayName: 'Output PYPIRC'
 
     - script: |
         twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi

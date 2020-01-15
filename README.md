@@ -1,48 +1,51 @@
-# Generating API Client
+# Introduction
 
-Due to a bug in the python code generator, we cannot generate the client from the public API:
+This package is designed for customers of [Canopy Simulations](https://www.canopysimulations.com/) who would like
+to access the Canopy API from Python, for example using Jupyter Notebooks.
 
-https://github.com/swagger-api/swagger-codegen-generators/issues/462
+Currently the library is split into two parts:
 
-Instead we must first update `canopy-swagger-no-allof.json` to contain the latest swagger definition with 
-the `allOf` references removed.
+ - The client generated using the Swagger toolset is located in the "canopy/swagger" folder.
+   We don't have a great deal of control over how this code looks, but it should give a fairly complete interface to the main API.
 
-Currently the easiest way to do this is with access to the Canopy source code, which is internal to Canopy.
-Therefore you should simply ask us to update this library if you find the generated API client is out of date.
- 
-For Canopy employees: To remove `allOf` references, comment out the line `c.SchemaFilter<FixReadOnlyRefSchemaFilter>();` in 
-`Canopy.Api.Swagger.SwaggerConfig`, run locally, and copy the output of `https://localhost:44300/swagger/docs/v1`.
+ - One folder up from that in the "canopy" folder we are adding helper functions which wrap common use cases in simple functions.
+   You can also use these functions as a reference to using the swagger generated code.
 
-Don't forget to revert changes to `Canopy.Api.Swagger.SwaggerConfig`. 
+The basic premise for using the library is to start by creating a `canopy.Session` object. 
+The session object manages authentication, and the caching of user settings.
+Calling `session.authentication.authenticate()` before calling Swagger generated client functions ensures that you are
+authenticated and that any expired access tokens are refreshed.
+Our helper functions will generally handle calling authenticate before making any calls.
 
-Next you can use the Dockerfile in this repository to create a docker image to easily generate the new API stubs:
+Once you have created a session you can pass the `session.client` into the swagger generated client code as the `api_client` parameter.
+The `canopy/load_study_job_data.py` function shows all this being done.
+
+The following example shows how to create a session and request some output channels from a study using our helper function:
+
+```python
+import canopy
+
+session = canopy.Session(client_id='<your_client_id>', user_name='<your_username>')
+study_data = canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar'])
 ```
-docker image build -t canopy-python-gen:1 .
-docker container run -i -t --mount type=bind,src='c:\dev\canopy\canopy-python',dst=/usr/src/app/repo canopy-python-gen:1 /bin/bash
 
-java -jar swagger-codegen-cli.jar generate -l python -i ./canopy-swagger-no-allof.json -o ./gen -DpackageName="canopy.swagger"
-rsync -av gen/canopy.swagger/ gen/canopy/swagger/
-rm -r repo/canopy/swagger
-rm -r repo/docs
-cp -r gen/canopy/swagger repo/canopy
-cp -r gen/docs repo
-```
+When running this code you will be prompted for your client secret (which you can request from us) and your password if 
+it is the first time `session.authentication.authenticate()` has been called.
 
-## Requirements.
+# Requirements.
 
 This has currently been tested on Python 3.6 and higher.
 
-## Installation & Usage
+# Installation & Usage
 ### pip install
 
-If the python package is hosted on Github, you can install directly from Github
-
 ```sh
-pip install git+https://github.com/CanopySimulations/canopy-python.git
+pip install canopy
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/CanopySimulations/canopy-python.git`)
 
-Then see `canopy/__main__.py` for example usage.
+You may need to run `pip` with root permission: `sudo pip install canopy`.
+
+From a Jupyter Notebook you can run `!pip install canopy`.
 
 ### Setuptools
 
@@ -53,13 +56,39 @@ python setup.py install --user
 ```
 (or `sudo python setup.py install` to install the package for all users)
 
-Then see `canopy/__main__.py` for example usage.
+# Getting Started
 
-## Getting Started
+See `canopy/__main__.py` for example usage.
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+# Generating API Client
 
-Then see `canopy/__main__.py` for example usage.
+The Swagger generated part of the client may occasionally need to be regenerated as the Canopy API is updated.
+Due to [a bug](https://github.com/swagger-api/swagger-codegen-generators/issues/462) in the python code generator,
+we cannot generate the client from the public API. Instead we can update the repository file `canopy-swagger-no-allof.json` to 
+contain the latest swagger definition with the `allOf` references removed and generate from that.
+
+Currently the easiest way to do this is with access to the Canopy source code, which is internal to Canopy.
+Therefore if you believe the Swagger client requires updating you should ask us to update this library.
+ 
+For Canopy employees: To remove `allOf` references, comment out the line `c.SchemaFilter<FixReadOnlyRefSchemaFilter>();` in 
+`Canopy.Api.Swagger.SwaggerConfig`, run locally, and copy the output of `https://localhost:44300/swagger/docs/v1`.
+
+Don't forget to revert changes to `Canopy.Api.Swagger.SwaggerConfig` afterwards. 
+
+Once you have an up to date `canopy-swagger-no-allof.json` file you can use the Dockerfile in this repository to 
+create a docker image to generate the new API stubs:
+
+```sh
+docker image build -t canopy-python-gen:1 .
+docker container run -i -t --mount type=bind,src='c:\dev\canopy\canopy-python',dst=/usr/src/app/repo canopy-python-gen:1 /bin/bash
+
+java -jar swagger-codegen-cli.jar generate -l python -i ./canopy-swagger-no-allof.json -o ./gen -DpackageName="canopy.swagger"
+rsync -av gen/canopy.swagger/ gen/canopy/swagger/
+rm -r repo/canopy/swagger
+rm -r repo/docs
+cp -r gen/canopy/swagger repo/canopy
+cp -r gen/docs repo
+```
 
 ## Documentation for API Endpoints
 
