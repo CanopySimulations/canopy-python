@@ -58,6 +58,11 @@ jobs:
       displayName: 'Install dependencies'
 
     - script: |
+        sed -i -e "s/VERSION = \"0\.1\"/VERSION = \"$BUILDVERSION\"/" setup.py
+        cat setup.py
+      displayName: 'Update version'
+
+    - script: |
         python setup.py sdist
       displayName: 'Artifact creation'
 
@@ -72,11 +77,6 @@ jobs:
     - script: |
         cat $(PYPIRC_PATH)
       displayName: 'Output PYPIRC'
-
-    - script: |
-        sed -i -e "s/VERSION = \"0\.1\"/VERSION = \"$BUILDVERSION\"/" setup.py
-        cat setup.py
-      displayName: 'Update version'
 
     - script: |
         twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi
