@@ -74,5 +74,10 @@ jobs:
       displayName: 'Output PYPIRC'
 
     - script: |
-        twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi
-      displayName: 'Upload package'
+        sed -i -e "s/VERSION = \"0\.1\"/VERSION = \"$BUILDVERSION\"/" setup.py
+        cat setup.py
+      displayName: 'Update version'
+
+    #- script: |
+    #    twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi
+    #  displayName: 'Upload package'
