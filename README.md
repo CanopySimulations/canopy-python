@@ -26,7 +26,7 @@ The following example shows how to create a session and request some output chan
 import canopy
 
 session = canopy.Session(client_id='<your_client_id>', user_name='<your_username>')
-study_data = canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar'])
+study_data = await canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar'])
 ```
 
 When running this code you will be prompted for your client secret (which you can request from us) and your password if 
@@ -88,6 +88,15 @@ rm -r repo/docs
 cp -r gen/canopy/swagger repo/canopy
 cp -r gen/docs repo
 ```
+
+To regenerate the `asyncio` files first execute:
+```sh
+rm -r gen
+java -jar swagger-codegen-cli.jar generate -l python -i ./canopy-swagger-no-allof.json -o ./gen -DpackageName="canopy.swagger" --library asyncio
+rsync -av gen/canopy.swagger/ gen/canopy/swagger/
+```
+
+Then manually remove all the files which are duplicates of the non-async versions and copy into `canopy/swagger_asyncio`.
 
 ## Documentation for API Endpoints
 

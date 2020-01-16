@@ -27,7 +27,8 @@ REQUIRES = [
     "six>=1.10",
     "python-dateutil>=2.1",
     "urllib3>=1.23",
-    "pandas>=0.25.1"
+    "pandas>=0.25.1",
+    "aiohttp"
 ]
 
 setup(

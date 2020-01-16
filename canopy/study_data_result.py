@@ -1,6 +1,4 @@
-from __future__ import absolute_import
-
-from typing import List, Sequence
+from typing import Sequence
 
 import canopy
 
