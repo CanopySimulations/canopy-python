@@ -1,4 +1,5 @@
-from typing import List
+from threading import Thread
+from typing import List, Optional
 
 import canopy
 import pandas as pd
@@ -27,9 +28,22 @@ def load_study_job_data(
     channels_units = {}
 
     if vector_metadata is not None:
+        threads: List[Optional[Thread[canopy.LoadedChannel]]] = []
         for channel_name in channel_names:
-            loaded_channel = canopy.load_channel(session, job_url, sas, sim_type, channel_name, vector_metadata=vector_metadata)
-            if loaded_channel is not None:
+            loaded_channel_thread: Optional[Thread] = canopy.load_channel(
+                session,
+                job_url,
+                sas,
+                sim_type,
+                channel_name,
+                vector_metadata=vector_metadata,
+                async_req=True)
+
+            threads.append(loaded_channel_thread)
+
+        for channel_name, thread in zip(channel_names, threads):
+            if thread is not None:
+                loaded_channel = thread.get()
                 channels_data[channel_name] = loaded_channel.data
                 channels_units[channel_name] = loaded_channel.units
 

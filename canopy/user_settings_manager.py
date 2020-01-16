@@ -22,6 +22,10 @@ class UserSettingsManager(object):
         channels: List[canopy.swagger.ChannelSettings] = user_settings.channels
         self._units = {item.name: item.units for item in channels}
 
+    def load_if_required(self):
+        if self._data is None:
+            self.reload()
+
     @property
     def data(self) -> canopy.swagger.UserSettings:
         if self._data is None:
