@@ -28,7 +28,8 @@ REQUIRES = [
     "python-dateutil>=2.1",
     "urllib3>=1.23",
     "pandas>=0.25.1",
-    "aiohttp"
+    "aiohttp",
+    "munch"
 ]
 
 setup(

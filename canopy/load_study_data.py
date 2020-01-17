@@ -13,7 +13,9 @@ async def load_study_data(
         study_id: str,
         sim_type: str,
         channel_names: List[str],
-        tenant_id: Optional[str] = None) -> canopy.StudyDataResult:
+        tenant_id: Optional[str] = None,
+        include_inputs: bool = False,
+        include_scalar_results: bool = False) -> canopy.StudyDataResult:
     session.authentication.authenticate()
 
     if tenant_id is None:
@@ -38,7 +40,9 @@ async def load_study_data(
             index,
             tenant_id=tenant_id,
             job_access_information=jobs_access_information[index % len(jobs_access_information)],
-            semaphore=semaphore))
+            semaphore=semaphore,
+            include_inputs=include_inputs,
+            include_scalar_results=include_scalar_results))
         job_tasks.append(job_task)
 
     jobs: List[canopy.StudyJobDataResult] = await asyncio.gather(*job_tasks)

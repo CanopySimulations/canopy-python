@@ -38,8 +38,6 @@ async def load_channel(
 
         channel_url = ''.join([job_access_information.url, sim_type, '_', channel_name, '.bin', job_access_information.access_signature])
 
-        desired_units = session.user_settings.get_channel_units(channel_name)
-
         async with session.async_client_session.get(channel_url) as response:
             channel_bytes = await response.read()
             if points_count * 4 == len(channel_bytes):
@@ -48,9 +46,6 @@ async def load_channel(
                 data_type = np.float64
             channel_data: np.array = np.frombuffer(channel_bytes, data_type)
 
-            if desired_units is not None:
-                session.units.convert_values_from_si(channel_data, desired_units)
-                units = desired_units
             if units == '()':
                 units = ''
 

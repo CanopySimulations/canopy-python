@@ -1,7 +1,7 @@
 import math
 import pandas as pd
 import numpy as np
-from typing import Optional
+from typing import Optional, Union
 
 
 class UnitDefinition:
@@ -158,71 +158,113 @@ class Units(object):
     def convert_value_between_units(self, value: float, source_unit: str, target_unit: str, apply_factor_only: bool = False) -> float:
         return self.convert_value_from_si(self.convert_value_to_si(value, source_unit, apply_factor_only), target_unit, apply_factor_only)
 
-    def convert_values_to_si(self, values: np.array, source_unit: str):
+    def _convert_values_to_si(self, values: Union[np.array, pd.Series], source_unit: str, inplace: bool = False) -> Union[np.array, pd.Series]:
+        if values is None:
+            return None
+
         conversion_to_si = self.get_conversion_to_si(source_unit)
         factor = conversion_to_si.factor
         offset = conversion_to_si.offset
 
-        if factor != 1:
-            values *= factor
+        result = values
 
-        if offset != 0:
-            values += offset
+        if inplace:
+            if factor != 1:
+                result *= factor
 
-    def convert_column_to_si(self, df: pd.DataFrame, column_name: str, source_unit: str):
-        conversion_to_si = self.get_conversion_to_si(source_unit)
-        factor = conversion_to_si.factor
-        offset = conversion_to_si.offset
+            if offset != 0:
+                result += offset
+        else:
+            if factor != 1:
+                result = result * factor
 
-        if factor == 1 and offset == 0:
-            return
+            if offset != 0:
+                result = result + offset
 
-        df[column_name] = df[column_name] * factor + offset
+        return result
 
-    def convert_values_from_si(self, values: np.array, target_unit: str):
+    def convert_array_to_si(self, values: np.array, source_unit: str, inplace: bool = False, always_return_copy: bool = False) -> np.array:
+        result = self._convert_values_to_si(values, source_unit, inplace=inplace)
+        return np.copy(result) if result is not None and result is values and always_return_copy else result
+
+    def convert_series_to_si(self, values: pd.Series, source_unit: str, inplace: bool = False, always_return_copy: bool = False) -> pd.Series:
+        result = self._convert_values_to_si(values, source_unit, inplace=inplace)
+        return result.copy() if result is not None and result is values and always_return_copy else result
+
+    def _convert_values_from_si(self, values: Union[np.array, pd.Series], target_unit: str, inplace: bool = False) -> Union[np.array, pd.Series]:
+        if values is None:
+            return None
+
         conversion_to_si = self.get_conversion_to_si(target_unit)
         factor = conversion_to_si.factor
         offset = conversion_to_si.offset
 
-        if offset != 0:
-            values -= offset
+        result = values
 
-        if factor != 1:
-            values /= factor
+        if inplace:
+            if offset != 0:
+                result -= offset
 
-    def convert_column_from_si(self, df: pd.DataFrame, column_name: str, target_unit: str):
-        conversion_to_si = self.get_conversion_to_si(target_unit)
-        factor = conversion_to_si.factor
-        offset = conversion_to_si.offset
+            if factor != 1:
+                result /= factor
+        else:
+            if offset != 0:
+                result = result - offset
 
-        if factor == 1 and offset == 0:
-            return
+            if factor != 1:
+                result = result / factor
 
-        df[column_name] = (df[column_name] - offset) / factor
+        return result
 
-    def convert_values_between_units(self, values: np.array, source_unit: str, target_unit: str):
+    def convert_array_from_si(self, values: np.array, target_unit: str, inplace: bool = False, always_return_copy: bool = False) -> np.array:
+        result = self._convert_values_from_si(values, target_unit, inplace=inplace)
+        return np.copy(result) if result is not None and result is values and always_return_copy else result
+
+    def convert_series_from_si(self, values: pd.Series, target_unit: str, inplace: bool = False, always_return_copy: bool = False) -> pd.Series:
+        result = self._convert_values_from_si(values, target_unit, inplace=inplace)
+        return result.copy() if result is not None and result is values and always_return_copy else result
+
+    def _convert_values_between_units(self, values: Union[np.array, pd.Series], source_unit: str, target_unit: str, inplace: bool = False) -> Union[np.array, pd.Series]:
+        if values is None:
+            return None
+
         conversion = self.get_conversion_between_units(source_unit, target_unit)
+
+        result = values
+
         if not conversion.is_conversion_required:
-            return
+            return result
 
         combined_offset = conversion.offset_to_si - conversion.offset_from_si
 
-        if conversion.factor_to_si != 1:
-            values *= conversion.factor_to_si
+        if inplace:
+            if conversion.factor_to_si != 1:
+                result *= conversion.factor_to_si
 
-        if combined_offset != 0:
-            values += combined_offset
+            if combined_offset != 0:
+                result += combined_offset
 
-        if conversion.factor_from_si != 1:
-            values /= conversion.factor_from_si
+            if conversion.factor_from_si != 1:
+                result /= conversion.factor_from_si
+        else:
+            if conversion.factor_to_si != 1:
+                result = result * conversion.factor_to_si
 
-    def convert_column_between_units(self, df: pd.DataFrame, column_name: str, source_unit: str, target_unit: str):
-        conversion = self.get_conversion_between_units(source_unit, target_unit)
-        if not conversion.is_conversion_required:
-            return
+            if combined_offset != 0:
+                result = result + combined_offset
 
-        combined_offset = conversion.offset_to_si - conversion.offset_from_si
-        df[column_name] = (df[column_name] * conversion.factor_to_si + combined_offset) / conversion.factor_from_si
+            if conversion.factor_from_si != 1:
+                result = result / conversion.factor_from_si
+
+        return result
+
+    def convert_array_between_units(self, values: np.array, source_unit: str, target_unit: str, inplace: bool = False, always_return_copy: bool = False) -> np.array:
+        result = self._convert_values_between_units(values, source_unit, target_unit, inplace=inplace)
+        return np.copy(result) if result is not None and result is values and always_return_copy else result
+
+    def convert_series_between_units(self, values: pd.Series, source_unit: str, target_unit: str, inplace: bool = False, always_return_copy: bool = False) -> pd.Series:
+        result = self._convert_values_between_units(values, source_unit, target_unit, inplace=inplace)
+        return result.copy() if result is not None and result is values and always_return_copy else result
 
     def get_conversion_between_units(self, source_unit: str, target_unit: str) -> ConversionBetweenUnits:
         conversion_from_source_to_si = self.get_conversion_to_si(source_unit)

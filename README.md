@@ -81,6 +81,9 @@ with canopy.Session(client_id='<your_client_id>', user_name='<your_username>') a
     job_result_2 = job_result_thread.get()
 ```
 
+# Changelog
+
+The changelog is available [here](CHANGELOG.md).
 
 # Requirements.
 

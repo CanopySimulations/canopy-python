@@ -1,6 +1,7 @@
 from asyncio import Future
+from struct import Struct
 from threading import Thread
-from typing import List, Optional
+from typing import List, Optional, Any, Dict
 
 import canopy
 import asyncio
@@ -18,7 +19,9 @@ async def load_study_job_data(
         job_index: int = 0,
         tenant_id: str = None,
         job_access_information: canopy.swagger.BlobAccessInformation = None,
-        semaphore: asyncio.Semaphore = None) -> canopy.StudyJobDataResult:
+        semaphore: asyncio.Semaphore = None,
+        include_inputs: bool = False,
+        include_scalar_results: bool = False) -> canopy.StudyJobDataResult:
 
     session.authentication.authenticate()
 
@@ -32,12 +35,18 @@ async def load_study_job_data(
         logger.info('Loading job index %d', job_index)
         study_api = canopy.swagger.StudyApi(session.async_client)
 
-        job_result_task = asyncio.ensure_future(study_api.study_get_study_job_metadata(
-            tenant_id,
-            study_id,
-            job_index))
+        job_result_task = asyncio.ensure_future(
+            study_api.study_get_study_job_metadata(
+                tenant_id,
+                study_id,
+                job_index)
+            if not include_inputs else
+            study_api.study_get_study_job(
+                tenant_id,
+                study_id,
+                job_index))
 
-        job_result: Optional[canopy.swagger.GetStudyJobMetadataQueryResult] = None
+        job_result: Optional[canopy.swagger.GetStudyJobQueryResult] = None
 
         if job_access_information is None:
             job_result = await job_result_task
@@ -48,10 +57,13 @@ async def load_study_job_data(
                 ''.join([job_access_information.url, str(job_index), '/']),
                 job_access_information.access_signature)
 
+        scalar_results_task: Future[Optional[pd.DataFrame]] = asyncio.ensure_future(canopy.load_study_job_scalar_results(
+            job_access_information, sim_type)) if include_scalar_results else None
+
         vector_metadata = await canopy.load_vector_metadata(job_access_information, sim_type)
 
         channels_data = {}
-        channels_units = {}
+        vector_data_units = {}
 
         if vector_metadata is not None:
             channels_semaphore = asyncio.Semaphore(session.default_blob_storage_concurrency)
@@ -71,11 +83,30 @@ async def load_study_job_data(
                 loaded_channel = await task
                 if loaded_channel is not None:
                     channels_data[channel_name] = loaded_channel.data
-                    channels_units[channel_name] = loaded_channel.units
+                    vector_data_units[channel_name] = loaded_channel.units
 
-        channels_data_frame = pd.DataFrame(channels_data)
+        vector_data = pd.DataFrame(channels_data)
 
         if job_result is None:
             job_result = await job_result_task
 
-        return canopy.StudyJobDataResult(job_result.study_job, channels_data_frame, channels_units)
+        scalar_data: Dict[str, float] = {}
+        scalar_data_units: Dict[str, str] = {}
+        if scalar_results_task is not None:
+            scalar_results = await scalar_results_task
+            if scalar_results is not None:
+                scalar_data = dict(scalar_results['value'])
+                scalar_data_units = dict(scalar_results['units'])
+
+        job_inputs: Optional[Struct] = None
+        if include_inputs:
+            job_inputs = canopy.dict_to_object(job_result.study_job_input['simConfig'], deep=False)
+
+        return canopy.StudyJobDataResult(
+            session,
+            job_result.study_job,
+            vector_data,
+            vector_data_units,
+            scalar_data,
+            scalar_data_units,
+            job_inputs)
