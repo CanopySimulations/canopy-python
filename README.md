@@ -17,8 +17,8 @@ Calling `session.authentication.authenticate()` before calling Swagger generated
 authenticated and that any expired access tokens are refreshed.
 Our helper functions will generally handle calling authenticate before making any calls.
 
-Once you have created a session you can pass the `session.client` into the swagger generated client code as the `api_client` parameter.
-The `canopy/load_study_job_data.py` function shows all this being done.
+Once you have created a session you can pass the `session.async_client` or `session.sync_client` into the swagger 
+generated client code as the `api_client` parameter as shown below.
 
 The following example shows how to create a session and request some output channels from a study using our helper function:
 
@@ -52,7 +52,7 @@ you can pass the client secret and password into the Session class (after fetchi
 avoid being prompted.
 
 If you can't use `asyncio` and `async/await` you can instead instantiate the session object synchronously 
-and use the `canopy.block` method when calling our helper methods. 
+and use the `canopy.run` method when calling our async helper methods. 
 You can pass `session.sync_client` into the swagger client classes instead of `session.async_client` to make them 
 return results synchronously.
 
@@ -60,9 +60,9 @@ return results synchronously.
 import canopy
 
 with canopy.Session(client_id='<your_client_id>', user_name='<your_username>') as session:
-    # Note we are using canopy.block(..) to force the async method to run synchronously.
-    # This is just calling asyncio.get_event_loop().run_until_complete(..) underneath.
-    study_data = canopy.block(canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar']))
+    # Note we are using canopy.run(..) to force the async method to run synchronously.
+    # This is a wrapper for asyncio.get_event_loop().run_until_complete(..).
+    study_data = canopy.run(canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar']))
 
     # Using the swagger generated client synchronously by passing in sync_client:
     study_api = canopy.swagger.StudyApi(session.sync_client)

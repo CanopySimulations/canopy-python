@@ -10,7 +10,7 @@ from canopy.user_settings_manager import UserSettingsManager
 from canopy.units import Units
 from canopy.session import Session
 
-from canopy.block import block
+from canopy.run import run
 from canopy.load_study_data import load_study_data
 from canopy.load_study_job_data import load_study_job_data
 from canopy.load_channel import load_channel

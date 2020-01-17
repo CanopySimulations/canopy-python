@@ -24,7 +24,7 @@ async def main_asynchronous():
 
 def main_synchronous():
     with canopy.Session(client_id='canopy', user_name='james.thurley') as session:
-        study_job_data = canopy.block(canopy.load_study_job_data(
+        study_job_data = canopy.run(canopy.load_study_job_data(
             session,
             'd08403aec32847de974af1008cef86cc',
             'DynamicLap',

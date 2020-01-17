@@ -29,7 +29,7 @@ class Session(object):
         return self
 
     def __exit__(self, exc_type, exc, tb):
-        canopy.block(self.__aexit__(exc_type, exc, tb))
+        canopy.run(self.__aexit__(exc_type, exc, tb))
 
     async def __aenter__(self):
         return self
