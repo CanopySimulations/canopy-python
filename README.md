@@ -24,13 +24,63 @@ The following example shows how to create a session and request some output chan
 
 ```python
 import canopy
+import asyncio
 
-session = canopy.Session(client_id='<your_client_id>', user_name='<your_username>')
-study_data = await canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar'])
+async with canopy.Session(client_id='<your_client_id>', user_name='<your_username>') as session:
+    study_data = await canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar'])
+
+    # Using the swagger generated client directly:
+    study_api = canopy.swagger.StudyApi(session.async_client)
+    job_result = await study_api.study_get_study_job_metadata(
+        session.authentication.tenant_id,
+        '<study_id>',
+        0)
+
+    # Using asyncio.ensure_future() to enable us to perform multiple calls in parallel
+    job_result_task = asyncio.ensure_future(study_api.study_get_study_job_metadata(
+        session.authentication.tenant_id,
+        '<study_id>',
+        0))
+
+    job_result_2 = await job_result_task
+
 ```
 
-When running this code you will be prompted for your client secret (which you can request from us) and your password if 
-it is the first time `session.authentication.authenticate()` has been called for this session instance.
+When running this code you will be prompted for your client secret and your password if 
+it is the first time `session.authentication.authenticate()` has been called for this session instance. Alternatively
+you can pass the client secret and password into the Session class (after fetching them from a secure location) to
+avoid being prompted.
+
+If you can't use `asyncio` and `async/await` you can instead instantiate the session object synchronously 
+and use the `canopy.block` method when calling our helper methods. 
+You can pass `session.sync_client` into the swagger client classes instead of `session.async_client` to make them 
+return results synchronously.
+
+```python
+import canopy
+
+with canopy.Session(client_id='<your_client_id>', user_name='<your_username>') as session:
+    # Note we are using canopy.block(..) to force the async method to run synchronously.
+    # This is just calling asyncio.get_event_loop().run_until_complete(..) underneath.
+    study_data = canopy.block(canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar']))
+
+    # Using the swagger generated client synchronously by passing in sync_client:
+    study_api = canopy.swagger.StudyApi(session.sync_client)
+    job_result = study_api.study_get_study_job_metadata(
+        session.authentication.tenant_id,
+        '<study_id>',
+        0)
+
+    # You can still run synchronous swagger client methods asynchronously using threads if you need to:
+    job_result_thread = study_api.study_get_study_job_metadata(
+        session.authentication.tenant_id,
+        '<study_id>',
+        0,
+        async_req=True)
+
+    job_result_2 = job_result_thread.get()
+```
+
 
 # Requirements.
 

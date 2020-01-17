@@ -6,7 +6,7 @@ import asyncio
 
 
 class Session(object):
-    _client: canopy.swagger.ApiClient
+    _sync_client: canopy.swagger.ApiClient
     _async_client: canopy.swagger_asyncio.ApiClient
 
     def __init__(
@@ -18,12 +18,18 @@ class Session(object):
             password: Optional[str] = None):
         self._configuration = canopy.swagger.Configuration()
         self._configuration.host = 'https://api.canopysimulations.com/'
-        self._client = canopy.swagger.ApiClient(configuration=self._configuration)
+        self._sync_client = canopy.swagger.ApiClient(configuration=self._configuration)
         self._async_client = canopy.swagger_asyncio.ApiClient(configuration=self._configuration)
 
-        self._authentication = canopy.Authentication(self._client, client_id, client_secret, user_name, tenant_name, password)
-        self._user_settings = canopy.UserSettingsManager(self._client, self._authentication)
+        self._authentication = canopy.Authentication(self._sync_client, client_id, client_secret, user_name, tenant_name, password)
+        self._user_settings = canopy.UserSettingsManager(self._sync_client, self._authentication)
         self._units = canopy.Units()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        canopy.block(self.__aexit__(exc_type, exc, tb))
 
     async def __aenter__(self):
         return self
@@ -44,8 +50,8 @@ class Session(object):
         return self._configuration
 
     @property
-    def client(self) -> canopy.swagger.ApiClient:
-        return self._client
+    def sync_client(self) -> canopy.swagger.ApiClient:
+        return self._sync_client
 
     @property
     def async_client(self) -> canopy.swagger_asyncio.ApiClient:

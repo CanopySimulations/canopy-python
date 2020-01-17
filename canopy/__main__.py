@@ -3,7 +3,7 @@ import asyncio
 import logging
 
 
-async def main():
+async def main_asynchronous():
     async with canopy.Session(client_id='canopy', user_name='james.thurley') as session:
         study_job_data = await canopy.load_study_job_data(
             session,
@@ -22,6 +22,18 @@ async def main():
         print(len(study_data.jobs))
 
 
+def main_synchronous():
+    with canopy.Session(client_id='canopy', user_name='james.thurley') as session:
+        study_job_data = canopy.block(canopy.load_study_job_data(
+            session,
+            'd08403aec32847de974af1008cef86cc',
+            'DynamicLap',
+            ['sRun', 'vCar', 'tRun', 'hRideF'],
+            0))
+        print(study_job_data.job.name)
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    asyncio.get_event_loop().run_until_complete(main())
+    main_synchronous()
+    asyncio.get_event_loop().run_until_complete(main_asynchronous())
