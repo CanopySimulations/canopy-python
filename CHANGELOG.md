@@ -1,3 +1,30 @@
+# 4.0 Release
+## Breaking Changes
+### Automatic conversion of study inputs to objects.
+When loading the inputs of a study, the objects are deserialized as nested dictionaries by default.
+It is generally more convenient to access these inputs as a set of nested objects, but the conversion can be expensive
+for large configs such as tracks. Therefore performing this conversion previously required the user
+to call the `dict_to_object` helper function as needed.
+
+Now these inputs are automatically lazily converted to nested objects when first accessed.
+
+Before:
+```python
+car_dict = job_data.inputs.car
+print(car_dict['chassis']['hRideFSetup'])
+car = canopy.dict_to_object(car_dict)
+print(car.chassis.hRideFSetup)
+```
+  
+After:
+```python
+car = job_data.inputs.car
+print(car.chassis.hRideFSetup)
+```
+
+### Other Breaking Changes
+ - The `dict_to_object` helper function now defaults to performing a deep conversion.  
+
 # 3.0 Release
 ## New Features
  - Scalar results can now be loaded via optional parameters to `load_study_data` and `load_study_job_data`.
@@ -11,7 +38,7 @@
 
  - Refactor of how units are handled. 
 Units are no longer converted to the user's preferred units automatically.
-Instead added functions to enable the user to easily convert to their preferred units for display.
+Instead, functions have been added to enable the user to easily convert to their preferred units for display.
   
 # 2.0 Release
 ## New Features

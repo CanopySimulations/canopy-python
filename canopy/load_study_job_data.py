@@ -98,9 +98,9 @@ async def load_study_job_data(
                 scalar_data = dict(scalar_results['value'])
                 scalar_data_units = dict(scalar_results['units'])
 
-        job_inputs: Optional[Struct] = None
+        job_inputs: Optional[Dict[str, Dict]] = None
         if include_inputs:
-            job_inputs = canopy.dict_to_object(job_result.study_job_input['simConfig'], deep=False)
+            job_inputs = job_result.study_job_input['simConfig']
 
         return canopy.StudyJobDataResult(
             session,

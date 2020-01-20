@@ -15,8 +15,11 @@ async def main_asynchronous(client_secret: str, password: str):
             include_inputs=True,
             include_scalar_results=True)
         print(study_job_data.job.name)
-        weather = canopy.dict_to_object(study_job_data.inputs.weather)
+        weather = study_job_data.inputs.weather
         print('Air Temperature: {}C'.format(weather.TAir))
+        blah = study_job_data.inputs.blah
+        print('Blah is {}'.format(blah))
+
         t_lap_total = study_job_data.scalar_as('tLapTotal', 's')
         print('tLapTotal: {}s'.format(t_lap_total))
         v_car = study_job_data.vector_data['vCar']

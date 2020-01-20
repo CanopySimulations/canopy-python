@@ -6,6 +6,7 @@ from canopy.user_settings_manager import UserSettingsManager
 from canopy.units import Units
 from canopy.session import Session
 
+from canopy.dynamic_dict_to_object import DynamicDictToObject
 from canopy.study_job_data_result import StudyJobDataResult
 from canopy.study_data_result import StudyDataResult
 from canopy.loaded_channel import LoadedChannel

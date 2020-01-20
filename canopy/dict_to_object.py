@@ -3,7 +3,7 @@ from collections import namedtuple
 from munch import Munch
 
 
-def dict_to_object(data: Union[Dict, object], deep: bool = False):
+def dict_to_object(data: Union[Dict, object], deep: bool = True):
     if deep:
         return Munch.fromDict(data)
     else:

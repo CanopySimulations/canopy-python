@@ -1,5 +1,5 @@
 from struct import Struct
-from typing import Mapping, Any, Optional
+from typing import Mapping, Any, Optional, Dict
 
 import canopy
 import pandas as pd
@@ -15,12 +15,12 @@ class StudyJobDataResult:
             vector_data_units: Mapping[str, str],
             scalar_data: Mapping[str, float],
             scalar_data_units: Mapping[str, str],
-            inputs: Optional[Struct]):
+            inputs: Optional[Dict[str, Dict]]):
         self._session = session
         self._job = job
         self._vector_data = vector_data
         self._vector_data_units = vector_data_units
-        self._inputs = inputs
+        self._inputs = canopy.DynamicDictToObject(inputs)
         self._scalar_data = scalar_data
         self._scalar_data_units = scalar_data_units
 
@@ -45,7 +45,7 @@ class StudyJobDataResult:
         return self._scalar_data_units
 
     @property
-    def inputs(self) -> Optional[Struct]:
+    def inputs(self) -> Optional[canopy.DynamicDictToObject]:
         return self._inputs
 
     def vector_as(self, channel_name: str, units: Optional[str] = None, always_return_copy: bool = False) -> Optional[pd.Series]:
