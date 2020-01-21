@@ -5,7 +5,7 @@ from getpass import getpass
 
 
 async def main_asynchronous(client_secret: str, password: str):
-    async with canopy.Session(client_id='canopy', user_name='james.thurley', client_secret=client_secret, password=password) as session:
+    async with canopy.Session(client_id='canopy', username='james.thurley', client_secret=client_secret, password=password) as session:
         study_job_data = await canopy.load_study_job_data(
             session,
             'd08403aec32847de974af1008cef86cc',
@@ -36,7 +36,7 @@ async def main_asynchronous(client_secret: str, password: str):
 
 
 def main_synchronous(client_secret: str, password: str):
-    with canopy.Session(client_id='canopy', user_name='james.thurley', client_secret=client_secret, password=password) as session:
+    with canopy.Session(client_id='canopy', username='james.thurley', client_secret=client_secret, password=password) as session:
         study_job_data = canopy.run(canopy.load_study_job_data(
             session,
             'd08403aec32847de974af1008cef86cc',

@@ -11,9 +11,10 @@ class Session(object):
 
     def __init__(
             self,
+            authentication_data: Optional[canopy.AuthenticationData] = None,
             client_id: Optional[str] = None,
             client_secret: Optional[str] = None,
-            user_name: Optional[str] = None,
+            username: Optional[str] = None,
             tenant_name: Optional[str] = None,
             password: Optional[str] = None):
         self._configuration = canopy.swagger.Configuration()
@@ -21,9 +22,23 @@ class Session(object):
         self._sync_client = canopy.swagger.ApiClient(configuration=self._configuration)
         self._async_client = canopy.swagger_asyncio.ApiClient(configuration=self._configuration)
 
-        self._authentication = canopy.Authentication(self._sync_client, client_id, client_secret, user_name, tenant_name, password)
+        if authentication_data is not None:
+            client_id = authentication_data.client_id
+            client_secret = authentication_data.client_secret
+            username = authentication_data.username
+            tenant_name = authentication_data.tenant_name
+            password = authentication_data.password
+
+        self._authentication = canopy.Authentication(
+            self._sync_client,
+            client_id,
+            client_secret,
+            username,
+            tenant_name,
+            password)
         self._user_settings = canopy.UserSettingsManager(self._sync_client, self._authentication)
         self._units = canopy.Units()
+        self._tenant_users = canopy.TenantUsersManager(self._sync_client, self._authentication)
 
     def __enter__(self):
         return self
@@ -68,6 +83,10 @@ class Session(object):
     @property
     def user_settings(self) -> canopy.UserSettingsManager:
         return self._user_settings
+
+    @property
+    def tenant_users(self) -> canopy.TenantUsersManager:
+        return self._tenant_users
 
     @property
     def units(self) -> canopy.Units:

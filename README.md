@@ -26,7 +26,7 @@ The following example shows how to create a session and request some output chan
 import canopy
 import asyncio
 
-async with canopy.Session(client_id='<your_client_id>', user_name='<your_username>') as session:
+async with canopy.Session(client_id='<your_client_id>', username='<your_username>') as session:
     study_data = await canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar'])
 
     # Using the swagger generated client directly:
@@ -59,7 +59,7 @@ return results synchronously.
 ```python
 import canopy
 
-with canopy.Session(client_id='<your_client_id>', user_name='<your_username>') as session:
+with canopy.Session(client_id='<your_client_id>', username='<your_username>') as session:
     # Note we are using canopy.run(..) to force the async method to run synchronously.
     # This is a wrapper for asyncio.get_event_loop().run_until_complete(..).
     study_data = canopy.run(canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar']))

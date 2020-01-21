@@ -1,4 +1,9 @@
 # 4.0 Release
+## New Features
+ - An optional `sim_version` parameter can now be passed into `load_study_data` and `load_study_job_data`.
+ - Helper functions for finding and loading configs and studies.
+ - Helper function for saving changes to a loaded config.
+  
 ## Breaking Changes
 ### Automatic conversion of study inputs to objects.
 When loading the inputs of a study, the objects are deserialized as nested dictionaries by default.
@@ -23,7 +28,11 @@ print(car.chassis.hRideFSetup)
 ```
 
 ### Other Breaking Changes
- - The `dict_to_object` helper function now defaults to performing a deep conversion.  
+ - The `dict_to_object` helper function now defaults to performing a deep conversion.
+ - The `Session` object can now take an `AuthenticationData` argument, and the arguments have been re-ordered
+to make this the first argument.  
+ - Arguments and properties called `user_name` have been renamed to `username` for consistency with data returned
+ from the API.
 
 # 3.0 Release
 ## New Features

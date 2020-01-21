@@ -11,7 +11,7 @@ temperatureC2 = 200.0
 temperatureF2 = 392.0
 
 
-class TestUnits(unittest.TestCase):
+class UnitsTest(unittest.TestCase):
     def setUp(self):
         self.units = canopy.Units()
 

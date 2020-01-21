@@ -21,7 +21,8 @@ async def load_study_job_data(
         job_access_information: canopy.swagger.BlobAccessInformation = None,
         semaphore: asyncio.Semaphore = None,
         include_inputs: bool = False,
-        include_scalar_results: bool = False) -> canopy.StudyJobDataResult:
+        include_scalar_results: bool = False,
+        sim_version: Optional[str] = None) -> canopy.StudyJobDataResult:
 
     session.authentication.authenticate()
 
@@ -44,7 +45,9 @@ async def load_study_job_data(
             study_api.study_get_study_job(
                 tenant_id,
                 study_id,
-                job_index))
+                job_index,
+                **canopy.defined_kwargs(
+                    sim_version=sim_version)))
 
         job_result: Optional[canopy.swagger.GetStudyJobQueryResult] = None
 

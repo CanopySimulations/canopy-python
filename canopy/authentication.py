@@ -13,13 +13,13 @@ class Authentication(object):
             client: canopy.swagger.ApiClient,
             client_id: Optional[str] = None,
             client_secret: Optional[str] = None,
-            user_name: Optional[str] = None,
+            username: Optional[str] = None,
             tenant_name: Optional[str] = None,
             password: Optional[str] = None):
         self._client = client
         self._client_id = client_id
         self._client_secret = client_secret
-        self._user_name = user_name
+        self._username = username
         self._tenant_name = tenant_name
         self._password = password
         self._identity = None
@@ -37,8 +37,8 @@ class Authentication(object):
         if self._client_secret is None:
             self._client_secret = getpass.getpass(prompt='Client Secret:')
 
-        if self._user_name is None:
-            self._user_name = input('Username:')
+        if self._username is None:
+            self._username = input('Username:')
         if self._tenant_name is None:
             self._tenant_name = self._client_id
 
@@ -47,7 +47,7 @@ class Authentication(object):
 
         post_params = {
             'grant_type': 'password',
-            'username': self._user_name,
+            'username': self._username,
             'tenant': self._tenant_name,
             'password': self._password,
             'client_id': self._client_id,
