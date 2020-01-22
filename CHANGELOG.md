@@ -3,6 +3,7 @@
  - An optional `sim_version` parameter can now be passed into `load_study_data` and `load_study_job_data`.
  - Helper functions for finding and loading configs and studies.
  - Helper function for saving changes to a loaded config.
+ - Helper functions for creating configs and studies.
   
 ## Breaking Changes
 ### Automatic conversion of study inputs to objects.

@@ -36,9 +36,11 @@ class Session(object):
             username,
             tenant_name,
             password)
-        self._user_settings = canopy.UserSettingsManager(self._sync_client, self._authentication)
         self._units = canopy.Units()
-        self._tenant_users = canopy.TenantUsersManager(self._sync_client, self._authentication)
+        self._user_settings = canopy.UserSettingsCache(self._sync_client, self._authentication)
+        self._tenant_users = canopy.TenantUsersCache(self._sync_client, self._authentication)
+        self._tenant_sim_version = canopy.TenantSimVersionCache(self._sync_client, self._authentication)
+        self._study_types = canopy.StudyTypesCache(self._sync_client, self._authentication, self._tenant_sim_version)
 
     def __enter__(self):
         return self
@@ -81,12 +83,20 @@ class Session(object):
         return self._authentication
 
     @property
-    def user_settings(self) -> canopy.UserSettingsManager:
+    def user_settings(self) -> canopy.UserSettingsCache:
         return self._user_settings
 
     @property
-    def tenant_users(self) -> canopy.TenantUsersManager:
+    def tenant_users(self) -> canopy.TenantUsersCache:
         return self._tenant_users
+
+    @property
+    def tenant_sim_version(self) -> canopy.TenantSimVersionCache:
+        return self._tenant_sim_version
+
+    @property
+    def study_types(self) -> canopy.StudyTypesCache:
+        return self._study_types
 
     @property
     def units(self) -> canopy.Units:

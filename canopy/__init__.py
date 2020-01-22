@@ -7,10 +7,12 @@ from canopy.constants import Constants
 from canopy.defined_kwargs import defined_kwargs
 from canopy.authentication_data import AuthenticationData
 from canopy.authentication import Authentication
-from canopy.user_settings_manager import UserSettingsManager
+from canopy.user_settings_cache import UserSettingsCache
 from canopy.units import Units
 from canopy.tenant_users import TenantUsers
-from canopy.tenant_users_manager import TenantUsersManager
+from canopy.tenant_users_cache import TenantUsersCache
+from canopy.tenant_sim_version_cache import TenantSimVersionCache
+from canopy.study_types_cache import StudyTypesCache
 from canopy.session import Session
 
 from canopy.dynamic_dict_to_object import DynamicDictToObject
@@ -18,10 +20,13 @@ from canopy.study_job_data_result import StudyJobDataResult
 from canopy.study_data_result import StudyDataResult
 from canopy.config_result import ConfigResult
 from canopy.loaded_channel import LoadedChannel
+from canopy.local_config import LocalConfig
 
 from canopy.run import run
 from canopy.serializable_value import SerializableValue
 from canopy.dict_to_object import dict_to_object
+from canopy.sim_version_to_number import sim_version_to_number
+from canopy.get_study_type_definition_for_sim_version import get_study_type_definition_for_sim_version
 from canopy.create_list_filter import create_list_filter
 from canopy.load_config import load_config
 from canopy.load_study_data import load_study_data
@@ -33,3 +38,5 @@ from canopy.job_count_to_simulation_count import job_count_to_simulation_count
 from canopy.load_study_job_scalar_results import load_study_job_scalar_results
 from canopy.find_config import find_config
 from canopy.find_study import find_study
+from canopy.create_config import create_config
+from canopy.create_study import create_study

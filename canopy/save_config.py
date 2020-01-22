@@ -23,4 +23,4 @@ async def save_config(
         config.document_id,
         updated_config_data,
         **canopy.defined_kwargs(
-            sub_tree_path=config.data['path'] if config.type == canopy.Constants.config_sub_tree_config_type else None))
+            sub_tree_path=config.data['path'] if config.type == canopy.Constants.config_sub_tree_document_type else None))

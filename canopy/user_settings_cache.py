@@ -3,7 +3,7 @@ from typing import Optional, List, Mapping
 import canopy
 
 
-class UserSettingsManager(object):
+class UserSettingsCache(object):
 
     def __init__(self, client: canopy.swagger.ApiClient, authentication: canopy.Authentication):
         self._client = client

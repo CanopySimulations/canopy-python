@@ -3,22 +3,22 @@ from typing import Optional, Dict
 import canopy
 
 
-class TenantUsersManager(object):
+class TenantSimVersionCache(object):
 
     def __init__(self, client: canopy.swagger.ApiClient, authentication: canopy.Authentication):
         self._client = client
         self._authentication = authentication
-        self._data: Dict[str, canopy.TenantUsers] = {}
+        self._data: Dict[str, str] = {}
 
     def reload(self, tenant_id: Optional[str] = None):
         if tenant_id is None:
             tenant_id = self._authentication.tenant_id
 
-        api = canopy.swagger.TenancyApi(self._client)
-        result: canopy.swagger.GetTenantUsersQueryResult = api.tenancy_get_tenant_users(tenant_id)
-        self._data[tenant_id] = canopy.TenantUsers(result)
+        api = canopy.swagger.TenantSettingsApi(self._client)
+        result: canopy.swagger.GetTenantSettingsSimVersionQueryResult = api.tenant_settings_get_tenant_settings_sim_version(tenant_id)
+        self._data[tenant_id] = result.sim_version
 
-    def get(self, tenant_id: Optional[str] = None) -> canopy.TenantUsers:
+    def get(self, tenant_id: Optional[str] = None) -> str:
         if tenant_id is None:
             tenant_id = self._authentication.tenant_id
 
@@ -26,6 +26,6 @@ class TenantUsersManager(object):
             self.reload(tenant_id)
 
         if tenant_id not in self._data:
-            raise RuntimeError('Users for tenant ID not found.')
+            raise RuntimeError('Sim version for tenant ID not found.')
 
         return self._data[tenant_id]
