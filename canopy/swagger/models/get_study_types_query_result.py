@@ -33,21 +33,24 @@ class GetStudyTypesQueryResult(object):
     swagger_types = {
         'study_types': 'list[StudyTypeDefinition]',
         'sim_types': 'list[SimTypeDefinition]',
-        'config_types': 'list[ConfigTypeDefinition]'
+        'config_types': 'list[ConfigTypeDefinition]',
+        'config_type_metadata': 'list[ConfigTypeMetadata]'
     }
 
     attribute_map = {
         'study_types': 'studyTypes',
         'sim_types': 'simTypes',
-        'config_types': 'configTypes'
+        'config_types': 'configTypes',
+        'config_type_metadata': 'configTypeMetadata'
     }
 
-    def __init__(self, study_types=None, sim_types=None, config_types=None):  # noqa: E501
+    def __init__(self, study_types=None, sim_types=None, config_types=None, config_type_metadata=None):  # noqa: E501
         """GetStudyTypesQueryResult - a model defined in Swagger"""  # noqa: E501
 
         self._study_types = None
         self._sim_types = None
         self._config_types = None
+        self._config_type_metadata = None
         self.discriminator = None
 
         if study_types is not None:
@@ -56,6 +59,8 @@ class GetStudyTypesQueryResult(object):
             self.sim_types = sim_types
         if config_types is not None:
             self.config_types = config_types
+        if config_type_metadata is not None:
+            self.config_type_metadata = config_type_metadata
 
     @property
     def study_types(self):
@@ -119,6 +124,27 @@ class GetStudyTypesQueryResult(object):
         """
 
         self._config_types = config_types
+
+    @property
+    def config_type_metadata(self):
+        """Gets the config_type_metadata of this GetStudyTypesQueryResult.  # noqa: E501
+
+
+        :return: The config_type_metadata of this GetStudyTypesQueryResult.  # noqa: E501
+        :rtype: list[ConfigTypeMetadata]
+        """
+        return self._config_type_metadata
+
+    @config_type_metadata.setter
+    def config_type_metadata(self, config_type_metadata):
+        """Sets the config_type_metadata of this GetStudyTypesQueryResult.
+
+
+        :param config_type_metadata: The config_type_metadata of this GetStudyTypesQueryResult.  # noqa: E501
+        :type: list[ConfigTypeMetadata]
+        """
+
+        self._config_type_metadata = config_type_metadata
 
     def to_dict(self):
         """Returns the model properties as a dict"""

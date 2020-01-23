@@ -58,6 +58,7 @@ from canopy.swagger.models.config_resolved_labels import ConfigResolvedLabels
 from canopy.swagger.models.config_resolved_reference import ConfigResolvedReference
 from canopy.swagger.models.config_resolved_reference_data import ConfigResolvedReferenceData
 from canopy.swagger.models.config_type_definition import ConfigTypeDefinition
+from canopy.swagger.models.config_type_metadata import ConfigTypeMetadata
 from canopy.swagger.models.default_config_id import DefaultConfigId
 from canopy.swagger.models.default_config_reference import DefaultConfigReference
 from canopy.swagger.models.default_custom_property_names import DefaultCustomPropertyNames

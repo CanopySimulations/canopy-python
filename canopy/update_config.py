@@ -1,19 +1,20 @@
-from typing import Optional, Any
+from typing import Optional, Any, List
 
 import canopy
 
 
-async def save_config(
+async def update_config(
         session: canopy.Session,
         config: canopy.swagger.CanopyDocument,
         config_data: Optional[Any]):
 
     config_api = canopy.swagger.ConfigApi(session.async_client)
 
+    properties_list = canopy.properties_dict_to_list(config.properties)
     updated_config_data = canopy.swagger.UpdatedConfigData(
         config.name,
         config.sub_type,
-        config.properties,
+        properties_list,
         config_data if config_data is not None else config.data,
         config.notes,
         config.sim_version)

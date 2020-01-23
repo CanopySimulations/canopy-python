@@ -14,9 +14,9 @@ class TenantSimVersionCache(object):
         if tenant_id is None:
             tenant_id = self._authentication.tenant_id
 
-        api = canopy.swagger.TenantSettingsApi(self._client)
-        result: canopy.swagger.GetTenantSettingsSimVersionQueryResult = api.tenant_settings_get_tenant_settings_sim_version(tenant_id)
-        self._data[tenant_id] = result.sim_version
+        api = canopy.swagger.SimVersionApi(self._client)
+        result: str = api.sim_version_get_sim_version(tenant_id=tenant_id)
+        self._data[tenant_id] = result
 
     def get(self, tenant_id: Optional[str] = None) -> str:
         if tenant_id is None:

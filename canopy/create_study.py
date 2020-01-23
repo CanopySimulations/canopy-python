@@ -25,16 +25,11 @@ async def create_study(
     sim_config: Dict[str, Any] = {}
     study = {
         'simTypes': study_type_definition.sim_types,
-        'sim_config': sim_config
+        'simConfig': sim_config
     }
 
     sources: List[canopy.swagger.NewStudyDataSource] = []
-    properties_list: List[canopy.swagger.DocumentCustomPropertyData] = []
-    if properties is not None:
-        for name, value in properties.items():
-            properties_list.append(canopy.swagger.DocumentCustomPropertyData(
-                name=name,
-                value=value))
+    properties_list: List[canopy.swagger.DocumentCustomPropertyData] = canopy.properties_dict_to_list(properties)
 
     notes_list: List[str] = []
     if notes is not None and len(notes) > 0:
@@ -42,11 +37,11 @@ async def create_study(
 
     input_definitions: Sequence[canopy.swagger.SimulationInput] = study_type_definition.inputs
     for input_definition in input_definitions:
-        provided_input = provided_inputs[input_definition.config_type]
-        if provided_input is None:
+        if input_definition.config_type not in provided_inputs:
             if input_definition.is_required:
                 raise RuntimeError('Input {} is required'.format(input_definition.config_type))
         else:
+            provided_input = provided_inputs[input_definition.config_type]
             if input_definition.config_type == canopy.Constants.exploration_config_type:
                 study['exploration'] = provided_input.data
             else:
@@ -61,9 +56,11 @@ async def create_study(
 
             if provided_input.properties is not None:
                 for name, value in provided_input.properties.items():
-                    properties_list.append(canopy.swagger.DocumentCustomPropertyData(
-                        name=''.join([provided_input.config_type, '.', name]),
-                        value=value))
+                    key = ''.join([provided_input.config_type, '.', name])
+                    if key not in properties:
+                        properties_list.append(canopy.swagger.DocumentCustomPropertyData(
+                            name=key,
+                            value=value))
 
             if provided_input.notes is not None and len(provided_input.notes) > 0:
                 if len(notes_list) > 0:
@@ -72,8 +69,8 @@ async def create_study(
                 notes_list.append(':\n')
                 notes_list.append(provided_input.notes.strip())
 
-    config_api = canopy.swagger.StudyApi(session.async_client)
-    config_id = await config_api.study_post_study(
+    study_api = canopy.swagger.StudyApi(session.async_client)
+    study_result: canopy.swagger.PostStudyResult = await study_api.study_post_study(
         tenant_id,
         canopy.swagger.NewStudyData(
             name=name,
@@ -85,7 +82,7 @@ async def create_study(
             notes=''.join(notes_list),
             sim_version=sim_version))
 
-    return config_id
+    return study_result.study_id
 
 
 async def _resolve_provided_inputs(session, inputs, sim_version):
@@ -96,7 +93,7 @@ async def _resolve_provided_inputs(session, inputs, sim_version):
                 session,
                 config_id=provided_input,
                 sim_version=sim_version)
-            logger.info('Loaded input config {}'.format(provided_input.config.type))
+            logger.info('Loaded input config {}'.format(provided_input.config.sub_type))
 
         if isinstance(provided_input, canopy.ConfigResult):
             if provided_input.config.type == canopy.Constants.config_sub_tree_document_type:

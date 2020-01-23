@@ -4,7 +4,7 @@ import canopy
 
 
 class ConfigResult:
-    _config_data: Optional[Any]
+    _config_data: Optional[Any] = None
 
     def __init__(self, config: canopy.swagger.CanopyDocument, user_information: canopy.swagger.DocumentUserInformation):
         self._config = config
@@ -33,10 +33,10 @@ class ConfigResult:
 
     def to_local_config(self):
         return canopy.LocalConfig(
-            self.config.type,
+            self.config.sub_type,
             self.config.name,
             self.config_data if self.is_config_data_converted else self.config.data,
-            properties=vars(self.config.properties),
+            properties=canopy.ensure_dict(self.config.properties),
             notes=self.config.notes,
             config_id=self.config.document_id,
             user_id=self.config.user_id,

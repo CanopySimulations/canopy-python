@@ -1,7 +1,7 @@
 import canopy.swagger
 import canopy.swagger_asyncio
 
-from canopy.NotFoundError import NotFoundError
+from canopy.not_found_error import NotFoundError
 
 from canopy.constants import Constants
 from canopy.defined_kwargs import defined_kwargs
@@ -26,9 +26,12 @@ from canopy.run import run
 from canopy.serializable_value import SerializableValue
 from canopy.dict_to_object import dict_to_object
 from canopy.sim_version_to_number import sim_version_to_number
+from canopy.ensure_dict import ensure_dict
+from canopy.properties_dict_to_list import properties_dict_to_list
 from canopy.get_study_type_definition_for_sim_version import get_study_type_definition_for_sim_version
 from canopy.create_list_filter import create_list_filter
 from canopy.load_config import load_config
+from canopy.update_config import update_config
 from canopy.load_study_data import load_study_data
 from canopy.load_study_job_data import load_study_job_data
 from canopy.load_channel import load_channel
@@ -40,3 +43,6 @@ from canopy.find_config import find_config
 from canopy.find_study import find_study
 from canopy.create_config import create_config
 from canopy.create_study import create_study
+from canopy.wait_for_study import wait_for_study
+from canopy.get_default_config_path import get_default_config_path
+from canopy.load_default_config import load_default_config

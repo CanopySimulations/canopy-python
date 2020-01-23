@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
 import canopy
 
@@ -7,7 +7,7 @@ async def create_config(
         session: canopy.Session,
         config_type: str,
         name: str,
-        config: Any,
+        config_data: Any,
         properties: Optional[Dict[str, str]] = None,
         notes: Optional[str] = None,
         sim_version: Optional[str] = None,
@@ -16,14 +16,16 @@ async def create_config(
     session.authentication.authenticate()
     tenant_id = session.authentication.tenant_id
 
+    properties_list: List[canopy.swagger.DocumentCustomPropertyData] = canopy.properties_dict_to_list(properties)
+
     config_api = canopy.swagger.ConfigApi(session.async_client)
     config_id = await config_api.config_post_config(
         tenant_id,
         canopy.swagger.NewConfigData(
             name=name,
             config_type=config_type,
-            properties=properties,
-            config=config,
+            properties=properties_list,
+            config=config_data,
             notes=notes,
             sim_version=sim_version),
         **canopy.defined_kwargs(

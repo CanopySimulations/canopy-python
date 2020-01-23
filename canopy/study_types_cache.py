@@ -17,14 +17,17 @@ class StudyTypesCache(object):
 
         self._data: Optional[canopy.swagger.GetStudyTypesQueryResult] = None
         self._study_type_definitions_by_study_type: Optional[Dict[str, canopy.swagger.StudyTypeDefinition]] = None
+        self._config_type_metadata_by_config_type: Optional[Dict[str, canopy.swagger.ConfigTypeMetadata]] = None
 
     def reload(self):
         api = canopy.swagger.StudyApi(self._client)
-        result: canopy.swagger.GetStudyTypesQueryResult = api.study_get_study_types()
+        result: canopy.swagger.GetStudyTypesQueryResult = api.study_get_study_types(tenant_id=self._authentication.tenant_id)
         self._data = result
 
         study_types: Sequence[canopy.swagger.StudyTypeDefinition] = result.study_types
         self._study_type_definitions_by_study_type = {v.study_type.lower(): v for v in study_types}
+        config_types: Sequence[canopy.swagger.ConfigTypeMetadata] = result.config_type_metadata
+        self._config_type_metadata_by_config_type = {v.singular_key.lower(): v for v in config_types}
 
     def get(
             self,
@@ -66,4 +69,17 @@ class StudyTypesCache(object):
 
         result = self._study_type_definitions_by_study_type[study_type_lower]
         return canopy.get_study_type_definition_for_sim_version(result, sim_version)
+
+    def get_config_type_metadata(
+            self,
+            config_type: str) -> canopy.swagger.ConfigTypeMetadata:
+
+        if self._data is None:
+            self.reload()
+
+        config_type_lower = config_type.lower()
+        if config_type_lower not in self._config_type_metadata_by_config_type:
+            raise canopy.NotFoundError('Config type not found: {}'.format(config_type))
+
+        return self._config_type_metadata_by_config_type[config_type_lower]
 
