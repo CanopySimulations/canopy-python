@@ -8,4 +8,4 @@ pandas >= 0.25.1
 aiohttp
 munch
 
-aiounittest
+pytest-asyncio

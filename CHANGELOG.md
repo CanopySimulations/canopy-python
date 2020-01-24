@@ -1,9 +1,10 @@
 # 4.0 Release
 ## New Features
  - An optional `sim_version` parameter can now be passed into `load_study_data` and `load_study_job_data`.
- - Helper functions for finding and loading configs and studies.
- - Helper function for saving changes to a loaded config.
  - Helper functions for creating configs and studies.
+ - Helper functions for finding and loading configs and studies.
+ - Helper function for updating configs.
+ - Helper function for deleting configs and studies.
   
 ## Breaking Changes
 ### Automatic conversion of study inputs to objects.
@@ -34,6 +35,8 @@ print(car.chassis.hRideFSetup)
 to make this the first argument.  
  - Arguments and properties called `user_name` have been renamed to `username` for consistency with data returned
  from the API.
+ - Helper functions `load_study_data` and `load_study_job_data` have been renamed to `load_study` and `load_study_job`
+ for consistency with other methods.
 
 # 3.0 Release
 ## New Features

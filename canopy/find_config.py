@@ -24,6 +24,7 @@ async def find_config(
 
     filter_ = canopy.create_list_filter(
         session,
+        is_study=False,
         name=name,
         items_per_page=1,
         owner_username=owner_username,

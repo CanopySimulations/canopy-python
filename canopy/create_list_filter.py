@@ -5,14 +5,23 @@ import canopy
 
 def create_list_filter(
         session: canopy.Session,
+        is_study: bool,
         name: Optional[str] = None,
         items_per_page: Optional[int] = None,
         owner_username: Optional[str] = None,
         custom_properties: Dict[str, str] = None,
         parent_worksheet_id: Optional[str] = None,
-        tenant_id: Optional[str] = None) -> Optional[canopy.SerializableValue[canopy.swagger.ListFilter]]:
+        tenant_id: Optional[str] = None) -> canopy.SerializableValue[canopy.swagger.ListFilter]:
 
     conditions: List[canopy.swagger.ListFilterCondition] = []
+
+    if name is not None:
+        conditions.append(canopy.swagger.ListFilterCondition(
+            source='metadata',
+            name='name',
+            operator='equals',
+            value=name
+        ))
 
     if owner_username is not None:
         tenant_users = session.tenant_users.get(tenant_id)
@@ -41,15 +50,17 @@ def create_list_filter(
                 value=value
             ))
 
-    if len(conditions) == 0:
-        return None
+    query: Optional[canopy.swagger.ListFilterGroup] = None
+    if len(conditions) > 0:
+        query = canopy.swagger.ListFilterGroup(
+                operator='and',
+                conditions=conditions)
 
     return canopy.SerializableValue(
         session,
         canopy.swagger.ListFilter(
             items_per_page=items_per_page,
-            filter_name=name,
-            query=canopy.swagger.ListFilterGroup(
-                operator='and',
-                conditions=conditions),
+            order_by_property='creationDate' if is_study else 'modifiedDate',
+            order_by_descending=True,
+            query=query,
             include_if_has_parent_worksheet=(parent_worksheet_id is not None)))

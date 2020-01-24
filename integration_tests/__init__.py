@@ -1,3 +1,4 @@
 
 from integration_tests.environment_data import EnvironmentData
+from integration_tests.environment_loader import EnvironmentLoader
 from integration_tests.environment import Environment

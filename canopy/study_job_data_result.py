@@ -20,12 +20,12 @@ class StudyJobDataResult:
         self._job = job
         self._vector_data = vector_data
         self._vector_data_units = vector_data_units
-        self._inputs = canopy.DynamicDictToObject(inputs)
+        self._inputs = canopy.DynamicDictToObject(inputs) if inputs is not None else None
         self._scalar_data = scalar_data
         self._scalar_data_units = scalar_data_units
 
     @property
-    def job(self) -> canopy.swagger.CanopyDocument:
+    def document(self) -> canopy.swagger.CanopyDocument:
         return self._job
 
     @property

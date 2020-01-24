@@ -1,4 +1,59 @@
-# Introduction
+# Installation & Usage
+
+### Versioning
+
+This library uses [SimVer](http://simver.org/) versioning, where a change in the major version number indicates a
+breaking change and a change in the minor version number indicates a non-breaking change (such as an additional
+feature or bug fix).
+
+### Changelog
+
+The changelog is available [here](CHANGELOG.md).
+
+### Requirements.
+
+This library has been tested on Python 3.6 and higher.
+
+### pip install
+
+```sh
+pip install canopy
+```
+
+You may need to run `pip` with root permission: `sudo pip install canopy`.
+
+From a Jupyter Notebook you can run `!pip install canopy`.
+
+### Setuptools
+
+Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
+
+```sh
+python setup.py install --user
+```
+(or `sudo python setup.py install` to install the package for all users)
+
+### Running Tests
+
+Unit tests can be run with:
+```
+pytest canopy
+```
+
+Integration tests can be run with:
+```
+pytest integration_tests
+```
+
+To run the integration tests you'll need to ensure you have an environment variable called `CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS`
+containing the string `<client_id>|<client_secret>|<username>|<tenant_name>|<password>`.
+
+# Getting Started
+
+## Example Usage
+See `canopy/integration_tests/test*.py` for example usage.
+
+## Introduction
 
 This package is designed for customers of [Canopy Simulations](https://www.canopysimulations.com/) who would like
 to access the Canopy API from Python, for example using Jupyter Notebooks.
@@ -27,7 +82,7 @@ import canopy
 import asyncio
 
 async with canopy.Session(client_id='<your_client_id>', username='<your_username>') as session:
-    study_data = await canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar'])
+    study_data = await canopy.load_study(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar'])
 
     # Using the swagger generated client directly:
     study_api = canopy.swagger.StudyApi(session.async_client)
@@ -62,7 +117,7 @@ import canopy
 with canopy.Session(client_id='<your_client_id>', username='<your_username>') as session:
     # Note we are using canopy.run(..) to force the async method to run synchronously.
     # This is a wrapper for asyncio.get_event_loop().run_until_complete(..).
-    study_data = canopy.run(canopy.load_study_data(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar']))
+    study_data = canopy.run(canopy.load_study(session, '<study_id>', 'DynamicLap', ['sRun', 'vCar']))
 
     # Using the swagger generated client synchronously by passing in sync_client:
     study_api = canopy.swagger.StudyApi(session.sync_client)
@@ -80,38 +135,6 @@ with canopy.Session(client_id='<your_client_id>', username='<your_username>') as
 
     job_result_2 = job_result_thread.get()
 ```
-
-# Changelog
-
-The changelog is available [here](CHANGELOG.md).
-
-# Requirements.
-
-This has currently been tested on Python 3.6 and higher.
-
-# Installation & Usage
-### pip install
-
-```sh
-pip install canopy
-```
-
-You may need to run `pip` with root permission: `sudo pip install canopy`.
-
-From a Jupyter Notebook you can run `!pip install canopy`.
-
-### Setuptools
-
-Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
-
-```sh
-python setup.py install --user
-```
-(or `sudo python setup.py install` to install the package for all users)
-
-# Getting Started
-
-See `canopy/__main__.py` for example usage.
 
 # Updating the Swagger Client
 

@@ -1,6 +1,4 @@
 from asyncio import Future
-from struct import Struct
-from threading import Thread
 from typing import List, Optional, Any, Dict
 
 import canopy
@@ -11,11 +9,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-async def load_study_job_data(
+async def load_study_job(
         session: canopy.Session,
         study_id: str,
-        sim_type: str,
-        channel_names: List[str],
+        sim_type: Optional[str] = None,
+        channel_names: Optional[List[str]] = None,
         job_index: int = 0,
         tenant_id: str = None,
         job_access_information: canopy.swagger.BlobAccessInformation = None,
@@ -60,33 +58,43 @@ async def load_study_job_data(
                 ''.join([job_access_information.url, str(job_index), '/']),
                 job_access_information.access_signature)
 
-        scalar_results_task: Future[Optional[pd.DataFrame]] = asyncio.ensure_future(canopy.load_study_job_scalar_results(
-            job_access_information, sim_type)) if include_scalar_results else None
+        scalar_results_task: Optional[Future[Optional[pd.DataFrame]]] = None
+        if include_scalar_results:
+            if sim_type is None:
+                raise RuntimeError('Sim type must be supplied when fetching scalar results.')
 
-        vector_metadata = await canopy.load_vector_metadata(job_access_information, sim_type)
+            scalar_results_task = asyncio.ensure_future(canopy.load_study_job_scalar_results(
+                job_access_information,
+                sim_type))
 
         channels_data = {}
         vector_data_units = {}
 
-        if vector_metadata is not None:
-            channels_semaphore = asyncio.Semaphore(session.default_blob_storage_concurrency)
-            tasks: List[Future[Optional[canopy.LoadedChannel]]] = []
-            for channel_name in channel_names:
-                loaded_channel_task = asyncio.ensure_future(canopy.load_channel(
-                    session,
-                    job_access_information,
-                    sim_type,
-                    channel_name,
-                    vector_metadata=vector_metadata,
-                    semaphore=channels_semaphore))
+        if channel_names is not None and len(channel_names) > 0:
+            if sim_type is None:
+                raise RuntimeError('Sim type must be supplied when fetching channel data.')
 
-                tasks.append(loaded_channel_task)
+            vector_metadata = await canopy.load_vector_metadata(job_access_information, sim_type)
 
-            for channel_name, task in zip(channel_names, tasks):
-                loaded_channel = await task
-                if loaded_channel is not None:
-                    channels_data[channel_name] = loaded_channel.data
-                    vector_data_units[channel_name] = loaded_channel.units
+            if vector_metadata is not None:
+                channels_semaphore = asyncio.Semaphore(session.default_blob_storage_concurrency)
+                tasks: List[Future[Optional[canopy.LoadedChannel]]] = []
+                for channel_name in channel_names:
+                    loaded_channel_task = asyncio.ensure_future(canopy.load_channel(
+                        session,
+                        job_access_information,
+                        sim_type,
+                        channel_name,
+                        vector_metadata=vector_metadata,
+                        semaphore=channels_semaphore))
+
+                    tasks.append(loaded_channel_task)
+
+                for channel_name, task in zip(channel_names, tasks):
+                    loaded_channel = await task
+                    if loaded_channel is not None:
+                        channels_data[channel_name] = loaded_channel.data
+                        vector_data_units[channel_name] = loaded_channel.units
 
         vector_data = pd.DataFrame(channels_data)
 

@@ -32,8 +32,8 @@ from canopy.get_study_type_definition_for_sim_version import get_study_type_defi
 from canopy.create_list_filter import create_list_filter
 from canopy.load_config import load_config
 from canopy.update_config import update_config
-from canopy.load_study_data import load_study_data
-from canopy.load_study_job_data import load_study_job_data
+from canopy.load_study import load_study
+from canopy.load_study_job import load_study_job
 from canopy.load_channel import load_channel
 from canopy.load_vector_metadata import load_vector_metadata
 from canopy.get_study_document import get_study_document
@@ -46,3 +46,5 @@ from canopy.create_study import create_study
 from canopy.wait_for_study import wait_for_study
 from canopy.get_default_config_path import get_default_config_path
 from canopy.load_default_config import load_default_config
+from canopy.delete_config import delete_config
+from canopy.delete_study import delete_study

@@ -8,11 +8,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-async def load_study_data(
+async def load_study(
         session: canopy.Session,
         study_id: str,
-        sim_type: str,
-        channel_names: List[str],
+        sim_type: Optional[str] = None,
+        channel_names: Optional[List[str]] = None,
         tenant_id: Optional[str] = None,
         include_inputs: bool = False,
         include_scalar_results: bool = False,
@@ -34,7 +34,7 @@ async def load_study_data(
 
     job_tasks: List[Future[canopy.StudyJobDataResult]] = []
     for index in range(canopy.job_count_to_simulation_count(study_document.job_count)):
-        job_task = asyncio.ensure_future(canopy.load_study_job_data(
+        job_task = asyncio.ensure_future(canopy.load_study_job(
             session,
             study_id,
             sim_type,
@@ -50,4 +50,4 @@ async def load_study_data(
 
     jobs: List[canopy.StudyJobDataResult] = await asyncio.gather(*job_tasks)
 
-    return canopy.StudyDataResult(study_result.study, jobs)
+    return canopy.StudyDataResult(session, study_result, jobs)

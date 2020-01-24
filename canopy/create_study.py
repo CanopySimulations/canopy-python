@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 async def create_study(
         session: canopy.Session,
         study_type: str,
-        name: str,
+        study_name: str,
         inputs: Sequence[Union[str, canopy.LocalConfig, canopy.ConfigResult]],
         properties: Optional[Dict[str, str]] = None,
         notes: Optional[str] = None,
@@ -55,9 +55,9 @@ async def create_study(
                 is_edited=provided_input.is_edited))
 
             if provided_input.properties is not None:
-                for name, value in provided_input.properties.items():
-                    key = ''.join([provided_input.config_type, '.', name])
-                    if key not in properties:
+                for config_key, value in provided_input.properties.items():
+                    key = ''.join([provided_input.config_type, '.', config_key])
+                    if key not in properties_list:
                         properties_list.append(canopy.swagger.DocumentCustomPropertyData(
                             name=key,
                             value=value))
@@ -73,7 +73,7 @@ async def create_study(
     study_result: canopy.swagger.PostStudyResult = await study_api.study_post_study(
         tenant_id,
         canopy.swagger.NewStudyData(
-            name=name,
+            name=study_name,
             study=study,
             is_transient=is_transient,
             study_type=study_type_definition.study_type,
@@ -93,10 +93,10 @@ async def _resolve_provided_inputs(session, inputs, sim_version):
                 session,
                 config_id=provided_input,
                 sim_version=sim_version)
-            logger.info('Loaded input config {}'.format(provided_input.config.sub_type))
+            logger.info('Loaded input config {}'.format(provided_input.document.sub_type))
 
         if isinstance(provided_input, canopy.ConfigResult):
-            if provided_input.config.type == canopy.Constants.config_sub_tree_document_type:
+            if provided_input.document.type == canopy.Constants.config_sub_tree_document_type:
                 raise RuntimeError('Cannot add a config sub-tree to a study.')
 
             provided_input = provided_input.to_local_config()
