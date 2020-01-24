@@ -47,7 +47,7 @@ class TestStudy:
             state: State,
             environment: integration_tests.Environment,
             study_id: str,
-            expected_name: str) -> canopy.StudyDataResult:
+            expected_name: str) -> canopy.StudyResult:
         assert study_id is not None
         state.studies_to_remove.append(study_id)
 
@@ -57,8 +57,8 @@ class TestStudy:
             timeout_seconds=60)
 
         assert expected_name == wait_result.document.name
-        assert wait_result.study_document.job_count > 0
-        assert wait_result.study_document.job_count == wait_result.study_document.completed_job_count
+        assert wait_result.data.job_count > 0
+        assert wait_result.data.job_count == wait_result.data.completed_job_count
         return wait_result
 
     async def test_0100_it_should_create_a_study_from_local_configs(self, state: State):

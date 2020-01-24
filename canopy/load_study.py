@@ -16,7 +16,7 @@ async def load_study(
         tenant_id: Optional[str] = None,
         include_inputs: bool = False,
         include_scalar_results: bool = False,
-        sim_version: Optional[str] = None) -> canopy.StudyDataResult:
+        sim_version: Optional[str] = None) -> canopy.StudyResult:
 
     session.authentication.authenticate()
 
@@ -32,7 +32,7 @@ async def load_study(
 
     semaphore = asyncio.Semaphore(session.default_api_concurrency)
 
-    job_tasks: List[Future[canopy.StudyJobDataResult]] = []
+    job_tasks: List[Future[canopy.StudyJobResult]] = []
     for index in range(canopy.job_count_to_simulation_count(study_document.job_count)):
         job_task = asyncio.ensure_future(canopy.load_study_job(
             session,
@@ -48,6 +48,6 @@ async def load_study(
             sim_version=sim_version))
         job_tasks.append(job_task)
 
-    jobs: List[canopy.StudyJobDataResult] = await asyncio.gather(*job_tasks)
+    jobs: List[canopy.StudyJobResult] = await asyncio.gather(*job_tasks)
 
-    return canopy.StudyDataResult(session, study_result, jobs)
+    return canopy.StudyResult(session, study_result, jobs)

@@ -9,7 +9,7 @@ async def wait_for_study(
         session: canopy.Session,
         study_id: str,
         tenant_id: Optional[str] = None,
-        timeout_seconds: float = 0) -> canopy.StudyDataResult:
+        timeout_seconds: float = 0) -> canopy.StudyResult:
 
     session.authentication.authenticate()
 
@@ -36,7 +36,7 @@ async def wait_for_study(
 
         await asyncio.sleep(_get_sleep_time_seconds(elapsed_time))
 
-    return canopy.StudyDataResult(
+    return canopy.StudyResult(
         session,
         study_result,
         [])

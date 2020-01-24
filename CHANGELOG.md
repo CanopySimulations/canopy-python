@@ -1,6 +1,13 @@
+# 5.0 Release
+## Breaking Changes
+
+ - In the `ConfigResult` class, renamed `config_data` to `data`.
+ - Renamed `StudyDataResult` to `StudyResult` and `StudyJobDataResult` to `StudyJobResult`.
+ - In the `StudyResult` class, renamed `study_document` to `data` and `study_result` to `result`. 
+
 # 4.0 Release
 ## New Features
- - An optional `sim_version` parameter can now be passed into `load_study_data` and `load_study_job_data`.
+ - An optional `sim_version` parameter can now be passed into most helper functions which fetch or post data.
  - Helper functions for creating configs and studies.
  - Helper functions for finding and loading configs and studies.
  - Helper function for updating configs.

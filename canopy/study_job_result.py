@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 
-class StudyJobDataResult:
+class StudyJobResult:
     def __init__(
             self,
             session: canopy.Session,

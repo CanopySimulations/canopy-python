@@ -9,7 +9,7 @@ async def find_study(
         owner_username: Optional[str] = None,
         custom_properties: Dict[str, str] = None,
         parent_worksheet_id: Optional[str] = None,
-        tenant_id: Optional[str] = None) -> canopy.StudyDataResult:
+        tenant_id: Optional[str] = None) -> canopy.StudyResult:
 
     session.authentication.authenticate()
 
@@ -37,7 +37,7 @@ async def find_study(
     if len(documents) == 0:
         raise canopy.NotFoundError('No study found matching the specified criteria.')
 
-    return canopy.StudyDataResult(
+    return canopy.StudyResult(
         session,
         None,
         [],

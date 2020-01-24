@@ -20,7 +20,7 @@ async def load_study_job(
         semaphore: asyncio.Semaphore = None,
         include_inputs: bool = False,
         include_scalar_results: bool = False,
-        sim_version: Optional[str] = None) -> canopy.StudyJobDataResult:
+        sim_version: Optional[str] = None) -> canopy.StudyJobResult:
 
     session.authentication.authenticate()
 
@@ -113,7 +113,7 @@ async def load_study_job(
         if include_inputs:
             job_inputs = job_result.study_job_input['simConfig']
 
-        return canopy.StudyJobDataResult(
+        return canopy.StudyJobResult(
             session,
             job_result.study_job,
             vector_data,

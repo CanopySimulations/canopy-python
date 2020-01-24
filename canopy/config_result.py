@@ -15,7 +15,7 @@ class ConfigResult:
         return self._document
 
     @property
-    def config_data(self) -> Any:
+    def data(self) -> Any:
         if self._config_data is None:
             if self._document.sub_type == canopy.Constants.config_sub_tree_document_type:
                 self._config_data = canopy.dict_to_object(self._document.data['definition'], deep=True)
@@ -35,7 +35,7 @@ class ConfigResult:
         return canopy.LocalConfig(
             self.document.sub_type,
             self.document.name,
-            self.config_data if self.is_config_data_converted else self.document.data,
+            self.data if self.is_config_data_converted else self.document.data,
             properties=canopy.ensure_dict(self.document.properties),
             notes=self.document.notes,
             config_id=self.document.document_id,

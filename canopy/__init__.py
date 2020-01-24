@@ -16,8 +16,8 @@ from canopy.study_types_cache import StudyTypesCache
 from canopy.session import Session
 
 from canopy.dynamic_dict_to_object import DynamicDictToObject
-from canopy.study_job_data_result import StudyJobDataResult
-from canopy.study_data_result import StudyDataResult
+from canopy.study_job_result import StudyJobResult
+from canopy.study_result import StudyResult
 from canopy.config_result import ConfigResult
 from canopy.loaded_channel import LoadedChannel
 from canopy.local_config import LocalConfig
