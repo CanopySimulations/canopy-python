@@ -40,8 +40,17 @@ jobs:
 
     - script: |
         pip install pytest pytest-azurepipelines
-        pytest
-      displayName: 'pytest'
+      displayName: 'Install pytest'
+
+    - script: |
+        pytest canopy
+      displayName: 'pytest canopy'
+
+    - script: |
+        pytest integration_tests
+      displayName: 'pytest integration_tests'
+      env:
+        CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS: $(CanopyPythonIntegrationTestCredentials)
 
   - job: Build
     dependsOn: Test
