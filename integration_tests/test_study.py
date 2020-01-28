@@ -167,6 +167,7 @@ class TestStudy:
             assert 0 == len(job.scalar_data)
             assert 0 == len(job.vector_data.columns)
             assert 0 == len(job.vector_data)
+            assert job.vector_metadata is None
 
     async def test_0700_it_should_load_a_study_by_id_with_data(self, state: State):
         async with integration_tests.Environment() as environment:
@@ -191,6 +192,24 @@ class TestStudy:
             assert len(job.scalar_data) > 0
             assert len(job.vector_data.columns) == 2
             assert len(job.vector_data) > 10
+            assert len(job.vector_metadata) > 0
+
+    async def test_0800_it_should_load_a_study_by_id_with_vector_metadata(self, state: State):
+        async with integration_tests.Environment() as environment:
+            study = await canopy.load_study(
+                environment.session,
+                state.study_id,
+                sim_type='ApexSim',
+                include_vector_metadata=True)
+
+            assert study.document.document_id == state.study_id
+            assert 1 == len(study.jobs)
+
+            job = study.jobs[0]
+            assert 0 == len(job.scalar_data)
+            assert 0 == len(job.vector_data.columns)
+            assert 0 == len(job.vector_data)
+            assert len(job.vector_metadata) > 0
 
     async def test_9000_it_should_remove_configs(self, state: State):
         async with integration_tests.Environment() as environment:

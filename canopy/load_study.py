@@ -16,6 +16,7 @@ async def load_study(
         tenant_id: Optional[str] = None,
         include_inputs: bool = False,
         include_scalar_results: bool = False,
+        include_vector_metadata: bool = False,
         sim_version: Optional[str] = None) -> canopy.StudyResult:
 
     session.authentication.authenticate()
@@ -45,6 +46,7 @@ async def load_study(
             semaphore=semaphore,
             include_inputs=include_inputs,
             include_scalar_results=include_scalar_results,
+            include_vector_metadata=include_vector_metadata,
             sim_version=sim_version))
         job_tasks.append(job_task)
 

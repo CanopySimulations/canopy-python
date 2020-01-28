@@ -20,6 +20,7 @@ async def load_study_job(
         semaphore: asyncio.Semaphore = None,
         include_inputs: bool = False,
         include_scalar_results: bool = False,
+        include_vector_metadata: bool = False,
         sim_version: Optional[str] = None) -> canopy.StudyJobResult:
 
     session.authentication.authenticate()
@@ -69,14 +70,15 @@ async def load_study_job(
 
         channels_data = {}
         vector_data_units = {}
+        vector_metadata: Optional[pd.DataFrame] = None
 
-        if channel_names is not None and len(channel_names) > 0:
+        if include_vector_metadata or (channel_names is not None and len(channel_names) > 0):
             if sim_type is None:
-                raise RuntimeError('Sim type must be supplied when fetching channel data.')
+                raise RuntimeError('Sim type must be supplied when fetching channel data or vector metadata.')
 
             vector_metadata = await canopy.load_vector_metadata(job_access_information, sim_type)
 
-            if vector_metadata is not None:
+            if vector_metadata is not None and channel_names is not None:
                 channels_semaphore = asyncio.Semaphore(session.default_blob_storage_concurrency)
                 tasks: List[Future[Optional[canopy.LoadedChannel]]] = []
                 for channel_name in channel_names:
@@ -116,6 +118,7 @@ async def load_study_job(
         return canopy.StudyJobResult(
             session,
             job_result.study_job,
+            vector_metadata,
             vector_data,
             vector_data_units,
             scalar_data,

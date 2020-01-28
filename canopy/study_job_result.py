@@ -11,6 +11,7 @@ class StudyJobResult:
             self,
             session: canopy.Session,
             job: canopy.swagger.CanopyDocument,
+            vector_metadata: Optional[pd.DataFrame],
             vector_data: pd.DataFrame,
             vector_data_units: Mapping[str, str],
             scalar_data: Mapping[str, float],
@@ -18,6 +19,7 @@ class StudyJobResult:
             inputs: Optional[Dict[str, Dict]]):
         self._session = session
         self._job = job
+        self._vector_metadata = vector_metadata
         self._vector_data = vector_data
         self._vector_data_units = vector_data_units
         self._inputs = canopy.DynamicDictToObject(inputs) if inputs is not None else None
@@ -27,6 +29,10 @@ class StudyJobResult:
     @property
     def document(self) -> canopy.swagger.CanopyDocument:
         return self._job
+
+    @property
+    def vector_metadata(self) -> Optional[pd.DataFrame]:
+        return self._vector_metadata
 
     @property
     def vector_data(self) -> pd.DataFrame:

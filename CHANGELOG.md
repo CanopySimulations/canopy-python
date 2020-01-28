@@ -1,3 +1,8 @@
+# 5.1 Release
+## New Features
+ - Expose vector metadata from `StudyJobResult`.
+ - Add option to always load vector metadata even if no channel specified in `load_study_job` helper function.
+
 # 5.0 Release
 ## Breaking Changes
 

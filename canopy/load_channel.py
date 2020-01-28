@@ -2,6 +2,7 @@ from threading import Thread
 from typing import Optional, Union
 
 import numpy as np
+import pandas as pd
 import canopy
 import logging
 import asyncio
@@ -14,8 +15,8 @@ async def load_channel(
         job_access_information: canopy.swagger.BlobAccessInformation,
         sim_type: str,
         channel_name: str,
-        vector_metadata=None,
-        semaphore: asyncio.Semaphore = None) -> Optional[canopy.LoadedChannel]:
+        vector_metadata: Optional[pd.DataFrame] = None,
+        semaphore: Optional[asyncio.Semaphore] = None) -> Optional[canopy.LoadedChannel]:
 
     if semaphore is None:
         semaphore = asyncio.Semaphore(1)
