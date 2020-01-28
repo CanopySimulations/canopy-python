@@ -37,7 +37,7 @@ class Authentication(object):
             client_secret=self._client_secret,
             username=self._username,
             tenant_name=self._tenant_name,
-            password=self._tenant_name)
+            password=self._password)
 
         self._client_id = authentication_data.client_id
         self._client_secret = authentication_data.client_secret

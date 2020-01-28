@@ -1,4 +1,4 @@
-# 5.2 Release
+# 5.3 Release
  - Add standardised helper function to prompt for authentication information.
  
 # 5.1 Release
