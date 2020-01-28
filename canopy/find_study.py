@@ -40,5 +40,5 @@ async def find_study(
     return canopy.StudyResult(
         session,
         None,
-        [],
+        None,
         document=documents[0])

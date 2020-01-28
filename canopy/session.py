@@ -18,7 +18,7 @@ class Session(object):
             tenant_name: Optional[str] = None,
             password: Optional[str] = None):
         self._configuration = canopy.swagger.Configuration()
-        self._configuration.host = 'https://api.canopysimulations.com/'
+        self._configuration.host = 'https://api.canopysimulations.com'
         self._sync_client = canopy.swagger.ApiClient(configuration=self._configuration)
         self._async_client = canopy.swagger_asyncio.ApiClient(configuration=self._configuration)
 

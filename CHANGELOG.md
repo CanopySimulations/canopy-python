@@ -1,4 +1,25 @@
+# 6.0 Release
+## New Features
+ - The `ConfigResult` and `LocalConfig` classes now expose a `raw_data` property for fetching the config data
+ without conversion to an object.
+ - The `dict_to_object` function will return the passed in data if it has already been converted to an object.
+ - New helper function `load_study_scalar_results`.
+ - The `load_study` helper function has been improved to support loading the combined study scalar results files
+ and the study inputs. Some existing optional parameters have been renamed to avoid confusion between loading job and
+ study data; see Breaking Changes for more details.
+ 
+## Breaking Changes
+ - The `dict_to_object` function no longer supports shallow conversions. Use the `DynamicDictToObject` class instead.
+ - When calling `find_study` the `jobs` property on the result is now set to `None` rather than an empty list.
+ - Optional arguments to `load_study` have been renamed for clarity:
+   - `include_inputs` is now `include_job_inputs`
+   - `include_scalar_results` is now `include_job_scalar_results`
+   - `include_vector_metadata` is now `include_job_vector_metadata`
+ - The `data` property on `LocalConfig` will now convert the data dictionary to an object on first access, to match
+ the behaviour of `ConfigResult`. A `raw_data` property has been added to access the data without conversion.
+
 # 5.3 Release
+## New Features
  - Add standardised helper function to prompt for authentication information.
  
 # 5.1 Release

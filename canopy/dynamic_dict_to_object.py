@@ -10,7 +10,7 @@ class DynamicDictToObject:
     def __getattr__(self, name: str):
         result: Optional[Any] = None
         if name in self._data:
-            result = canopy.dict_to_object(self._data[name], deep=True)
+            result = canopy.dict_to_object(self._data[name])
 
         setattr(self, name, result)
         return result

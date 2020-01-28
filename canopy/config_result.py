@@ -4,7 +4,7 @@ import canopy
 
 
 class ConfigResult:
-    _config_data: Optional[Any] = None
+    _converted_data: Optional[Any] = None
 
     def __init__(self, document: canopy.swagger.CanopyDocument, user_information: canopy.swagger.DocumentUserInformation):
         self._document = document
@@ -16,16 +16,20 @@ class ConfigResult:
 
     @property
     def data(self) -> Any:
-        if self._config_data is None:
+        if self._converted_data is None:
             if self._document.sub_type == canopy.Constants.config_sub_tree_document_type:
-                self._config_data = canopy.dict_to_object(self._document.data['definition'], deep=True)
+                self._converted_data = canopy.dict_to_object(self._document.data['definition'])
             else:
-                self._config_data = canopy.dict_to_object(self._document.data, deep=True)
-        return self._config_data
+                self._converted_data = canopy.dict_to_object(self._document.data)
+        return self._converted_data
 
     @property
-    def is_config_data_converted(self) -> bool:
-        return self._config_data is not None
+    def is_data_converted(self) -> bool:
+        return self._converted_data is not None
+
+    @property
+    def raw_data(self) -> Any:
+        return self._converted_data if self.is_data_converted else self.document.data
 
     @property
     def user_information(self) -> canopy.swagger.DocumentUserInformation:
@@ -35,7 +39,7 @@ class ConfigResult:
         return canopy.LocalConfig(
             self.document.sub_type,
             self.document.name,
-            self.data if self.is_config_data_converted else self.document.data,
+            self.raw_data,
             properties=canopy.ensure_dict(self.document.properties),
             notes=self.document.notes,
             config_id=self.document.document_id,

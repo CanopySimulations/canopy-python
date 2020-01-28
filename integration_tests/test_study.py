@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 default_car_name = 'Canopy F1 Car 2019'
 default_weather_name = '25 deg, dry'
+default_exploration_name = 'Automated Test Monte Carlo'
 test_car_name = 'Python Automated Test Car'
 test_weather_name = 'Python Automated Test Weather'
 test_study_name = 'Python Automated Test Study'
@@ -94,14 +95,20 @@ class TestStudy:
                 environment.session,
                 'car',
                 test_car_name,
-                state.default_car.data,
+                state.default_car.raw_data,
                 test_custom_properties)
             weather_config_id = await canopy.create_config(
                 environment.session,
                 'weather',
                 test_weather_name,
-                state.default_weather.data,
+                state.default_weather.raw_data,
                 test_custom_properties)
+            default_exploration = await canopy.load_default_config(
+                environment.session,
+                'exploration',
+                default_exploration_name)
+
+            default_exploration.data.design.numberOfPoints = 2
 
             weather_config = await canopy.load_config(
                 environment.session, weather_config_id)
@@ -113,6 +120,7 @@ class TestStudy:
                 [
                     car_config_id,
                     weather_config,
+                    default_exploration,
                 ])
             logger.info('Study ID 2 is {}'.format(state.study_id_2))
 
@@ -139,7 +147,7 @@ class TestStudy:
                 custom_properties=test_passed_though_custom_properties)
 
             assert study.document.document_id == state.study_id_2
-            assert 0 == len(study.jobs)
+            assert study.jobs is None
 
     async def test_0500_it_should_find_a_study_by_multiple_criteria(self, state: State):
         async with integration_tests.Environment() as environment:
@@ -150,13 +158,67 @@ class TestStudy:
                 custom_properties=test_passed_though_custom_properties)
 
             assert study.document.document_id == state.study_id_2
-            assert 0 == len(study.jobs)
+            assert study.jobs is None
 
     async def test_0600_it_should_load_a_study_by_id(self, state: State):
         async with integration_tests.Environment() as environment:
             study = await canopy.load_study(
                 environment.session,
                 state.study_id)
+
+            assert study.document.document_id == state.study_id
+            assert study.inputs is None
+            assert study.sim_types is None
+            assert study.scalar_results is None
+
+            assert study.jobs is None
+
+    async def test_0610_it_should_load_a_study_by_id_with_data_when_no_study_scalar_results(self, state: State):
+        async with integration_tests.Environment() as environment:
+            study = await canopy.load_study(
+                environment.session,
+                state.study_id,
+                include_study_sim_types=True,
+                include_study_inputs=True,
+                include_study_scalar_results=True)
+
+            assert study.document.document_id == state.study_id
+            assert study.inputs is not None
+            assert study.sim_types is not None
+            assert study.scalar_results is not None
+            assert study.scalar_results.results is None
+            assert study.scalar_results.results_metadata is None
+            assert study.scalar_results.inputs is None
+            assert study.scalar_results.inputs_metadata is None
+
+            assert study.jobs is None
+
+    async def test_0611_it_should_load_a_study_by_id_with_data_when_study_scalar_results_exist(self, state: State):
+        async with integration_tests.Environment() as environment:
+            study = await canopy.load_study(
+                environment.session,
+                state.study_id_2,
+                include_study_sim_types=True,
+                include_study_inputs=True,
+                include_study_scalar_results=True)
+
+            assert study.document.document_id == state.study_id_2
+            assert study.inputs is not None
+            assert study.sim_types is not None
+            assert study.scalar_results is not None
+            assert study.scalar_results.results is not None
+            assert study.scalar_results.results_metadata is not None
+            assert study.scalar_results.inputs is not None
+            assert study.scalar_results.inputs_metadata is not None
+
+            assert study.jobs is None
+
+    async def test_0620_it_should_load_a_study_by_id_with_job_metadata(self, state: State):
+        async with integration_tests.Environment() as environment:
+            study = await canopy.load_study(
+                environment.session,
+                state.study_id,
+                include_job_metadata=True)
 
             assert study.document.document_id == state.study_id
             assert 1 == len(study.jobs)
@@ -177,11 +239,11 @@ class TestStudy:
                 sim_type='ApexSim',
                 channel_names=[
                     'vCar',
-                    'tLap', # This channel won't exist.
+                    'tLap',  # This channel won't exist.
                     'hRideF',
                 ],
-                include_inputs=True,
-                include_scalar_results=True)
+                include_job_inputs=True,
+                include_job_scalar_results=True)
 
             assert study.document.document_id == state.study_id
             assert 1 == len(study.jobs)
@@ -194,13 +256,13 @@ class TestStudy:
             assert len(job.vector_data) > 10
             assert len(job.vector_metadata) > 0
 
-    async def test_0800_it_should_load_a_study_by_id_with_vector_metadata(self, state: State):
+    async def test_0800_it_should_load_a_study_by_id_with_job_vector_metadata_only(self, state: State):
         async with integration_tests.Environment() as environment:
             study = await canopy.load_study(
                 environment.session,
                 state.study_id,
                 sim_type='ApexSim',
-                include_vector_metadata=True)
+                include_job_vector_metadata=True)
 
             assert study.document.document_id == state.study_id
             assert 1 == len(study.jobs)

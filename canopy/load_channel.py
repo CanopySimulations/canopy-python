@@ -1,5 +1,6 @@
 from threading import Thread
 from typing import Optional, Union
+from aiohttp.client_exceptions import ClientResponseError
 
 import numpy as np
 import pandas as pd
@@ -37,18 +38,23 @@ async def load_channel(
         points_count: int = channel_metadata['NPtsInChannel']
         units: str = channel_metadata['units']
 
-        channel_url = ''.join([job_access_information.url, sim_type, '_', channel_name, '.bin', job_access_information.access_signature])
+        file_name = ''.join([sim_type, '_', channel_name, '.bin'])
+        channel_url = ''.join([job_access_information.url, file_name, job_access_information.access_signature])
 
-        async with session.async_client_session.get(channel_url) as response:
-            channel_bytes = await response.read()
-            if points_count * 4 == len(channel_bytes):
-                data_type = np.float32
-            else:
-                data_type = np.float64
-            channel_data: np.array = np.frombuffer(channel_bytes, data_type)
+        try:
+            async with session.async_client_session.get(channel_url, raise_for_status=True) as response:
+                channel_bytes = await response.read()
+                if points_count * 4 == len(channel_bytes):
+                    data_type = np.float32
+                else:
+                    data_type = np.float64
+                channel_data: np.array = np.frombuffer(channel_bytes, data_type)
 
-            if units == '()':
-                units = ''
+                if units == '()':
+                    units = ''
 
-            loaded_channel = canopy.LoadedChannel(channel_name, units, channel_data)
-            return loaded_channel
+                loaded_channel = canopy.LoadedChannel(channel_name, units, channel_data)
+                return loaded_channel
+        except ClientResponseError as e:
+            logger.warning('Channel found in metadata but could not be loaded: {} ({})'.format(file_name, e.message))
+            return None

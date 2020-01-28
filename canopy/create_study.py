@@ -43,9 +43,9 @@ async def create_study(
         else:
             provided_input = provided_inputs[input_definition.config_type]
             if input_definition.config_type == canopy.Constants.exploration_config_type:
-                study['exploration'] = provided_input.data
+                study['exploration'] = provided_input.raw_data
             else:
-                sim_config[input_definition.config_type] = provided_input.data
+                sim_config[input_definition.config_type] = provided_input.raw_data
 
             sources.append(canopy.swagger.NewStudyDataSource(
                 config_type=input_definition.config_type,
@@ -85,7 +85,7 @@ async def create_study(
     return study_result.study_id
 
 
-async def _resolve_provided_inputs(session, inputs, sim_version):
+async def _resolve_provided_inputs(session, inputs, sim_version) -> Dict[str, canopy.LocalConfig]:
     provided_inputs: Dict[str, canopy.LocalConfig] = {}
     for i, provided_input in enumerate(inputs):
         if isinstance(provided_input, str):

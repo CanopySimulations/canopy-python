@@ -13,6 +13,7 @@ from canopy.tenant_users import TenantUsers
 from canopy.tenant_users_cache import TenantUsersCache
 from canopy.tenant_sim_version_cache import TenantSimVersionCache
 from canopy.study_types_cache import StudyTypesCache
+from canopy.study_scalar_results import StudyScalarResults
 from canopy.session import Session
 
 from canopy.dynamic_dict_to_object import DynamicDictToObject
@@ -40,6 +41,7 @@ from canopy.load_vector_metadata import load_vector_metadata
 from canopy.get_study_document import get_study_document
 from canopy.job_count_to_simulation_count import job_count_to_simulation_count
 from canopy.load_study_job_scalar_results import load_study_job_scalar_results
+from canopy.load_study_scalar_results import load_study_scalar_results
 from canopy.find_config import find_config
 from canopy.find_study import find_study
 from canopy.create_config import create_config

@@ -46,7 +46,7 @@ class TestConfig:
                 environment.session,
                 'car',
                 test_car_name,
-                state.default_car.data,
+                state.default_car.raw_data,
                 test_car_custom_properties)
 
             assert state.test_car_config_id is not None
