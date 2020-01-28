@@ -1,3 +1,6 @@
+# 5.2 Release
+ - Add standardised helper function to prompt for authentication information.
+ 
 # 5.1 Release
 ## New Features
  - Expose vector metadata from `StudyJobResult`.

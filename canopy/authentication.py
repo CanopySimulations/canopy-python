@@ -32,18 +32,18 @@ class Authentication(object):
             self.refresh_access_token()
 
     def sign_in(self):
-        if self._client_id is None:
-            self._client_id = input('Client ID:')
-        if self._client_secret is None:
-            self._client_secret = getpass.getpass(prompt='Client Secret:')
+        authentication_data = canopy.prompt_for_authentication(
+            client_id=self._client_id,
+            client_secret=self._client_secret,
+            username=self._username,
+            tenant_name=self._tenant_name,
+            password=self._tenant_name)
 
-        if self._username is None:
-            self._username = input('Username:')
-        if self._tenant_name is None:
-            self._tenant_name = self._client_id
-
-        if self._password is None:
-            self._password = getpass.getpass(prompt='Password:')
+        self._client_id = authentication_data.client_id
+        self._client_secret = authentication_data.client_secret
+        self._username = authentication_data.username
+        self._tenant_name = authentication_data.tenant_name
+        self._password = authentication_data.password
 
         post_params = {
             'grant_type': 'password',
