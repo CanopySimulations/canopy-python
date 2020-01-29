@@ -1,12 +1,9 @@
 from typing import Optional
-from aiohttp.client_exceptions import ClientResponseError
 
 import canopy
 import pandas as pd
 import logging
 import asyncio
-
-from io import StringIO
 
 logger = logging.getLogger(__name__)
 
@@ -39,14 +36,5 @@ async def _load_file(
         study_access_information: canopy.swagger.StudyBlobAccessInformation) -> Optional[pd.DataFrame]:
 
     url = ''.join([study_access_information.url, file_name, study_access_information.access_signature])
-    try:
-        async with session.async_client_session.get(url, raise_for_status=True) as response:
-            text = await response.text()
-            data_frame = pd.read_csv(StringIO(text), index_col=False)
-            if index_column_name:
-                data_frame.set_index([index_column_name], inplace=True)
-            return data_frame
-    except ClientResponseError as e:
-        logger.warning('Failed to load file: {} ({})'.format(file_name, e.message))
-        return None
+    return await canopy.try_load_csv_from_url(session, url, file_name, index_column_name)
 

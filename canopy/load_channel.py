@@ -24,7 +24,7 @@ async def load_channel(
 
     async with semaphore:
         if vector_metadata is None:
-            vector_metadata = await canopy.load_vector_metadata(job_access_information, sim_type)
+            vector_metadata = await canopy.load_vector_metadata(session, job_access_information, sim_type)
 
         if vector_metadata is None:
             return None

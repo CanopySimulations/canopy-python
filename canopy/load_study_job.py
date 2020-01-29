@@ -65,6 +65,7 @@ async def load_study_job(
                 raise RuntimeError('Sim type must be supplied when fetching scalar results.')
 
             scalar_results_task = asyncio.ensure_future(canopy.load_study_job_scalar_results(
+                session,
                 job_access_information,
                 sim_type))
 
@@ -76,7 +77,7 @@ async def load_study_job(
             if sim_type is None:
                 raise RuntimeError('Sim type must be supplied when fetching channel data or vector metadata.')
 
-            vector_metadata = await canopy.load_vector_metadata(job_access_information, sim_type)
+            vector_metadata = await canopy.load_vector_metadata(session, job_access_information, sim_type)
 
             if vector_metadata is not None and channel_names is not None:
                 channels_semaphore = asyncio.Semaphore(session.default_blob_storage_concurrency)

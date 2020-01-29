@@ -23,6 +23,7 @@ from canopy.config_result import ConfigResult
 from canopy.loaded_channel import LoadedChannel
 from canopy.local_config import LocalConfig
 from canopy.prompt_for_authentication import prompt_for_authentication
+from canopy.try_load_csv_from_url import try_load_csv_from_url
 
 from canopy.run import run
 from canopy.serializable_value import SerializableValue
