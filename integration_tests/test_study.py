@@ -55,7 +55,7 @@ class TestStudy:
         wait_result = await canopy.wait_for_study(
             environment.session,
             study_id,
-            timeout_seconds=60)
+            timeout_seconds=120)
 
         assert expected_name == wait_result.document.name
         assert wait_result.data.job_count > 0
