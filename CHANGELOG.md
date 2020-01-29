@@ -4,8 +4,8 @@
  without conversion to an object.
  - The `dict_to_object` function will return the passed in data if it has already been converted to an object.
  - New helper function `load_study_scalar_results`.
- - The `load_study` helper function has been improved to support loading the combined study scalar results files
- and the study inputs. Some existing optional parameters have been renamed to avoid confusion between loading job and
+ - The `load_study` helper function has been improved to support loading the aggregated study scalar results files
+ and the study inputs files. Some existing optional parameters have been renamed to avoid confusion between loading job and
  study data; see Breaking Changes for more details.
  
 ## Breaking Changes
@@ -15,8 +15,10 @@
    - `include_inputs` is now `include_job_inputs`
    - `include_scalar_results` is now `include_job_scalar_results`
    - `include_vector_metadata` is now `include_job_vector_metadata`
+   - `include_study_inputs` has been added
+   - `include_study_scalar_results` has been added
  - The `data` property on `LocalConfig` will now convert the data dictionary to an object on first access, to match
- the behaviour of `ConfigResult`. A `raw_data` property has been added to access the data without conversion.
+ the behaviour of `ConfigResult`. A `raw_data` property has been added to allow access to the data without conversion.
 
 # 5.3 Release
 ## New Features

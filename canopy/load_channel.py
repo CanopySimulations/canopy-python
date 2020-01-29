@@ -50,9 +50,6 @@ async def load_channel(
                     data_type = np.float64
                 channel_data: np.array = np.frombuffer(channel_bytes, data_type)
 
-                if units == '()':
-                    units = ''
-
                 loaded_channel = canopy.LoadedChannel(channel_name, units, channel_data)
                 return loaded_channel
         except ClientResponseError as e:

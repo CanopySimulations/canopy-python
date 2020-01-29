@@ -13,5 +13,11 @@ async def load_study_job_scalar_results(
         sim_type: str) -> Optional[pd.DataFrame]:
     file_name = ''.join([sim_type, '_ScalarResults.csv'])
     url = ''.join([job_access_information.url, file_name, job_access_information.access_signature])
-    return await canopy.try_load_csv_from_url(session, url, file_name, 'name')
+
+    return await canopy.try_load_csv_from_url(
+        session,
+        url,
+        file_name,
+        index_column_name='name',
+        empty_string_valid_column_names=['units', 'description', 'constraintParameterPath'])
 
