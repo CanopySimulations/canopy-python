@@ -36,10 +36,10 @@ async def load_study_scalar_results(
     units: Dict[str, str] = {}
     if inputs_metadata is not None:
         for input_name in inputs_metadata.index:
-            units[input_name] = inputs_metadata.ix[input_name]['units']
+            units[input_name] = inputs_metadata.loc[input_name]['units']
     if results_metadata is not None:
         for input_name in results_metadata.index:
-            units[input_name] = results_metadata.ix[input_name]['units']
+            units[input_name] = results_metadata.loc[input_name]['units']
 
     return canopy.StudyScalarResults(
         inputs,
