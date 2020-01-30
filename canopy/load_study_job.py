@@ -70,7 +70,7 @@ async def load_study_job(
                 sim_type))
 
         channels_data = {}
-        vector_data_units = {}
+        vector_units = {}
         vector_metadata: Optional[pd.DataFrame] = None
 
         if include_vector_metadata or (channel_names is not None and len(channel_names) > 0):
@@ -97,7 +97,7 @@ async def load_study_job(
                     loaded_channel = await task
                     if loaded_channel is not None:
                         channels_data[channel_name] = loaded_channel.data
-                        vector_data_units[channel_name] = loaded_channel.units
+                        vector_units[channel_name] = loaded_channel.units
 
         vector_data = pd.DataFrame(channels_data)
 
@@ -105,23 +105,23 @@ async def load_study_job(
             job_result = await job_result_task
 
         scalar_data: Dict[str, float] = {}
-        scalar_data_units: Dict[str, str] = {}
+        scalar_units: Dict[str, str] = {}
         if scalar_results_task is not None:
             scalar_results = await scalar_results_task
             if scalar_results is not None:
                 scalar_data = dict(scalar_results['value'])
-                scalar_data_units = dict(scalar_results['units'])
+                scalar_units = dict(scalar_results['units'])
 
         job_inputs: Optional[Dict[str, Dict]] = None
         if include_inputs:
-            job_inputs = job_result.study_job_input['simConfig']
+            job_inputs = canopy.ensure_dict(job_result.study_job_input)['simConfig']
 
         return canopy.StudyJobResult(
             session,
             job_result.study_job,
             vector_metadata,
             vector_data,
-            vector_data_units,
+            vector_units,
             scalar_data,
-            scalar_data_units,
+            scalar_units,
             job_inputs)

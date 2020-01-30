@@ -1,6 +1,7 @@
-from typing import Sequence, Union, Optional, Any
+from typing import Sequence, Optional
 
 import canopy
+import pandas as pd
 
 _definition_key = 'definition'
 _sim_types_key = 'simTypes'
@@ -61,3 +62,46 @@ class StudyResult:
     @property
     def scalar_results(self) -> Optional[canopy.StudyScalarResults]:
         return self._scalar_results
+
+    @property
+    def simulation_count(self) -> int:
+        if self._data.job_count == 1:
+            return 1
+
+        # If there is more than one job then the final job will be the post-processing task.
+        return self._data.job_count - 1
+
+    @property
+    def succeeded_simulation_count(self) -> int:
+        return self._data.succeeded_simulation_count
+
+    def scalar_as(self, channel_name: str, target_unit: Optional[str] = None, always_return_copy: bool = False) -> Optional[pd.Series]:
+        if self._scalar_results is None:
+            return None
+
+        scalar_results = self._scalar_results
+        if target_unit is None:
+            target_unit = self._session.user_settings.get_channel_units(channel_name)
+
+        result: Optional[pd.Series] = None
+        if scalar_results.inputs is not None and channel_name in scalar_results.inputs.columns:
+            result = scalar_results.inputs[channel_name]
+        elif scalar_results.results is not None and channel_name in scalar_results.results.columns:
+            result = scalar_results.results[channel_name]
+
+        if result is None:
+            return None
+
+        if target_unit is None:
+            return result.copy() if always_return_copy else result
+
+        source_unit = ''
+        if channel_name in self._scalar_results.units:
+            source_unit = self._scalar_results.units[channel_name]
+
+        return self._session.units.convert_series_between_units(
+            result,
+            source_unit,
+            target_unit,
+            inplace=False,
+            always_return_copy=always_return_copy)

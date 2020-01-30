@@ -51,7 +51,7 @@ containing the string `<client_id>|<client_secret>|<username>|<tenant_name>|<pas
 # Getting Started
 
 ## Example Usage
-See `canopy/integration_tests/test*.py` for example usage.
+See the [Canopy Python Examples](https://github.com/CanopySimulations/canopy-python-examples) repository for example usage.
 
 ## Introduction
 

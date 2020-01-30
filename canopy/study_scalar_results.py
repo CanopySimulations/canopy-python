@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Mapping
 
 import pandas as pd
 
@@ -6,28 +6,34 @@ import pandas as pd
 class StudyScalarResults:
     def __init__(
             self,
-            scalar_inputs: Optional[pd.DataFrame],
-            scalar_inputs_metadata: Optional[pd.DataFrame],
-            scalar_results: Optional[pd.DataFrame],
-            scalar_results_metadata: Optional[pd.DataFrame]):
+            inputs: Optional[pd.DataFrame],
+            inputs_metadata: Optional[pd.DataFrame],
+            results: Optional[pd.DataFrame],
+            results_metadata: Optional[pd.DataFrame],
+            units: Mapping[str, str]):
 
-        self._scalar_inputs = scalar_inputs
-        self._scalar_inputs_metadata = scalar_inputs_metadata
-        self._scalar_results = scalar_results
-        self._scalar_results_metadata = scalar_results_metadata
+        self._inputs = inputs
+        self._inputs_metadata = inputs_metadata
+        self._results = results
+        self._results_metadata = results_metadata
+        self._units = units
 
     @property
     def inputs(self) -> pd.DataFrame:
-        return self._scalar_inputs
+        return self._inputs
 
     @property
     def inputs_metadata(self) -> pd.DataFrame:
-        return self._scalar_inputs_metadata
+        return self._inputs_metadata
 
     @property
     def results(self) -> pd.DataFrame:
-        return self._scalar_results
+        return self._results
 
     @property
     def results_metadata(self) -> pd.DataFrame:
-        return self._scalar_results_metadata
+        return self._results_metadata
+
+    @property
+    def units(self) -> Mapping[str, str]:
+        return self._units

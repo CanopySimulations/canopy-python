@@ -12,7 +12,7 @@ pool:
 variables:
   python.buildVersion: '3.7'
 
-  major: 6
+  major: 7
   minor: $[counter(variables.major, 0)]
   buildVersion: $[format('{0}.{1}', variables.major, variables.minor)]
 

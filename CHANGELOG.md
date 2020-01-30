@@ -1,3 +1,12 @@
+# 7.0 Release
+## New Features
+ - Added `scalar_as` helper function to `StudyResult` class.
+ - Added `units` mapping to `StudyScalarResults` class.
+ - Added `simulation_count` property to `StudyResult` class.
+ 
+## Breaking Changes
+ - Renamed `scalar_data_units` and `vector_data_units` to `scalar_units` and `vector_units` respectively in `StudyJobResult` class.
+
 # 6.0 Release
 ## New Features
  - The `ConfigResult` and `LocalConfig` classes now expose a `raw_data` property for fetching the config data

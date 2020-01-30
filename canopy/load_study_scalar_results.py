@@ -1,4 +1,4 @@
-from typing import Optional, Sequence
+from typing import Optional, Sequence, Dict
 
 import canopy
 import pandas as pd
@@ -12,32 +12,41 @@ async def load_study_scalar_results(
         session: canopy.Session,
         study_access_information: canopy.swagger.StudyBlobAccessInformation) -> canopy.StudyScalarResults:
 
-    scalar_inputs_task = asyncio.ensure_future(
+    inputs_task = asyncio.ensure_future(
         _load_file(session, 'scalar-inputs.csv', None, None, study_access_information))
 
-    scalar_inputs_metadata_task = asyncio.ensure_future(
+    inputs_metadata_task = asyncio.ensure_future(
         _load_file(session, 'scalar-inputs-metadata.csv', 'inputName', ['units', 'description'], study_access_information))
 
-    scalar_results_task = asyncio.ensure_future(
+    results_task = asyncio.ensure_future(
         _load_file(session, 'scalar-results.csv', None, None, study_access_information))
 
-    scalar_results_metadata_task = asyncio.ensure_future(
+    results_metadata_task = asyncio.ensure_future(
         _load_file(session, 'scalar-metadata.csv', None, ['units', 'description'], study_access_information))
 
-    scalar_inputs = await scalar_inputs_task
-    scalar_inputs_metadata = await scalar_inputs_metadata_task
-    scalar_results = await scalar_results_task
-    scalar_results_metadata = await scalar_results_metadata_task
+    inputs = await inputs_task
+    inputs_metadata = await inputs_metadata_task
+    results = await results_task
+    results_metadata = await results_metadata_task
 
-    if scalar_results_metadata is not None:
-        scalar_results_metadata['fullName'] = scalar_results_metadata['name'] + ':' + scalar_results_metadata['simType']
-        scalar_results_metadata.set_index(['fullName'], inplace=True)
+    if results_metadata is not None:
+        results_metadata['fullName'] = results_metadata['name'] + ':' + results_metadata['simType']
+        results_metadata.set_index(['fullName'], inplace=True)
+
+    units: Dict[str, str] = {}
+    if inputs_metadata is not None:
+        for input_name in inputs_metadata.index:
+            units[input_name] = inputs_metadata.ix[input_name]['units']
+    if results_metadata is not None:
+        for input_name in results_metadata.index:
+            units[input_name] = results_metadata.ix[input_name]['units']
 
     return canopy.StudyScalarResults(
-        scalar_inputs,
-        scalar_inputs_metadata,
-        scalar_results,
-        scalar_results_metadata)
+        inputs,
+        inputs_metadata,
+        results,
+        results_metadata,
+        units)
 
 
 async def _load_file(

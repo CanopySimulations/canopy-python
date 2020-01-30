@@ -27,6 +27,7 @@ test_passed_though_custom_properties = {
     'car.' + test_study_property_key: test_study_property_value,
 }
 
+
 class State(object):
     configs_to_remove: List[str] = []
     studies_to_remove: List[str] = []
@@ -88,6 +89,9 @@ class TestStudy:
 
             properties = canopy.ensure_dict(study.document.properties)
             assert test_study_property_value == properties[test_study_property_key]
+            assert study.simulation_count == 1
+            assert study.succeeded_simulation_count == 1
+            assert study.data.job_count == 1
 
     async def test_0200_it_should_create_a_study_from_references_and_loaded_configs(self, state: State):
         async with integration_tests.Environment() as environment:
@@ -129,6 +133,9 @@ class TestStudy:
             properties = canopy.ensure_dict(study.document.properties)
             assert test_study_property_value == properties['car.' + test_study_property_key]
             assert test_study_property_value == properties['weather.' + test_study_property_key]
+            assert study.simulation_count == 2
+            assert study.succeeded_simulation_count == 2
+            assert study.data.job_count == 3
 
     async def test_0300_it_should_find_a_study_by_name(self, state: State):
         async with integration_tests.Environment() as environment:
@@ -191,6 +198,9 @@ class TestStudy:
             assert study.scalar_results.inputs is None
             assert study.scalar_results.inputs_metadata is None
 
+            assert study.scalar_as('hRideF200:ApexSim', 'mm') is None
+            assert study.scalar_as('car.chassis.hRideFSetup+', 'mm') is None
+
             assert study.jobs is None
 
     async def test_0611_it_should_load_a_study_by_id_with_data_when_study_scalar_results_exist(self, state: State):
@@ -210,6 +220,11 @@ class TestStudy:
             assert study.scalar_results.results_metadata is not None
             assert study.scalar_results.inputs is not None
             assert study.scalar_results.inputs_metadata is not None
+
+            assert len(study.scalar_as('hRideF200:ApexSim', 'mm')) == 2
+            assert len(study.scalar_as('car.chassis.hRideFSetup+', 'mm')) == 2
+            assert study.scalar_results.units['hRideF200:ApexSim'] == 'm'
+            assert study.scalar_results.units['car.chassis.hRideFSetup+'] == 'm'
 
             assert study.jobs is None
 
@@ -255,6 +270,12 @@ class TestStudy:
             assert len(job.vector_data.columns) == 2
             assert len(job.vector_data) > 10
             assert len(job.vector_metadata) > 0
+
+            assert len(job.vector_as('vCar', 'kph')) > 0
+            assert job.vector_units['vCar'] == 'm/s'
+
+            assert job.scalar_as('hRideF200', 'mm') > 0
+            assert job.scalar_units['hRideF200'] == 'm'
 
     async def test_0800_it_should_load_a_study_by_id_with_job_vector_metadata_only(self, state: State):
         async with integration_tests.Environment() as environment:
