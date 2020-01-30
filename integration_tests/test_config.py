@@ -9,6 +9,7 @@ import integration_tests
 
 default_car_name = 'Canopy F1 Car 2019'
 test_car_name = 'Python Automated Test Car'
+test_car_name_2 = 'Python Automated Test Car 2'
 test_car_property_key = 'python-automated-test'
 test_car_property_value = 'true'
 test_car_custom_properties = {
@@ -20,6 +21,7 @@ class State(object):
     configs_to_remove: List[str] = []
     default_car: Optional[canopy.LocalConfig] = None
     test_car_config_id: Optional[str] = None
+    test_car_config_id_2: Optional[str] = None
 
 
 @pytest.mark.asyncio
@@ -52,7 +54,19 @@ class TestConfig:
             assert state.test_car_config_id is not None
 
             state.configs_to_remove.append(state.test_car_config_id)
-            assert default_car_name == state.default_car.name
+
+    async def test_0210_it_should_create_a_config_with_no_custom_properties(self, state: State):
+
+        async with integration_tests.Environment() as environment:
+            state.test_car_config_id_2 = await canopy.create_config(
+                environment.session,
+                'car',
+                test_car_name_2,
+                state.default_car.raw_data)
+
+            assert state.test_car_config_id_2 is not None
+
+            state.configs_to_remove.append(state.test_car_config_id_2)
 
     async def test_0300_it_should_find_a_config_by_name(self, state: State):
         async with integration_tests.Environment() as environment:
@@ -92,6 +106,26 @@ class TestConfig:
                 state.test_car_config_id)
 
             assert car.document.document_id == state.test_car_config_id
+
+    async def test_0700_it_should_convert_configs_to_local_configs(self, state: State):
+        async with integration_tests.Environment() as environment:
+            car = await canopy.load_config(
+                environment.session,
+                state.test_car_config_id)
+            local_car = car.to_local_config()
+
+            assert car.document.document_id == state.test_car_config_id
+            assert local_car.config_id == state.test_car_config_id
+
+    async def test_0700_it_should_convert_configs_to_local_configs_with_no_custom_properties(self, state: State):
+        async with integration_tests.Environment() as environment:
+            car = await canopy.load_config(
+                environment.session,
+                state.test_car_config_id_2)
+            local_car = car.to_local_config()
+
+            assert car.document.document_id == state.test_car_config_id_2
+            assert local_car.config_id == state.test_car_config_id_2
 
     async def test_9000_it_should_remove_configs(self, state: State):
         async with integration_tests.Environment() as environment:
