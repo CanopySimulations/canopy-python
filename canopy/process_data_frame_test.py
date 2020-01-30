@@ -25,7 +25,7 @@ class ProcessDataFrameTest(unittest.TestCase):
         })
 
         canopy.process_data_frame(data_frame, index_column_name='b')
-        self.assertTrue(np.equal(pd.array(data_frame.index), pd.array([4, 5, 6])))
+        self.assertTrue(np.array_equal(np.array(data_frame.index), np.array([4, 5, 6])))
 
     def test_it_should_standardise_no_units_and_allow_empty_strings_for_units(self):
         data_frame = pd.DataFrame({
