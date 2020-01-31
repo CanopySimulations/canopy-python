@@ -26,6 +26,7 @@ test_passed_though_custom_properties = {
     'weather.' + test_study_property_key: test_study_property_value,
     'car.' + test_study_property_key: test_study_property_value,
 }
+exploration_notes = 'Exploration notes.'
 
 
 class State(object):
@@ -113,6 +114,10 @@ class TestStudy:
                 default_exploration_name)
 
             default_exploration.data.design.numberOfPoints = 2
+            default_exploration.properties = {
+                'type': 'a'
+            }
+            default_exploration.notes = exploration_notes
 
             weather_config = await canopy.load_config(
                 environment.session, weather_config_id)
@@ -133,6 +138,7 @@ class TestStudy:
             properties = canopy.ensure_dict(study.document.properties)
             assert test_study_property_value == properties['car.' + test_study_property_key]
             assert test_study_property_value == properties['weather.' + test_study_property_key]
+            assert 'a' == properties['exploration.type']
             assert study.simulation_count == 2
             assert study.succeeded_simulation_count == 2
             assert study.data.job_count == 3
@@ -185,8 +191,7 @@ class TestStudy:
             study = await canopy.load_study(
                 environment.session,
                 state.study_id,
-                include_study_sim_types=True,
-                include_study_inputs=True,
+                include_study_full_document=True,
                 include_study_scalar_results=True)
 
             assert study.document.document_id == state.study_id
@@ -208,8 +213,7 @@ class TestStudy:
             study = await canopy.load_study(
                 environment.session,
                 state.study_id_2,
-                include_study_sim_types=True,
-                include_study_inputs=True,
+                include_study_full_document=True,
                 include_study_scalar_results=True)
 
             assert study.document.document_id == state.study_id_2
@@ -225,6 +229,9 @@ class TestStudy:
             assert len(study.scalar_as('car.chassis.hRideFSetup+', 'mm')) == 2
             assert study.scalar_results.units['hRideF200:ApexSim'] == 'm'
             assert study.scalar_results.units['car.chassis.hRideFSetup+'] == 'm'
+
+            # Notes are only loaded with the full study document.
+            assert exploration_notes in study.document.notes
 
             assert study.jobs is None
 

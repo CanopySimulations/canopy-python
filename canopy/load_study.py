@@ -15,10 +15,12 @@ async def load_study(
         channel_names: Optional[List[str]] = None,
         tenant_id: Optional[str] = None,
         include_study_sim_types: bool = False,
+        include_study_full_document: bool = False,
         include_study_inputs: bool = False,
         include_study_scalar_results: bool = False,
         include_job_metadata: bool = False,
         include_job_inputs: bool = False,
+        include_job_full_document: bool = False,
         include_job_scalar_results: bool = False,
         include_job_vector_metadata: bool = False,
         sim_version: Optional[str] = None) -> canopy.StudyResult:
@@ -31,7 +33,7 @@ async def load_study(
     study_api = canopy.swagger.StudyApi(session.async_client)
 
     study_result: canopy.swagger.GetStudyQueryResult
-    if include_study_inputs or include_study_sim_types:
+    if include_study_inputs or include_study_sim_types or include_study_full_document:
         study_result = await study_api.study_get_study(tenant_id, study_id)
     else:
         study_result = await study_api.study_get_study_metadata(tenant_id, study_id)
@@ -67,6 +69,7 @@ async def load_study(
                 job_access_information=jobs_access_information[index % len(jobs_access_information)],
                 semaphore=semaphore,
                 include_inputs=include_job_inputs,
+                include_full_document=include_job_full_document,
                 include_scalar_results=include_job_scalar_results,
                 include_vector_metadata=include_job_vector_metadata,
                 sim_version=sim_version))

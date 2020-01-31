@@ -19,6 +19,7 @@ async def load_study_job(
         job_access_information: canopy.swagger.BlobAccessInformation = None,
         semaphore: asyncio.Semaphore = None,
         include_inputs: bool = False,
+        include_full_document: bool = False,
         include_scalar_results: bool = False,
         include_vector_metadata: bool = False,
         sim_version: Optional[str] = None) -> canopy.StudyJobResult:
@@ -40,7 +41,7 @@ async def load_study_job(
                 tenant_id,
                 study_id,
                 job_index)
-            if not include_inputs else
+            if not include_inputs and not include_full_document else
             study_api.study_get_study_job(
                 tenant_id,
                 study_id,
