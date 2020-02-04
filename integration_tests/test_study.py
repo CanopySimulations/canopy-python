@@ -246,6 +246,7 @@ class TestStudy:
             assert 1 == len(study.jobs)
 
             job = study.jobs[0]
+            assert job.result is not None
             assert job.document is not None
             assert job.inputs is None
             assert 0 == len(job.scalar_data)
@@ -271,6 +272,7 @@ class TestStudy:
             assert 1 == len(study.jobs)
 
             job = study.jobs[0]
+            assert job.result is not None
             assert job.document is not None
             assert job.inputs is not None
             assert len(job.scalar_data) > 0

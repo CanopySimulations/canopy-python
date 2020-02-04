@@ -119,6 +119,7 @@ async def load_study_job(
 
         return canopy.StudyJobResult(
             session,
+            job_result,
             job_result.study_job,
             vector_metadata,
             vector_data,
