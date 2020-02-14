@@ -4,8 +4,8 @@ import canopy
 
 
 def get_study_type_definition_for_sim_version(
-        item: canopy.swagger.StudyTypeDefinition,
-        sim_version: Optional[str] = None) -> canopy.swagger.StudyTypeDefinition:
+        item: canopy.openapi.StudyTypeDefinition,
+        sim_version: Optional[str] = None) -> canopy.openapi.StudyTypeDefinition:
 
     if item.previous_definitions is not None and sim_version is not None:
         numeric_sim_version = canopy.sim_version_to_number(sim_version)

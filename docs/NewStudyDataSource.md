@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | [**DocumentSubType**](DocumentSubType.md) |  | [optional] 
-**user_id** | [**UserId**](UserId.md) |  | [optional] 
+**config_type** | **str** |  | [optional] 
+**user_id** | **str** |  | [optional] 
 **config_id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **is_edited** | **bool** |  | [optional] 

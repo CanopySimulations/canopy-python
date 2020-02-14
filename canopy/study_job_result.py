@@ -10,8 +10,8 @@ class StudyJobResult:
     def __init__(
             self,
             session: canopy.Session,
-            job_result: Optional[canopy.swagger.GetStudyJobQueryResult],
-            job: canopy.swagger.CanopyDocument,
+            job_result: Optional[canopy.openapi.GetStudyJobQueryResult],
+            job: canopy.openapi.CanopyDocument,
             vector_metadata: Optional[pd.DataFrame],
             vector_data: pd.DataFrame,
             vector_units: Mapping[str, str],
@@ -29,11 +29,11 @@ class StudyJobResult:
         self._scalar_units = scalar_units
 
     @property
-    def result(self) -> canopy.swagger.GetStudyJobQueryResult:
+    def result(self) -> canopy.openapi.GetStudyJobQueryResult:
         return self._job_result
 
     @property
-    def document(self) -> canopy.swagger.CanopyDocument:
+    def document(self) -> canopy.openapi.CanopyDocument:
         return self._job
 
     @property

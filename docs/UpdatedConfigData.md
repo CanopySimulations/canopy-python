@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
-**config_type** | [**DocumentSubType**](DocumentSubType.md) |  | [optional] 
+**config_type** | **str** |  | [optional] 
 **properties** | [**list[DocumentCustomPropertyData]**](DocumentCustomPropertyData.md) |  | [optional] 
-**config** | **object** |  | [optional] 
+**config** | [**object**](.md) |  | [optional] 
 **notes** | **str** |  | [optional] 
 **sim_version** | **str** |  | [optional] 
 

@@ -17,8 +17,8 @@ async def load_default_config(
     if sim_version is None:
         sim_version = session.tenant_sim_version.get()
 
-    api = canopy.swagger.SimVersionApi(session.async_client)
-    document_result: canopy.swagger.GetSimVersionDocumentQueryResult = await api.sim_version_get_document(sim_version, document_path)
+    api = canopy.openapi.SimVersionApi(session.async_client)
+    document_result: canopy.openapi.GetSimVersionDocumentQueryResult = await api.sim_version_get_document(sim_version, document_path)
 
     config_data = json.loads(document_result.document.content)
 

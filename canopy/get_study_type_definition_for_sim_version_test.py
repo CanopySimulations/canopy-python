@@ -4,22 +4,22 @@ import canopy
 
 class GetStudyTypeDefinitionForSimVersionTest(unittest.TestCase):
     def setUp(self) -> None:
-        self.study_type_definition = canopy.swagger.StudyTypeDefinition(
+        self.study_type_definition = canopy.openapi.StudyTypeDefinition(
             'dynamicLap',
             'Dynamic Lap',
             ['DynamicLap'],
             ['car', 'track', 'weather'],
             previous_definitions=[
-                canopy.swagger.IPreviousDefinitionStudyTypeDefinition(
+                canopy.openapi.IPreviousDefinitionStudyTypeDefinition(
                     sim_version='1.50',
-                    definition=canopy.swagger.StudyTypeDefinition(
+                    definition=canopy.openapi.StudyTypeDefinition(
                         'dynamicLap',
                         'Dynamic Lap 50',
                         ['DynamicLap'],
                         ['car', 'track'])),
-                canopy.swagger.IPreviousDefinitionStudyTypeDefinition(
+                canopy.openapi.IPreviousDefinitionStudyTypeDefinition(
                     sim_version='1.100',
-                    definition=canopy.swagger.StudyTypeDefinition(
+                    definition=canopy.openapi.StudyTypeDefinition(
                         'dynamicLap',
                         'Dynamic Lap 100',
                         ['DynamicLap'],

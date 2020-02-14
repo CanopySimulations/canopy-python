@@ -14,7 +14,7 @@ async def delete_study(
     if tenant_id is None:
         tenant_id = session.authentication.tenant_id
 
-    study_api = canopy.swagger.StudyApi(session.async_client)
+    study_api = canopy.openapi.StudyApi(session.async_client)
     await study_api.study_delete_study(
         tenant_id,
         study_id,

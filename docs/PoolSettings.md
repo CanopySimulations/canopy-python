@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pool_id** | [**PoolId**](PoolId.md) |  | [optional] 
-**auto_scale_formula** | **str** |  | [optional] 
+**pool_id** | **str** |  | [optional] 
+**auto_scale_formula** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

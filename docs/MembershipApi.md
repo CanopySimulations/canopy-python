@@ -1,6 +1,6 @@
-# canopy.swagger.MembershipApi
+# canopy.openapi.MembershipApi
 
-All URIs are relative to *https://localhost:44300*
+All URIs are relative to *https://api.canopysimulations.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -21,22 +21,25 @@ Method | HTTP request | Description
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi()
-tenant_id = 'tenant_id_example' # str | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 
-try:
-    api_instance.membership_delete_refresh_tokens(tenant_id, user_id)
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_delete_refresh_tokens: %s\n" % e)
+    try:
+        api_instance.membership_delete_refresh_tokens(tenant_id, user_id)
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_delete_refresh_tokens: %s\n" % e)
 ```
 
 ### Parameters
@@ -59,6 +62,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_get_password_reset_token_validity**
@@ -67,23 +75,26 @@ No authorization required
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi()
-user_id = 'user_id_example' # str | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    user_id = 'user_id_example' # str | 
 token = 'token_example' # str | 
 
-try:
-    api_response = api_instance.membership_get_password_reset_token_validity(user_id, token)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_get_password_reset_token_validity: %s\n" % e)
+    try:
+        api_response = api_instance.membership_get_password_reset_token_validity(user_id, token)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_get_password_reset_token_validity: %s\n" % e)
 ```
 
 ### Parameters
@@ -106,6 +117,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json, application/xml, text/xml
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_get_user_roles**
@@ -114,27 +130,33 @@ No authorization required
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 
-try:
-    api_response = api_instance.membership_get_user_roles(tenant_id, user_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_get_user_roles: %s\n" % e)
+    try:
+        api_response = api_instance.membership_get_user_roles(tenant_id, user_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_get_user_roles: %s\n" % e)
 ```
 
 ### Parameters
@@ -157,6 +179,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_identified_user**
@@ -165,22 +192,25 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi()
-identified_user_data = canopy.swagger.IdentifiedUserData() # IdentifiedUserData | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    identified_user_data = canopy.openapi.IdentifiedUserData() # IdentifiedUserData | 
 
-try:
-    api_response = api_instance.membership_post_identified_user(identified_user_data)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_post_identified_user: %s\n" % e)
+    try:
+        api_response = api_instance.membership_post_identified_user(identified_user_data)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_post_identified_user: %s\n" % e)
 ```
 
 ### Parameters
@@ -202,6 +232,11 @@ No authorization required
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/json, text/json, application/xml, text/xml
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_initialize**
@@ -210,20 +245,23 @@ No authorization required
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi()
-
-try:
-    api_instance.membership_post_initialize()
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_post_initialize: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    
+    try:
+        api_instance.membership_post_initialize()
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_post_initialize: %s\n" % e)
 ```
 
 ### Parameters
@@ -242,6 +280,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_password_reset_confirmation**
@@ -250,22 +293,25 @@ No authorization required
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi()
-password_reset_confirmation_data = canopy.swagger.PasswordResetConfirmationData() # PasswordResetConfirmationData | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    password_reset_confirmation_data = canopy.openapi.PasswordResetConfirmationData() # PasswordResetConfirmationData | 
 
-try:
-    api_response = api_instance.membership_post_password_reset_confirmation(password_reset_confirmation_data)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_post_password_reset_confirmation: %s\n" % e)
+    try:
+        api_response = api_instance.membership_post_password_reset_confirmation(password_reset_confirmation_data)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_post_password_reset_confirmation: %s\n" % e)
 ```
 
 ### Parameters
@@ -287,6 +333,11 @@ No authorization required
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/json, text/json, application/xml, text/xml
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_password_reset_request**
@@ -295,22 +346,25 @@ No authorization required
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi()
-password_reset_request_data = canopy.swagger.PasswordResetRequestData() # PasswordResetRequestData | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    password_reset_request_data = canopy.openapi.PasswordResetRequestData() # PasswordResetRequestData | 
 
-try:
-    api_response = api_instance.membership_post_password_reset_request(password_reset_request_data)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_post_password_reset_request: %s\n" % e)
+    try:
+        api_response = api_instance.membership_post_password_reset_request(password_reset_request_data)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_post_password_reset_request: %s\n" % e)
 ```
 
 ### Parameters
@@ -332,6 +386,11 @@ No authorization required
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/json, text/json, application/xml, text/xml
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_registration**
@@ -340,26 +399,32 @@ No authorization required
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi(canopy.swagger.ApiClient(configuration))
-registration_data = canopy.swagger.RegistrationData() # RegistrationData | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.membership_post_registration(registration_data)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_post_registration: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    registration_data = canopy.openapi.RegistrationData() # RegistrationData | 
+
+    try:
+        api_response = api_instance.membership_post_registration(registration_data)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_post_registration: %s\n" % e)
 ```
 
 ### Parameters
@@ -381,6 +446,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/json, text/json, application/xml, text/xml
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_put_user_role**
@@ -389,27 +459,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.MembershipApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-user_id = 'user_id_example' # str | 
-role_data = canopy.swagger.UserRoleData() # UserRoleData | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.membership_put_user_role(tenant_id, user_id, role_data)
-except ApiException as e:
-    print("Exception when calling MembershipApi->membership_put_user_role: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.MembershipApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+user_id = 'user_id_example' # str | 
+role_data = canopy.openapi.UserRoleData() # UserRoleData | 
+
+    try:
+        api_instance.membership_put_user_role(tenant_id, user_id, role_data)
+    except ApiException as e:
+        print("Exception when calling MembershipApi->membership_put_user_role: %s\n" % e)
 ```
 
 ### Parameters
@@ -432,6 +508,11 @@ void (empty response body)
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1,5 +1,5 @@
-import canopy.swagger
-import canopy.swagger_asyncio
+import canopy.openapi
+import canopy.openapi_asyncio
 
 from canopy.not_found_error import NotFoundError
 

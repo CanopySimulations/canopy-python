@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | [**UserId**](UserId.md) |  | [optional] 
+**user_id** | **str** |  | [optional] 
 **new_password** | **str** |  | [optional] 
 **token** | **str** |  | 
 

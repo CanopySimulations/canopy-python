@@ -30,16 +30,16 @@ async def load_study(
     if tenant_id is None:
         tenant_id = session.authentication.tenant_id
 
-    study_api = canopy.swagger.StudyApi(session.async_client)
+    study_api = canopy.openapi.StudyApi(session.async_client)
 
-    study_result: canopy.swagger.GetStudyQueryResult
+    study_result: canopy.openapi.GetStudyQueryResult
     if include_study_inputs or include_study_sim_types or include_study_full_document:
         study_result = await study_api.study_get_study(tenant_id, study_id)
     else:
         study_result = await study_api.study_get_study_metadata(tenant_id, study_id)
 
-    access_information: canopy.swagger.StudyBlobAccessInformation = study_result.access_information
-    jobs_access_information: List[canopy.swagger.BlobAccessInformation] = access_information.jobs
+    access_information: canopy.openapi.StudyBlobAccessInformation = study_result.access_information
+    jobs_access_information: List[canopy.openapi.BlobAccessInformation] = access_information.jobs
     study_document = canopy.get_study_document(session, study_result.study)
 
     scalar_results_task: Optional[Future[canopy.StudyScalarResults]] = None

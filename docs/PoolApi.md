@@ -1,6 +1,6 @@
-# canopy.swagger.PoolApi
+# canopy.openapi.PoolApi
 
-All URIs are relative to *https://localhost:44300*
+All URIs are relative to *https://api.canopysimulations.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,27 +15,33 @@ Method | HTTP request | Description
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.PoolApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.PoolApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 pool_type = 'pool_type_example' # str |  (optional)
 
-try:
-    api_response = api_instance.pool_get_pool_status(tenant_id, pool_type=pool_type)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PoolApi->pool_get_pool_status: %s\n" % e)
+    try:
+        api_response = api_instance.pool_get_pool_status(tenant_id, pool_type=pool_type)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PoolApi->pool_get_pool_status: %s\n" % e)
 ```
 
 ### Parameters
@@ -58,6 +64,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pool_get_pools**
@@ -66,25 +77,31 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.PoolApi(canopy.swagger.ApiClient(configuration))
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.pool_get_pools()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PoolApi->pool_get_pools: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.PoolApi(api_client)
+    
+    try:
+        api_response = api_instance.pool_get_pools()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PoolApi->pool_get_pools: %s\n" % e)
 ```
 
 ### Parameters
@@ -103,6 +120,11 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pool_get_test_auto_scale_formula**
@@ -111,28 +133,34 @@ This endpoint does not need any parameter.
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.PoolApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.PoolApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 pool_id = 'pool_id_example' # str | 
 formula = 'formula_example' # str |  (optional)
 
-try:
-    api_response = api_instance.pool_get_test_auto_scale_formula(tenant_id, pool_id, formula=formula)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PoolApi->pool_get_test_auto_scale_formula: %s\n" % e)
+    try:
+        api_response = api_instance.pool_get_test_auto_scale_formula(tenant_id, pool_id, formula=formula)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PoolApi->pool_get_test_auto_scale_formula: %s\n" % e)
 ```
 
 ### Parameters
@@ -155,6 +183,11 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

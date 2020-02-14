@@ -16,11 +16,11 @@ async def wait_for_study(
     if tenant_id is None:
         tenant_id = session.authentication.tenant_id
 
-    study_api = canopy.swagger.StudyApi(session.async_client)
+    study_api = canopy.openapi.StudyApi(session.async_client)
 
     start_time = time.monotonic()
     while True:
-        study_result: canopy.swagger.GetStudyQueryResult = await study_api.study_get_study_metadata(tenant_id, study_id)
+        study_result: canopy.openapi.GetStudyQueryResult = await study_api.study_get_study_metadata(tenant_id, study_id)
         study_document = canopy.get_study_document(session, study_result.study)
 
         if study_document.completed_job_count == study_document.job_count:

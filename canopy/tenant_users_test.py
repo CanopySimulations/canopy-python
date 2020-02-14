@@ -6,13 +6,13 @@ class TenantUsersTest(unittest.TestCase):
 
     def setUp(self):
         self.users = [
-            canopy.swagger.GetTenantUsersQueryResultUserItem('id0', 'u0', 'u0@d.com'),
-            canopy.swagger.GetTenantUsersQueryResultUserItem('id1', 'u1', 'u1@d.com'),
-            canopy.swagger.GetTenantUsersQueryResultUserItem('id2', 'u2', 'u2@d.com'),
+            canopy.openapi.GetTenantUsersQueryResultUserItem('id0', 'u0', 'u0@d.com'),
+            canopy.openapi.GetTenantUsersQueryResultUserItem('id1', 'u1', 'u1@d.com'),
+            canopy.openapi.GetTenantUsersQueryResultUserItem('id2', 'u2', 'u2@d.com'),
         ]
 
         self.target = canopy.TenantUsers(
-            canopy.swagger.GetTenantUsersQueryResult(self.users))
+            canopy.openapi.GetTenantUsersQueryResult(self.users))
 
     def test_it_should_contain_list_of_users(self):
         self.assertSequenceEqual(self.users, self.target.list)

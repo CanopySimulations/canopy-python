@@ -15,14 +15,14 @@ class StudyResult:
     def __init__(
             self,
             session: canopy.Session,
-            study_result: Optional[canopy.swagger.GetStudyQueryResult],
+            study_result: Optional[canopy.openapi.GetStudyQueryResult],
             jobs: Optional[Sequence[canopy.StudyJobResult]],
-            document: Optional[canopy.swagger.CanopyDocument] = None,
+            document: Optional[canopy.openapi.CanopyDocument] = None,
             scalar_results: Optional[canopy.StudyScalarResults] = None):
         self._session = session
         self._study_result = study_result
         self._scalar_results = scalar_results
-        self._document: canopy.swagger.CanopyDocument = document if document is not None else study_result.study
+        self._document: canopy.openapi.CanopyDocument = document if document is not None else study_result.study
 
         if self._document is None:
             raise RuntimeError('Study document not provided.')
@@ -36,15 +36,15 @@ class StudyResult:
             self._inputs = canopy.DynamicDictToObject(canopy.ensure_dict(definition[_sim_config_key]))
 
     @property
-    def result(self) -> canopy.swagger.GetStudyQueryResult:
+    def result(self) -> canopy.openapi.GetStudyQueryResult:
         return self._study_result
 
     @property
-    def document(self) -> canopy.swagger.CanopyDocument:
+    def document(self) -> canopy.openapi.CanopyDocument:
         return self._document
 
     @property
-    def data(self) -> canopy.swagger.StudyDocument:
+    def data(self) -> canopy.openapi.StudyDocument:
         return self._data
 
     @property

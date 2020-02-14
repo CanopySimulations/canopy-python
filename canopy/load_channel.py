@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 async def load_channel(
         session: canopy.Session,
-        job_access_information: canopy.swagger.BlobAccessInformation,
+        job_access_information: canopy.openapi.BlobAccessInformation,
         sim_type: str,
         channel_name: str,
         vector_metadata: Optional[pd.DataFrame] = None,

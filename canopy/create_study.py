@@ -28,14 +28,14 @@ async def create_study(
         'simConfig': sim_config
     }
 
-    sources: List[canopy.swagger.NewStudyDataSource] = []
-    properties_list: List[canopy.swagger.DocumentCustomPropertyData] = canopy.properties_dict_to_list(properties)
+    sources: List[canopy.openapi.NewStudyDataSource] = []
+    properties_list: List[canopy.openapi.DocumentCustomPropertyData] = canopy.properties_dict_to_list(properties)
 
     notes_list: List[str] = []
     if notes is not None and len(notes) > 0:
         notes_list.append(notes)
 
-    input_definitions: Sequence[canopy.swagger.SimulationInput] = study_type_definition.inputs
+    input_definitions: Sequence[canopy.openapi.SimulationInput] = study_type_definition.inputs
     for input_definition in input_definitions:
         if input_definition.config_type not in provided_inputs:
             if input_definition.is_required:
@@ -47,7 +47,7 @@ async def create_study(
             else:
                 sim_config[input_definition.config_type] = provided_input.raw_data
 
-            sources.append(canopy.swagger.NewStudyDataSource(
+            sources.append(canopy.openapi.NewStudyDataSource(
                 config_type=input_definition.config_type,
                 user_id=provided_input.user_id,
                 config_id=provided_input.config_id,
@@ -58,7 +58,7 @@ async def create_study(
                 for config_key, value in provided_input.properties.items():
                     key = ''.join([provided_input.config_type, '.', config_key])
                     if key not in properties_list:
-                        properties_list.append(canopy.swagger.DocumentCustomPropertyData(
+                        properties_list.append(canopy.openapi.DocumentCustomPropertyData(
                             name=key,
                             value=value))
 
@@ -69,10 +69,10 @@ async def create_study(
                 notes_list.append(':\n')
                 notes_list.append(provided_input.notes.strip())
 
-    study_api = canopy.swagger.StudyApi(session.async_client)
-    study_result: canopy.swagger.PostStudyResult = await study_api.study_post_study(
+    study_api = canopy.openapi.StudyApi(session.async_client)
+    study_result: canopy.openapi.PostStudyResult = await study_api.study_post_study(
         tenant_id,
-        canopy.swagger.NewStudyData(
+        canopy.openapi.NewStudyData(
             name=study_name,
             study=study,
             is_transient=is_transient,

@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**singular_key** | [**DocumentSubType**](DocumentSubType.md) |  | [optional] 
-**plural_key** | **str** |  | [optional] 
-**name** | **str** |  | [optional] 
-**title_name** | **str** |  | [optional] 
-**icon** | **str** |  | [optional] 
+**singular_key** | **str** |  | [optional] 
+**plural_key** | **str** |  | [optional] [readonly] 
+**name** | **str** |  | [optional] [readonly] 
+**title_name** | **str** |  | [optional] [readonly] 
+**icon** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

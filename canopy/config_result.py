@@ -6,12 +6,12 @@ import canopy
 class ConfigResult:
     _converted_data: Optional[Any] = None
 
-    def __init__(self, document: canopy.swagger.CanopyDocument, user_information: canopy.swagger.DocumentUserInformation):
+    def __init__(self, document: canopy.openapi.CanopyDocument, user_information: canopy.openapi.DocumentUserInformation):
         self._document = document
         self._user_information = user_information
 
     @property
-    def document(self) -> canopy.swagger.CanopyDocument:
+    def document(self) -> canopy.openapi.CanopyDocument:
         return self._document
 
     @property
@@ -32,7 +32,7 @@ class ConfigResult:
         return self._converted_data if self.is_data_converted else self.document.data
 
     @property
-    def user_information(self) -> canopy.swagger.DocumentUserInformation:
+    def user_information(self) -> canopy.openapi.DocumentUserInformation:
         return self._user_information
 
     def to_local_config(self):

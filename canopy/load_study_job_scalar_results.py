@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 async def load_study_job_scalar_results(
         session: canopy.Session,
-        job_access_information: canopy.swagger.BlobAccessInformation,
+        job_access_information: canopy.openapi.BlobAccessInformation,
         sim_type: str) -> Optional[pd.DataFrame]:
     file_name = ''.join([sim_type, '_ScalarResults.csv'])
     url = ''.join([job_access_information.url, file_name, job_access_information.access_signature])

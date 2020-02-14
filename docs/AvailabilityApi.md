@@ -1,6 +1,6 @@
-# canopy.swagger.AvailabilityApi
+# canopy.openapi.AvailabilityApi
 
-All URIs are relative to *https://localhost:44300*
+All URIs are relative to *https://api.canopysimulations.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -14,23 +14,26 @@ Method | HTTP request | Description
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.AvailabilityApi()
-full = true # bool |  (optional)
-ping = true # bool |  (optional)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.AvailabilityApi(api_client)
+    full = True # bool |  (optional)
+ping = True # bool |  (optional)
 
-try:
-    api_response = api_instance.availability_get(full=full, ping=ping)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AvailabilityApi->availability_get: %s\n" % e)
+    try:
+        api_response = api_instance.availability_get(full=full, ping=ping)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AvailabilityApi->availability_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -53,6 +56,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **availability_head**
@@ -61,21 +69,24 @@ No authorization required
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.AvailabilityApi()
-
-try:
-    api_response = api_instance.availability_head()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AvailabilityApi->availability_head: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.AvailabilityApi(api_client)
+    
+    try:
+        api_response = api_instance.availability_head()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AvailabilityApi->availability_head: %s\n" % e)
 ```
 
 ### Parameters
@@ -93,6 +104,11 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json, application/xml, text/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

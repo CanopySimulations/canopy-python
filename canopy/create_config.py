@@ -16,12 +16,12 @@ async def create_config(
     session.authentication.authenticate()
     tenant_id = session.authentication.tenant_id
 
-    properties_list: List[canopy.swagger.DocumentCustomPropertyData] = canopy.properties_dict_to_list(properties)
+    properties_list: List[canopy.openapi.DocumentCustomPropertyData] = canopy.properties_dict_to_list(properties)
 
-    config_api = canopy.swagger.ConfigApi(session.async_client)
+    config_api = canopy.openapi.ConfigApi(session.async_client)
     config_id = await config_api.config_post_config(
         tenant_id,
-        canopy.swagger.NewConfigData(
+        canopy.openapi.NewConfigData(
             name=name,
             config_type=config_type,
             properties=properties_list,

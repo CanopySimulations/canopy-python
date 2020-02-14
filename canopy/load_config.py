@@ -15,8 +15,8 @@ async def load_config(
     if tenant_id is None:
         tenant_id = session.authentication.tenant_id
 
-    config_api = canopy.swagger.ConfigApi(session.async_client)
-    config_result: canopy.swagger.GetConfigQueryResult = await config_api.config_get_config(
+    config_api = canopy.openapi.ConfigApi(session.async_client)
+    config_result: canopy.openapi.GetConfigQueryResult = await config_api.config_get_config(
         tenant_id,
         config_id,
         **canopy.defined_kwargs(

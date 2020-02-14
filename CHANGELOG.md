@@ -1,3 +1,9 @@
+# 8.0 Release
+## Breaking Changes
+ - Migrated from using the [Swagger Generator](https://github.com/swagger-api/swagger-codegen) to the 
+ [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) for the generated client code.
+ - The namespace for the generated code has therefore changed from `canopy.swagger` to `canopy.openapi`.  
+
 # 7.0 Release
 ## New Features
  - Added `scalar_as` helper function to `StudyResult` class.

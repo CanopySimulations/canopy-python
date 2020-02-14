@@ -16,7 +16,7 @@ async def load_study_job(
         channel_names: Optional[List[str]] = None,
         job_index: int = 0,
         tenant_id: str = None,
-        job_access_information: canopy.swagger.BlobAccessInformation = None,
+        job_access_information: canopy.openapi.BlobAccessInformation = None,
         semaphore: asyncio.Semaphore = None,
         include_inputs: bool = False,
         include_full_document: bool = False,
@@ -34,7 +34,7 @@ async def load_study_job(
 
     async with semaphore:
         logger.info('Loading job index %d', job_index)
-        study_api = canopy.swagger.StudyApi(session.async_client)
+        study_api = canopy.openapi.StudyApi(session.async_client)
 
         job_result_task = asyncio.ensure_future(
             study_api.study_get_study_job_metadata(
@@ -49,14 +49,14 @@ async def load_study_job(
                 **canopy.defined_kwargs(
                     sim_version=sim_version)))
 
-        job_result: Optional[canopy.swagger.GetStudyJobQueryResult] = None
+        job_result: Optional[canopy.openapi.GetStudyJobQueryResult] = None
 
         if job_access_information is None:
             job_result = await job_result_task
             job_access_information = job_result.access_information
         else:
             # Add job index to URL
-            job_access_information = canopy.swagger.BlobAccessInformation(
+            job_access_information = canopy.openapi.BlobAccessInformation(
                 ''.join([job_access_information.url, str(job_index), '/']),
                 job_access_information.access_signature)
 

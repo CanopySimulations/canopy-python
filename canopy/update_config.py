@@ -5,13 +5,13 @@ import canopy
 
 async def update_config(
         session: canopy.Session,
-        config: canopy.swagger.CanopyDocument,
+        config: canopy.openapi.CanopyDocument,
         config_data: Optional[Any]):
 
-    config_api = canopy.swagger.ConfigApi(session.async_client)
+    config_api = canopy.openapi.ConfigApi(session.async_client)
 
     properties_list = canopy.properties_dict_to_list(config.properties)
-    updated_config_data = canopy.swagger.UpdatedConfigData(
+    updated_config_data = canopy.openapi.UpdatedConfigData(
         config.name,
         config.sub_type,
         properties_list,

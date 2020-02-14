@@ -6,11 +6,11 @@ import datetime
 
 
 class Authentication(object):
-    _client: canopy.swagger.ApiClient
+    _client: canopy.openapi.ApiClient
 
     def __init__(
             self,
-            client: canopy.swagger.ApiClient,
+            client: canopy.openapi.ApiClient,
             client_id: Optional[str] = None,
             client_secret: Optional[str] = None,
             username: Optional[str] = None,

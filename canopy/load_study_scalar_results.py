@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 async def load_study_scalar_results(
         session: canopy.Session,
-        study_access_information: canopy.swagger.StudyBlobAccessInformation) -> canopy.StudyScalarResults:
+        study_access_information: canopy.openapi.StudyBlobAccessInformation) -> canopy.StudyScalarResults:
 
     inputs_task = asyncio.ensure_future(
         _load_file(session, 'scalar-inputs.csv', None, None, study_access_information))
@@ -54,7 +54,7 @@ async def _load_file(
         file_name: str,
         index_column_name: Optional[str],
         empty_string_valid_column_names: Optional[Sequence[str]],
-        study_access_information: canopy.swagger.StudyBlobAccessInformation) -> Optional[pd.DataFrame]:
+        study_access_information: canopy.openapi.StudyBlobAccessInformation) -> Optional[pd.DataFrame]:
 
     url = ''.join([study_access_information.url, file_name, study_access_information.access_signature])
     return await canopy.try_load_csv_from_url(

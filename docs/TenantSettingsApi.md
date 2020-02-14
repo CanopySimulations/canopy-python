@@ -1,6 +1,6 @@
-# canopy.swagger.TenantSettingsApi
+# canopy.openapi.TenantSettingsApi
 
-All URIs are relative to *https://localhost:44300*
+All URIs are relative to *https://api.canopysimulations.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -22,26 +22,32 @@ Method | HTTP request | Description
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.tenant_settings_get_admin_tenant_settings(tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_get_admin_tenant_settings: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+
+    try:
+        api_response = api_instance.tenant_settings_get_admin_tenant_settings(tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_get_admin_tenant_settings: %s\n" % e)
 ```
 
 ### Parameters
@@ -63,6 +69,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_get_tenant_channel_import_mappings**
@@ -71,26 +82,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.tenant_settings_get_tenant_channel_import_mappings(tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_get_tenant_channel_import_mappings: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+
+    try:
+        api_response = api_instance.tenant_settings_get_tenant_channel_import_mappings(tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_get_tenant_channel_import_mappings: %s\n" % e)
 ```
 
 ### Parameters
@@ -112,6 +129,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_get_tenant_default_custom_property_names**
@@ -120,27 +142,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 target_type = 'target_type_example' # str |  (optional)
 
-try:
-    api_response = api_instance.tenant_settings_get_tenant_default_custom_property_names(tenant_id, target_type=target_type)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_get_tenant_default_custom_property_names: %s\n" % e)
+    try:
+        api_response = api_instance.tenant_settings_get_tenant_default_custom_property_names(tenant_id, target_type=target_type)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_get_tenant_default_custom_property_names: %s\n" % e)
 ```
 
 ### Parameters
@@ -163,6 +191,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_get_tenant_settings_sim_version**
@@ -171,26 +204,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.tenant_settings_get_tenant_settings_sim_version(tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_get_tenant_settings_sim_version: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+
+    try:
+        api_response = api_instance.tenant_settings_get_tenant_settings_sim_version(tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_get_tenant_settings_sim_version: %s\n" % e)
 ```
 
 ### Parameters
@@ -212,6 +251,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_get_tenant_worksheet_label_definitions**
@@ -220,26 +264,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.tenant_settings_get_tenant_worksheet_label_definitions(tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_get_tenant_worksheet_label_definitions: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+
+    try:
+        api_response = api_instance.tenant_settings_get_tenant_worksheet_label_definitions(tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_get_tenant_worksheet_label_definitions: %s\n" % e)
 ```
 
 ### Parameters
@@ -261,6 +311,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_put_admin_tenant_settings**
@@ -269,27 +324,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-data = canopy.swagger.UpdatedAdminTenantSettings() # UpdatedAdminTenantSettings | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.tenant_settings_put_admin_tenant_settings(tenant_id, data)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_put_admin_tenant_settings: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+data = canopy.openapi.UpdatedAdminTenantSettings() # UpdatedAdminTenantSettings | 
+
+    try:
+        api_response = api_instance.tenant_settings_put_admin_tenant_settings(tenant_id, data)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_put_admin_tenant_settings: %s\n" % e)
 ```
 
 ### Parameters
@@ -312,6 +373,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/json, text/json, application/xml, text/xml
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_put_tenant_channel_import_mappings**
@@ -320,26 +386,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-data = canopy.swagger.UpdatedChannelImportMappings() # UpdatedChannelImportMappings | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.tenant_settings_put_tenant_channel_import_mappings(tenant_id, data)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_put_tenant_channel_import_mappings: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+data = canopy.openapi.UpdatedChannelImportMappings() # UpdatedChannelImportMappings | 
+
+    try:
+        api_instance.tenant_settings_put_tenant_channel_import_mappings(tenant_id, data)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_put_tenant_channel_import_mappings: %s\n" % e)
 ```
 
 ### Parameters
@@ -362,6 +434,11 @@ void (empty response body)
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_put_tenant_default_custom_property_names**
@@ -370,26 +447,32 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-data = canopy.swagger.UpdatedTenantDefaultCustomPropertyNames() # UpdatedTenantDefaultCustomPropertyNames | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.tenant_settings_put_tenant_default_custom_property_names(tenant_id, data)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_put_tenant_default_custom_property_names: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+data = canopy.openapi.UpdatedTenantDefaultCustomPropertyNames() # UpdatedTenantDefaultCustomPropertyNames | 
+
+    try:
+        api_instance.tenant_settings_put_tenant_default_custom_property_names(tenant_id, data)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_put_tenant_default_custom_property_names: %s\n" % e)
 ```
 
 ### Parameters
@@ -412,6 +495,11 @@ void (empty response body)
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_put_tenant_settings_sim_version**
@@ -420,26 +508,32 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-data = canopy.swagger.UpdatedTenantSettingsSimVersion() # UpdatedTenantSettingsSimVersion | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.tenant_settings_put_tenant_settings_sim_version(tenant_id, data)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_put_tenant_settings_sim_version: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+data = canopy.openapi.UpdatedTenantSettingsSimVersion() # UpdatedTenantSettingsSimVersion | 
+
+    try:
+        api_instance.tenant_settings_put_tenant_settings_sim_version(tenant_id, data)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_put_tenant_settings_sim_version: %s\n" % e)
 ```
 
 ### Parameters
@@ -462,6 +556,11 @@ void (empty response body)
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tenant_settings_put_tenant_worksheet_label_definitions**
@@ -470,26 +569,32 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.TenantSettingsApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-data = canopy.swagger.UpdatedWorksheetLabelDefinitions() # UpdatedWorksheetLabelDefinitions | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.tenant_settings_put_tenant_worksheet_label_definitions(tenant_id, data)
-except ApiException as e:
-    print("Exception when calling TenantSettingsApi->tenant_settings_put_tenant_worksheet_label_definitions: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.TenantSettingsApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+data = canopy.openapi.UpdatedWorksheetLabelDefinitions() # UpdatedWorksheetLabelDefinitions | 
+
+    try:
+        api_instance.tenant_settings_put_tenant_worksheet_label_definitions(tenant_id, data)
+    except ApiException as e:
+        print("Exception when calling TenantSettingsApi->tenant_settings_put_tenant_worksheet_label_definitions: %s\n" % e)
 ```
 
 ### Parameters
@@ -511,6 +616,11 @@ void (empty response body)
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

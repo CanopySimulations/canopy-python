@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **study_type** | **str** |  | [optional] 
 **sources** | [**list[NewStudyDataSource]**](NewStudyDataSource.md) |  | [optional] 
 **properties** | [**list[DocumentCustomPropertyData]**](DocumentCustomPropertyData.md) |  | [optional] 
-**study** | **object** |  | [optional] 
+**study** | [**object**](.md) |  | [optional] 
 **notes** | **str** |  | [optional] 
 **sim_version** | **str** |  | [optional] 
 

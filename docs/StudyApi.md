@@ -1,6 +1,6 @@
-# canopy.swagger.StudyApi
+# canopy.openapi.StudyApi
 
-All URIs are relative to *https://localhost:44300*
+All URIs are relative to *https://api.canopysimulations.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -47,27 +47,33 @@ Method | HTTP request | Description
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-study_id = 'study_id_example' # str | 
-undelete = true # bool |  (optional)
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.study_delete_study(tenant_id, study_id, undelete=undelete)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_delete_study: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+study_id = 'study_id_example' # str | 
+undelete = True # bool |  (optional)
+
+    try:
+        api_instance.study_delete_study(tenant_id, study_id, undelete=undelete)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_delete_study: %s\n" % e)
 ```
 
 ### Parameters
@@ -91,6 +97,11 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_delete_study_deprecated**
@@ -99,28 +110,34 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
-undelete = true # bool |  (optional)
+undelete = True # bool |  (optional)
 
-try:
-    api_instance.study_delete_study_deprecated(tenant_id, user_id, study_id, undelete=undelete)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_delete_study_deprecated: %s\n" % e)
+    try:
+        api_instance.study_delete_study_deprecated(tenant_id, user_id, study_id, undelete=undelete)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_delete_study_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -145,6 +162,11 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_all_tenants_study_statistics**
@@ -153,27 +175,33 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-start_date = 'start_date_example' # str |  (optional)
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    start_date = 'start_date_example' # str |  (optional)
 end_date = 'end_date_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_all_tenants_study_statistics(start_date=start_date, end_date=end_date)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_all_tenants_study_statistics: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_all_tenants_study_statistics(start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_all_tenants_study_statistics: %s\n" % e)
 ```
 
 ### Parameters
@@ -196,6 +224,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_sim_type**
@@ -204,27 +237,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-sim_type = 'sim_type_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    sim_type = 'sim_type_example' # str | 
 tenant_id = 'tenant_id_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_sim_type(sim_type, tenant_id=tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_sim_type: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_sim_type(sim_type, tenant_id=tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_sim_type: %s\n" % e)
 ```
 
 ### Parameters
@@ -247,6 +286,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_studies**
@@ -255,29 +299,35 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 filter = 'filter_example' # str |  (optional)
-include_transient = true # bool |  (optional)
+include_transient = True # bool |  (optional)
 result_type = 'result_type_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_studies(tenant_id, filter=filter, include_transient=include_transient, result_type=result_type)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_studies: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_studies(tenant_id, filter=filter, include_transient=include_transient, result_type=result_type)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_studies: %s\n" % e)
 ```
 
 ### Parameters
@@ -302,6 +352,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study**
@@ -310,28 +365,34 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 sim_version = 'sim_version_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study(tenant_id, study_id, sim_version=sim_version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study(tenant_id, study_id, sim_version=sim_version)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study: %s\n" % e)
 ```
 
 ### Parameters
@@ -354,6 +415,11 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -363,29 +429,35 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
 sim_version = 'sim_version_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_deprecated(tenant_id, user_id, study_id, sim_version=sim_version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_deprecated(tenant_id, user_id, study_id, sim_version=sim_version)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -409,6 +481,11 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -418,29 +495,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi()
-tenant_id = 'tenant_id_example' # str | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 access_signature = 'access_signature_example' # str | 
 expiry = 'expiry_example' # str | 
 file_name = 'file_name_example' # str |  (optional)
-full = true # bool |  (optional)
-channels_as_csv = true # bool |  (optional)
-merged_scalar_results_only = true # bool |  (optional)
+full = True # bool |  (optional)
+channels_as_csv = True # bool |  (optional)
+merged_scalar_results_only = True # bool |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_download(tenant_id, study_id, access_signature, expiry, file_name=file_name, full=full, channels_as_csv=channels_as_csv, merged_scalar_results_only=merged_scalar_results_only)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_download: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_download(tenant_id, study_id, access_signature, expiry, file_name=file_name, full=full, channels_as_csv=channels_as_csv, merged_scalar_results_only=merged_scalar_results_only)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_download: %s\n" % e)
 ```
 
 ### Parameters
@@ -468,6 +548,11 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json, application/xml, text/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -477,30 +562,33 @@ No authorization required
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi()
-tenant_id = 'tenant_id_example' # str | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
 access_signature = 'access_signature_example' # str | 
 expiry = 'expiry_example' # str | 
 file_name = 'file_name_example' # str |  (optional)
-full = true # bool |  (optional)
-channels_as_csv = true # bool |  (optional)
-merged_scalar_results_only = true # bool |  (optional)
+full = True # bool |  (optional)
+channels_as_csv = True # bool |  (optional)
+merged_scalar_results_only = True # bool |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_download_deprecated(tenant_id, user_id, study_id, access_signature, expiry, file_name=file_name, full=full, channels_as_csv=channels_as_csv, merged_scalar_results_only=merged_scalar_results_only)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_download_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_download_deprecated(tenant_id, user_id, study_id, access_signature, expiry, file_name=file_name, full=full, channels_as_csv=channels_as_csv, merged_scalar_results_only=merged_scalar_results_only)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_download_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -530,6 +618,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json, application/xml, text/xml
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_download_url**
@@ -538,27 +631,33 @@ No authorization required
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 
-try:
-    api_response = api_instance.study_get_study_download_url(tenant_id, study_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_download_url: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_download_url(tenant_id, study_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_download_url: %s\n" % e)
 ```
 
 ### Parameters
@@ -580,6 +679,11 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -589,28 +693,34 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
 
-try:
-    api_response = api_instance.study_get_study_download_url_deprecated(tenant_id, user_id, study_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_download_url_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_download_url_deprecated(tenant_id, user_id, study_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_download_url_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -634,6 +744,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_job**
@@ -642,29 +757,35 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 job_id = 'job_id_example' # str | 
 sim_version = 'sim_version_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_job(tenant_id, study_id, job_id, sim_version=sim_version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_job: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_job(tenant_id, study_id, job_id, sim_version=sim_version)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_job: %s\n" % e)
 ```
 
 ### Parameters
@@ -688,6 +809,11 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -697,30 +823,36 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
 job_id = 'job_id_example' # str | 
 sim_version = 'sim_version_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_job_deprecated(tenant_id, user_id, study_id, job_id, sim_version=sim_version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_job_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_job_deprecated(tenant_id, user_id, study_id, job_id, sim_version=sim_version)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_job_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -746,6 +878,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_job_download**
@@ -754,29 +891,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi()
-tenant_id = 'tenant_id_example' # str | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 job_id = 'job_id_example' # str | 
 access_signature = 'access_signature_example' # str | 
 expiry = 'expiry_example' # str | 
 file_name = 'file_name_example' # str |  (optional)
-channels_as_csv = true # bool |  (optional)
+channels_as_csv = True # bool |  (optional)
 sim_type_channels = 'sim_type_channels_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_job_download(tenant_id, study_id, job_id, access_signature, expiry, file_name=file_name, channels_as_csv=channels_as_csv, sim_type_channels=sim_type_channels)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_job_download: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_job_download(tenant_id, study_id, job_id, access_signature, expiry, file_name=file_name, channels_as_csv=channels_as_csv, sim_type_channels=sim_type_channels)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_job_download: %s\n" % e)
 ```
 
 ### Parameters
@@ -804,6 +944,11 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json, application/xml, text/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -813,30 +958,33 @@ No authorization required
 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi()
-tenant_id = 'tenant_id_example' # str | 
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
 job_id = 'job_id_example' # str | 
 access_signature = 'access_signature_example' # str | 
 expiry = 'expiry_example' # str | 
 file_name = 'file_name_example' # str |  (optional)
-channels_as_csv = true # bool |  (optional)
+channels_as_csv = True # bool |  (optional)
 sim_type_channels = 'sim_type_channels_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_job_download_deprecated(tenant_id, user_id, study_id, job_id, access_signature, expiry, file_name=file_name, channels_as_csv=channels_as_csv, sim_type_channels=sim_type_channels)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_job_download_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_job_download_deprecated(tenant_id, user_id, study_id, job_id, access_signature, expiry, file_name=file_name, channels_as_csv=channels_as_csv, sim_type_channels=sim_type_channels)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_job_download_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -866,6 +1014,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json, application/xml, text/xml
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_job_metadata**
@@ -874,28 +1027,34 @@ No authorization required
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 job_id = 'job_id_example' # str | 
 
-try:
-    api_response = api_instance.study_get_study_job_metadata(tenant_id, study_id, job_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_job_metadata: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_job_metadata(tenant_id, study_id, job_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_job_metadata: %s\n" % e)
 ```
 
 ### Parameters
@@ -918,6 +1077,11 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -927,29 +1091,35 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
 job_id = 'job_id_example' # str | 
 
-try:
-    api_response = api_instance.study_get_study_job_metadata_deprecated(tenant_id, user_id, study_id, job_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_job_metadata_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_job_metadata_deprecated(tenant_id, user_id, study_id, job_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_job_metadata_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -974,6 +1144,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_jobs**
@@ -982,28 +1157,34 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 filter = 'filter_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_jobs(tenant_id, study_id, filter=filter)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_jobs: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_jobs(tenant_id, study_id, filter=filter)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_jobs: %s\n" % e)
 ```
 
 ### Parameters
@@ -1026,6 +1207,11 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1035,29 +1221,35 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
 filter = 'filter_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_jobs_deprecated(tenant_id, user_id, study_id, filter=filter)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_jobs_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_jobs_deprecated(tenant_id, user_id, study_id, filter=filter)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_jobs_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -1082,6 +1274,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_metadata**
@@ -1090,27 +1287,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 
-try:
-    api_response = api_instance.study_get_study_metadata(tenant_id, study_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_metadata: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_metadata(tenant_id, study_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_metadata: %s\n" % e)
 ```
 
 ### Parameters
@@ -1133,6 +1336,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_metadata_deprecated**
@@ -1141,28 +1349,34 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
 
-try:
-    api_response = api_instance.study_get_study_metadata_deprecated(tenant_id, user_id, study_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_metadata_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_metadata_deprecated(tenant_id, user_id, study_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_metadata_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -1186,6 +1400,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_metadata_without_user_id_deprecated**
@@ -1194,27 +1413,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 
-try:
-    api_response = api_instance.study_get_study_metadata_without_user_id_deprecated(tenant_id, study_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_metadata_without_user_id_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_metadata_without_user_id_deprecated(tenant_id, study_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_metadata_without_user_id_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -1237,6 +1462,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_type**
@@ -1245,27 +1475,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-study_type = 'study_type_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    study_type = 'study_type_example' # str | 
 tenant_id = 'tenant_id_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_type(study_type, tenant_id=tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_type: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_type(study_type, tenant_id=tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_type: %s\n" % e)
 ```
 
 ### Parameters
@@ -1288,6 +1524,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_types**
@@ -1296,26 +1537,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str |  (optional)
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.study_get_study_types(tenant_id=tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_types: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str |  (optional)
+
+    try:
+        api_response = api_instance.study_get_study_types(tenant_id=tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_types: %s\n" % e)
 ```
 
 ### Parameters
@@ -1337,6 +1584,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_study_without_user_id_deprecated**
@@ -1345,28 +1597,34 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 study_id = 'study_id_example' # str | 
 sim_version = 'sim_version_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_study_without_user_id_deprecated(tenant_id, study_id, sim_version=sim_version)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_study_without_user_id_deprecated: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_study_without_user_id_deprecated(tenant_id, study_id, sim_version=sim_version)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_study_without_user_id_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -1390,6 +1648,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_tenant_access_information**
@@ -1398,26 +1661,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.study_get_tenant_access_information(tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_tenant_access_information: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+
+    try:
+        api_response = api_instance.study_get_tenant_access_information(tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_tenant_access_information: %s\n" % e)
 ```
 
 ### Parameters
@@ -1439,6 +1708,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_tenant_billable_stored_simulation_count**
@@ -1447,26 +1721,32 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.study_get_tenant_billable_stored_simulation_count(tenant_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_tenant_billable_stored_simulation_count: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+
+    try:
+        api_response = api_instance.study_get_tenant_billable_stored_simulation_count(tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_tenant_billable_stored_simulation_count: %s\n" % e)
 ```
 
 ### Parameters
@@ -1488,6 +1768,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_get_tenant_study_statistics**
@@ -1496,28 +1781,34 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 start_date = 'start_date_example' # str |  (optional)
 end_date = 'end_date_example' # str |  (optional)
 
-try:
-    api_response = api_instance.study_get_tenant_study_statistics(tenant_id, start_date=start_date, end_date=end_date)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_get_tenant_study_statistics: %s\n" % e)
+    try:
+        api_response = api_instance.study_get_tenant_study_statistics(tenant_id, start_date=start_date, end_date=end_date)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_get_tenant_study_statistics: %s\n" % e)
 ```
 
 ### Parameters
@@ -1541,6 +1832,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_merge_study**
@@ -1549,27 +1845,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-study_id = 'study_id_example' # str | 
-force_merge_from_baseline = true # bool |  (optional)
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.study_merge_study(tenant_id, study_id, force_merge_from_baseline=force_merge_from_baseline)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_merge_study: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+study_id = 'study_id_example' # str | 
+force_merge_from_baseline = True # bool |  (optional)
+
+    try:
+        api_instance.study_merge_study(tenant_id, study_id, force_merge_from_baseline=force_merge_from_baseline)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_merge_study: %s\n" % e)
 ```
 
 ### Parameters
@@ -1592,6 +1894,11 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1601,28 +1908,34 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
-force_merge_from_baseline = true # bool |  (optional)
+force_merge_from_baseline = True # bool |  (optional)
 
-try:
-    api_instance.study_merge_study_deprecated(tenant_id, user_id, study_id, force_merge_from_baseline=force_merge_from_baseline)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_merge_study_deprecated: %s\n" % e)
+    try:
+        api_instance.study_merge_study_deprecated(tenant_id, user_id, study_id, force_merge_from_baseline=force_merge_from_baseline)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_merge_study_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -1647,6 +1960,11 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_post_study**
@@ -1655,28 +1973,34 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-data = canopy.swagger.NewStudyData() # NewStudyData | 
-run_inline = true # bool |  (optional)
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.study_post_study(tenant_id, data, run_inline=run_inline)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_post_study: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+data = canopy.openapi.NewStudyData() # NewStudyData | 
+run_inline = True # bool |  (optional)
+
+    try:
+        api_response = api_instance.study_post_study(tenant_id, data, run_inline=run_inline)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_post_study: %s\n" % e)
 ```
 
 ### Parameters
@@ -1700,6 +2024,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_post_study_deprecated**
@@ -1708,29 +2037,35 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-user_id = 'user_id_example' # str | 
-data = canopy.swagger.NewStudyData() # NewStudyData | 
-run_inline = true # bool |  (optional)
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_response = api_instance.study_post_study_deprecated(tenant_id, user_id, data, run_inline=run_inline)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_post_study_deprecated: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+user_id = 'user_id_example' # str | 
+data = canopy.openapi.NewStudyData() # NewStudyData | 
+run_inline = True # bool |  (optional)
+
+    try:
+        api_response = api_instance.study_post_study_deprecated(tenant_id, user_id, data, run_inline=run_inline)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_post_study_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -1755,6 +2090,11 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/json, text/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_put_config_owner**
@@ -1763,27 +2103,33 @@ Name | Type | Description  | Notes
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-study_id = 'study_id_example' # str | 
-owner_data = canopy.swagger.ConfigOwnerData() # ConfigOwnerData | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.study_put_config_owner(tenant_id, study_id, owner_data)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_put_config_owner: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+study_id = 'study_id_example' # str | 
+owner_data = canopy.openapi.ConfigOwnerData() # ConfigOwnerData | 
+
+    try:
+        api_instance.study_put_config_owner(tenant_id, study_id, owner_data)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_put_config_owner: %s\n" % e)
 ```
 
 ### Parameters
@@ -1807,6 +2153,11 @@ void (empty response body)
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_put_study**
@@ -1815,27 +2166,33 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
-study_id = 'study_id_example' # str | 
-data = canopy.swagger.UpdatedStudyData() # UpdatedStudyData | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
 
-try:
-    api_instance.study_put_study(tenant_id, study_id, data)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_put_study: %s\n" % e)
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+study_id = 'study_id_example' # str | 
+data = canopy.openapi.UpdatedStudyData() # UpdatedStudyData | 
+
+    try:
+        api_instance.study_put_study(tenant_id, study_id, data)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_put_study: %s\n" % e)
 ```
 
 ### Parameters
@@ -1859,6 +2216,11 @@ void (empty response body)
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **study_put_study_deprecated**
@@ -1867,28 +2229,34 @@ void (empty response body)
 
 
 ### Example
+
+* OAuth Authentication (oauth2):
 ```python
 from __future__ import print_function
 import time
-import canopy.swagger
-from canopy.swagger.rest import ApiException
+import canopy.openapi
+from canopy.openapi.rest import ApiException
 from pprint import pprint
-
+configuration = canopy.openapi.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
-configuration = canopy.swagger.Configuration()
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# create an instance of the API class
-api_instance = canopy.swagger.StudyApi(canopy.swagger.ApiClient(configuration))
-tenant_id = 'tenant_id_example' # str | 
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
 user_id = 'user_id_example' # str | 
 study_id = 'study_id_example' # str | 
-data = canopy.swagger.UpdatedStudyData() # UpdatedStudyData | 
+data = canopy.openapi.UpdatedStudyData() # UpdatedStudyData | 
 
-try:
-    api_instance.study_put_study_deprecated(tenant_id, user_id, study_id, data)
-except ApiException as e:
-    print("Exception when calling StudyApi->study_put_study_deprecated: %s\n" % e)
+    try:
+        api_instance.study_put_study_deprecated(tenant_id, user_id, study_id, data)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_put_study_deprecated: %s\n" % e)
 ```
 
 ### Parameters
@@ -1912,6 +2280,11 @@ void (empty response body)
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -20,7 +20,7 @@ async def find_config(
     if tenant_id is None:
         tenant_id = session.authentication.tenant_id
 
-    config_api = canopy.swagger.ConfigApi(session.async_client)
+    config_api = canopy.openapi.ConfigApi(session.async_client)
 
     filter_ = canopy.create_list_filter(
         session,
@@ -32,14 +32,14 @@ async def find_config(
         parent_worksheet_id=parent_worksheet_id,
         tenant_id=tenant_id)
 
-    metadata_result: canopy.swagger.GetConfigsQueryResult = await config_api.config_get_configs(
+    metadata_result: canopy.openapi.GetConfigsQueryResult = await config_api.config_get_configs(
         tenant_id,
         config_type,
         **canopy.defined_kwargs(
             filter=filter_.serialize(),
             sub_tree_path=sub_tree_path))
 
-    documents: List[canopy.swagger.CanopyDocument] = metadata_result.query_results.documents
+    documents: List[canopy.openapi.CanopyDocument] = metadata_result.query_results.documents
     if len(documents) == 0:
         raise canopy.NotFoundError('No config found matching the specified criteria.')
 

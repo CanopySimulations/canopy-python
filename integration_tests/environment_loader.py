@@ -57,9 +57,9 @@ class EnvironmentLoader:
         async with canopy.Session(authentication_data=master) as session:
             session.authentication.authenticate()
 
-            api = canopy.swagger.MembershipApi(session.async_client)
+            api = canopy.openapi.MembershipApi(session.async_client)
             await api.membership_post_registration(
-                registration_data=canopy.swagger.RegistrationData(
+                registration_data=canopy.openapi.RegistrationData(
                     session.authentication.tenant_id,
                     username + '@testing.canopysimulations.com',
                     username,

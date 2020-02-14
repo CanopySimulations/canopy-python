@@ -5,7 +5,7 @@ import canopy
 
 class TenantSimVersionCache(object):
 
-    def __init__(self, client: canopy.swagger.ApiClient, authentication: canopy.Authentication):
+    def __init__(self, client: canopy.openapi.ApiClient, authentication: canopy.Authentication):
         self._client = client
         self._authentication = authentication
         self._data: Dict[str, str] = {}
@@ -14,7 +14,7 @@ class TenantSimVersionCache(object):
         if tenant_id is None:
             tenant_id = self._authentication.tenant_id
 
-        api = canopy.swagger.SimVersionApi(self._client)
+        api = canopy.openapi.SimVersionApi(self._client)
         result: str = api.sim_version_get_sim_version(tenant_id=tenant_id)
         self._data[tenant_id] = result
 
