@@ -1,3 +1,8 @@
+# 8.1 Release
+## New Features
+ - Added `proxy` parameter to `Session` object for specifying proxy server.
+ - Added `api_host` parameter to `Session` for overriding the API host URL.
+
 # 8.0 Release
 ## Breaking Changes
  - Migrated from using the [Swagger Generator](https://github.com/swagger-api/swagger-codegen) to the 
