@@ -74,9 +74,10 @@ class RESTClientObject(object):
             ssl=ssl_context
         )
 
+        self.proxy = configuration.proxy
+
         # https pool manager
-        if configuration.proxy:
-            self.proxy = configuration.proxy
+        if self.proxy:
             self.pool_manager = aiohttp.ClientSession(
                 connector=connector
             )

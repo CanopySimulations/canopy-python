@@ -1,4 +1,4 @@
-# 8.2 Release
+# 8.3 Release
 ## New Features
  - Added `proxy` parameter to `Session` object for specifying proxy server.
  - Added `api_host` parameter to `Session` for overriding the API host URL.
