@@ -18,10 +18,11 @@ class Session(object):
             tenant_name: Optional[str] = None,
             password: Optional[str] = None,
             proxy: Optional[str] = None,
-            api_host: Optional[str] = None):
+            openapi_configuration: Optional[canopy.openapi.Configuration] = None):
 
-        self._configuration = canopy.openapi.Configuration()
-        self._configuration.host = api_host if api_host is not None else 'https://api.canopysimulations.com'
+        self._configuration = openapi_configuration if openapi_configuration is not None else canopy.openapi.Configuration()
+        if self._configuration.host is None:
+            self._configuration.host = 'https://api.canopysimulations.com'
         if proxy is not None:
             self._configuration.proxy = proxy
 
