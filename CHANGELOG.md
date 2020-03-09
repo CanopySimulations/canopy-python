@@ -1,8 +1,7 @@
-# 8.4 Release
+# 8.5 Release
 ## New Features
- - Added `proxy` parameter to `Session` object for specifying proxy server.
+ - Added `proxy` parameter to `Session` object for specifying proxy server configuration.
  - Added `openapi_configuration` parameter to `Session` for overriding the default configuration.
- - Added support for `HTTP_PROXY` and `HTTPS_PROXY` environment variables.
 
 # 8.0 Release
 ## Breaking Changes

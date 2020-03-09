@@ -17,14 +17,15 @@ class Session(object):
             username: Optional[str] = None,
             tenant_name: Optional[str] = None,
             password: Optional[str] = None,
-            proxy: Optional[str] = None,
+            proxy: Optional[canopy.ProxyConfiguration] = None,
             openapi_configuration: Optional[canopy.openapi.Configuration] = None):
 
         self._configuration = openapi_configuration if openapi_configuration is not None else canopy.openapi.Configuration()
         if self._configuration.host is None:
             self._configuration.host = 'https://api.canopysimulations.com'
         if proxy is not None:
-            self._configuration.proxy = proxy
+            self._configuration.proxy = proxy.auth_url
+            self._configuration.proxy_headers = proxy.headers
 
         self._sync_client = canopy.openapi.ApiClient(configuration=self._configuration)
         self._async_client = canopy.openapi_asyncio.ApiClient(configuration=self._configuration)

@@ -5,6 +5,7 @@ from canopy.not_found_error import NotFoundError
 
 from canopy.constants import Constants
 from canopy.defined_kwargs import defined_kwargs
+from canopy.proxy_configuration import ProxyConfiguration
 from canopy.authentication_data import AuthenticationData
 from canopy.authentication import Authentication
 from canopy.user_settings_cache import UserSettingsCache

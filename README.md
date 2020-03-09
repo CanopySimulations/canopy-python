@@ -138,8 +138,10 @@ with canopy.Session(client_id='<your_client_id>', username='<your_username>') as
 
 ## Proxy Servers
 
-Your proxy servers should be automatically picked up from the `HTTP_PROXY` or `HTTPS_PROXY` environment variables. 
-Alternatively you can pass in a `proxy` argument to the `canopy.Session` object of the form `http://user:pass@some.proxy.com`.
+You can configure your proxy server by passing in a `proxy` argument to the `canopy.Session` object:
+```python
+async with canopy.Session(authentication_data, proxy=canopy.ProxyConfiguration('http://some.proxy.com', 'user', 'pass')) as session:
+``` 
 
 # Updating the OpenAPI Client
 
