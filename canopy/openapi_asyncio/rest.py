@@ -76,13 +76,14 @@ class RESTClientObject(object):
 
         # https pool manager
         if configuration.proxy:
+            self.proxy = configuration.proxy
             self.pool_manager = aiohttp.ClientSession(
-                connector=connector,
-                proxy=configuration.proxy
+                connector=connector
             )
         else:
             self.pool_manager = aiohttp.ClientSession(
-                connector=connector
+                connector=connector,
+                trust_env=True
             )
 
     def __del__(self):
@@ -130,6 +131,9 @@ class RESTClientObject(object):
             "timeout": timeout,
             "headers": headers
         }
+
+        if self.proxy:
+            args['proxy'] = self.proxy
 
         if query_params:
             args["url"] += '?' + urlencode(query_params)

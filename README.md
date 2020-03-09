@@ -136,6 +136,11 @@ with canopy.Session(client_id='<your_client_id>', username='<your_username>') as
     job_result_2 = job_result_thread.get()
 ```
 
+## Proxy Servers
+
+Your proxy servers should be automatically picked up from the `HTTP_PROXY` or `HTTPS_PROXY` environment variables. 
+Alternatively you can pass in a `proxy` argument to the `canopy.Session` object of the form `http://user:pass@some.proxy.com`.
+
 # Updating the OpenAPI Client
 
 You can use the Dockerfile in this repository to create a docker image to generate the new API stubs:
@@ -167,6 +172,8 @@ sed -i '/# import /d' gen/canopy/openapi_asyncio/__init__.py
 echo 'from canopy.openapi_asyncio.api_client import ApiClient' >> gen/canopy/openapi_asyncio/__init__.py
 cp -r gen/canopy/openapi_asyncio repo/canopy
 ```
+
+Note: The openapi_asyncio/rest.py file will need to be manually modified to support proxy servers after generation. 
 
 ## Documentation for OpenAPI Generated Client
 

@@ -1,7 +1,8 @@
-# 8.1 Release
+# 8.2 Release
 ## New Features
  - Added `proxy` parameter to `Session` object for specifying proxy server.
  - Added `api_host` parameter to `Session` for overriding the API host URL.
+ - Added support for `HTTP_PROXY` and `HTTPS_PROXY` environment variables.
 
 # 8.0 Release
 ## Breaking Changes
