@@ -1,3 +1,7 @@
+# 8.6 Release
+## New Features
+ - Added `__repr__()` and `__str__()` implementations for `LocalConfig` and `ConfigResult`.
+
 # 8.5 Release
 ## New Features
  - Added `proxy` parameter to `Session` object for specifying proxy server configuration.

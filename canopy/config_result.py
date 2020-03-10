@@ -1,6 +1,7 @@
 from typing import Any, Optional
 
 import canopy
+import json
 
 
 class ConfigResult:
@@ -17,10 +18,7 @@ class ConfigResult:
     @property
     def data(self) -> Any:
         if self._converted_data is None:
-            if self._document.sub_type == canopy.Constants.config_sub_tree_document_type:
-                self._converted_data = canopy.dict_to_object(self._document.data['definition'])
-            else:
-                self._converted_data = canopy.dict_to_object(self._document.data)
+            self._converted_data = canopy.dict_to_object(self._get_raw_data())
         return self._converted_data
 
     @property
@@ -45,3 +43,24 @@ class ConfigResult:
             config_id=self.document.document_id,
             user_id=self.document.user_id,
             is_edited=False)
+
+    def _get_raw_data(self):
+        if self._document.sub_type == canopy.Constants.config_sub_tree_document_type:
+            return self._document.data['definition']
+        else:
+            return self._document.data
+
+    def to_dict(self):
+        return {
+            'document': self._document.to_dict(),
+            'user_information': self._user_information.to_dict(),
+            'is_data_converted': self.is_data_converted,
+            'data': self.raw_data
+        }
+
+    def __repr__(self):
+        return 'canopy.LocalConfig(%r,%r)' % \
+               (self._document, self._user_information)
+
+    def __str__(self):
+        return json.dumps(self.to_dict(), indent=2, default=str)
