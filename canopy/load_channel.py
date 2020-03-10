@@ -42,7 +42,10 @@ async def load_channel(
         channel_url = ''.join([job_access_information.url, file_name, job_access_information.access_signature])
 
         try:
-            async with session.async_client_session.get(channel_url, raise_for_status=True) as response:
+            async with session.async_client_session.get(
+                    channel_url,
+                    raise_for_status=True,
+                    proxy=session.configuration.proxy) as response:
                 channel_bytes = await response.read()
                 if points_count * 4 == len(channel_bytes):
                     data_type = np.float32

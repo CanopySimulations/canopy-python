@@ -16,6 +16,10 @@ class ConfigResult:
         return self._document
 
     @property
+    def config_id(self) -> str:
+        return self._document.document_id
+
+    @property
     def data(self) -> Any:
         if self._converted_data is None:
             self._converted_data = canopy.dict_to_object(self._get_raw_data())
@@ -52,6 +56,7 @@ class ConfigResult:
 
     def to_dict(self):
         return {
+            'config_id': self.config_id,
             'document': self._document.to_dict(),
             'user_information': self._user_information.to_dict(),
             'is_data_converted': self.is_data_converted,
@@ -59,7 +64,7 @@ class ConfigResult:
         }
 
     def __repr__(self):
-        return 'canopy.LocalConfig(%r,%r)' % \
+        return 'canopy.ConfigResult(%r,%r)' % \
                (self._document, self._user_information)
 
     def __str__(self):

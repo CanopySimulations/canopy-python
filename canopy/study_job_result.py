@@ -1,9 +1,9 @@
-from struct import Struct
-from typing import Mapping, Any, Optional, Dict
+from typing import Mapping, Optional, Dict
 
 import canopy
 import pandas as pd
 import numpy as np
+import json
 
 
 class StudyJobResult:
@@ -106,3 +106,16 @@ class StudyJobResult:
             result,
             source_unit,
             target_unit)
+
+    def to_dict(self):
+        return {
+            'job_result': self._job_result,
+            'job': self._job
+        }
+
+    def __repr__(self):
+        return 'canopy.StudyResult(%r,%r)' % \
+               (self._job_result, self._job)
+
+    def __str__(self):
+        return json.dumps(self.to_dict(), indent=2, default=str)

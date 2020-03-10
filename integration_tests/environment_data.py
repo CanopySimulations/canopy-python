@@ -13,3 +13,4 @@ class EnvironmentData(object):
 
     def create_session(self) -> canopy.Session:
         return canopy.Session(self._authentication)
+        # return canopy.Session(self._authentication, proxy=canopy.ProxyConfiguration('http://localhost:8888', '1', '1'))

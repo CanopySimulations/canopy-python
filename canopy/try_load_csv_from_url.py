@@ -18,7 +18,10 @@ async def try_load_csv_from_url(
         index_column_name: Optional[str] = None,
         empty_string_valid_column_names: Optional[Sequence[str]] = None) -> Optional[pd.DataFrame]:
     try:
-        async with session.async_client_session.get(url, raise_for_status=True) as response:
+        async with session.async_client_session.get(
+                url,
+                raise_for_status=True,
+                proxy=session.configuration.proxy) as response:
             text = await response.text()
             data_frame = pd.read_csv(StringIO(text), index_col=False)
 

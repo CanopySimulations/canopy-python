@@ -1,5 +1,12 @@
 # 8.6 Release
 ## New Features
+ - Added `__repr__()` and `__str__()` implementations for `StudyResult` and `StudyJobResult`.
+
+## Bug Fixes
+ - Use proxy configuration when downloading study data.
+
+# 8.6 Release
+## New Features
  - Added `__repr__()` and `__str__()` implementations for `LocalConfig` and `ConfigResult`.
 
 # 8.5 Release

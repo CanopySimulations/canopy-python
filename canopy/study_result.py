@@ -2,6 +2,7 @@ from typing import Sequence, Optional
 
 import canopy
 import pandas as pd
+import json
 
 _definition_key = 'definition'
 _sim_types_key = 'simTypes'
@@ -42,6 +43,10 @@ class StudyResult:
     @property
     def document(self) -> canopy.openapi.CanopyDocument:
         return self._document
+
+    @property
+    def study_id(self) -> str:
+        return self._document.document_id
 
     @property
     def data(self) -> canopy.openapi.StudyDocument:
@@ -105,3 +110,19 @@ class StudyResult:
             target_unit,
             inplace=False,
             always_return_copy=always_return_copy)
+
+    def to_dict(self):
+        return {
+            'study_id': self.study_id,
+            'sim_types': self._sim_types,
+            'simulation_count': self.simulation_count,
+            'study_result': self._study_result,
+            'document': self.document
+        }
+
+    def __repr__(self):
+        return 'canopy.StudyResult(%r,%r,%r)' % \
+               (self.study_id, self._sim_types, self.simulation_count)
+
+    def __str__(self):
+        return json.dumps(self.to_dict(), indent=2, default=str)
