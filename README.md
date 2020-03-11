@@ -175,7 +175,9 @@ echo 'from canopy.openapi_asyncio.api_client import ApiClient' >> gen/canopy/ope
 cp -r gen/canopy/openapi_asyncio repo/canopy
 ```
 
-Note: The openapi_asyncio/rest.py file will need to be manually modified to support proxy servers after generation. 
+Note: The `openapi_asyncio/rest.py` file will need to be manually modified to support proxy servers after generation. 
+Note: The `openapi_asyncio/client_api.py` and `openapi/client_api.py` files will need to be manually modified to 
+support numpy array serialization after generation. 
 
 ## Documentation for OpenAPI Generated Client
 

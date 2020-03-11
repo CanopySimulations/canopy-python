@@ -1,3 +1,7 @@
+# 8.9 Release
+## New Features
+ - Numpy arrays can now be serialized as part of a config.
+
 # 8.8 Release
 ## New Features
  - Helper methods will attempt to correct casing of `sim_type` and `study_type` parameters.

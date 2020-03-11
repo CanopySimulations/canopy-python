@@ -3,6 +3,7 @@ from typing import List, Optional
 
 import asyncio
 import pytest
+import numpy as np
 
 import canopy
 import integration_tests
@@ -67,6 +68,21 @@ class TestConfig:
             assert state.test_car_config_id_2 is not None
 
             state.configs_to_remove.append(state.test_car_config_id_2)
+
+    async def test_0220_it_should_create_a_config_containing_numpy_arrays(self, state: State):
+        async with integration_tests.Environment() as environment:
+            state.default_car.data.chassis.rUndertrayFront = np.array(state.default_car.data.chassis.rUndertrayFront)
+
+            state.test_car_config_id = await canopy.create_config(
+                environment.session,
+                'car',
+                test_car_name,
+                state.default_car.raw_data,
+                test_car_custom_properties)
+
+            assert state.test_car_config_id is not None
+
+            state.configs_to_remove.append(state.test_car_config_id)
 
     async def test_0300_it_should_find_a_config_by_name(self, state: State):
         async with integration_tests.Environment() as environment:
