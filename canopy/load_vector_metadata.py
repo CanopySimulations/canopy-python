@@ -11,8 +11,12 @@ async def load_vector_metadata(
         session: canopy.Session,
         job_access_information: canopy.openapi.BlobAccessInformation,
         sim_type: str) -> Optional[pd.DataFrame]:
+
+    sim_type = canopy.ensure_sim_type_string(sim_type)
+
     file_name = ''.join([sim_type, '_VectorMetadata.csv'])
     url = ''.join([job_access_information.url, file_name, job_access_information.access_signature])
+
     return await canopy.try_load_csv_from_url(
         session,
         url,

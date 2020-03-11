@@ -77,7 +77,7 @@ class TestStudy:
 
             state.study_id = await canopy.create_study(
                 environment.session,
-                'apexSim',
+                'ApexSim',  # Intentionally wrong casing.
                 test_study_name,
                 [
                     state.default_car,
@@ -259,7 +259,7 @@ class TestStudy:
             study = await canopy.load_study(
                 environment.session,
                 state.study_id,
-                sim_type='ApexSim',
+                sim_type='apexSim',  # Intentionally wrong casing.
                 channel_names=[
                     'vCar',
                     'tLap',  # This channel won't exist.

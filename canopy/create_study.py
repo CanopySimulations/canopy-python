@@ -15,6 +15,9 @@ async def create_study(
         notes: Optional[str] = None,
         sim_version: Optional[str] = None,
         is_transient: bool = False) -> str:
+
+    study_type = canopy.ensure_study_type_string(study_type)
+
     session.authentication.authenticate()
     tenant_id = session.authentication.tenant_id
 

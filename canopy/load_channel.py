@@ -19,6 +19,8 @@ async def load_channel(
         vector_metadata: Optional[pd.DataFrame] = None,
         semaphore: Optional[asyncio.Semaphore] = None) -> Optional[canopy.LoadedChannel]:
 
+    sim_type = canopy.ensure_sim_type_string(sim_type)
+
     if semaphore is None:
         semaphore = asyncio.Semaphore(1)
 

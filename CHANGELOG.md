@@ -1,4 +1,8 @@
-# 8.6 Release
+# 8.8 Release
+## New Features
+ - Helper methods will attempt to correct casing of `sim_type` and `study_type` parameters.
+
+# 8.7 Release
 ## New Features
  - Added `__repr__()` and `__str__()` implementations for `StudyResult` and `StudyJobResult`.
 

@@ -25,6 +25,8 @@ async def load_study(
         include_job_vector_metadata: bool = False,
         sim_version: Optional[str] = None) -> canopy.StudyResult:
 
+    sim_type = canopy.ensure_sim_type_string(sim_type)
+
     session.authentication.authenticate()
 
     if tenant_id is None:

@@ -32,6 +32,8 @@ from canopy.serializable_value import SerializableValue
 from canopy.dict_to_object import dict_to_object
 from canopy.sim_version_to_number import sim_version_to_number
 from canopy.ensure_dict import ensure_dict
+from canopy.ensure_sim_type_string import ensure_sim_type_string
+from canopy.ensure_study_type_string import ensure_study_type_string
 from canopy.properties_dict_to_list import properties_dict_to_list
 from canopy.get_study_type_definition_for_sim_version import get_study_type_definition_for_sim_version
 from canopy.create_list_filter import create_list_filter
