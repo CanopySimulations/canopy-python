@@ -1,3 +1,7 @@
+# 8.10 Release
+## New Features
+ - Add grams (`gm`) to units.
+
 # 8.9 Release
 ## New Features
  - Numpy arrays can now be serialized as part of a config.

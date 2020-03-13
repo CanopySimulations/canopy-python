@@ -61,6 +61,7 @@ def create_default_units():
         UnitDefinition('bar', 'Pa', factor=1e5, offset=0),
         UnitDefinition('mbar', 'Pa', factor=1e5 * 0.001, offset=0),
 
+        UnitDefinition('gm', 'kg', factor=0.001, offset=0),
         UnitDefinition('lbm', 'kg', factor=0.45359237, offset=0),
         UnitDefinition('st', 'kg', factor=6.35029318, offset=0),
 
