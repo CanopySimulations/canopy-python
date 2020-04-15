@@ -114,7 +114,7 @@ class StudyJobResult:
         }
 
     def __repr__(self):
-        return 'canopy.StudyResult(%r,%r)' % \
+        return 'canopy.StudyJobResult(%r,%r)' % \
                (self._job_result, self._job)
 
     def __str__(self):

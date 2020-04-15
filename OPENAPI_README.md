@@ -157,9 +157,9 @@ Class | Method | HTTP request | Description
 *StudyApi* | [**study_merge_study_deprecated**](docs/StudyApi.md#study_merge_study_deprecated) | **PATCH** /studies/{tenantId}/{userId}/{studyId}/merge | 
 *StudyApi* | [**study_post_study**](docs/StudyApi.md#study_post_study) | **POST** /studies/{tenantId} | 
 *StudyApi* | [**study_post_study_deprecated**](docs/StudyApi.md#study_post_study_deprecated) | **POST** /studies/{tenantId}/{userId} | 
-*StudyApi* | [**study_put_config_owner**](docs/StudyApi.md#study_put_config_owner) | **PUT** /studies/{tenantId}/{studyId}/owner | 
 *StudyApi* | [**study_put_study**](docs/StudyApi.md#study_put_study) | **PUT** /studies/{tenantId}/{studyId} | 
 *StudyApi* | [**study_put_study_deprecated**](docs/StudyApi.md#study_put_study_deprecated) | **PUT** /studies/{tenantId}/{userId}/{studyId} | 
+*StudyApi* | [**study_put_study_owner**](docs/StudyApi.md#study_put_study_owner) | **PUT** /studies/{tenantId}/{studyId}/owner | 
 *SupportSessionApi* | [**support_session_get_all_support_sessions**](docs/SupportSessionApi.md#support_session_get_all_support_sessions) | **GET** /support-sessions/all | 
 *SupportSessionApi* | [**support_session_get_support_session**](docs/SupportSessionApi.md#support_session_get_support_session) | **GET** /support-sessions/{tenantId}/{documentId} | 
 *SupportSessionApi* | [**support_session_get_support_session_deprecated**](docs/SupportSessionApi.md#support_session_get_support_session_deprecated) | **GET** /support-sessions/{tenantId}/{userId}/{documentId} | 

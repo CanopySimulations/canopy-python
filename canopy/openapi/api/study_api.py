@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from canopy.openapi.api_client import ApiClient
-from canopy.openapi.exceptions import (
+from canopy.openapi.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -90,11 +90,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'undelete']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'undelete'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -206,11 +214,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'undelete']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'undelete'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -324,11 +341,18 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['start_date', 'end_date']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'start_date',
+            'end_date'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -430,11 +454,18 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['sim_type', 'tenant_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'sim_type',
+            'tenant_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -544,11 +575,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'filter', 'include_transient', 'result_type']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'filter',
+            'include_transient',
+            'result_type'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -660,11 +700,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'sim_version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'sim_version'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -780,11 +828,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'sim_version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'sim_version'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -914,11 +971,24 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'access_signature', 'expiry', 'file_name', 'full', 'channels_as_csv', 'merged_scalar_results_only']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'access_signature',
+            'expiry',
+            'file_name',
+            'full',
+            'channels_as_csv',
+            'merged_scalar_results_only'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1062,11 +1132,25 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'access_signature', 'expiry', 'file_name', 'full', 'channels_as_csv', 'merged_scalar_results_only']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'access_signature',
+            'expiry',
+            'file_name',
+            'full',
+            'channels_as_csv',
+            'merged_scalar_results_only'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1202,11 +1286,18 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1318,11 +1409,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1442,11 +1541,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'job_id', 'sim_version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'job_id',
+            'sim_version'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1570,11 +1678,21 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'job_id', 'sim_version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'job_id',
+            'sim_version'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1710,11 +1828,24 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'job_id', 'access_signature', 'expiry', 'file_name', 'channels_as_csv', 'sim_type_channels']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'job_id',
+            'access_signature',
+            'expiry',
+            'file_name',
+            'channels_as_csv',
+            'sim_type_channels'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1862,11 +1993,25 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'job_id', 'access_signature', 'expiry', 'file_name', 'channels_as_csv', 'sim_type_channels']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'job_id',
+            'access_signature',
+            'expiry',
+            'file_name',
+            'channels_as_csv',
+            'sim_type_channels'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2008,11 +2153,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'job_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'job_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2132,11 +2285,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'job_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'job_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2260,11 +2422,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'filter']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'filter'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2380,11 +2550,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'filter']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'filter'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2502,11 +2681,18 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2618,11 +2804,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2738,11 +2932,18 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2852,11 +3053,18 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['study_type', 'tenant_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'study_type',
+            'tenant_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2960,11 +3168,17 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3066,11 +3280,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'sim_version']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'sim_version'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3180,11 +3402,17 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3286,11 +3514,17 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3396,11 +3630,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'start_date', 'end_date']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'start_date',
+            'end_date'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3510,11 +3752,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'force_merge_from_baseline']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'force_merge_from_baseline'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3626,11 +3876,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'force_merge_from_baseline']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'force_merge_from_baseline'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3746,11 +4005,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'data', 'run_inline']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'data',
+            'run_inline'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3870,11 +4137,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'data', 'run_inline']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'data',
+            'run_inline'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3944,128 +4220,6 @@ class StudyApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def study_put_config_owner(self, tenant_id, study_id, owner_data, **kwargs):  # noqa: E501
-        """study_put_config_owner  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.study_put_config_owner(tenant_id, study_id, owner_data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str study_id: (required)
-        :param ConfigOwnerData owner_data: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.study_put_config_owner_with_http_info(tenant_id, study_id, owner_data, **kwargs)  # noqa: E501
-
-    def study_put_config_owner_with_http_info(self, tenant_id, study_id, owner_data, **kwargs):  # noqa: E501
-        """study_put_config_owner  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.study_put_config_owner_with_http_info(tenant_id, study_id, owner_data, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str study_id: (required)
-        :param ConfigOwnerData owner_data: (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = ['tenant_id', 'study_id', 'owner_data']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method study_put_config_owner" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_put_config_owner`")  # noqa: E501
-        # verify the required parameter 'study_id' is set
-        if self.api_client.client_side_validation and ('study_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['study_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `study_id` when calling `study_put_config_owner`")  # noqa: E501
-        # verify the required parameter 'owner_data' is set
-        if self.api_client.client_side_validation and ('owner_data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['owner_data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `owner_data` when calling `study_put_config_owner`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'tenant_id' in local_var_params:
-            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
-        if 'study_id' in local_var_params:
-            path_params['studyId'] = local_var_params['study_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'owner_data' in local_var_params:
-            body_params = local_var_params['owner_data']
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/studies/{tenantId}/{studyId}/owner', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type=None,  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
     def study_put_study(self, tenant_id, study_id, data, **kwargs):  # noqa: E501
         """study_put_study  # noqa: E501
 
@@ -4120,11 +4274,19 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'study_id', 'data']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'data'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4244,11 +4406,20 @@ class StudyApi(object):
 
         local_var_params = locals()
 
-        all_params = ['tenant_id', 'user_id', 'study_id', 'data']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'tenant_id',
+            'user_id',
+            'study_id',
+            'data'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4304,6 +4475,136 @@ class StudyApi(object):
 
         return self.api_client.call_api(
             '/studies/{tenantId}/{userId}/{studyId}', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def study_put_study_owner(self, tenant_id, study_id, owner_data, **kwargs):  # noqa: E501
+        """study_put_study_owner  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.study_put_study_owner(tenant_id, study_id, owner_data, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str tenant_id: (required)
+        :param str study_id: (required)
+        :param ConfigOwnerData owner_data: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.study_put_study_owner_with_http_info(tenant_id, study_id, owner_data, **kwargs)  # noqa: E501
+
+    def study_put_study_owner_with_http_info(self, tenant_id, study_id, owner_data, **kwargs):  # noqa: E501
+        """study_put_study_owner  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.study_put_study_owner_with_http_info(tenant_id, study_id, owner_data, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str tenant_id: (required)
+        :param str study_id: (required)
+        :param ConfigOwnerData owner_data: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'owner_data'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method study_put_study_owner" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_put_study_owner`")  # noqa: E501
+        # verify the required parameter 'study_id' is set
+        if self.api_client.client_side_validation and ('study_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['study_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `study_id` when calling `study_put_study_owner`")  # noqa: E501
+        # verify the required parameter 'owner_data' is set
+        if self.api_client.client_side_validation and ('owner_data' not in local_var_params or  # noqa: E501
+                                                        local_var_params['owner_data'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `owner_data` when calling `study_put_study_owner`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+        if 'study_id' in local_var_params:
+            path_params['studyId'] = local_var_params['study_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'owner_data' in local_var_params:
+            body_params = local_var_params['owner_data']
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['oauth2']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/studies/{tenantId}/{studyId}/owner', 'PUT',
             path_params,
             query_params,
             header_params,

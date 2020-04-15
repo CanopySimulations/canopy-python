@@ -1,3 +1,7 @@
+# 8.11 Release
+## New Features
+ - Update OpenAPI generated code.
+
 # 8.10 Release
 ## New Features
  - Add grams (`gm`) to units.

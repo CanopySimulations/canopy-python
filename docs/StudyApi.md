@@ -36,9 +36,9 @@ Method | HTTP request | Description
 [**study_merge_study_deprecated**](StudyApi.md#study_merge_study_deprecated) | **PATCH** /studies/{tenantId}/{userId}/{studyId}/merge | 
 [**study_post_study**](StudyApi.md#study_post_study) | **POST** /studies/{tenantId} | 
 [**study_post_study_deprecated**](StudyApi.md#study_post_study_deprecated) | **POST** /studies/{tenantId}/{userId} | 
-[**study_put_config_owner**](StudyApi.md#study_put_config_owner) | **PUT** /studies/{tenantId}/{studyId}/owner | 
 [**study_put_study**](StudyApi.md#study_put_study) | **PUT** /studies/{tenantId}/{studyId} | 
 [**study_put_study_deprecated**](StudyApi.md#study_put_study_deprecated) | **PUT** /studies/{tenantId}/{userId}/{studyId} | 
+[**study_put_study_owner**](StudyApi.md#study_put_study_owner) | **PUT** /studies/{tenantId}/{studyId}/owner | 
 
 
 # **study_delete_study**
@@ -2097,69 +2097,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **study_put_config_owner**
-> study_put_config_owner(tenant_id, study_id, owner_data)
-
-
-
-### Example
-
-* OAuth Authentication (oauth2):
-```python
-from __future__ import print_function
-import time
-import canopy.openapi
-from canopy.openapi.rest import ApiException
-from pprint import pprint
-configuration = canopy.openapi.Configuration()
-# Configure OAuth2 access token for authorization: oauth2
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Defining host is optional and default to https://api.canopysimulations.com
-configuration.host = "https://api.canopysimulations.com"
-
-# Enter a context with an instance of the API client
-with canopy.openapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = canopy.openapi.StudyApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-study_id = 'study_id_example' # str | 
-owner_data = canopy.openapi.ConfigOwnerData() # ConfigOwnerData | 
-
-    try:
-        api_instance.study_put_config_owner(tenant_id, study_id, owner_data)
-    except ApiException as e:
-        print("Exception when calling StudyApi->study_put_config_owner: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **study_id** | **str**|  | 
- **owner_data** | [**ConfigOwnerData**](ConfigOwnerData.md)|  | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **study_put_study**
 > study_put_study(tenant_id, study_id, data)
 
@@ -2267,6 +2204,69 @@ Name | Type | Description  | Notes
  **user_id** | **str**|  | 
  **study_id** | **str**|  | 
  **data** | [**UpdatedStudyData**](UpdatedStudyData.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **study_put_study_owner**
+> study_put_study_owner(tenant_id, study_id, owner_data)
+
+
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import canopy.openapi
+from canopy.openapi.rest import ApiException
+from pprint import pprint
+configuration = canopy.openapi.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://api.canopysimulations.com
+configuration.host = "https://api.canopysimulations.com"
+
+# Enter a context with an instance of the API client
+with canopy.openapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = canopy.openapi.StudyApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+study_id = 'study_id_example' # str | 
+owner_data = canopy.openapi.ConfigOwnerData() # ConfigOwnerData | 
+
+    try:
+        api_instance.study_put_study_owner(tenant_id, study_id, owner_data)
+    except ApiException as e:
+        print("Exception when calling StudyApi->study_put_study_owner: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **str**|  | 
+ **study_id** | **str**|  | 
+ **owner_data** | [**ConfigOwnerData**](ConfigOwnerData.md)|  | 
 
 ### Return type
 
