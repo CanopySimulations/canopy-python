@@ -1,3 +1,8 @@
+# 8.12 Release
+## New Features
+ - Add additional units.
+ - Add `merged` scalar results property, which returns a DataFrame containing both the study inputs and scalar results.
+
 # 8.11 Release
 ## New Features
  - Update OpenAPI generated code.
