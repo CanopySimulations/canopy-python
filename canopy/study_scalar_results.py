@@ -37,3 +37,7 @@ class StudyScalarResults:
     @property
     def units(self) -> Mapping[str, str]:
         return self._units
+
+    @property
+    def merged(self) -> pd.DataFrame:
+        return pd.merge(self._inputs, self._results, how='left', left_index=True, right_index=True)
