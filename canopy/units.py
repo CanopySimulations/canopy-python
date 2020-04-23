@@ -49,6 +49,7 @@ def create_default_units():
         UnitDefinition('N/m', 'N/m', factor=1, offset=0),
         UnitDefinition('rad/s2', 'rad/s2', factor=1, offset=0),
         UnitDefinition('kg/s', 'kg/s', factor=1, offset=0),
+        UnitDefinition('Ns/m', 'Ns/m', factor=1, offset=0),
 
         # now start listing all the horrible non-SI ones that people like
         UnitDefinition('', '()', factor=1, offset=0),
@@ -60,6 +61,7 @@ def create_default_units():
         UnitDefinition('N/m2', 'Pa', factor=1, offset=0),
         UnitDefinition('bar', 'Pa', factor=1e5, offset=0),
         UnitDefinition('mbar', 'Pa', factor=1e5 * 0.001, offset=0),
+        UnitDefinition('psi', 'Pa', factor=6894.76, offset=0),
 
         UnitDefinition('gm', 'kg', factor=0.001, offset=0),
         UnitDefinition('lbm', 'kg', factor=0.45359237, offset=0),
@@ -85,6 +87,7 @@ def create_default_units():
         UnitDefinition('mph', 'm/s', factor=0.44704, offset=0),
         UnitDefinition('mm/s', 'm/s', factor=0.001, offset=0),
         UnitDefinition('kn', 'm/s', factor=0.514444, offset=0),
+        UnitDefinition('in/s', 'm/s', factor=0.0254, offset=0),
 
         UnitDefinition('g', 'm/s2', factor=9.80665, offset=0),
 
@@ -119,6 +122,9 @@ def create_default_units():
         UnitDefinition('F', 'K', factor=5 / 9, offset=459.67 * 5 / 9),
 
         UnitDefinition('N/mm', 'N/m', factor=1000, offset=0),
+        UnitDefinition('lbf/in', 'N/m', factor=175.127, offset=0),
+
+        UnitDefinition('lbfs/in', 'Ns/m', factor=175.127, offset=0),
     ]
 
     return {units_list[i].target_unit: units_list[i] for i in range(0, len(units_list))}
