@@ -70,10 +70,18 @@ When using the library you generally start by creating a `canopy.Session` object
 The session object manages authentication, and the caching of user settings.
 Calling `session.authentication.authenticate()` before calling OpenAPI generated client functions ensures that you are
 authenticated and that any expired access tokens are refreshed.
-Our helper functions will generally handle calling authenticate before making any calls.
+Our helper functions will handle calling `authenticate` before making any calls, so if you are only using our
+helper functions you won't need to call it yourself.
 
-Once you have created a session you can pass the `session.async_client` or `session.sync_client` into the OpenAPI 
-generated client code as the `api_client` parameter as shown below.
+The `session` should generally be created once per application. It will automatically dispose itself when the application
+shuts down. Alternatively you can enclose it in an `async with` or a `with` block if you need to create multiple sessions,
+as shown in the examples below. 
+
+If you are using the OpenAPI generated code then you can pass the `session.async_client` or `session.sync_client` into the OpenAPI 
+generated API client instance as the `api_client` parameter as shown below. Passing in `async_client` will cause it to use
+`asyncio`, and you will need to `await` the calls. Passing in `sync_client` will cause the calls to complete synchronously.
+
+Our helper functions all use `asyncio` for efficient parallelisation of downloads, and must therefore be awaited.
 
 The following example shows how to create a session and request some output channels from a study using our helper function:
 
