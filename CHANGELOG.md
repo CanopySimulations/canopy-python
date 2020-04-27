@@ -1,3 +1,7 @@
+# 8.13 Release
+## New Features
+ - Register sessions with `atexit`, to avoid requiring session to always be inside a `with` statement. 
+
 # 8.12 Release
 ## New Features
  - Add additional units.

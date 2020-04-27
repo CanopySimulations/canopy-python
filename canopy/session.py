@@ -2,12 +2,13 @@ from typing import Optional, Coroutine
 
 import canopy
 import aiohttp
-import asyncio
+import atexit
 
 
 class Session(object):
     _sync_client: canopy.openapi.ApiClient
     _async_client: canopy.openapi_asyncio.ApiClient
+    _is_closed: bool = False
 
     def __init__(
             self,
@@ -50,17 +51,30 @@ class Session(object):
         self._tenant_sim_version = canopy.TenantSimVersionCache(self._sync_client, self._authentication)
         self._study_types = canopy.StudyTypesCache(self._sync_client, self._authentication, self._tenant_sim_version)
 
+        atexit.register(self.close)
+
     def __enter__(self):
         return self
 
     def __exit__(self, exc_type, exc, tb):
-        canopy.run(self.__aexit__(exc_type, exc, tb))
+        canopy.run(self.close())
 
     async def __aenter__(self):
         return self
 
     async def __aexit__(self, exc_type, exc, tb):
-        await self.async_client_session.close()
+        await self.close()
+
+    async def close(self):
+        if self._is_closed:
+            return
+
+        self._is_closed = True
+        await self.async_client.close()
+        self.sync_client.close()
+        print('closing')
+        if hasattr(atexit, 'unregister'):
+            atexit.unregister(self.close)
 
     @property
     def default_api_concurrency(self) -> int:
