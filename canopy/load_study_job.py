@@ -99,7 +99,9 @@ async def load_study_job(
                 for channel_name, task in zip(channel_names, tasks):
                     loaded_channel = await task
                     if loaded_channel is not None:
-                        channels_data[channel_name] = loaded_channel.data
+                        # Convert to a series, which allows the DataFrame to pad with NaNs if
+                        # channels happen to be different lengths.
+                        channels_data[channel_name] = pd.Series(loaded_channel.data)
                         vector_units[channel_name] = loaded_channel.units
 
         vector_data = pd.DataFrame(channels_data)

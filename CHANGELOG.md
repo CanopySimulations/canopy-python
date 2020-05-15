@@ -1,3 +1,7 @@
+# 8.14 Release
+## New Features
+ - Do not throw exception for channels of different lengths within the same simulation. 
+
 # 8.13 Release
 ## New Features
  - Register sessions with `atexit`, to avoid requiring session to always be inside a `with` statement. 
