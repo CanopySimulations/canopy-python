@@ -2,6 +2,7 @@ import canopy.openapi
 import canopy.openapi_asyncio
 
 from canopy.not_found_error import NotFoundError
+from canopy.request_with_retry import request_with_retry
 
 from canopy.constants import Constants
 from canopy.defined_kwargs import defined_kwargs

@@ -1,3 +1,8 @@
+# 8.15 Release
+## New Features
+ - Added automatic retrying of calls made via `asyncio`.
+ - Reduced concurrency from 10 to 5 parallel blob downloads per job to increase reliability. 
+
 # 8.14 Release
 ## New Features
  - Do not throw exception for channels of different lengths within the same simulation. 

@@ -1,8 +1,14 @@
-from typing import Optional, Coroutine
+from typing import Optional, Callable, Awaitable, Union
 
 import canopy
 import aiohttp
 import atexit
+import asyncio
+from aiohttp.client_exceptions import ClientResponseError, ClientConnectionError, ServerTimeoutError, ClientError
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class Session(object):
@@ -82,7 +88,7 @@ class Session(object):
 
     @property
     def default_blob_storage_concurrency(self) -> int:
-        return 10
+        return 5
 
     @property
     def configuration(self) -> canopy.openapi.Configuration:
@@ -123,3 +129,28 @@ class Session(object):
     @property
     def units(self) -> canopy.Units:
         return self._units
+
+    @property
+    def async_default_timeout(self) -> aiohttp.ClientSession:
+        return self._async_client.rest_client.default_timeout
+
+    async def try_load_text(self, url: str, error_subject: str) -> str:
+        return await canopy.request_with_retry(lambda: self._load_text(url), error_subject, False)
+
+    async def try_load_bytes(self, url: str, error_subject: str) -> bytes:
+        return await canopy.request_with_retry(lambda: self._load_bytes(url), error_subject, False)
+
+    async def _load_text(self, url: str) -> str:
+        async with self._get_async_session(url) as response:
+            return await response.text()
+
+    async def _load_bytes(self, url: str) -> bytes:
+        async with self._get_async_session(url) as response:
+            return await response.read()
+
+    def _get_async_session(self, url: str):
+        return self.async_client_session.get(
+            url,
+            raise_for_status=True,
+            timeout=self.async_default_timeout,
+            proxy=self.configuration.proxy)

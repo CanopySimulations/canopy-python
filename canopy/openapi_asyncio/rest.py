@@ -15,12 +15,14 @@ import json
 import logging
 import re
 import ssl
+from typing import Dict
 
 import aiohttp
 import certifi
 # python 2 and python 3 compatibility library
 from six.moves.urllib.parse import urlencode
 
+from canopy.request_with_retry import request_with_retry
 from canopy.openapi.exceptions import ApiException, ApiValueError
 
 logger = logging.getLogger(__name__)
@@ -73,6 +75,9 @@ class RESTClientObject(object):
             ssl=ssl_context
         )
 
+        # https://github.com/aio-libs/aiohttp/issues/3203#issuecomment-544136905
+        self.default_timeout = 30  # aiohttp.ClientTimeout(total=None, sock_connect=30, sock_read=30)
+
         self.proxy = configuration.proxy
 
         # https pool manager
@@ -120,7 +125,7 @@ class RESTClientObject(object):
 
         post_params = post_params or {}
         headers = headers or {}
-        timeout = _request_timeout or 5 * 60
+        timeout = _request_timeout or self.default_timeout
 
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'
@@ -174,7 +179,7 @@ class RESTClientObject(object):
                          declared content type."""
                 raise ApiException(status=0, reason=msg)
 
-        r = await self.pool_manager.request(**args)
+        r = await request_with_retry(lambda: self.pool_manager.request(**args), url, True)
         if _preload_content:
 
             data = await r.text()

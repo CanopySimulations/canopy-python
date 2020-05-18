@@ -1,6 +1,6 @@
 from threading import Thread
 from typing import Optional, Union
-from aiohttp.client_exceptions import ClientResponseError
+from aiohttp.client_exceptions import ClientResponseError, ClientConnectionError, ServerTimeoutError, ClientError
 
 import numpy as np
 import pandas as pd
@@ -18,7 +18,6 @@ async def load_channel(
         channel_name: str,
         vector_metadata: Optional[pd.DataFrame] = None,
         semaphore: Optional[asyncio.Semaphore] = None) -> Optional[canopy.LoadedChannel]:
-
     sim_type = canopy.ensure_sim_type_string(sim_type)
 
     if semaphore is None:
@@ -43,20 +42,26 @@ async def load_channel(
         file_name = ''.join([sim_type, '_', channel_name, '.bin'])
         channel_url = ''.join([job_access_information.url, file_name, job_access_information.access_signature])
 
-        try:
-            async with session.async_client_session.get(
-                    channel_url,
-                    raise_for_status=True,
-                    proxy=session.configuration.proxy) as response:
-                channel_bytes = await response.read()
-                if points_count * 4 == len(channel_bytes):
-                    data_type = np.float32
-                else:
-                    data_type = np.float64
-                channel_data: np.array = np.frombuffer(channel_bytes, data_type)
+        channel_bytes: Optional[bytes] = await session.try_load_bytes(
+            channel_url,
+            f'"{file_name}" from "{job_access_information.url}"')
 
-                loaded_channel = canopy.LoadedChannel(channel_name, units, channel_data)
-                return loaded_channel
-        except ClientResponseError as e:
-            logger.warning('Channel found in metadata but could not be loaded: {} ({})'.format(file_name, e.message))
+        if channel_bytes is None:
             return None
+
+        if points_count * 4 == len(channel_bytes):
+            data_type = np.float32
+        else:
+            data_type = np.float64
+        channel_data: np.array = np.frombuffer(channel_bytes, data_type)
+
+        loaded_channel = canopy.LoadedChannel(channel_name, units, channel_data)
+        return loaded_channel
+
+
+async def read_channel_data(channel_url: str, session: canopy.Session) -> bytes:
+    async with session.async_client_session.get(
+            channel_url,
+            raise_for_status=True,
+            proxy=session.configuration.proxy) as response:
+        return await response.read()
