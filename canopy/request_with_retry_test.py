@@ -1,32 +1,32 @@
 import unittest
 import asyncio
 
-from canopy import request_with_retry
+import canopy
 
 
 class RequestWithRetryTest(unittest.TestCase):
 
     def test_it_should_return_result_if_no_error(self):
         request = DummyRequest(0)
-        result = asyncio.run(request_with_retry(lambda: request.execute('abc'), 'request', True))
+        result = canopy.run(canopy.request_with_retry(lambda: request.execute('abc'), 'request', True))
         self.assertEqual(result, 'abc')
 
     def test_it_should_return_result_if_one_error(self):
         request = DummyRequest(1)
-        result = asyncio.run(request_with_retry(lambda: request.execute('abc'), 'request', True))
+        result = canopy.run(canopy.request_with_retry(lambda: request.execute('abc'), 'request', True))
         self.assertEqual(result, 'abc')
 
     def test_it_should_raise_error_if_two_errors(self):
         request = DummyRequest(2)
         try:
-            asyncio.run(request_with_retry(lambda: request.execute('abc'), 'request', True))
+            canopy.run(canopy.request_with_retry(lambda: request.execute('abc'), 'request', True))
             self.fail()
         except asyncio.TimeoutError:
             pass
 
     def test_it_should_return_none_if_two_errors_and_suppressed(self):
         request = DummyRequest(2)
-        result = asyncio.run(request_with_retry(lambda: request.execute('abc'), 'request', False))
+        result = canopy.run(canopy.request_with_retry(lambda: request.execute('abc'), 'request', False))
         self.assertIsNone(result)
 
 

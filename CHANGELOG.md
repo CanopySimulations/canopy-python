@@ -1,4 +1,4 @@
-# 8.15 Release
+# 8.16 Release
 ## New Features
  - Added automatic retrying of calls made via `asyncio`.
  - Reduced concurrency from 10 to 5 parallel blob downloads per job to increase reliability. 
