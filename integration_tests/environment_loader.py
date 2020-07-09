@@ -17,10 +17,11 @@ class EnvironmentLoader:
     @staticmethod
     async def load() -> integration_tests.EnvironmentData:
         if EnvironmentLoader._data is None:
-            credentials = os.environ.get('CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS')
+            credentials_key = 'CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS'
+            credentials = os.environ.get(credentials_key)
 
             if credentials is None:
-                raise RuntimeError('Test credentials not found. Please create an environment variable "CANOPY_TEST_CREDENTIALS"="client_id|client_secret|user_name|tenant_name|password"')
+                raise RuntimeError(f'Test credentials not found. Please create an environment variable "{credentials_key}"="client_id|client_secret|user_name|tenant_name|password"')
 
             client_id, client_secret, username, tenant_name, password = credentials.split('|')
 

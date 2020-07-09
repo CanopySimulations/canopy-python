@@ -120,7 +120,7 @@ class StudyTypeDefinition(object):
         :param study_type: The study_type of this StudyTypeDefinition.  # noqa: E501
         :type: str
         """
-        allowed_values = ["straightSim", "apexSim", "quasiStaticLap", "generateRacingLine", "quasiStaticLapWithGenerateRacingLine", "deploymentLap", "failureSim", "successSim", "virtual4Post", "limitSim", "driveCycleSim", "dynamicLap", "dynamicLapWithSLS", "dynamicLapHD", "dynamicMultiLap", "tyreThermalDynamicLap", "tyreThermalDynamicMultiLap", "overtakingLap", "allLapSims", "dragSim", "thermalReplay", "tyreReplay", "pacejkaCanopyConverter", "aircraftSim", "channelInference", "telemetry", "iliadCollocation", "subLimitSim", "unknown"]  # noqa: E501
+        allowed_values = ["straightSim", "apexSim", "quasiStaticLap", "generateRacingLine", "quasiStaticLapWithGenerateRacingLine", "deploymentLap", "failureSim", "successSim", "virtual4Post", "limitSim", "driveCycleSim", "dynamicLap", "dynamicLapWithSLS", "dynamicLapHD", "dynamicMultiLap", "tyreThermalDynamicLap", "tyreThermalDynamicMultiLap", "overtakingLap", "allLapSims", "dragSim", "thermalReplay", "tyreReplay", "pacejkaCanopyConverter", "aircraftSim", "channelInference", "telemetry", "iliadCollocation", "subLimitSim", "bankedLimitSim", "postProcessUserMaths", "unknown"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and study_type not in allowed_values:  # noqa: E501
             raise ValueError(
                 "Invalid value for `study_type` ({0}), must be one of {1}"  # noqa: E501
@@ -168,7 +168,7 @@ class StudyTypeDefinition(object):
         :param sim_types: The sim_types of this StudyTypeDefinition.  # noqa: E501
         :type: list[str]
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "ConstraintSatisfier"]  # noqa: E501
+        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths"]  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 not set(sim_types).issubset(set(allowed_values))):  # noqa: E501
             raise ValueError(
@@ -362,7 +362,7 @@ class StudyTypeDefinition(object):
         :param implicit_sim_types: The implicit_sim_types of this StudyTypeDefinition.  # noqa: E501
         :type: list[str]
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "ConstraintSatisfier"]  # noqa: E501
+        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths"]  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 not set(implicit_sim_types).issubset(set(allowed_values))):  # noqa: E501
             raise ValueError(

@@ -100,7 +100,7 @@ class AdminTenantSettingsBuilder(object):
         :param study_types: The study_types of this AdminTenantSettingsBuilder.  # noqa: E501
         :type: list[str]
         """
-        allowed_values = ["straightSim", "apexSim", "quasiStaticLap", "generateRacingLine", "quasiStaticLapWithGenerateRacingLine", "deploymentLap", "failureSim", "successSim", "virtual4Post", "limitSim", "driveCycleSim", "dynamicLap", "dynamicLapWithSLS", "dynamicLapHD", "dynamicMultiLap", "tyreThermalDynamicLap", "tyreThermalDynamicMultiLap", "overtakingLap", "allLapSims", "dragSim", "thermalReplay", "tyreReplay", "pacejkaCanopyConverter", "aircraftSim", "channelInference", "telemetry", "iliadCollocation", "subLimitSim", "unknown"]  # noqa: E501
+        allowed_values = ["straightSim", "apexSim", "quasiStaticLap", "generateRacingLine", "quasiStaticLapWithGenerateRacingLine", "deploymentLap", "failureSim", "successSim", "virtual4Post", "limitSim", "driveCycleSim", "dynamicLap", "dynamicLapWithSLS", "dynamicLapHD", "dynamicMultiLap", "tyreThermalDynamicLap", "tyreThermalDynamicMultiLap", "overtakingLap", "allLapSims", "dragSim", "thermalReplay", "tyreReplay", "pacejkaCanopyConverter", "aircraftSim", "channelInference", "telemetry", "iliadCollocation", "subLimitSim", "bankedLimitSim", "postProcessUserMaths", "unknown"]  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 not set(study_types).issubset(set(allowed_values))):  # noqa: E501
             raise ValueError(
