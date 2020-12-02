@@ -1,3 +1,7 @@
+# 8.17 Release
+## New Features
+ - Added 'inHg' unit conversion.
+
 # 8.16 Release
 ## New Features
  - Added automatic retrying of calls made via `asyncio`.

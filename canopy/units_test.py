@@ -15,6 +15,15 @@ class UnitsTest(unittest.TestCase):
     def setUp(self):
         self.units = canopy.Units()
 
+    # Specific units.
+    def test_specific_units(self):
+        self.assertAlmostEqual(
+            self.units.convert_value_between_units(1, 'inHg', 'Pa'),
+            3386.39, delta=0.01);
+        self.assertAlmostEqual(
+            self.units.convert_value_between_units(1000, 'Pa', 'inHg'),
+            0.2953, delta=0.0001);
+
     def test_try_get_conversion_to_si(self):
         existing = self.units.try_get_conversion_to_si('F')
         self.assertEqual(existing.factor, 5/9)
@@ -204,12 +213,12 @@ class UnitsTest(unittest.TestCase):
         self.assertEqual(result[0], 0.001)
         self.assertEqual(result[1], 0.002)
 
-    def test_convert_series_between_units_no_conversion_required(self):
+    def test_convert_array_between_units_no_conversion_required(self):
         data = np.array([temperatureC, temperatureC2])
         result = self.units.convert_array_between_units(data, 'C', 'C')
         self.assertIs(result, data)
 
-    def test_convert_series_between_units_always_return_copy(self):
+    def test_convert_array_between_units_always_return_copy(self):
         data = np.array([temperatureC, temperatureC2])
         result = self.units.convert_array_between_units(data, 'C', 'C', always_return_copy=True)
         self.assertIsNot(result, data)
