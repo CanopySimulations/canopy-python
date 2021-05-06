@@ -153,7 +153,7 @@ class GetStudyQueryResult(object):
         :param sim_types: The sim_types of this GetStudyQueryResult.  # noqa: E501
         :type: list[str]
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths"]  # noqa: E501
+        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths", "TrackConverter"]  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 not set(sim_types).issubset(set(allowed_values))):  # noqa: E501
             raise ValueError(
