@@ -1,3 +1,7 @@
+# 8.27 Release
+## New Features
+ - Add support for DragSimOptions config type.
+
 # 8.23 Release
 ## New Features
  - Added TrackConverter study types and sim types.
