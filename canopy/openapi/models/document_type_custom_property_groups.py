@@ -75,7 +75,7 @@ class DocumentTypeCustomPropertyGroups(object):
         :param target: The target of this DocumentTypeCustomPropertyGroups.  # noqa: E501
         :type: str
         """
-        allowed_values = ["car", "track", "weather", "exploration", "virtual4PostOptions", "bankedLimitSimOptions", "limitSimOptions", "subLimitSimOptions", "thermalReplayOptions", "pacejkaTyres", "channelInferenceOptions", "overtaking", "userMaths", "constraints", "telemetry", "files", "driveCycle", "study", "worksheet", "aircraft", "iliadBoat", "iliadCollocationOptions", "iliadVppOptions"]  # noqa: E501
+        allowed_values = ["car", "track", "weather", "exploration", "virtual4PostOptions", "bankedLimitSimOptions", "limitSimOptions", "subLimitSimOptions", "thermalReplayOptions", "pacejkaTyres", "channelInferenceOptions", "dragSimOptions", "overtaking", "userMaths", "constraints", "telemetry", "files", "driveCycle", "study", "worksheet", "aircraft", "iliadBoat", "iliadCollocationOptions", "iliadVppOptions"]  # noqa: E501
         if self.local_vars_configuration.client_side_validation and target not in allowed_values:  # noqa: E501
             raise ValueError(
                 "Invalid value for `target` ({0}), must be one of {1}"  # noqa: E501
