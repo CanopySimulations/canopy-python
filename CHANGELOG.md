@@ -1,3 +1,7 @@
+# 8.28 Release
+## New Features
+ - Enums received from the API are not longer validated against a known list. This prevents otherwise innocuous updates to the API from breaking clients.
+
 # 8.27 Release
 ## New Features
  - Add support for DragSimOptions config type.
