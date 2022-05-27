@@ -20,6 +20,7 @@ import os
 import re
 import tempfile
 import numpy as np
+import copy
 
 # python 2 and python 3 compatibility library
 import six
@@ -81,6 +82,9 @@ class ApiClient(object):
         # Set default User-Agent.
         self.user_agent = 'OpenAPI-Generator/1.0.0/python'
         self.client_side_validation = configuration.client_side_validation
+
+        self.local_vars_configuration = copy.deepcopy(configuration)
+        self.local_vars_configuration.client_side_validation = False
 
     async def __aenter__(self):
         return self
@@ -631,7 +635,9 @@ class ApiClient(object):
                                                    'get_real_child_model'):
             return data
 
-        kwargs = {}
+        kwargs = {
+            'local_vars_configuration': self.local_vars_configuration
+        }
         if (data is not None and
                 klass.openapi_types is not None and
                 isinstance(data, (list, dict))):

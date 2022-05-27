@@ -153,6 +153,8 @@ async with canopy.Session(authentication_data, proxy=canopy.ProxyConfiguration('
 
 # Updating the OpenAPI Client
 
+This needs to be tidied up, improved, and automated.
+
 You can use the Dockerfile in this repository to create a docker image to generate the new API stubs:
 
 ```sh
@@ -185,7 +187,8 @@ cp -r gen/canopy/openapi_asyncio repo/canopy
 
 Note: The `openapi_asyncio/rest.py` file will need to be manually modified to support proxy servers after generation. 
 Note: The `openapi_asyncio/client_api.py` and `openapi/client_api.py` files will need to be manually modified to 
-support numpy array serialization after generation. 
+support numpy array serialization after generation, and disabling of client side validation when deserializing 
+responses (so that adding to enums in the API doesn't break clients). 
 
 ## Documentation for OpenAPI Generated Client
 
