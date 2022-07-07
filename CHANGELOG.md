@@ -1,3 +1,7 @@
+# 8.32 Release
+## New Features
+ - Restore use of certifi to find SSL CA store if none is specified.
+
 # 8.31 Release
 ## New Features
  - Client code has been regenerated with the latest OpenAPI generator. This may cause some breaking changes, although this has been minimised as much as possible.

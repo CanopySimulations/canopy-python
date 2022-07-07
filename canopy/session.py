@@ -6,6 +6,7 @@ import atexit
 import asyncio
 from aiohttp.client_exceptions import ClientResponseError, ClientConnectionError, ServerTimeoutError, ClientError
 import logging
+import certifi
 
 
 logger = logging.getLogger(__name__)
@@ -34,6 +35,9 @@ class Session(object):
             self._configuration.proxy = proxy.auth_url
             self._configuration.proxy_headers = proxy.headers
 
+        if self._configuration.ssl_ca_cert is None:
+            self._configuration.ssl_ca_cert = certifi.where()
+            
         self._sync_client = canopy.openapi.ApiClient(configuration=self._configuration)
         self._async_client = canopy.openapi_asyncio.ApiClient(configuration=self._configuration)
 
