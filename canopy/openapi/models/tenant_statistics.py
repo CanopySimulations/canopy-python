@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class TenantStatistics(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'tenant_id': 'str',
+        'tenant_id': 'object',
         'statistics': 'object'
     }
 
@@ -45,17 +48,15 @@ class TenantStatistics(object):
     def __init__(self, tenant_id=None, statistics=None, local_vars_configuration=None):  # noqa: E501
         """TenantStatistics - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._tenant_id = None
         self._statistics = None
         self.discriminator = None
 
-        if tenant_id is not None:
-            self.tenant_id = tenant_id
-        if statistics is not None:
-            self.statistics = statistics
+        self.tenant_id = tenant_id
+        self.statistics = statistics
 
     @property
     def tenant_id(self):
@@ -63,7 +64,7 @@ class TenantStatistics(object):
 
 
         :return: The tenant_id of this TenantStatistics.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._tenant_id
 
@@ -73,8 +74,10 @@ class TenantStatistics(object):
 
 
         :param tenant_id: The tenant_id of this TenantStatistics.  # noqa: E501
-        :type: str
+        :type tenant_id: object
         """
+        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -94,32 +97,40 @@ class TenantStatistics(object):
 
 
         :param statistics: The statistics of this TenantStatistics.  # noqa: E501
-        :type: object
+        :type statistics: object
         """
 
         self._statistics = statistics
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

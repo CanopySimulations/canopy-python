@@ -1,12 +1,13 @@
 # UpdatedConfigData
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
-**config_type** | **str** |  | [optional] 
+**config_type** | **object** |  | [optional] 
 **properties** | [**list[DocumentCustomPropertyData]**](DocumentCustomPropertyData.md) |  | [optional] 
-**config** | [**object**](.md) |  | [optional] 
+**config** | **object** |  | [optional] 
 **notes** | **str** |  | [optional] 
 **sim_version** | **str** |  | [optional] 
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -49,7 +52,7 @@ class RegistrationData(object):
     def __init__(self, tenant_id=None, email=None, username=None, password=None, local_vars_configuration=None):  # noqa: E501
         """RegistrationData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._tenant_id = None
@@ -58,14 +61,10 @@ class RegistrationData(object):
         self._password = None
         self.discriminator = None
 
-        if tenant_id is not None:
-            self.tenant_id = tenant_id
-        if email is not None:
-            self.email = email
-        if username is not None:
-            self.username = username
-        if password is not None:
-            self.password = password
+        self.tenant_id = tenant_id
+        self.email = email
+        self.username = username
+        self.password = password
 
     @property
     def tenant_id(self):
@@ -83,7 +82,7 @@ class RegistrationData(object):
 
 
         :param tenant_id: The tenant_id of this RegistrationData.  # noqa: E501
-        :type: str
+        :type tenant_id: str
         """
 
         self._tenant_id = tenant_id
@@ -104,7 +103,7 @@ class RegistrationData(object):
 
 
         :param email: The email of this RegistrationData.  # noqa: E501
-        :type: str
+        :type email: str
         """
 
         self._email = email
@@ -125,7 +124,7 @@ class RegistrationData(object):
 
 
         :param username: The username of this RegistrationData.  # noqa: E501
-        :type: str
+        :type username: str
         """
 
         self._username = username
@@ -146,32 +145,40 @@ class RegistrationData(object):
 
 
         :param password: The password of this RegistrationData.  # noqa: E501
-        :type: str
+        :type password: str
         """
 
         self._password = password
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

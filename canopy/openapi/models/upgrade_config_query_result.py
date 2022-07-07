@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -34,7 +37,7 @@ class UpgradeConfigQueryResult(object):
     """
     openapi_types = {
         'config': 'object',
-        'converted_sim_version': 'str'
+        'converted_sim_version': 'object'
     }
 
     attribute_map = {
@@ -45,17 +48,15 @@ class UpgradeConfigQueryResult(object):
     def __init__(self, config=None, converted_sim_version=None, local_vars_configuration=None):  # noqa: E501
         """UpgradeConfigQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._config = None
         self._converted_sim_version = None
         self.discriminator = None
 
-        if config is not None:
-            self.config = config
-        if converted_sim_version is not None:
-            self.converted_sim_version = converted_sim_version
+        self.config = config
+        self.converted_sim_version = converted_sim_version
 
     @property
     def config(self):
@@ -73,7 +74,7 @@ class UpgradeConfigQueryResult(object):
 
 
         :param config: The config of this UpgradeConfigQueryResult.  # noqa: E501
-        :type: object
+        :type config: object
         """
 
         self._config = config
@@ -84,7 +85,7 @@ class UpgradeConfigQueryResult(object):
 
 
         :return: The converted_sim_version of this UpgradeConfigQueryResult.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._converted_sim_version
 
@@ -94,32 +95,42 @@ class UpgradeConfigQueryResult(object):
 
 
         :param converted_sim_version: The converted_sim_version of this UpgradeConfigQueryResult.  # noqa: E501
-        :type: str
+        :type converted_sim_version: object
         """
+        if self.local_vars_configuration.client_side_validation and converted_sim_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `converted_sim_version`, must not be `None`")  # noqa: E501
 
         self._converted_sim_version = converted_sim_version
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

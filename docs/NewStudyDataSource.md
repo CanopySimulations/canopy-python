@@ -1,10 +1,11 @@
 # NewStudyDataSource
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | **str** |  | [optional] 
-**user_id** | **str** |  | [optional] 
+**config_type** | **object** |  | [optional] 
+**user_id** | **object** |  | [optional] 
 **config_id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **is_edited** | **bool** |  | [optional] 

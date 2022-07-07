@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,9 +36,9 @@ class GetPoolStatusQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'pool_id': 'str',
-        'pool_state': 'str',
-        'allocation_state': 'str',
+        'pool_id': 'object',
+        'pool_state': 'PoolState',
+        'allocation_state': 'AllocationState',
         'current_dedicated': 'int',
         'target_dedicated': 'int',
         'current_low_priority': 'int',
@@ -63,7 +66,7 @@ class GetPoolStatusQueryResult(object):
     def __init__(self, pool_id=None, pool_state=None, allocation_state=None, current_dedicated=None, target_dedicated=None, current_low_priority=None, target_low_priority=None, maximum_tasks_per_node=None, schedulable_compute_nodes=None, running_tasks=None, compute_nodes=None, local_vars_configuration=None):  # noqa: E501
         """GetPoolStatusQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._pool_id = None
@@ -79,28 +82,17 @@ class GetPoolStatusQueryResult(object):
         self._compute_nodes = None
         self.discriminator = None
 
-        if pool_id is not None:
-            self.pool_id = pool_id
-        if pool_state is not None:
-            self.pool_state = pool_state
-        if allocation_state is not None:
-            self.allocation_state = allocation_state
-        if current_dedicated is not None:
-            self.current_dedicated = current_dedicated
-        if target_dedicated is not None:
-            self.target_dedicated = target_dedicated
-        if current_low_priority is not None:
-            self.current_low_priority = current_low_priority
-        if target_low_priority is not None:
-            self.target_low_priority = target_low_priority
-        if maximum_tasks_per_node is not None:
-            self.maximum_tasks_per_node = maximum_tasks_per_node
-        if schedulable_compute_nodes is not None:
-            self.schedulable_compute_nodes = schedulable_compute_nodes
-        if running_tasks is not None:
-            self.running_tasks = running_tasks
-        if compute_nodes is not None:
-            self.compute_nodes = compute_nodes
+        self.pool_id = pool_id
+        self.pool_state = pool_state
+        self.allocation_state = allocation_state
+        self.current_dedicated = current_dedicated
+        self.target_dedicated = target_dedicated
+        self.current_low_priority = current_low_priority
+        self.target_low_priority = target_low_priority
+        self.maximum_tasks_per_node = maximum_tasks_per_node
+        self.schedulable_compute_nodes = schedulable_compute_nodes
+        self.running_tasks = running_tasks
+        self.compute_nodes = compute_nodes
 
     @property
     def pool_id(self):
@@ -108,7 +100,7 @@ class GetPoolStatusQueryResult(object):
 
 
         :return: The pool_id of this GetPoolStatusQueryResult.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._pool_id
 
@@ -118,8 +110,10 @@ class GetPoolStatusQueryResult(object):
 
 
         :param pool_id: The pool_id of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: str
+        :type pool_id: object
         """
+        if self.local_vars_configuration.client_side_validation and pool_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `pool_id`, must not be `None`")  # noqa: E501
 
         self._pool_id = pool_id
 
@@ -129,7 +123,7 @@ class GetPoolStatusQueryResult(object):
 
 
         :return: The pool_state of this GetPoolStatusQueryResult.  # noqa: E501
-        :rtype: str
+        :rtype: PoolState
         """
         return self._pool_state
 
@@ -139,14 +133,8 @@ class GetPoolStatusQueryResult(object):
 
 
         :param pool_state: The pool_state of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: str
+        :type pool_state: PoolState
         """
-        allowed_values = ["active", "deleting", "upgrading"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and pool_state not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `pool_state` ({0}), must be one of {1}"  # noqa: E501
-                .format(pool_state, allowed_values)
-            )
 
         self._pool_state = pool_state
 
@@ -156,7 +144,7 @@ class GetPoolStatusQueryResult(object):
 
 
         :return: The allocation_state of this GetPoolStatusQueryResult.  # noqa: E501
-        :rtype: str
+        :rtype: AllocationState
         """
         return self._allocation_state
 
@@ -166,14 +154,8 @@ class GetPoolStatusQueryResult(object):
 
 
         :param allocation_state: The allocation_state of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: str
+        :type allocation_state: AllocationState
         """
-        allowed_values = ["steady", "resizing", "stopping"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and allocation_state not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `allocation_state` ({0}), must be one of {1}"  # noqa: E501
-                .format(allocation_state, allowed_values)
-            )
 
         self._allocation_state = allocation_state
 
@@ -193,8 +175,10 @@ class GetPoolStatusQueryResult(object):
 
 
         :param current_dedicated: The current_dedicated of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: int
+        :type current_dedicated: int
         """
+        if self.local_vars_configuration.client_side_validation and current_dedicated is None:  # noqa: E501
+            raise ValueError("Invalid value for `current_dedicated`, must not be `None`")  # noqa: E501
 
         self._current_dedicated = current_dedicated
 
@@ -214,8 +198,10 @@ class GetPoolStatusQueryResult(object):
 
 
         :param target_dedicated: The target_dedicated of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: int
+        :type target_dedicated: int
         """
+        if self.local_vars_configuration.client_side_validation and target_dedicated is None:  # noqa: E501
+            raise ValueError("Invalid value for `target_dedicated`, must not be `None`")  # noqa: E501
 
         self._target_dedicated = target_dedicated
 
@@ -235,8 +221,10 @@ class GetPoolStatusQueryResult(object):
 
 
         :param current_low_priority: The current_low_priority of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: int
+        :type current_low_priority: int
         """
+        if self.local_vars_configuration.client_side_validation and current_low_priority is None:  # noqa: E501
+            raise ValueError("Invalid value for `current_low_priority`, must not be `None`")  # noqa: E501
 
         self._current_low_priority = current_low_priority
 
@@ -256,8 +244,10 @@ class GetPoolStatusQueryResult(object):
 
 
         :param target_low_priority: The target_low_priority of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: int
+        :type target_low_priority: int
         """
+        if self.local_vars_configuration.client_side_validation and target_low_priority is None:  # noqa: E501
+            raise ValueError("Invalid value for `target_low_priority`, must not be `None`")  # noqa: E501
 
         self._target_low_priority = target_low_priority
 
@@ -277,8 +267,10 @@ class GetPoolStatusQueryResult(object):
 
 
         :param maximum_tasks_per_node: The maximum_tasks_per_node of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: int
+        :type maximum_tasks_per_node: int
         """
+        if self.local_vars_configuration.client_side_validation and maximum_tasks_per_node is None:  # noqa: E501
+            raise ValueError("Invalid value for `maximum_tasks_per_node`, must not be `None`")  # noqa: E501
 
         self._maximum_tasks_per_node = maximum_tasks_per_node
 
@@ -298,8 +290,10 @@ class GetPoolStatusQueryResult(object):
 
 
         :param schedulable_compute_nodes: The schedulable_compute_nodes of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: int
+        :type schedulable_compute_nodes: int
         """
+        if self.local_vars_configuration.client_side_validation and schedulable_compute_nodes is None:  # noqa: E501
+            raise ValueError("Invalid value for `schedulable_compute_nodes`, must not be `None`")  # noqa: E501
 
         self._schedulable_compute_nodes = schedulable_compute_nodes
 
@@ -319,8 +313,10 @@ class GetPoolStatusQueryResult(object):
 
 
         :param running_tasks: The running_tasks of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: int
+        :type running_tasks: int
         """
+        if self.local_vars_configuration.client_side_validation and running_tasks is None:  # noqa: E501
+            raise ValueError("Invalid value for `running_tasks`, must not be `None`")  # noqa: E501
 
         self._running_tasks = running_tasks
 
@@ -340,32 +336,42 @@ class GetPoolStatusQueryResult(object):
 
 
         :param compute_nodes: The compute_nodes of this GetPoolStatusQueryResult.  # noqa: E501
-        :type: list[ComputeNodeResult]
+        :type compute_nodes: list[ComputeNodeResult]
         """
+        if self.local_vars_configuration.client_side_validation and compute_nodes is None:  # noqa: E501
+            raise ValueError("Invalid value for `compute_nodes`, must not be `None`")  # noqa: E501
 
         self._compute_nodes = compute_nodes
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,14 +36,14 @@ class Worksheet(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'tenant_id': 'str',
-        'user_id': 'str',
-        'worksheet_id': 'str',
+        'tenant_id': 'object',
+        'user_id': 'object',
+        'worksheet_id': 'object',
         'name': 'str',
         'outline': 'WorksheetOutline',
-        'resolved_labels': 'CollatedWorksheetLabels',
+        'resolved_labels': 'WorksheetResolvedLabels',
         'resolved_references': 'WorksheetResolvedReferences',
-        'support_session': 'SupportSession',
+        'support_session': 'CanopyDocumentSupportSession',
         'properties': 'object',
         'notes': 'str'
     }
@@ -61,7 +64,7 @@ class Worksheet(object):
     def __init__(self, tenant_id=None, user_id=None, worksheet_id=None, name=None, outline=None, resolved_labels=None, resolved_references=None, support_session=None, properties=None, notes=None, local_vars_configuration=None):  # noqa: E501
         """Worksheet - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._tenant_id = None
@@ -76,26 +79,16 @@ class Worksheet(object):
         self._notes = None
         self.discriminator = None
 
-        if tenant_id is not None:
-            self.tenant_id = tenant_id
-        if user_id is not None:
-            self.user_id = user_id
-        if worksheet_id is not None:
-            self.worksheet_id = worksheet_id
-        if name is not None:
-            self.name = name
-        if outline is not None:
-            self.outline = outline
-        if resolved_labels is not None:
-            self.resolved_labels = resolved_labels
-        if resolved_references is not None:
-            self.resolved_references = resolved_references
-        if support_session is not None:
-            self.support_session = support_session
-        if properties is not None:
-            self.properties = properties
-        if notes is not None:
-            self.notes = notes
+        self.tenant_id = tenant_id
+        self.user_id = user_id
+        self.worksheet_id = worksheet_id
+        self.name = name
+        self.outline = outline
+        self.resolved_labels = resolved_labels
+        self.resolved_references = resolved_references
+        self.support_session = support_session
+        self.properties = properties
+        self.notes = notes
 
     @property
     def tenant_id(self):
@@ -103,7 +96,7 @@ class Worksheet(object):
 
 
         :return: The tenant_id of this Worksheet.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._tenant_id
 
@@ -113,8 +106,10 @@ class Worksheet(object):
 
 
         :param tenant_id: The tenant_id of this Worksheet.  # noqa: E501
-        :type: str
+        :type tenant_id: object
         """
+        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -124,7 +119,7 @@ class Worksheet(object):
 
 
         :return: The user_id of this Worksheet.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._user_id
 
@@ -134,8 +129,10 @@ class Worksheet(object):
 
 
         :param user_id: The user_id of this Worksheet.  # noqa: E501
-        :type: str
+        :type user_id: object
         """
+        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -145,7 +142,7 @@ class Worksheet(object):
 
 
         :return: The worksheet_id of this Worksheet.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._worksheet_id
 
@@ -155,8 +152,10 @@ class Worksheet(object):
 
 
         :param worksheet_id: The worksheet_id of this Worksheet.  # noqa: E501
-        :type: str
+        :type worksheet_id: object
         """
+        if self.local_vars_configuration.client_side_validation and worksheet_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `worksheet_id`, must not be `None`")  # noqa: E501
 
         self._worksheet_id = worksheet_id
 
@@ -176,8 +175,10 @@ class Worksheet(object):
 
 
         :param name: The name of this Worksheet.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -197,8 +198,10 @@ class Worksheet(object):
 
 
         :param outline: The outline of this Worksheet.  # noqa: E501
-        :type: WorksheetOutline
+        :type outline: WorksheetOutline
         """
+        if self.local_vars_configuration.client_side_validation and outline is None:  # noqa: E501
+            raise ValueError("Invalid value for `outline`, must not be `None`")  # noqa: E501
 
         self._outline = outline
 
@@ -208,7 +211,7 @@ class Worksheet(object):
 
 
         :return: The resolved_labels of this Worksheet.  # noqa: E501
-        :rtype: CollatedWorksheetLabels
+        :rtype: WorksheetResolvedLabels
         """
         return self._resolved_labels
 
@@ -218,7 +221,7 @@ class Worksheet(object):
 
 
         :param resolved_labels: The resolved_labels of this Worksheet.  # noqa: E501
-        :type: CollatedWorksheetLabels
+        :type resolved_labels: WorksheetResolvedLabels
         """
 
         self._resolved_labels = resolved_labels
@@ -239,7 +242,7 @@ class Worksheet(object):
 
 
         :param resolved_references: The resolved_references of this Worksheet.  # noqa: E501
-        :type: WorksheetResolvedReferences
+        :type resolved_references: WorksheetResolvedReferences
         """
 
         self._resolved_references = resolved_references
@@ -250,7 +253,7 @@ class Worksheet(object):
 
 
         :return: The support_session of this Worksheet.  # noqa: E501
-        :rtype: SupportSession
+        :rtype: CanopyDocumentSupportSession
         """
         return self._support_session
 
@@ -260,7 +263,7 @@ class Worksheet(object):
 
 
         :param support_session: The support_session of this Worksheet.  # noqa: E501
-        :type: SupportSession
+        :type support_session: CanopyDocumentSupportSession
         """
 
         self._support_session = support_session
@@ -281,7 +284,7 @@ class Worksheet(object):
 
 
         :param properties: The properties of this Worksheet.  # noqa: E501
-        :type: object
+        :type properties: object
         """
 
         self._properties = properties
@@ -302,32 +305,40 @@ class Worksheet(object):
 
 
         :param notes: The notes of this Worksheet.  # noqa: E501
-        :type: str
+        :type notes: str
         """
 
         self._notes = notes
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

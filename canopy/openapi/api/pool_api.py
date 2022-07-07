@@ -41,22 +41,28 @@ class PoolApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.pool_get_pool_status(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str pool_type:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param pool_type:
+        :type pool_type: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetPoolStatusQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetPoolStatusQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.pool_get_pool_status_with_http_info(tenant_id, **kwargs)  # noqa: E501
@@ -66,24 +72,36 @@ class PoolApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.pool_get_pool_status_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str pool_type:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param pool_type:
+        :type pool_type: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetPoolStatusQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetPoolStatusQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -97,7 +115,10 @@ class PoolApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -110,8 +131,7 @@ class PoolApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `pool_get_pool_status`")  # noqa: E501
 
         collection_formats = {}
@@ -121,10 +141,10 @@ class PoolApi(object):
             path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
 
         query_params = []
-        if 'pool_type' in local_var_params and local_var_params['pool_type'] is not None:  # noqa: E501
+        if local_var_params.get('pool_type') is not None:  # noqa: E501
             query_params.append(('poolType', local_var_params['pool_type']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -132,10 +152,14 @@ class PoolApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetPoolStatusQueryResult",
+        }
 
         return self.api_client.call_api(
             '/pools/{tenantId}', 'GET',
@@ -145,33 +169,38 @@ class PoolApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetPoolStatusQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def pool_get_pools(self, **kwargs):  # noqa: E501
         """pool_get_pools  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.pool_get_pools(async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetPoolsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetPoolsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.pool_get_pools_with_http_info(**kwargs)  # noqa: E501
@@ -181,22 +210,32 @@ class PoolApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.pool_get_pools_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetPoolsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetPoolsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -208,7 +247,10 @@ class PoolApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -227,7 +269,7 @@ class PoolApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -235,10 +277,14 @@ class PoolApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetPoolsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/pools', 'GET',
@@ -248,64 +294,85 @@ class PoolApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetPoolsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def pool_get_test_auto_scale_formula(self, tenant_id, pool_id, **kwargs):  # noqa: E501
+    def pool_get_test_auto_scale_formula(self, tenant_id, **kwargs):  # noqa: E501
         """pool_get_test_auto_scale_formula  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pool_get_test_auto_scale_formula(tenant_id, pool_id, async_req=True)
+
+        >>> thread = api.pool_get_test_auto_scale_formula(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str pool_id: (required)
-        :param str formula:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param pool_id:
+        :type pool_id: str
+        :param formula:
+        :type formula: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: TestAutoScaleFormulaQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: TestAutoScaleFormulaQueryResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.pool_get_test_auto_scale_formula_with_http_info(tenant_id, pool_id, **kwargs)  # noqa: E501
+        return self.pool_get_test_auto_scale_formula_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
-    def pool_get_test_auto_scale_formula_with_http_info(self, tenant_id, pool_id, **kwargs):  # noqa: E501
+    def pool_get_test_auto_scale_formula_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
         """pool_get_test_auto_scale_formula  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.pool_get_test_auto_scale_formula_with_http_info(tenant_id, pool_id, async_req=True)
+
+        >>> thread = api.pool_get_test_auto_scale_formula_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str pool_id: (required)
-        :param str formula:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param pool_id:
+        :type pool_id: str
+        :param formula:
+        :type formula: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(TestAutoScaleFormulaQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(TestAutoScaleFormulaQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -320,7 +387,10 @@ class PoolApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -333,13 +403,8 @@ class PoolApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `pool_get_test_auto_scale_formula`")  # noqa: E501
-        # verify the required parameter 'pool_id' is set
-        if self.api_client.client_side_validation and ('pool_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pool_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `pool_id` when calling `pool_get_test_auto_scale_formula`")  # noqa: E501
 
         collection_formats = {}
 
@@ -348,12 +413,12 @@ class PoolApi(object):
             path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
 
         query_params = []
-        if 'pool_id' in local_var_params and local_var_params['pool_id'] is not None:  # noqa: E501
+        if local_var_params.get('pool_id') is not None:  # noqa: E501
             query_params.append(('poolId', local_var_params['pool_id']))  # noqa: E501
-        if 'formula' in local_var_params and local_var_params['formula'] is not None:  # noqa: E501
+        if local_var_params.get('formula') is not None:  # noqa: E501
             query_params.append(('formula', local_var_params['formula']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -361,10 +426,14 @@ class PoolApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "TestAutoScaleFormulaQueryResult",
+        }
 
         return self.api_client.call_api(
             '/pools/{tenantId}/autoscale/test', 'GET',
@@ -374,10 +443,11 @@ class PoolApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TestAutoScaleFormulaQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))

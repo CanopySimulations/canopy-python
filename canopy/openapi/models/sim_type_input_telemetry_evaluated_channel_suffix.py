@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -47,7 +50,7 @@ class SimTypeInputTelemetryEvaluatedChannelSuffix(object):
     def __init__(self, sim_config_lookup_path=None, property_key=None, suffix=None, local_vars_configuration=None):  # noqa: E501
         """SimTypeInputTelemetryEvaluatedChannelSuffix - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._sim_config_lookup_path = None
@@ -55,12 +58,9 @@ class SimTypeInputTelemetryEvaluatedChannelSuffix(object):
         self._suffix = None
         self.discriminator = None
 
-        if sim_config_lookup_path is not None:
-            self.sim_config_lookup_path = sim_config_lookup_path
-        if property_key is not None:
-            self.property_key = property_key
-        if suffix is not None:
-            self.suffix = suffix
+        self.sim_config_lookup_path = sim_config_lookup_path
+        self.property_key = property_key
+        self.suffix = suffix
 
     @property
     def sim_config_lookup_path(self):
@@ -78,8 +78,10 @@ class SimTypeInputTelemetryEvaluatedChannelSuffix(object):
 
 
         :param sim_config_lookup_path: The sim_config_lookup_path of this SimTypeInputTelemetryEvaluatedChannelSuffix.  # noqa: E501
-        :type: str
+        :type sim_config_lookup_path: str
         """
+        if self.local_vars_configuration.client_side_validation and sim_config_lookup_path is None:  # noqa: E501
+            raise ValueError("Invalid value for `sim_config_lookup_path`, must not be `None`")  # noqa: E501
 
         self._sim_config_lookup_path = sim_config_lookup_path
 
@@ -99,8 +101,10 @@ class SimTypeInputTelemetryEvaluatedChannelSuffix(object):
 
 
         :param property_key: The property_key of this SimTypeInputTelemetryEvaluatedChannelSuffix.  # noqa: E501
-        :type: str
+        :type property_key: str
         """
+        if self.local_vars_configuration.client_side_validation and property_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `property_key`, must not be `None`")  # noqa: E501
 
         self._property_key = property_key
 
@@ -120,32 +124,42 @@ class SimTypeInputTelemetryEvaluatedChannelSuffix(object):
 
 
         :param suffix: The suffix of this SimTypeInputTelemetryEvaluatedChannelSuffix.  # noqa: E501
-        :type: str
+        :type suffix: str
         """
+        if self.local_vars_configuration.client_side_validation and suffix is None:  # noqa: E501
+            raise ValueError("Invalid value for `suffix`, must not be `None`")  # noqa: E501
 
         self._suffix = suffix
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

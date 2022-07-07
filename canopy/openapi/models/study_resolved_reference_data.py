@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -35,12 +38,12 @@ class StudyResolvedReferenceData(object):
     openapi_types = {
         'creation_date': 'datetime',
         'modified_date': 'datetime',
-        'user_id': 'str',
+        'user_id': 'object',
         'name': 'str',
-        'study_document': 'StudyDocument',
+        'study_document': 'StudyResolvedReferenceDataStudyDocument',
         'input_hashes': 'list[StudyInputHashes]',
         'sim_types': 'list[str]',
-        'sim_version': 'str',
+        'sim_version': 'object',
         'is_support_session_open': 'bool'
     }
 
@@ -59,7 +62,7 @@ class StudyResolvedReferenceData(object):
     def __init__(self, creation_date=None, modified_date=None, user_id=None, name=None, study_document=None, input_hashes=None, sim_types=None, sim_version=None, is_support_session_open=None, local_vars_configuration=None):  # noqa: E501
         """StudyResolvedReferenceData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._creation_date = None
@@ -73,24 +76,15 @@ class StudyResolvedReferenceData(object):
         self._is_support_session_open = None
         self.discriminator = None
 
-        if creation_date is not None:
-            self.creation_date = creation_date
-        if modified_date is not None:
-            self.modified_date = modified_date
-        if user_id is not None:
-            self.user_id = user_id
-        if name is not None:
-            self.name = name
-        if study_document is not None:
-            self.study_document = study_document
-        if input_hashes is not None:
-            self.input_hashes = input_hashes
-        if sim_types is not None:
-            self.sim_types = sim_types
-        if sim_version is not None:
-            self.sim_version = sim_version
-        if is_support_session_open is not None:
-            self.is_support_session_open = is_support_session_open
+        self.creation_date = creation_date
+        self.modified_date = modified_date
+        self.user_id = user_id
+        self.name = name
+        self.study_document = study_document
+        self.input_hashes = input_hashes
+        self.sim_types = sim_types
+        self.sim_version = sim_version
+        self.is_support_session_open = is_support_session_open
 
     @property
     def creation_date(self):
@@ -108,8 +102,10 @@ class StudyResolvedReferenceData(object):
 
 
         :param creation_date: The creation_date of this StudyResolvedReferenceData.  # noqa: E501
-        :type: datetime
+        :type creation_date: datetime
         """
+        if self.local_vars_configuration.client_side_validation and creation_date is None:  # noqa: E501
+            raise ValueError("Invalid value for `creation_date`, must not be `None`")  # noqa: E501
 
         self._creation_date = creation_date
 
@@ -129,8 +125,10 @@ class StudyResolvedReferenceData(object):
 
 
         :param modified_date: The modified_date of this StudyResolvedReferenceData.  # noqa: E501
-        :type: datetime
+        :type modified_date: datetime
         """
+        if self.local_vars_configuration.client_side_validation and modified_date is None:  # noqa: E501
+            raise ValueError("Invalid value for `modified_date`, must not be `None`")  # noqa: E501
 
         self._modified_date = modified_date
 
@@ -140,7 +138,7 @@ class StudyResolvedReferenceData(object):
 
 
         :return: The user_id of this StudyResolvedReferenceData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._user_id
 
@@ -150,8 +148,10 @@ class StudyResolvedReferenceData(object):
 
 
         :param user_id: The user_id of this StudyResolvedReferenceData.  # noqa: E501
-        :type: str
+        :type user_id: object
         """
+        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -171,8 +171,10 @@ class StudyResolvedReferenceData(object):
 
 
         :param name: The name of this StudyResolvedReferenceData.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -182,7 +184,7 @@ class StudyResolvedReferenceData(object):
 
 
         :return: The study_document of this StudyResolvedReferenceData.  # noqa: E501
-        :rtype: StudyDocument
+        :rtype: StudyResolvedReferenceDataStudyDocument
         """
         return self._study_document
 
@@ -192,8 +194,10 @@ class StudyResolvedReferenceData(object):
 
 
         :param study_document: The study_document of this StudyResolvedReferenceData.  # noqa: E501
-        :type: StudyDocument
+        :type study_document: StudyResolvedReferenceDataStudyDocument
         """
+        if self.local_vars_configuration.client_side_validation and study_document is None:  # noqa: E501
+            raise ValueError("Invalid value for `study_document`, must not be `None`")  # noqa: E501
 
         self._study_document = study_document
 
@@ -213,8 +217,10 @@ class StudyResolvedReferenceData(object):
 
 
         :param input_hashes: The input_hashes of this StudyResolvedReferenceData.  # noqa: E501
-        :type: list[StudyInputHashes]
+        :type input_hashes: list[StudyInputHashes]
         """
+        if self.local_vars_configuration.client_side_validation and input_hashes is None:  # noqa: E501
+            raise ValueError("Invalid value for `input_hashes`, must not be `None`")  # noqa: E501
 
         self._input_hashes = input_hashes
 
@@ -234,16 +240,10 @@ class StudyResolvedReferenceData(object):
 
 
         :param sim_types: The sim_types of this StudyResolvedReferenceData.  # noqa: E501
-        :type: list[str]
+        :type sim_types: list[str]
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths", "TrackConverter"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(sim_types).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `sim_types` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(sim_types) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
+        if self.local_vars_configuration.client_side_validation and sim_types is None:  # noqa: E501
+            raise ValueError("Invalid value for `sim_types`, must not be `None`")  # noqa: E501
 
         self._sim_types = sim_types
 
@@ -253,7 +253,7 @@ class StudyResolvedReferenceData(object):
 
 
         :return: The sim_version of this StudyResolvedReferenceData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._sim_version
 
@@ -263,8 +263,10 @@ class StudyResolvedReferenceData(object):
 
 
         :param sim_version: The sim_version of this StudyResolvedReferenceData.  # noqa: E501
-        :type: str
+        :type sim_version: object
         """
+        if self.local_vars_configuration.client_side_validation and sim_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `sim_version`, must not be `None`")  # noqa: E501
 
         self._sim_version = sim_version
 
@@ -284,32 +286,40 @@ class StudyResolvedReferenceData(object):
 
 
         :param is_support_session_open: The is_support_session_open of this StudyResolvedReferenceData.  # noqa: E501
-        :type: bool
+        :type is_support_session_open: bool
         """
 
         self._is_support_session_open = is_support_session_open
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

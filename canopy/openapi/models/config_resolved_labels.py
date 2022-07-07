@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class ConfigResolvedLabels(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'reference': 'ConfigReference',
+        'reference': 'ConfigResolvedLabelsReference',
         'hashes': 'list[ConfigHash]',
         'resolved_labels': 'list[ResolvedLabel]'
     }
@@ -47,7 +50,7 @@ class ConfigResolvedLabels(object):
     def __init__(self, reference=None, hashes=None, resolved_labels=None, local_vars_configuration=None):  # noqa: E501
         """ConfigResolvedLabels - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._reference = None
@@ -55,12 +58,9 @@ class ConfigResolvedLabels(object):
         self._resolved_labels = None
         self.discriminator = None
 
-        if reference is not None:
-            self.reference = reference
-        if hashes is not None:
-            self.hashes = hashes
-        if resolved_labels is not None:
-            self.resolved_labels = resolved_labels
+        self.reference = reference
+        self.hashes = hashes
+        self.resolved_labels = resolved_labels
 
     @property
     def reference(self):
@@ -68,7 +68,7 @@ class ConfigResolvedLabels(object):
 
 
         :return: The reference of this ConfigResolvedLabels.  # noqa: E501
-        :rtype: ConfigReference
+        :rtype: ConfigResolvedLabelsReference
         """
         return self._reference
 
@@ -78,8 +78,10 @@ class ConfigResolvedLabels(object):
 
 
         :param reference: The reference of this ConfigResolvedLabels.  # noqa: E501
-        :type: ConfigReference
+        :type reference: ConfigResolvedLabelsReference
         """
+        if self.local_vars_configuration.client_side_validation and reference is None:  # noqa: E501
+            raise ValueError("Invalid value for `reference`, must not be `None`")  # noqa: E501
 
         self._reference = reference
 
@@ -99,8 +101,10 @@ class ConfigResolvedLabels(object):
 
 
         :param hashes: The hashes of this ConfigResolvedLabels.  # noqa: E501
-        :type: list[ConfigHash]
+        :type hashes: list[ConfigHash]
         """
+        if self.local_vars_configuration.client_side_validation and hashes is None:  # noqa: E501
+            raise ValueError("Invalid value for `hashes`, must not be `None`")  # noqa: E501
 
         self._hashes = hashes
 
@@ -120,32 +124,42 @@ class ConfigResolvedLabels(object):
 
 
         :param resolved_labels: The resolved_labels of this ConfigResolvedLabels.  # noqa: E501
-        :type: list[ResolvedLabel]
+        :type resolved_labels: list[ResolvedLabel]
         """
+        if self.local_vars_configuration.client_side_validation and resolved_labels is None:  # noqa: E501
+            raise ValueError("Invalid value for `resolved_labels`, must not be `None`")  # noqa: E501
 
         self._resolved_labels = resolved_labels
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

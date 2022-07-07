@@ -1,9 +1,10 @@
 # PasswordResetConfirmationData
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | [optional] 
+**user_id** | **object** |  | [optional] 
 **new_password** | **str** |  | [optional] 
 **token** | **str** |  | 
 

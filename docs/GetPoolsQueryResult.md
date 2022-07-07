@@ -1,9 +1,10 @@
 # GetPoolsQueryResult
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pools** | [**list[GetPoolsItem]**](GetPoolsItem.md) |  | [optional] [readonly] 
+**pools** | [**list[GetPoolsItem]**](GetPoolsItem.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

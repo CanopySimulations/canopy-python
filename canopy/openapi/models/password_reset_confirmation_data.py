@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class PasswordResetConfirmationData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'user_id': 'str',
+        'user_id': 'object',
         'new_password': 'str',
         'token': 'str'
     }
@@ -47,7 +50,7 @@ class PasswordResetConfirmationData(object):
     def __init__(self, user_id=None, new_password=None, token=None, local_vars_configuration=None):  # noqa: E501
         """PasswordResetConfirmationData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._user_id = None
@@ -55,10 +58,8 @@ class PasswordResetConfirmationData(object):
         self._token = None
         self.discriminator = None
 
-        if user_id is not None:
-            self.user_id = user_id
-        if new_password is not None:
-            self.new_password = new_password
+        self.user_id = user_id
+        self.new_password = new_password
         self.token = token
 
     @property
@@ -67,7 +68,7 @@ class PasswordResetConfirmationData(object):
 
 
         :return: The user_id of this PasswordResetConfirmationData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._user_id
 
@@ -77,7 +78,7 @@ class PasswordResetConfirmationData(object):
 
 
         :param user_id: The user_id of this PasswordResetConfirmationData.  # noqa: E501
-        :type: str
+        :type user_id: object
         """
 
         self._user_id = user_id
@@ -98,7 +99,7 @@ class PasswordResetConfirmationData(object):
 
 
         :param new_password: The new_password of this PasswordResetConfirmationData.  # noqa: E501
-        :type: str
+        :type new_password: str
         """
 
         self._new_password = new_password
@@ -119,34 +120,42 @@ class PasswordResetConfirmationData(object):
 
 
         :param token: The token of this PasswordResetConfirmationData.  # noqa: E501
-        :type: str
+        :type token: str
         """
         if self.local_vars_configuration.client_side_validation and token is None:  # noqa: E501
             raise ValueError("Invalid value for `token`, must not be `None`")  # noqa: E501
 
         self._token = token
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

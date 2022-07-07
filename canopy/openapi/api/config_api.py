@@ -36,65 +36,84 @@ class ConfigApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def config_decrypt(self, data, **kwargs):  # noqa: E501
+    def config_decrypt(self, body, **kwargs):  # noqa: E501
         """config_decrypt  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_decrypt(data, async_req=True)
+
+        >>> thread = api.config_decrypt(body, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param object data: (required)
+        :param body: (required)
+        :type body: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: object
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: object
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_decrypt_with_http_info(data, **kwargs)  # noqa: E501
+        return self.config_decrypt_with_http_info(body, **kwargs)  # noqa: E501
 
-    def config_decrypt_with_http_info(self, data, **kwargs):  # noqa: E501
+    def config_decrypt_with_http_info(self, body, **kwargs):  # noqa: E501
         """config_decrypt  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_decrypt_with_http_info(data, async_req=True)
+
+        >>> thread = api.config_decrypt_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param object data: (required)
+        :param body: (required)
+        :type body: object
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
-            'data'
+            'body'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -106,10 +125,6 @@ class ConfigApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_decrypt`")  # noqa: E501
 
         collection_formats = {}
 
@@ -117,24 +132,32 @@ class ConfigApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "object",
+        }
 
         return self.api_client.call_api(
             '/configs/decrypt', 'POST',
@@ -144,37 +167,189 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def config_decrypt_with_metadata(self, config_decrypt_with_metadata_request, **kwargs):  # noqa: E501
+        """config_decrypt_with_metadata  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.config_decrypt_with_metadata(config_decrypt_with_metadata_request, async_req=True)
+        >>> result = thread.get()
+
+        :param config_decrypt_with_metadata_request: (required)
+        :type config_decrypt_with_metadata_request: ConfigDecryptWithMetadataRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetDecryptedDataQueryResult
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.config_decrypt_with_metadata_with_http_info(config_decrypt_with_metadata_request, **kwargs)  # noqa: E501
+
+    def config_decrypt_with_metadata_with_http_info(self, config_decrypt_with_metadata_request, **kwargs):  # noqa: E501
+        """config_decrypt_with_metadata  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.config_decrypt_with_metadata_with_http_info(config_decrypt_with_metadata_request, async_req=True)
+        >>> result = thread.get()
+
+        :param config_decrypt_with_metadata_request: (required)
+        :type config_decrypt_with_metadata_request: ConfigDecryptWithMetadataRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetDecryptedDataQueryResult, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'config_decrypt_with_metadata_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method config_decrypt_with_metadata" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'config_decrypt_with_metadata_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_decrypt_with_metadata_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_decrypt_with_metadata_request` when calling `config_decrypt_with_metadata`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'config_decrypt_with_metadata_request' in local_var_params:
+            body_params = local_var_params['config_decrypt_with_metadata_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetDecryptedDataQueryResult",
+        }
+
+        return self.api_client.call_api(
+            '/configs/decryptWithMetadata', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def config_delete_config(self, tenant_id, config_id, **kwargs):  # noqa: E501
         """config_delete_config  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_delete_config(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param bool undelete:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param undelete:
+        :type undelete: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.config_delete_config_with_http_info(tenant_id, config_id, **kwargs)  # noqa: E501
@@ -184,26 +359,40 @@ class ConfigApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_delete_config_with_http_info(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param bool undelete:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param undelete:
+        :type undelete: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -219,7 +408,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -232,12 +424,10 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_delete_config`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_delete_config`")  # noqa: E501
 
         collection_formats = {}
@@ -249,19 +439,21 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
-        if 'undelete' in local_var_params and local_var_params['undelete'] is not None:  # noqa: E501
+        if local_var_params.get('undelete') is not None:  # noqa: E501
             query_params.append(('undelete', local_var_params['undelete']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{configId}', 'DELETE',
@@ -271,38 +463,48 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def config_delete_config_deprecated(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
         """config_delete_config_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_delete_config_deprecated(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param bool undelete:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param undelete:
+        :type undelete: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.config_delete_config_deprecated_with_http_info(tenant_id, user_id, config_id, **kwargs)  # noqa: E501
@@ -312,27 +514,42 @@ class ConfigApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_delete_config_deprecated_with_http_info(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param bool undelete:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param undelete:
+        :type undelete: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -349,7 +566,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -362,16 +582,13 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_delete_config_deprecated`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_id` when calling `config_delete_config_deprecated`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_delete_config_deprecated`")  # noqa: E501
 
         collection_formats = {}
@@ -385,19 +602,21 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
-        if 'undelete' in local_var_params and local_var_params['undelete'] is not None:  # noqa: E501
+        if local_var_params.get('undelete') is not None:  # noqa: E501
             query_params.append(('undelete', local_var_params['undelete']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{userId}/{configId}', 'DELETE',
@@ -407,68 +626,87 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_encrypt(self, data, **kwargs):  # noqa: E501
+    def config_encrypt(self, body, **kwargs):  # noqa: E501
         """config_encrypt  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_encrypt(data, async_req=True)
+
+        >>> thread = api.config_encrypt(body, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param object data: (required)
-        :param str description:
+        :param body: (required)
+        :type body: object
+        :param description:
+        :type description: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: object
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: object
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_encrypt_with_http_info(data, **kwargs)  # noqa: E501
+        return self.config_encrypt_with_http_info(body, **kwargs)  # noqa: E501
 
-    def config_encrypt_with_http_info(self, data, **kwargs):  # noqa: E501
+    def config_encrypt_with_http_info(self, body, **kwargs):  # noqa: E501
         """config_encrypt  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_encrypt_with_http_info(data, async_req=True)
+
+        >>> thread = api.config_encrypt_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param object data: (required)
-        :param str description:
+        :param body: (required)
+        :type body: object
+        :param description:
+        :type description: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
-            'data',
+            'body',
             'description'
         ]
         all_params.extend(
@@ -476,7 +714,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -488,37 +729,41 @@ class ConfigApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_encrypt`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'description' in local_var_params and local_var_params['description'] is not None:  # noqa: E501
+        if local_var_params.get('description') is not None:  # noqa: E501
             query_params.append(('description', local_var_params['description']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "object",
+        }
 
         return self.api_client.call_api(
             '/configs/encrypt', 'POST',
@@ -528,38 +773,191 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def config_encrypt_with_metadata(self, config_encrypt_with_metadata_request, **kwargs):  # noqa: E501
+        """config_encrypt_with_metadata  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.config_encrypt_with_metadata(config_encrypt_with_metadata_request, async_req=True)
+        >>> result = thread.get()
+
+        :param config_encrypt_with_metadata_request: (required)
+        :type config_encrypt_with_metadata_request: ConfigEncryptWithMetadataRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetEncryptedDataQueryResult
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.config_encrypt_with_metadata_with_http_info(config_encrypt_with_metadata_request, **kwargs)  # noqa: E501
+
+    def config_encrypt_with_metadata_with_http_info(self, config_encrypt_with_metadata_request, **kwargs):  # noqa: E501
+        """config_encrypt_with_metadata  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.config_encrypt_with_metadata_with_http_info(config_encrypt_with_metadata_request, async_req=True)
+        >>> result = thread.get()
+
+        :param config_encrypt_with_metadata_request: (required)
+        :type config_encrypt_with_metadata_request: ConfigEncryptWithMetadataRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetEncryptedDataQueryResult, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'config_encrypt_with_metadata_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method config_encrypt_with_metadata" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'config_encrypt_with_metadata_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_encrypt_with_metadata_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_encrypt_with_metadata_request` when calling `config_encrypt_with_metadata`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'config_encrypt_with_metadata_request' in local_var_params:
+            body_params = local_var_params['config_encrypt_with_metadata_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetEncryptedDataQueryResult",
+        }
+
+        return self.api_client.call_api(
+            '/configs/encryptWithMetadata', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config(self, tenant_id, config_id, **kwargs):  # noqa: E501
         """config_get_config  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param str sim_version:
-        :param str config_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param sim_version:
+        :type sim_version: str
+        :param config_version:
+        :type config_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetConfigQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetConfigQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.config_get_config_with_http_info(tenant_id, config_id, **kwargs)  # noqa: E501
@@ -569,27 +967,42 @@ class ConfigApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_with_http_info(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param str sim_version:
-        :param str config_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param sim_version:
+        :type sim_version: str
+        :param config_version:
+        :type config_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -606,7 +1019,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -619,12 +1035,10 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_get_config`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_get_config`")  # noqa: E501
 
         collection_formats = {}
@@ -636,14 +1050,14 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
-        if 'sim_version' in local_var_params and local_var_params['sim_version'] is not None:  # noqa: E501
+        if local_var_params.get('sim_version') is not None:  # noqa: E501
             query_params.append(('simVersion', local_var_params['sim_version']))  # noqa: E501
-        if 'config_version' in local_var_params and local_var_params['config_version'] is not None:  # noqa: E501
+        if local_var_params.get('config_version') is not None:  # noqa: E501
             query_params.append(('configVersion', local_var_params['config_version']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -651,10 +1065,14 @@ class ConfigApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetConfigQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{configId}', 'GET',
@@ -664,39 +1082,50 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetConfigQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config_deprecated(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
         """config_get_config_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_deprecated(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param str sim_version:
-        :param str config_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param sim_version:
+        :type sim_version: str
+        :param config_version:
+        :type config_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetConfigQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetConfigQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.config_get_config_deprecated_with_http_info(tenant_id, user_id, config_id, **kwargs)  # noqa: E501
@@ -706,28 +1135,44 @@ class ConfigApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_deprecated_with_http_info(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param str sim_version:
-        :param str config_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param sim_version:
+        :type sim_version: str
+        :param config_version:
+        :type config_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -745,7 +1190,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -758,16 +1206,13 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_get_config_deprecated`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_id` when calling `config_get_config_deprecated`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_get_config_deprecated`")  # noqa: E501
 
         collection_formats = {}
@@ -781,14 +1226,14 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
-        if 'sim_version' in local_var_params and local_var_params['sim_version'] is not None:  # noqa: E501
+        if local_var_params.get('sim_version') is not None:  # noqa: E501
             query_params.append(('simVersion', local_var_params['sim_version']))  # noqa: E501
-        if 'config_version' in local_var_params and local_var_params['config_version'] is not None:  # noqa: E501
+        if local_var_params.get('config_version') is not None:  # noqa: E501
             query_params.append(('configVersion', local_var_params['config_version']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -796,10 +1241,14 @@ class ConfigApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetConfigQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{userId}/{configId}', 'GET',
@@ -809,68 +1258,93 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetConfigQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_get_config_names(self, tenant_id, config_type, result_type, **kwargs):  # noqa: E501
+    def config_get_config_names(self, tenant_id, config_type, **kwargs):  # noqa: E501
         """config_get_config_names  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_get_config_names(tenant_id, config_type, result_type, async_req=True)
+
+        >>> thread = api.config_get_config_names(tenant_id, config_type, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_type: (required)
-        :param str result_type: (required)
-        :param str sub_tree_path:
-        :param str sim_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_type: (required)
+        :type config_type: str
+        :param result_type:
+        :type result_type: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param sim_version:
+        :type sim_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetConfigNamesQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetConfigNamesQueryResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_get_config_names_with_http_info(tenant_id, config_type, result_type, **kwargs)  # noqa: E501
+        return self.config_get_config_names_with_http_info(tenant_id, config_type, **kwargs)  # noqa: E501
 
-    def config_get_config_names_with_http_info(self, tenant_id, config_type, result_type, **kwargs):  # noqa: E501
+    def config_get_config_names_with_http_info(self, tenant_id, config_type, **kwargs):  # noqa: E501
         """config_get_config_names  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_get_config_names_with_http_info(tenant_id, config_type, result_type, async_req=True)
+
+        >>> thread = api.config_get_config_names_with_http_info(tenant_id, config_type, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_type: (required)
-        :param str result_type: (required)
-        :param str sub_tree_path:
-        :param str sim_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_type: (required)
+        :type config_type: str
+        :param result_type:
+        :type result_type: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param sim_version:
+        :type sim_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetConfigNamesQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetConfigNamesQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -887,7 +1361,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -900,17 +1377,11 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_get_config_names`")  # noqa: E501
         # verify the required parameter 'config_type' is set
-        if self.api_client.client_side_validation and ('config_type' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_type'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_type') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_type` when calling `config_get_config_names`")  # noqa: E501
-        # verify the required parameter 'result_type' is set
-        if self.api_client.client_side_validation and ('result_type' not in local_var_params or  # noqa: E501
-                                                        local_var_params['result_type'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `result_type` when calling `config_get_config_names`")  # noqa: E501
 
         collection_formats = {}
 
@@ -919,16 +1390,16 @@ class ConfigApi(object):
             path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
 
         query_params = []
-        if 'config_type' in local_var_params and local_var_params['config_type'] is not None:  # noqa: E501
+        if local_var_params.get('config_type') is not None:  # noqa: E501
             query_params.append(('configType', local_var_params['config_type']))  # noqa: E501
-        if 'result_type' in local_var_params and local_var_params['result_type'] is not None:  # noqa: E501
+        if local_var_params.get('result_type') is not None:  # noqa: E501
             query_params.append(('resultType', local_var_params['result_type']))  # noqa: E501
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
-        if 'sim_version' in local_var_params and local_var_params['sim_version'] is not None:  # noqa: E501
+        if local_var_params.get('sim_version') is not None:  # noqa: E501
             query_params.append(('simVersion', local_var_params['sim_version']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -936,10 +1407,14 @@ class ConfigApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetConfigNamesQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/names', 'GET',
@@ -949,36 +1424,44 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetConfigNamesQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config_versions(self, tenant_id, config_id, **kwargs):  # noqa: E501
         """config_get_config_versions  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_versions(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetConfigVersionsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetConfigVersionsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.config_get_config_versions_with_http_info(tenant_id, config_id, **kwargs)  # noqa: E501
@@ -988,25 +1471,38 @@ class ConfigApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_versions_with_http_info(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetConfigVersionsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetConfigVersionsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1021,7 +1517,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1034,12 +1533,10 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_get_config_versions`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_get_config_versions`")  # noqa: E501
 
         collection_formats = {}
@@ -1051,10 +1548,10 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1062,10 +1559,14 @@ class ConfigApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetConfigVersionsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{configId}/versions', 'GET',
@@ -1075,37 +1576,46 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetConfigVersionsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config_versions_deprecated(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
         """config_get_config_versions_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_versions_deprecated(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetConfigVersionsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetConfigVersionsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.config_get_config_versions_deprecated_with_http_info(tenant_id, user_id, config_id, **kwargs)  # noqa: E501
@@ -1115,26 +1625,40 @@ class ConfigApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_versions_deprecated_with_http_info(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetConfigVersionsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetConfigVersionsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1150,7 +1674,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1163,16 +1690,13 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_get_config_versions_deprecated`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_id` when calling `config_get_config_versions_deprecated`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_get_config_versions_deprecated`")  # noqa: E501
 
         collection_formats = {}
@@ -1186,10 +1710,10 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1197,10 +1721,14 @@ class ConfigApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetConfigVersionsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{userId}/{configId}/versions', 'GET',
@@ -1210,38 +1738,48 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetConfigVersionsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config_without_user_id_deprecated(self, tenant_id, config_id, **kwargs):  # noqa: E501
         """config_get_config_without_user_id_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_without_user_id_deprecated(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param str sim_version:
-        :param str config_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param sim_version:
+        :type sim_version: str
+        :param config_version:
+        :type config_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetConfigQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetConfigQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.config_get_config_without_user_id_deprecated_with_http_info(tenant_id, config_id, **kwargs)  # noqa: E501
@@ -1251,27 +1789,42 @@ class ConfigApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_config_without_user_id_deprecated_with_http_info(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param str sub_tree_path:
-        :param str sim_version:
-        :param str config_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param sim_version:
+        :type sim_version: str
+        :param config_version:
+        :type config_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1288,7 +1841,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1301,12 +1857,10 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_get_config_without_user_id_deprecated`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_get_config_without_user_id_deprecated`")  # noqa: E501
 
         collection_formats = {}
@@ -1318,14 +1872,14 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
-        if 'sim_version' in local_var_params and local_var_params['sim_version'] is not None:  # noqa: E501
+        if local_var_params.get('sim_version') is not None:  # noqa: E501
             query_params.append(('simVersion', local_var_params['sim_version']))  # noqa: E501
-        if 'config_version' in local_var_params and local_var_params['config_version'] is not None:  # noqa: E501
+        if local_var_params.get('config_version') is not None:  # noqa: E501
             query_params.append(('configVersion', local_var_params['config_version']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1333,10 +1887,14 @@ class ConfigApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetConfigQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/auto/{configId}', 'GET',
@@ -1346,38 +1904,48 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetConfigQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_configs(self, tenant_id, config_type, **kwargs):  # noqa: E501
         """config_get_configs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_configs(tenant_id, config_type, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_type: (required)
-        :param str filter:
-        :param str sub_tree_path:
-        :param str result_type:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_type: (required)
+        :type config_type: str
+        :param filter:
+        :type filter: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param result_type:
+        :type result_type: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetConfigsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetConfigsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.config_get_configs_with_http_info(tenant_id, config_type, **kwargs)  # noqa: E501
@@ -1387,27 +1955,42 @@ class ConfigApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.config_get_configs_with_http_info(tenant_id, config_type, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_type: (required)
-        :param str filter:
-        :param str sub_tree_path:
-        :param str result_type:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_type: (required)
+        :type config_type: str
+        :param filter:
+        :type filter: str
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param result_type:
+        :type result_type: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetConfigsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetConfigsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1424,7 +2007,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1437,12 +2023,10 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_get_configs`")  # noqa: E501
         # verify the required parameter 'config_type' is set
-        if self.api_client.client_side_validation and ('config_type' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_type'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_type') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_type` when calling `config_get_configs`")  # noqa: E501
 
         collection_formats = {}
@@ -1452,16 +2036,16 @@ class ConfigApi(object):
             path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
 
         query_params = []
-        if 'config_type' in local_var_params and local_var_params['config_type'] is not None:  # noqa: E501
+        if local_var_params.get('config_type') is not None:  # noqa: E501
             query_params.append(('configType', local_var_params['config_type']))  # noqa: E501
-        if 'filter' in local_var_params and local_var_params['filter'] is not None:  # noqa: E501
+        if local_var_params.get('filter') is not None:  # noqa: E501
             query_params.append(('filter', local_var_params['filter']))  # noqa: E501
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
-        if 'result_type' in local_var_params and local_var_params['result_type'] is not None:  # noqa: E501
+        if local_var_params.get('result_type') is not None:  # noqa: E501
             query_params.append(('resultType', local_var_params['result_type']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1469,10 +2053,14 @@ class ConfigApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetConfigsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}', 'GET',
@@ -1482,71 +2070,92 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetConfigsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_post_config(self, tenant_id, data, **kwargs):  # noqa: E501
+    def config_post_config(self, tenant_id, config_post_config_request, **kwargs):  # noqa: E501
         """config_post_config  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_post_config(tenant_id, data, async_req=True)
+
+        >>> thread = api.config_post_config(tenant_id, config_post_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param NewConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_post_config_request: (required)
+        :type config_post_config_request: ConfigPostConfigRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: str
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: str
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_post_config_with_http_info(tenant_id, data, **kwargs)  # noqa: E501
+        return self.config_post_config_with_http_info(tenant_id, config_post_config_request, **kwargs)  # noqa: E501
 
-    def config_post_config_with_http_info(self, tenant_id, data, **kwargs):  # noqa: E501
+    def config_post_config_with_http_info(self, tenant_id, config_post_config_request, **kwargs):  # noqa: E501
         """config_post_config  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_post_config_with_http_info(tenant_id, data, async_req=True)
+
+        >>> thread = api.config_post_config_with_http_info(tenant_id, config_post_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param NewConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_post_config_request: (required)
+        :type config_post_config_request: ConfigPostConfigRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'tenant_id',
-            'data',
+            'config_post_config_request',
             'sub_tree_path'
         ]
         all_params.extend(
@@ -1554,7 +2163,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1567,13 +2179,11 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_post_config`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_post_config`")  # noqa: E501
+        # verify the required parameter 'config_post_config_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_post_config_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_post_config_request` when calling `config_post_config`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1582,27 +2192,35 @@ class ConfigApi(object):
             path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'config_post_config_request' in local_var_params:
+            body_params = local_var_params['config_post_config_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json', 'application/xml', 'text/xml'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "str",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}', 'POST',
@@ -1612,66 +2230,89 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='str',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_post_config_deprecated(self, tenant_id, user_id, data, **kwargs):  # noqa: E501
+    def config_post_config_deprecated(self, tenant_id, user_id, config_post_config_request, **kwargs):  # noqa: E501
         """config_post_config_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_post_config_deprecated(tenant_id, user_id, data, async_req=True)
+
+        >>> thread = api.config_post_config_deprecated(tenant_id, user_id, config_post_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param NewConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_post_config_request: (required)
+        :type config_post_config_request: ConfigPostConfigRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: str
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: str
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_post_config_deprecated_with_http_info(tenant_id, user_id, data, **kwargs)  # noqa: E501
+        return self.config_post_config_deprecated_with_http_info(tenant_id, user_id, config_post_config_request, **kwargs)  # noqa: E501
 
-    def config_post_config_deprecated_with_http_info(self, tenant_id, user_id, data, **kwargs):  # noqa: E501
+    def config_post_config_deprecated_with_http_info(self, tenant_id, user_id, config_post_config_request, **kwargs):  # noqa: E501
         """config_post_config_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_post_config_deprecated_with_http_info(tenant_id, user_id, data, async_req=True)
+
+        >>> thread = api.config_post_config_deprecated_with_http_info(tenant_id, user_id, config_post_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param NewConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_post_config_request: (required)
+        :type config_post_config_request: ConfigPostConfigRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1679,7 +2320,7 @@ class ConfigApi(object):
         all_params = [
             'tenant_id',
             'user_id',
-            'data',
+            'config_post_config_request',
             'sub_tree_path'
         ]
         all_params.extend(
@@ -1687,7 +2328,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1700,17 +2344,14 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_post_config_deprecated`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_id` when calling `config_post_config_deprecated`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_post_config_deprecated`")  # noqa: E501
+        # verify the required parameter 'config_post_config_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_post_config_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_post_config_request` when calling `config_post_config_deprecated`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1721,27 +2362,35 @@ class ConfigApi(object):
             path_params['userId'] = local_var_params['user_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'config_post_config_request' in local_var_params:
+            body_params = local_var_params['config_post_config_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json', 'application/xml', 'text/xml'])  # noqa: E501
+            ['text/plain'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "str",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{userId}', 'POST',
@@ -1751,71 +2400,92 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='str',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_post_configs(self, tenant_id, data, **kwargs):  # noqa: E501
+    def config_post_configs(self, tenant_id, config_post_configs_request, **kwargs):  # noqa: E501
         """config_post_configs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_post_configs(tenant_id, data, async_req=True)
+
+        >>> thread = api.config_post_configs(tenant_id, config_post_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param NewBatchConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_post_configs_request: (required)
+        :type config_post_configs_request: ConfigPostConfigsRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: BatchCreateConfigsResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: BatchCreateConfigsResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_post_configs_with_http_info(tenant_id, data, **kwargs)  # noqa: E501
+        return self.config_post_configs_with_http_info(tenant_id, config_post_configs_request, **kwargs)  # noqa: E501
 
-    def config_post_configs_with_http_info(self, tenant_id, data, **kwargs):  # noqa: E501
+    def config_post_configs_with_http_info(self, tenant_id, config_post_configs_request, **kwargs):  # noqa: E501
         """config_post_configs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_post_configs_with_http_info(tenant_id, data, async_req=True)
+
+        >>> thread = api.config_post_configs_with_http_info(tenant_id, config_post_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param NewBatchConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_post_configs_request: (required)
+        :type config_post_configs_request: ConfigPostConfigsRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(BatchCreateConfigsResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(BatchCreateConfigsResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'tenant_id',
-            'data',
+            'config_post_configs_request',
             'sub_tree_path'
         ]
         all_params.extend(
@@ -1823,7 +2493,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1836,13 +2509,11 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_post_configs`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_post_configs`")  # noqa: E501
+        # verify the required parameter 'config_post_configs_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_post_configs_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_post_configs_request` when calling `config_post_configs`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1851,27 +2522,35 @@ class ConfigApi(object):
             path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'config_post_configs_request' in local_var_params:
+            body_params = local_var_params['config_post_configs_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "BatchCreateConfigsResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/batch', 'POST',
@@ -1881,66 +2560,89 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BatchCreateConfigsResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_post_configs_deprecated(self, tenant_id, user_id, data, **kwargs):  # noqa: E501
+    def config_post_configs_deprecated(self, tenant_id, user_id, config_post_configs_request, **kwargs):  # noqa: E501
         """config_post_configs_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_post_configs_deprecated(tenant_id, user_id, data, async_req=True)
+
+        >>> thread = api.config_post_configs_deprecated(tenant_id, user_id, config_post_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param NewBatchConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_post_configs_request: (required)
+        :type config_post_configs_request: ConfigPostConfigsRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: BatchCreateConfigsResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: BatchCreateConfigsResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_post_configs_deprecated_with_http_info(tenant_id, user_id, data, **kwargs)  # noqa: E501
+        return self.config_post_configs_deprecated_with_http_info(tenant_id, user_id, config_post_configs_request, **kwargs)  # noqa: E501
 
-    def config_post_configs_deprecated_with_http_info(self, tenant_id, user_id, data, **kwargs):  # noqa: E501
+    def config_post_configs_deprecated_with_http_info(self, tenant_id, user_id, config_post_configs_request, **kwargs):  # noqa: E501
         """config_post_configs_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_post_configs_deprecated_with_http_info(tenant_id, user_id, data, async_req=True)
+
+        >>> thread = api.config_post_configs_deprecated_with_http_info(tenant_id, user_id, config_post_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param NewBatchConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_post_configs_request: (required)
+        :type config_post_configs_request: ConfigPostConfigsRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(BatchCreateConfigsResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(BatchCreateConfigsResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1948,7 +2650,7 @@ class ConfigApi(object):
         all_params = [
             'tenant_id',
             'user_id',
-            'data',
+            'config_post_configs_request',
             'sub_tree_path'
         ]
         all_params.extend(
@@ -1956,7 +2658,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1969,17 +2674,14 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_post_configs_deprecated`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_id` when calling `config_post_configs_deprecated`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_post_configs_deprecated`")  # noqa: E501
+        # verify the required parameter 'config_post_configs_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_post_configs_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_post_configs_request` when calling `config_post_configs_deprecated`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1990,27 +2692,35 @@ class ConfigApi(object):
             path_params['userId'] = local_var_params['user_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'config_post_configs_request' in local_var_params:
+            body_params = local_var_params['config_post_configs_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "BatchCreateConfigsResult",
+        }
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{userId}/batch', 'POST',
@@ -2020,66 +2730,89 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BatchCreateConfigsResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_put_config(self, tenant_id, config_id, data, **kwargs):  # noqa: E501
+    def config_put_config(self, tenant_id, config_id, config_put_config_request, **kwargs):  # noqa: E501
         """config_put_config  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_put_config(tenant_id, config_id, data, async_req=True)
+
+        >>> thread = api.config_put_config(tenant_id, config_id, config_put_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param UpdatedConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param config_put_config_request: (required)
+        :type config_put_config_request: ConfigPutConfigRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_put_config_with_http_info(tenant_id, config_id, data, **kwargs)  # noqa: E501
+        return self.config_put_config_with_http_info(tenant_id, config_id, config_put_config_request, **kwargs)  # noqa: E501
 
-    def config_put_config_with_http_info(self, tenant_id, config_id, data, **kwargs):  # noqa: E501
+    def config_put_config_with_http_info(self, tenant_id, config_id, config_put_config_request, **kwargs):  # noqa: E501
         """config_put_config  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_put_config_with_http_info(tenant_id, config_id, data, async_req=True)
+
+        >>> thread = api.config_put_config_with_http_info(tenant_id, config_id, config_put_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param UpdatedConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param config_put_config_request: (required)
+        :type config_put_config_request: ConfigPutConfigRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -2087,7 +2820,7 @@ class ConfigApi(object):
         all_params = [
             'tenant_id',
             'config_id',
-            'data',
+            'config_put_config_request',
             'sub_tree_path'
         ]
         all_params.extend(
@@ -2095,7 +2828,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -2108,17 +2844,14 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_put_config`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_put_config`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_put_config`")  # noqa: E501
+        # verify the required parameter 'config_put_config_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_put_config_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_put_config_request` when calling `config_put_config`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2129,23 +2862,29 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'config_put_config_request' in local_var_params:
+            body_params = local_var_params['config_put_config_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{configId}', 'PUT',
@@ -2155,68 +2894,93 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_put_config_deprecated(self, tenant_id, user_id, config_id, data, **kwargs):  # noqa: E501
+    def config_put_config_deprecated(self, tenant_id, user_id, config_id, config_put_config_request, **kwargs):  # noqa: E501
         """config_put_config_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_put_config_deprecated(tenant_id, user_id, config_id, data, async_req=True)
+
+        >>> thread = api.config_put_config_deprecated(tenant_id, user_id, config_id, config_put_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str config_id: (required)
-        :param UpdatedConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param config_put_config_request: (required)
+        :type config_put_config_request: ConfigPutConfigRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_put_config_deprecated_with_http_info(tenant_id, user_id, config_id, data, **kwargs)  # noqa: E501
+        return self.config_put_config_deprecated_with_http_info(tenant_id, user_id, config_id, config_put_config_request, **kwargs)  # noqa: E501
 
-    def config_put_config_deprecated_with_http_info(self, tenant_id, user_id, config_id, data, **kwargs):  # noqa: E501
+    def config_put_config_deprecated_with_http_info(self, tenant_id, user_id, config_id, config_put_config_request, **kwargs):  # noqa: E501
         """config_put_config_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_put_config_deprecated_with_http_info(tenant_id, user_id, config_id, data, async_req=True)
+
+        >>> thread = api.config_put_config_deprecated_with_http_info(tenant_id, user_id, config_id, config_put_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str config_id: (required)
-        :param UpdatedConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param config_put_config_request: (required)
+        :type config_put_config_request: ConfigPutConfigRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -2225,7 +2989,7 @@ class ConfigApi(object):
             'tenant_id',
             'user_id',
             'config_id',
-            'data',
+            'config_put_config_request',
             'sub_tree_path'
         ]
         all_params.extend(
@@ -2233,7 +2997,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -2246,21 +3013,17 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_put_config_deprecated`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_id` when calling `config_put_config_deprecated`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_put_config_deprecated`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_put_config_deprecated`")  # noqa: E501
+        # verify the required parameter 'config_put_config_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_put_config_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_put_config_request` when calling `config_put_config_deprecated`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2273,23 +3036,29 @@ class ConfigApi(object):
             path_params['configId'] = local_var_params['config_id']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'config_put_config_request' in local_var_params:
+            body_params = local_var_params['config_put_config_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{userId}/{configId}', 'PUT',
@@ -2299,64 +3068,85 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_put_config_owner(self, tenant_id, config_id, owner_data, **kwargs):  # noqa: E501
+    def config_put_config_owner(self, tenant_id, config_id, config_put_config_owner_request, **kwargs):  # noqa: E501
         """config_put_config_owner  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_put_config_owner(tenant_id, config_id, owner_data, async_req=True)
+
+        >>> thread = api.config_put_config_owner(tenant_id, config_id, config_put_config_owner_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param ConfigOwnerData owner_data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param config_put_config_owner_request: (required)
+        :type config_put_config_owner_request: ConfigPutConfigOwnerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_put_config_owner_with_http_info(tenant_id, config_id, owner_data, **kwargs)  # noqa: E501
+        return self.config_put_config_owner_with_http_info(tenant_id, config_id, config_put_config_owner_request, **kwargs)  # noqa: E501
 
-    def config_put_config_owner_with_http_info(self, tenant_id, config_id, owner_data, **kwargs):  # noqa: E501
+    def config_put_config_owner_with_http_info(self, tenant_id, config_id, config_put_config_owner_request, **kwargs):  # noqa: E501
         """config_put_config_owner  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_put_config_owner_with_http_info(tenant_id, config_id, owner_data, async_req=True)
+
+        >>> thread = api.config_put_config_owner_with_http_info(tenant_id, config_id, config_put_config_owner_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str config_id: (required)
-        :param ConfigOwnerData owner_data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param config_id: (required)
+        :type config_id: str
+        :param config_put_config_owner_request: (required)
+        :type config_put_config_owner_request: ConfigPutConfigOwnerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -2364,14 +3154,17 @@ class ConfigApi(object):
         all_params = [
             'tenant_id',
             'config_id',
-            'owner_data'
+            'config_put_config_owner_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -2384,17 +3177,14 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_put_config_owner`")  # noqa: E501
         # verify the required parameter 'config_id' is set
-        if self.api_client.client_side_validation and ('config_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['config_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('config_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `config_id` when calling `config_put_config_owner`")  # noqa: E501
-        # verify the required parameter 'owner_data' is set
-        if self.api_client.client_side_validation and ('owner_data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['owner_data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `owner_data` when calling `config_put_config_owner`")  # noqa: E501
+        # verify the required parameter 'config_put_config_owner_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_put_config_owner_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_put_config_owner_request` when calling `config_put_config_owner`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2406,20 +3196,26 @@ class ConfigApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'owner_data' in local_var_params:
-            body_params = local_var_params['owner_data']
+        if 'config_put_config_owner_request' in local_var_params:
+            body_params = local_var_params['config_put_config_owner_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/configs/{tenantId}/{configId}/owner', 'PUT',
@@ -2429,66 +3225,89 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_upgrade_config(self, tenant_id, target_sim_version, data, **kwargs):  # noqa: E501
+    def config_upgrade_config(self, tenant_id, target_sim_version, config_upgrade_config_deprecated_request, **kwargs):  # noqa: E501
         """config_upgrade_config  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_upgrade_config(tenant_id, target_sim_version, data, async_req=True)
+
+        >>> thread = api.config_upgrade_config(tenant_id, target_sim_version, config_upgrade_config_deprecated_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str target_sim_version: (required)
-        :param UpgradeConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param target_sim_version: (required)
+        :type target_sim_version: str
+        :param config_upgrade_config_deprecated_request: (required)
+        :type config_upgrade_config_deprecated_request: ConfigUpgradeConfigDeprecatedRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: UpgradeConfigQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: UpgradeConfigQueryResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_upgrade_config_with_http_info(tenant_id, target_sim_version, data, **kwargs)  # noqa: E501
+        return self.config_upgrade_config_with_http_info(tenant_id, target_sim_version, config_upgrade_config_deprecated_request, **kwargs)  # noqa: E501
 
-    def config_upgrade_config_with_http_info(self, tenant_id, target_sim_version, data, **kwargs):  # noqa: E501
+    def config_upgrade_config_with_http_info(self, tenant_id, target_sim_version, config_upgrade_config_deprecated_request, **kwargs):  # noqa: E501
         """config_upgrade_config  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_upgrade_config_with_http_info(tenant_id, target_sim_version, data, async_req=True)
+
+        >>> thread = api.config_upgrade_config_with_http_info(tenant_id, target_sim_version, config_upgrade_config_deprecated_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str target_sim_version: (required)
-        :param UpgradeConfigData data: (required)
-        :param str sub_tree_path:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param target_sim_version: (required)
+        :type target_sim_version: str
+        :param config_upgrade_config_deprecated_request: (required)
+        :type config_upgrade_config_deprecated_request: ConfigUpgradeConfigDeprecatedRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(UpgradeConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(UpgradeConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2496,7 +3315,7 @@ class ConfigApi(object):
         all_params = [
             'tenant_id',
             'target_sim_version',
-            'data',
+            'config_upgrade_config_deprecated_request',
             'sub_tree_path'
         ]
         all_params.extend(
@@ -2504,7 +3323,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -2517,17 +3339,14 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_upgrade_config`")  # noqa: E501
         # verify the required parameter 'target_sim_version' is set
-        if self.api_client.client_side_validation and ('target_sim_version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['target_sim_version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('target_sim_version') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `target_sim_version` when calling `config_upgrade_config`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_upgrade_config`")  # noqa: E501
+        # verify the required parameter 'config_upgrade_config_deprecated_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_upgrade_config_deprecated_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_upgrade_config_deprecated_request` when calling `config_upgrade_config`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2538,27 +3357,35 @@ class ConfigApi(object):
             path_params['targetSimVersion'] = local_var_params['target_sim_version']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'config_upgrade_config_deprecated_request' in local_var_params:
+            body_params = local_var_params['config_upgrade_config_deprecated_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "UpgradeConfigQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/upgrade/{tenantId}/{targetSimVersion}', 'POST',
@@ -2568,71 +3395,92 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UpgradeConfigQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def config_upgrade_config_deprecated(self, target_sim_version, data, **kwargs):  # noqa: E501
+    def config_upgrade_config_deprecated(self, target_sim_version, config_upgrade_config_deprecated_request, **kwargs):  # noqa: E501
         """config_upgrade_config_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_upgrade_config_deprecated(target_sim_version, data, async_req=True)
+
+        >>> thread = api.config_upgrade_config_deprecated(target_sim_version, config_upgrade_config_deprecated_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str target_sim_version: (required)
-        :param UpgradeConfigData data: (required)
-        :param str sub_tree_path:
+        :param target_sim_version: (required)
+        :type target_sim_version: str
+        :param config_upgrade_config_deprecated_request: (required)
+        :type config_upgrade_config_deprecated_request: ConfigUpgradeConfigDeprecatedRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: UpgradeConfigQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: UpgradeConfigQueryResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.config_upgrade_config_deprecated_with_http_info(target_sim_version, data, **kwargs)  # noqa: E501
+        return self.config_upgrade_config_deprecated_with_http_info(target_sim_version, config_upgrade_config_deprecated_request, **kwargs)  # noqa: E501
 
-    def config_upgrade_config_deprecated_with_http_info(self, target_sim_version, data, **kwargs):  # noqa: E501
+    def config_upgrade_config_deprecated_with_http_info(self, target_sim_version, config_upgrade_config_deprecated_request, **kwargs):  # noqa: E501
         """config_upgrade_config_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.config_upgrade_config_deprecated_with_http_info(target_sim_version, data, async_req=True)
+
+        >>> thread = api.config_upgrade_config_deprecated_with_http_info(target_sim_version, config_upgrade_config_deprecated_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str target_sim_version: (required)
-        :param UpgradeConfigData data: (required)
-        :param str sub_tree_path:
+        :param target_sim_version: (required)
+        :type target_sim_version: str
+        :param config_upgrade_config_deprecated_request: (required)
+        :type config_upgrade_config_deprecated_request: ConfigUpgradeConfigDeprecatedRequest
+        :param sub_tree_path:
+        :type sub_tree_path: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(UpgradeConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(UpgradeConfigQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'target_sim_version',
-            'data',
+            'config_upgrade_config_deprecated_request',
             'sub_tree_path'
         ]
         all_params.extend(
@@ -2640,7 +3488,10 @@ class ConfigApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -2653,13 +3504,11 @@ class ConfigApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'target_sim_version' is set
-        if self.api_client.client_side_validation and ('target_sim_version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['target_sim_version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('target_sim_version') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `target_sim_version` when calling `config_upgrade_config_deprecated`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `config_upgrade_config_deprecated`")  # noqa: E501
+        # verify the required parameter 'config_upgrade_config_deprecated_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_upgrade_config_deprecated_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_upgrade_config_deprecated_request` when calling `config_upgrade_config_deprecated`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2668,27 +3517,35 @@ class ConfigApi(object):
             path_params['targetSimVersion'] = local_var_params['target_sim_version']  # noqa: E501
 
         query_params = []
-        if 'sub_tree_path' in local_var_params and local_var_params['sub_tree_path'] is not None:  # noqa: E501
+        if local_var_params.get('sub_tree_path') is not None:  # noqa: E501
             query_params.append(('subTreePath', local_var_params['sub_tree_path']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'config_upgrade_config_deprecated_request' in local_var_params:
+            body_params = local_var_params['config_upgrade_config_deprecated_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "UpgradeConfigQueryResult",
+        }
 
         return self.api_client.call_api(
             '/configs/upgrade/{targetSimVersion}', 'POST',
@@ -2698,10 +3555,11 @@ class ConfigApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UpgradeConfigQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))

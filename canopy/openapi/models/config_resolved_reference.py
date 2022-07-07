@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class ConfigResolvedReference(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'reference': 'ConfigReference',
+        'reference': 'ConfigResolvedLabelsReference',
         'data': 'ConfigResolvedReferenceData',
         'error': 'str'
     }
@@ -47,7 +50,7 @@ class ConfigResolvedReference(object):
     def __init__(self, reference=None, data=None, error=None, local_vars_configuration=None):  # noqa: E501
         """ConfigResolvedReference - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._reference = None
@@ -55,12 +58,9 @@ class ConfigResolvedReference(object):
         self._error = None
         self.discriminator = None
 
-        if reference is not None:
-            self.reference = reference
-        if data is not None:
-            self.data = data
-        if error is not None:
-            self.error = error
+        self.reference = reference
+        self.data = data
+        self.error = error
 
     @property
     def reference(self):
@@ -68,7 +68,7 @@ class ConfigResolvedReference(object):
 
 
         :return: The reference of this ConfigResolvedReference.  # noqa: E501
-        :rtype: ConfigReference
+        :rtype: ConfigResolvedLabelsReference
         """
         return self._reference
 
@@ -78,8 +78,10 @@ class ConfigResolvedReference(object):
 
 
         :param reference: The reference of this ConfigResolvedReference.  # noqa: E501
-        :type: ConfigReference
+        :type reference: ConfigResolvedLabelsReference
         """
+        if self.local_vars_configuration.client_side_validation and reference is None:  # noqa: E501
+            raise ValueError("Invalid value for `reference`, must not be `None`")  # noqa: E501
 
         self._reference = reference
 
@@ -99,7 +101,7 @@ class ConfigResolvedReference(object):
 
 
         :param data: The data of this ConfigResolvedReference.  # noqa: E501
-        :type: ConfigResolvedReferenceData
+        :type data: ConfigResolvedReferenceData
         """
 
         self._data = data
@@ -120,32 +122,40 @@ class ConfigResolvedReference(object):
 
 
         :param error: The error of this ConfigResolvedReference.  # noqa: E501
-        :type: str
+        :type error: str
         """
 
         self._error = error
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

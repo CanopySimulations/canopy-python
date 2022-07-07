@@ -1,5 +1,6 @@
 # UpdatedChannelImportMappings
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

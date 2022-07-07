@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -34,9 +37,9 @@ class ConfigResolvedReferenceData(object):
     """
     openapi_types = {
         'modified_date': 'datetime',
-        'user_id': 'str',
+        'user_id': 'object',
         'name': 'str',
-        'config_type': 'str',
+        'config_type': 'object',
         'hashes': 'list[ConfigHash]',
         'is_support_session_open': 'bool'
     }
@@ -53,7 +56,7 @@ class ConfigResolvedReferenceData(object):
     def __init__(self, modified_date=None, user_id=None, name=None, config_type=None, hashes=None, is_support_session_open=None, local_vars_configuration=None):  # noqa: E501
         """ConfigResolvedReferenceData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._modified_date = None
@@ -64,18 +67,12 @@ class ConfigResolvedReferenceData(object):
         self._is_support_session_open = None
         self.discriminator = None
 
-        if modified_date is not None:
-            self.modified_date = modified_date
-        if user_id is not None:
-            self.user_id = user_id
-        if name is not None:
-            self.name = name
-        if config_type is not None:
-            self.config_type = config_type
-        if hashes is not None:
-            self.hashes = hashes
-        if is_support_session_open is not None:
-            self.is_support_session_open = is_support_session_open
+        self.modified_date = modified_date
+        self.user_id = user_id
+        self.name = name
+        self.config_type = config_type
+        self.hashes = hashes
+        self.is_support_session_open = is_support_session_open
 
     @property
     def modified_date(self):
@@ -93,8 +90,10 @@ class ConfigResolvedReferenceData(object):
 
 
         :param modified_date: The modified_date of this ConfigResolvedReferenceData.  # noqa: E501
-        :type: datetime
+        :type modified_date: datetime
         """
+        if self.local_vars_configuration.client_side_validation and modified_date is None:  # noqa: E501
+            raise ValueError("Invalid value for `modified_date`, must not be `None`")  # noqa: E501
 
         self._modified_date = modified_date
 
@@ -104,7 +103,7 @@ class ConfigResolvedReferenceData(object):
 
 
         :return: The user_id of this ConfigResolvedReferenceData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._user_id
 
@@ -114,8 +113,10 @@ class ConfigResolvedReferenceData(object):
 
 
         :param user_id: The user_id of this ConfigResolvedReferenceData.  # noqa: E501
-        :type: str
+        :type user_id: object
         """
+        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -135,8 +136,10 @@ class ConfigResolvedReferenceData(object):
 
 
         :param name: The name of this ConfigResolvedReferenceData.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -146,7 +149,7 @@ class ConfigResolvedReferenceData(object):
 
 
         :return: The config_type of this ConfigResolvedReferenceData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._config_type
 
@@ -156,8 +159,10 @@ class ConfigResolvedReferenceData(object):
 
 
         :param config_type: The config_type of this ConfigResolvedReferenceData.  # noqa: E501
-        :type: str
+        :type config_type: object
         """
+        if self.local_vars_configuration.client_side_validation and config_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `config_type`, must not be `None`")  # noqa: E501
 
         self._config_type = config_type
 
@@ -177,8 +182,10 @@ class ConfigResolvedReferenceData(object):
 
 
         :param hashes: The hashes of this ConfigResolvedReferenceData.  # noqa: E501
-        :type: list[ConfigHash]
+        :type hashes: list[ConfigHash]
         """
+        if self.local_vars_configuration.client_side_validation and hashes is None:  # noqa: E501
+            raise ValueError("Invalid value for `hashes`, must not be `None`")  # noqa: E501
 
         self._hashes = hashes
 
@@ -198,32 +205,40 @@ class ConfigResolvedReferenceData(object):
 
 
         :param is_support_session_open: The is_support_session_open of this ConfigResolvedReferenceData.  # noqa: E501
-        :type: bool
+        :type is_support_session_open: bool
         """
 
         self._is_support_session_open = is_support_session_open
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

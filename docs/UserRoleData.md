@@ -1,5 +1,6 @@
 # UserRoleData
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

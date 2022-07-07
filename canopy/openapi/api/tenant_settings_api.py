@@ -41,21 +41,26 @@ class TenantSettingsApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_admin_tenant_settings(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetAdminTenantSettingsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetAdminTenantSettingsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.tenant_settings_get_admin_tenant_settings_with_http_info(tenant_id, **kwargs)  # noqa: E501
@@ -65,23 +70,34 @@ class TenantSettingsApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_admin_tenant_settings_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetAdminTenantSettingsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetAdminTenantSettingsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -94,7 +110,10 @@ class TenantSettingsApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -107,8 +126,7 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_get_admin_tenant_settings`")  # noqa: E501
 
         collection_formats = {}
@@ -119,7 +137,7 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -127,10 +145,14 @@ class TenantSettingsApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetAdminTenantSettingsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/tenant-settings/admin/{tenantId}', 'GET',
@@ -140,34 +162,40 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetAdminTenantSettingsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_channel_import_mappings(self, tenant_id, **kwargs):  # noqa: E501
         """tenant_settings_get_tenant_channel_import_mappings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_tenant_channel_import_mappings(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetTenantChannelImportMappingsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetTenantChannelImportMappingsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.tenant_settings_get_tenant_channel_import_mappings_with_http_info(tenant_id, **kwargs)  # noqa: E501
@@ -177,23 +205,34 @@ class TenantSettingsApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_tenant_channel_import_mappings_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetTenantChannelImportMappingsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetTenantChannelImportMappingsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -206,7 +245,10 @@ class TenantSettingsApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -219,8 +261,7 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_get_tenant_channel_import_mappings`")  # noqa: E501
 
         collection_formats = {}
@@ -231,7 +272,7 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -239,10 +280,14 @@ class TenantSettingsApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetTenantChannelImportMappingsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/tenant-settings/channel-import-mappings/{tenantId}', 'GET',
@@ -252,35 +297,177 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetTenantChannelImportMappingsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def tenant_settings_get_tenant_channel_whitelists(self, tenant_id, **kwargs):  # noqa: E501
+        """tenant_settings_get_tenant_channel_whitelists  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.tenant_settings_get_tenant_channel_whitelists(tenant_id, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetTenantChannelWhitelistsQueryResult
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.tenant_settings_get_tenant_channel_whitelists_with_http_info(tenant_id, **kwargs)  # noqa: E501
+
+    def tenant_settings_get_tenant_channel_whitelists_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
+        """tenant_settings_get_tenant_channel_whitelists  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.tenant_settings_get_tenant_channel_whitelists_with_http_info(tenant_id, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetTenantChannelWhitelistsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method tenant_settings_get_tenant_channel_whitelists" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_get_tenant_channel_whitelists`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetTenantChannelWhitelistsQueryResult",
+        }
+
+        return self.api_client.call_api(
+            '/tenant-settings/channel-whitelists/{tenantId}', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_default_custom_property_names(self, tenant_id, **kwargs):  # noqa: E501
         """tenant_settings_get_tenant_default_custom_property_names  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_tenant_default_custom_property_names(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str target_type:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param target_type:
+        :type target_type: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetTenantDefaultCustomPropertyNamesQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetTenantDefaultCustomPropertyNamesQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.tenant_settings_get_tenant_default_custom_property_names_with_http_info(tenant_id, **kwargs)  # noqa: E501
@@ -290,24 +477,36 @@ class TenantSettingsApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_tenant_default_custom_property_names_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str target_type:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param target_type:
+        :type target_type: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetTenantDefaultCustomPropertyNamesQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetTenantDefaultCustomPropertyNamesQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -321,7 +520,10 @@ class TenantSettingsApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -334,8 +536,7 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_get_tenant_default_custom_property_names`")  # noqa: E501
 
         collection_formats = {}
@@ -345,10 +546,10 @@ class TenantSettingsApi(object):
             path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
 
         query_params = []
-        if 'target_type' in local_var_params and local_var_params['target_type'] is not None:  # noqa: E501
+        if local_var_params.get('target_type') is not None:  # noqa: E501
             query_params.append(('targetType', local_var_params['target_type']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -356,10 +557,14 @@ class TenantSettingsApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetTenantDefaultCustomPropertyNamesQueryResult",
+        }
 
         return self.api_client.call_api(
             '/tenant-settings/default-custom-property-names/{tenantId}', 'GET',
@@ -369,34 +574,40 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetTenantDefaultCustomPropertyNamesQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_settings_sim_version(self, tenant_id, **kwargs):  # noqa: E501
         """tenant_settings_get_tenant_settings_sim_version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_tenant_settings_sim_version(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetTenantSettingsSimVersionQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetTenantSettingsSimVersionQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.tenant_settings_get_tenant_settings_sim_version_with_http_info(tenant_id, **kwargs)  # noqa: E501
@@ -406,23 +617,34 @@ class TenantSettingsApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_tenant_settings_sim_version_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetTenantSettingsSimVersionQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetTenantSettingsSimVersionQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -435,7 +657,10 @@ class TenantSettingsApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -448,8 +673,7 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_get_tenant_settings_sim_version`")  # noqa: E501
 
         collection_formats = {}
@@ -460,7 +684,7 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -468,10 +692,14 @@ class TenantSettingsApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetTenantSettingsSimVersionQueryResult",
+        }
 
         return self.api_client.call_api(
             '/tenant-settings/sim-version/{tenantId}', 'GET',
@@ -481,34 +709,40 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetTenantSettingsSimVersionQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_worksheet_label_definitions(self, tenant_id, **kwargs):  # noqa: E501
         """tenant_settings_get_tenant_worksheet_label_definitions  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_tenant_worksheet_label_definitions(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetTenantWorksheetLabelDefinitionsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetTenantWorksheetLabelDefinitionsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.tenant_settings_get_tenant_worksheet_label_definitions_with_http_info(tenant_id, **kwargs)  # noqa: E501
@@ -518,23 +752,34 @@ class TenantSettingsApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.tenant_settings_get_tenant_worksheet_label_definitions_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetTenantWorksheetLabelDefinitionsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetTenantWorksheetLabelDefinitionsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -547,7 +792,10 @@ class TenantSettingsApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -560,8 +808,7 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_get_tenant_worksheet_label_definitions`")  # noqa: E501
 
         collection_formats = {}
@@ -572,7 +819,7 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -580,10 +827,14 @@ class TenantSettingsApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetTenantWorksheetLabelDefinitionsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/tenant-settings/worksheet-label-definitions/{tenantId}', 'GET',
@@ -593,76 +844,98 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetTenantWorksheetLabelDefinitionsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def tenant_settings_put_admin_tenant_settings(self, tenant_id, data, **kwargs):  # noqa: E501
+    def tenant_settings_put_admin_tenant_settings(self, tenant_id, tenant_settings_put_admin_tenant_settings_request, **kwargs):  # noqa: E501
         """tenant_settings_put_admin_tenant_settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_admin_tenant_settings(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_admin_tenant_settings(tenant_id, tenant_settings_put_admin_tenant_settings_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedAdminTenantSettings data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_admin_tenant_settings_request: (required)
+        :type tenant_settings_put_admin_tenant_settings_request: TenantSettingsPutAdminTenantSettingsRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: str
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: str
         """
         kwargs['_return_http_data_only'] = True
-        return self.tenant_settings_put_admin_tenant_settings_with_http_info(tenant_id, data, **kwargs)  # noqa: E501
+        return self.tenant_settings_put_admin_tenant_settings_with_http_info(tenant_id, tenant_settings_put_admin_tenant_settings_request, **kwargs)  # noqa: E501
 
-    def tenant_settings_put_admin_tenant_settings_with_http_info(self, tenant_id, data, **kwargs):  # noqa: E501
+    def tenant_settings_put_admin_tenant_settings_with_http_info(self, tenant_id, tenant_settings_put_admin_tenant_settings_request, **kwargs):  # noqa: E501
         """tenant_settings_put_admin_tenant_settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_admin_tenant_settings_with_http_info(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_admin_tenant_settings_with_http_info(tenant_id, tenant_settings_put_admin_tenant_settings_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedAdminTenantSettings data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_admin_tenant_settings_request: (required)
+        :type tenant_settings_put_admin_tenant_settings_request: TenantSettingsPutAdminTenantSettingsRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'tenant_id',
-            'data'
+            'tenant_settings_put_admin_tenant_settings_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -675,13 +948,11 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_put_admin_tenant_settings`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `tenant_settings_put_admin_tenant_settings`")  # noqa: E501
+        # verify the required parameter 'tenant_settings_put_admin_tenant_settings_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_settings_put_admin_tenant_settings_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_settings_put_admin_tenant_settings_request` when calling `tenant_settings_put_admin_tenant_settings`")  # noqa: E501
 
         collection_formats = {}
 
@@ -691,24 +962,32 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'tenant_settings_put_admin_tenant_settings_request' in local_var_params:
+            body_params = local_var_params['tenant_settings_put_admin_tenant_settings_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json', 'application/xml', 'text/xml'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "str",
+        }
 
         return self.api_client.call_api(
             '/tenant-settings/admin/{tenantId}', 'PUT',
@@ -718,76 +997,98 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='str',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def tenant_settings_put_tenant_channel_import_mappings(self, tenant_id, data, **kwargs):  # noqa: E501
+    def tenant_settings_put_tenant_channel_import_mappings(self, tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, **kwargs):  # noqa: E501
         """tenant_settings_put_tenant_channel_import_mappings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_tenant_channel_import_mappings(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_tenant_channel_import_mappings(tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedChannelImportMappings data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_channel_import_mappings_request: (required)
+        :type tenant_settings_put_tenant_channel_import_mappings_request: TenantSettingsPutTenantChannelImportMappingsRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.tenant_settings_put_tenant_channel_import_mappings_with_http_info(tenant_id, data, **kwargs)  # noqa: E501
+        return self.tenant_settings_put_tenant_channel_import_mappings_with_http_info(tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, **kwargs)  # noqa: E501
 
-    def tenant_settings_put_tenant_channel_import_mappings_with_http_info(self, tenant_id, data, **kwargs):  # noqa: E501
+    def tenant_settings_put_tenant_channel_import_mappings_with_http_info(self, tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, **kwargs):  # noqa: E501
         """tenant_settings_put_tenant_channel_import_mappings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_tenant_channel_import_mappings_with_http_info(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_tenant_channel_import_mappings_with_http_info(tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedChannelImportMappings data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_channel_import_mappings_request: (required)
+        :type tenant_settings_put_tenant_channel_import_mappings_request: TenantSettingsPutTenantChannelImportMappingsRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
 
         all_params = [
             'tenant_id',
-            'data'
+            'tenant_settings_put_tenant_channel_import_mappings_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -800,13 +1101,11 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_put_tenant_channel_import_mappings`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `tenant_settings_put_tenant_channel_import_mappings`")  # noqa: E501
+        # verify the required parameter 'tenant_settings_put_tenant_channel_import_mappings_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_settings_put_tenant_channel_import_mappings_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_settings_put_tenant_channel_import_mappings_request` when calling `tenant_settings_put_tenant_channel_import_mappings`")  # noqa: E501
 
         collection_formats = {}
 
@@ -816,20 +1115,26 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'tenant_settings_put_tenant_channel_import_mappings_request' in local_var_params:
+            body_params = local_var_params['tenant_settings_put_tenant_channel_import_mappings_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/tenant-settings/channel-import-mappings/{tenantId}', 'PUT',
@@ -839,76 +1144,245 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def tenant_settings_put_tenant_default_custom_property_names(self, tenant_id, data, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_default_custom_property_names  # noqa: E501
+    def tenant_settings_put_tenant_channel_whitelists(self, tenant_id, tenant_settings_put_tenant_channel_whitelists_request, **kwargs):  # noqa: E501
+        """tenant_settings_put_tenant_channel_whitelists  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_tenant_default_custom_property_names(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_tenant_channel_whitelists(tenant_id, tenant_settings_put_tenant_channel_whitelists_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedTenantDefaultCustomPropertyNames data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_channel_whitelists_request: (required)
+        :type tenant_settings_put_tenant_channel_whitelists_request: TenantSettingsPutTenantChannelWhitelistsRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.tenant_settings_put_tenant_default_custom_property_names_with_http_info(tenant_id, data, **kwargs)  # noqa: E501
+        return self.tenant_settings_put_tenant_channel_whitelists_with_http_info(tenant_id, tenant_settings_put_tenant_channel_whitelists_request, **kwargs)  # noqa: E501
 
-    def tenant_settings_put_tenant_default_custom_property_names_with_http_info(self, tenant_id, data, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_default_custom_property_names  # noqa: E501
+    def tenant_settings_put_tenant_channel_whitelists_with_http_info(self, tenant_id, tenant_settings_put_tenant_channel_whitelists_request, **kwargs):  # noqa: E501
+        """tenant_settings_put_tenant_channel_whitelists  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_tenant_default_custom_property_names_with_http_info(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_tenant_channel_whitelists_with_http_info(tenant_id, tenant_settings_put_tenant_channel_whitelists_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedTenantDefaultCustomPropertyNames data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_channel_whitelists_request: (required)
+        :type tenant_settings_put_tenant_channel_whitelists_request: TenantSettingsPutTenantChannelWhitelistsRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
 
         all_params = [
             'tenant_id',
-            'data'
+            'tenant_settings_put_tenant_channel_whitelists_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method tenant_settings_put_tenant_channel_whitelists" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_put_tenant_channel_whitelists`")  # noqa: E501
+        # verify the required parameter 'tenant_settings_put_tenant_channel_whitelists_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_settings_put_tenant_channel_whitelists_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_settings_put_tenant_channel_whitelists_request` when calling `tenant_settings_put_tenant_channel_whitelists`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'tenant_settings_put_tenant_channel_whitelists_request' in local_var_params:
+            body_params = local_var_params['tenant_settings_put_tenant_channel_whitelists_request']
+        # HTTP header `Content-Type`
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/tenant-settings/channel-whitelists/{tenantId}', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def tenant_settings_put_tenant_default_custom_property_names(self, tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, **kwargs):  # noqa: E501
+        """tenant_settings_put_tenant_default_custom_property_names  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.tenant_settings_put_tenant_default_custom_property_names(tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_default_custom_property_names_request: (required)
+        :type tenant_settings_put_tenant_default_custom_property_names_request: TenantSettingsPutTenantDefaultCustomPropertyNamesRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.tenant_settings_put_tenant_default_custom_property_names_with_http_info(tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, **kwargs)  # noqa: E501
+
+    def tenant_settings_put_tenant_default_custom_property_names_with_http_info(self, tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, **kwargs):  # noqa: E501
+        """tenant_settings_put_tenant_default_custom_property_names  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.tenant_settings_put_tenant_default_custom_property_names_with_http_info(tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_default_custom_property_names_request: (required)
+        :type tenant_settings_put_tenant_default_custom_property_names_request: TenantSettingsPutTenantDefaultCustomPropertyNamesRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'tenant_settings_put_tenant_default_custom_property_names_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -921,13 +1395,11 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_put_tenant_default_custom_property_names`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `tenant_settings_put_tenant_default_custom_property_names`")  # noqa: E501
+        # verify the required parameter 'tenant_settings_put_tenant_default_custom_property_names_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_settings_put_tenant_default_custom_property_names_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_settings_put_tenant_default_custom_property_names_request` when calling `tenant_settings_put_tenant_default_custom_property_names`")  # noqa: E501
 
         collection_formats = {}
 
@@ -937,20 +1409,26 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'tenant_settings_put_tenant_default_custom_property_names_request' in local_var_params:
+            body_params = local_var_params['tenant_settings_put_tenant_default_custom_property_names_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/tenant-settings/default-custom-property-names/{tenantId}', 'PUT',
@@ -960,76 +1438,98 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def tenant_settings_put_tenant_settings_sim_version(self, tenant_id, data, **kwargs):  # noqa: E501
+    def tenant_settings_put_tenant_settings_sim_version(self, tenant_id, tenant_settings_put_tenant_settings_sim_version_request, **kwargs):  # noqa: E501
         """tenant_settings_put_tenant_settings_sim_version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_tenant_settings_sim_version(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_tenant_settings_sim_version(tenant_id, tenant_settings_put_tenant_settings_sim_version_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedTenantSettingsSimVersion data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_settings_sim_version_request: (required)
+        :type tenant_settings_put_tenant_settings_sim_version_request: TenantSettingsPutTenantSettingsSimVersionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.tenant_settings_put_tenant_settings_sim_version_with_http_info(tenant_id, data, **kwargs)  # noqa: E501
+        return self.tenant_settings_put_tenant_settings_sim_version_with_http_info(tenant_id, tenant_settings_put_tenant_settings_sim_version_request, **kwargs)  # noqa: E501
 
-    def tenant_settings_put_tenant_settings_sim_version_with_http_info(self, tenant_id, data, **kwargs):  # noqa: E501
+    def tenant_settings_put_tenant_settings_sim_version_with_http_info(self, tenant_id, tenant_settings_put_tenant_settings_sim_version_request, **kwargs):  # noqa: E501
         """tenant_settings_put_tenant_settings_sim_version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_tenant_settings_sim_version_with_http_info(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_tenant_settings_sim_version_with_http_info(tenant_id, tenant_settings_put_tenant_settings_sim_version_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedTenantSettingsSimVersion data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_settings_sim_version_request: (required)
+        :type tenant_settings_put_tenant_settings_sim_version_request: TenantSettingsPutTenantSettingsSimVersionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
 
         all_params = [
             'tenant_id',
-            'data'
+            'tenant_settings_put_tenant_settings_sim_version_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1042,13 +1542,11 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_put_tenant_settings_sim_version`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `tenant_settings_put_tenant_settings_sim_version`")  # noqa: E501
+        # verify the required parameter 'tenant_settings_put_tenant_settings_sim_version_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_settings_put_tenant_settings_sim_version_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_settings_put_tenant_settings_sim_version_request` when calling `tenant_settings_put_tenant_settings_sim_version`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1058,20 +1556,26 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'tenant_settings_put_tenant_settings_sim_version_request' in local_var_params:
+            body_params = local_var_params['tenant_settings_put_tenant_settings_sim_version_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/tenant-settings/sim-version/{tenantId}', 'PUT',
@@ -1081,76 +1585,98 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def tenant_settings_put_tenant_worksheet_label_definitions(self, tenant_id, data, **kwargs):  # noqa: E501
+    def tenant_settings_put_tenant_worksheet_label_definitions(self, tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, **kwargs):  # noqa: E501
         """tenant_settings_put_tenant_worksheet_label_definitions  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_tenant_worksheet_label_definitions(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_tenant_worksheet_label_definitions(tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedWorksheetLabelDefinitions data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_worksheet_label_definitions_request: (required)
+        :type tenant_settings_put_tenant_worksheet_label_definitions_request: TenantSettingsPutTenantWorksheetLabelDefinitionsRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(tenant_id, data, **kwargs)  # noqa: E501
+        return self.tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, **kwargs)  # noqa: E501
 
-    def tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(self, tenant_id, data, **kwargs):  # noqa: E501
+    def tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(self, tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, **kwargs):  # noqa: E501
         """tenant_settings_put_tenant_worksheet_label_definitions  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(tenant_id, data, async_req=True)
+
+        >>> thread = api.tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param UpdatedWorksheetLabelDefinitions data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param tenant_settings_put_tenant_worksheet_label_definitions_request: (required)
+        :type tenant_settings_put_tenant_worksheet_label_definitions_request: TenantSettingsPutTenantWorksheetLabelDefinitionsRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
 
         all_params = [
             'tenant_id',
-            'data'
+            'tenant_settings_put_tenant_worksheet_label_definitions_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1163,13 +1689,11 @@ class TenantSettingsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `tenant_settings_put_tenant_worksheet_label_definitions`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `tenant_settings_put_tenant_worksheet_label_definitions`")  # noqa: E501
+        # verify the required parameter 'tenant_settings_put_tenant_worksheet_label_definitions_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_settings_put_tenant_worksheet_label_definitions_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_settings_put_tenant_worksheet_label_definitions_request` when calling `tenant_settings_put_tenant_worksheet_label_definitions`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1179,20 +1703,26 @@ class TenantSettingsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'tenant_settings_put_tenant_worksheet_label_definitions_request' in local_var_params:
+            body_params = local_var_params['tenant_settings_put_tenant_worksheet_label_definitions_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/tenant-settings/worksheet-label-definitions/{tenantId}', 'PUT',
@@ -1202,10 +1732,11 @@ class TenantSettingsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))

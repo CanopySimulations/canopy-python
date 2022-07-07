@@ -41,20 +41,24 @@ class SupportSessionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.support_session_get_all_support_sessions(async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetAllSupportSessionsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetAllSupportSessionsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.support_session_get_all_support_sessions_with_http_info(**kwargs)  # noqa: E501
@@ -64,22 +68,32 @@ class SupportSessionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.support_session_get_all_support_sessions_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetAllSupportSessionsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetAllSupportSessionsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -91,7 +105,10 @@ class SupportSessionApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -110,7 +127,7 @@ class SupportSessionApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -118,10 +135,14 @@ class SupportSessionApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetAllSupportSessionsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/support-sessions/all', 'GET',
@@ -131,35 +152,42 @@ class SupportSessionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetAllSupportSessionsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def support_session_get_support_session(self, tenant_id, document_id, **kwargs):  # noqa: E501
         """support_session_get_support_session  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.support_session_get_support_session(tenant_id, document_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str document_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param document_id: (required)
+        :type document_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetSupportSessionQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetSupportSessionQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.support_session_get_support_session_with_http_info(tenant_id, document_id, **kwargs)  # noqa: E501
@@ -169,24 +197,36 @@ class SupportSessionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.support_session_get_support_session_with_http_info(tenant_id, document_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str document_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param document_id: (required)
+        :type document_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetSupportSessionQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetSupportSessionQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -200,7 +240,10 @@ class SupportSessionApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -213,12 +256,10 @@ class SupportSessionApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `support_session_get_support_session`")  # noqa: E501
         # verify the required parameter 'document_id' is set
-        if self.api_client.client_side_validation and ('document_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['document_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('document_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `document_id` when calling `support_session_get_support_session`")  # noqa: E501
 
         collection_formats = {}
@@ -231,7 +272,7 @@ class SupportSessionApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -239,10 +280,14 @@ class SupportSessionApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetSupportSessionQueryResult",
+        }
 
         return self.api_client.call_api(
             '/support-sessions/{tenantId}/{documentId}', 'GET',
@@ -252,36 +297,44 @@ class SupportSessionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetSupportSessionQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def support_session_get_support_session_deprecated(self, tenant_id, user_id, document_id, **kwargs):  # noqa: E501
         """support_session_get_support_session_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.support_session_get_support_session_deprecated(tenant_id, user_id, document_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str document_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param document_id: (required)
+        :type document_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetSupportSessionQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetSupportSessionQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.support_session_get_support_session_deprecated_with_http_info(tenant_id, user_id, document_id, **kwargs)  # noqa: E501
@@ -291,25 +344,38 @@ class SupportSessionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.support_session_get_support_session_deprecated_with_http_info(tenant_id, user_id, document_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str document_id: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param document_id: (required)
+        :type document_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetSupportSessionQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetSupportSessionQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -324,7 +390,10 @@ class SupportSessionApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -337,16 +406,13 @@ class SupportSessionApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `support_session_get_support_session_deprecated`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_id` when calling `support_session_get_support_session_deprecated`")  # noqa: E501
         # verify the required parameter 'document_id' is set
-        if self.api_client.client_side_validation and ('document_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['document_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('document_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `document_id` when calling `support_session_get_support_session_deprecated`")  # noqa: E501
 
         collection_formats = {}
@@ -361,7 +427,7 @@ class SupportSessionApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -369,10 +435,14 @@ class SupportSessionApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetSupportSessionQueryResult",
+        }
 
         return self.api_client.call_api(
             '/support-sessions/{tenantId}/{userId}/{documentId}', 'GET',
@@ -382,64 +452,85 @@ class SupportSessionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetSupportSessionQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def support_session_put_support_session(self, tenant_id, document_id, data, **kwargs):  # noqa: E501
+    def support_session_put_support_session(self, tenant_id, document_id, support_session_put_support_session_request, **kwargs):  # noqa: E501
         """support_session_put_support_session  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.support_session_put_support_session(tenant_id, document_id, data, async_req=True)
+
+        >>> thread = api.support_session_put_support_session(tenant_id, document_id, support_session_put_support_session_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str document_id: (required)
-        :param SupportSessionData data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param document_id: (required)
+        :type document_id: str
+        :param support_session_put_support_session_request: (required)
+        :type support_session_put_support_session_request: SupportSessionPutSupportSessionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.support_session_put_support_session_with_http_info(tenant_id, document_id, data, **kwargs)  # noqa: E501
+        return self.support_session_put_support_session_with_http_info(tenant_id, document_id, support_session_put_support_session_request, **kwargs)  # noqa: E501
 
-    def support_session_put_support_session_with_http_info(self, tenant_id, document_id, data, **kwargs):  # noqa: E501
+    def support_session_put_support_session_with_http_info(self, tenant_id, document_id, support_session_put_support_session_request, **kwargs):  # noqa: E501
         """support_session_put_support_session  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.support_session_put_support_session_with_http_info(tenant_id, document_id, data, async_req=True)
+
+        >>> thread = api.support_session_put_support_session_with_http_info(tenant_id, document_id, support_session_put_support_session_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str document_id: (required)
-        :param SupportSessionData data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param document_id: (required)
+        :type document_id: str
+        :param support_session_put_support_session_request: (required)
+        :type support_session_put_support_session_request: SupportSessionPutSupportSessionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -447,14 +538,17 @@ class SupportSessionApi(object):
         all_params = [
             'tenant_id',
             'document_id',
-            'data'
+            'support_session_put_support_session_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -467,17 +561,14 @@ class SupportSessionApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `support_session_put_support_session`")  # noqa: E501
         # verify the required parameter 'document_id' is set
-        if self.api_client.client_side_validation and ('document_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['document_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('document_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `document_id` when calling `support_session_put_support_session`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `support_session_put_support_session`")  # noqa: E501
+        # verify the required parameter 'support_session_put_support_session_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('support_session_put_support_session_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `support_session_put_support_session_request` when calling `support_session_put_support_session`")  # noqa: E501
 
         collection_formats = {}
 
@@ -489,20 +580,26 @@ class SupportSessionApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'support_session_put_support_session_request' in local_var_params:
+            body_params = local_var_params['support_session_put_support_session_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/support-sessions/{tenantId}/{documentId}', 'PUT',
@@ -512,66 +609,89 @@ class SupportSessionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def support_session_put_support_session_deprecated(self, tenant_id, user_id, document_id, data, **kwargs):  # noqa: E501
+    def support_session_put_support_session_deprecated(self, tenant_id, user_id, document_id, support_session_put_support_session_request, **kwargs):  # noqa: E501
         """support_session_put_support_session_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.support_session_put_support_session_deprecated(tenant_id, user_id, document_id, data, async_req=True)
+
+        >>> thread = api.support_session_put_support_session_deprecated(tenant_id, user_id, document_id, support_session_put_support_session_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str document_id: (required)
-        :param SupportSessionData data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param document_id: (required)
+        :type document_id: str
+        :param support_session_put_support_session_request: (required)
+        :type support_session_put_support_session_request: SupportSessionPutSupportSessionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.support_session_put_support_session_deprecated_with_http_info(tenant_id, user_id, document_id, data, **kwargs)  # noqa: E501
+        return self.support_session_put_support_session_deprecated_with_http_info(tenant_id, user_id, document_id, support_session_put_support_session_request, **kwargs)  # noqa: E501
 
-    def support_session_put_support_session_deprecated_with_http_info(self, tenant_id, user_id, document_id, data, **kwargs):  # noqa: E501
+    def support_session_put_support_session_deprecated_with_http_info(self, tenant_id, user_id, document_id, support_session_put_support_session_request, **kwargs):  # noqa: E501
         """support_session_put_support_session_deprecated  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.support_session_put_support_session_deprecated_with_http_info(tenant_id, user_id, document_id, data, async_req=True)
+
+        >>> thread = api.support_session_put_support_session_deprecated_with_http_info(tenant_id, user_id, document_id, support_session_put_support_session_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str user_id: (required)
-        :param str document_id: (required)
-        :param SupportSessionData data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param user_id: (required)
+        :type user_id: str
+        :param document_id: (required)
+        :type document_id: str
+        :param support_session_put_support_session_request: (required)
+        :type support_session_put_support_session_request: SupportSessionPutSupportSessionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -580,14 +700,17 @@ class SupportSessionApi(object):
             'tenant_id',
             'user_id',
             'document_id',
-            'data'
+            'support_session_put_support_session_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -600,21 +723,17 @@ class SupportSessionApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `support_session_put_support_session_deprecated`")  # noqa: E501
         # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and ('user_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_id` when calling `support_session_put_support_session_deprecated`")  # noqa: E501
         # verify the required parameter 'document_id' is set
-        if self.api_client.client_side_validation and ('document_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['document_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('document_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `document_id` when calling `support_session_put_support_session_deprecated`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `support_session_put_support_session_deprecated`")  # noqa: E501
+        # verify the required parameter 'support_session_put_support_session_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('support_session_put_support_session_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `support_session_put_support_session_request` when calling `support_session_put_support_session_deprecated`")  # noqa: E501
 
         collection_formats = {}
 
@@ -628,20 +747,26 @@ class SupportSessionApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'support_session_put_support_session_request' in local_var_params:
+            body_params = local_var_params['support_session_put_support_session_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/support-sessions/{tenantId}/{userId}/{documentId}', 'PUT',
@@ -651,10 +776,11 @@ class SupportSessionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))

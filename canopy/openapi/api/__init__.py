@@ -15,5 +15,6 @@ from canopy.openapi.api.study_api import StudyApi
 from canopy.openapi.api.support_session_api import SupportSessionApi
 from canopy.openapi.api.tenancy_api import TenancyApi
 from canopy.openapi.api.tenant_settings_api import TenantSettingsApi
+from canopy.openapi.api.token_api import TokenApi
 from canopy.openapi.api.user_settings_api import UserSettingsApi
 from canopy.openapi.api.worksheet_api import WorksheetApi

@@ -9,6 +9,8 @@ class GetStudyTypeDefinitionForSimVersionTest(unittest.TestCase):
             'Dynamic Lap',
             ['DynamicLap'],
             ['car', 'track', 'weather'],
+            valid_for_transient=False,
+            valid_for_inline=False,
             previous_definitions=[
                 canopy.openapi.IPreviousDefinitionStudyTypeDefinition(
                     sim_version='1.50',
@@ -16,14 +18,20 @@ class GetStudyTypeDefinitionForSimVersionTest(unittest.TestCase):
                         'dynamicLap',
                         'Dynamic Lap 50',
                         ['DynamicLap'],
-                        ['car', 'track'])),
+                        ['car', 'track'],
+                        valid_for_transient=False,
+                        valid_for_inline=False,
+                        previous_definitions=[])),
                 canopy.openapi.IPreviousDefinitionStudyTypeDefinition(
                     sim_version='1.100',
                     definition=canopy.openapi.StudyTypeDefinition(
                         'dynamicLap',
                         'Dynamic Lap 100',
                         ['DynamicLap'],
-                        ['car', 'track'])),
+                        ['car', 'track'],
+                        valid_for_transient=False,
+                        valid_for_inline=False,
+                        previous_definitions=[])),
             ])
 
     def test_it_should_return_root_definition_when_no_sim_version(self):

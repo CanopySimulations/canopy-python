@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -47,7 +50,7 @@ class StudyDocumentsAndContinuationToken(object):
     def __init__(self, documents=None, continuation_token=None, has_more_results=None, local_vars_configuration=None):  # noqa: E501
         """StudyDocumentsAndContinuationToken - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._documents = None
@@ -55,12 +58,9 @@ class StudyDocumentsAndContinuationToken(object):
         self._has_more_results = None
         self.discriminator = None
 
-        if documents is not None:
-            self.documents = documents
-        if continuation_token is not None:
-            self.continuation_token = continuation_token
-        if has_more_results is not None:
-            self.has_more_results = has_more_results
+        self.documents = documents
+        self.continuation_token = continuation_token
+        self.has_more_results = has_more_results
 
     @property
     def documents(self):
@@ -78,8 +78,10 @@ class StudyDocumentsAndContinuationToken(object):
 
 
         :param documents: The documents of this StudyDocumentsAndContinuationToken.  # noqa: E501
-        :type: list[CanopyDocument]
+        :type documents: list[CanopyDocument]
         """
+        if self.local_vars_configuration.client_side_validation and documents is None:  # noqa: E501
+            raise ValueError("Invalid value for `documents`, must not be `None`")  # noqa: E501
 
         self._documents = documents
 
@@ -99,7 +101,7 @@ class StudyDocumentsAndContinuationToken(object):
 
 
         :param continuation_token: The continuation_token of this StudyDocumentsAndContinuationToken.  # noqa: E501
-        :type: str
+        :type continuation_token: str
         """
 
         self._continuation_token = continuation_token
@@ -120,32 +122,42 @@ class StudyDocumentsAndContinuationToken(object):
 
 
         :param has_more_results: The has_more_results of this StudyDocumentsAndContinuationToken.  # noqa: E501
-        :type: bool
+        :type has_more_results: bool
         """
+        if self.local_vars_configuration.client_side_validation and has_more_results is None:  # noqa: E501
+            raise ValueError("Invalid value for `has_more_results`, must not be `None`")  # noqa: E501
 
         self._has_more_results = has_more_results
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -35,8 +38,8 @@ class SupportSession(object):
     openapi_types = {
         'is_open': 'bool',
         'modified_date': 'datetime',
-        'modified_tenant_id': 'str',
-        'modified_user_id': 'str',
+        'modified_tenant_id': 'object',
+        'modified_user_id': 'object',
         'responses': 'list[SupportSessionResponse]'
     }
 
@@ -51,7 +54,7 @@ class SupportSession(object):
     def __init__(self, is_open=None, modified_date=None, modified_tenant_id=None, modified_user_id=None, responses=None, local_vars_configuration=None):  # noqa: E501
         """SupportSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._is_open = None
@@ -61,16 +64,11 @@ class SupportSession(object):
         self._responses = None
         self.discriminator = None
 
-        if is_open is not None:
-            self.is_open = is_open
-        if modified_date is not None:
-            self.modified_date = modified_date
-        if modified_tenant_id is not None:
-            self.modified_tenant_id = modified_tenant_id
-        if modified_user_id is not None:
-            self.modified_user_id = modified_user_id
-        if responses is not None:
-            self.responses = responses
+        self.is_open = is_open
+        self.modified_date = modified_date
+        self.modified_tenant_id = modified_tenant_id
+        self.modified_user_id = modified_user_id
+        self.responses = responses
 
     @property
     def is_open(self):
@@ -88,8 +86,10 @@ class SupportSession(object):
 
 
         :param is_open: The is_open of this SupportSession.  # noqa: E501
-        :type: bool
+        :type is_open: bool
         """
+        if self.local_vars_configuration.client_side_validation and is_open is None:  # noqa: E501
+            raise ValueError("Invalid value for `is_open`, must not be `None`")  # noqa: E501
 
         self._is_open = is_open
 
@@ -109,8 +109,10 @@ class SupportSession(object):
 
 
         :param modified_date: The modified_date of this SupportSession.  # noqa: E501
-        :type: datetime
+        :type modified_date: datetime
         """
+        if self.local_vars_configuration.client_side_validation and modified_date is None:  # noqa: E501
+            raise ValueError("Invalid value for `modified_date`, must not be `None`")  # noqa: E501
 
         self._modified_date = modified_date
 
@@ -120,7 +122,7 @@ class SupportSession(object):
 
 
         :return: The modified_tenant_id of this SupportSession.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._modified_tenant_id
 
@@ -130,8 +132,10 @@ class SupportSession(object):
 
 
         :param modified_tenant_id: The modified_tenant_id of this SupportSession.  # noqa: E501
-        :type: str
+        :type modified_tenant_id: object
         """
+        if self.local_vars_configuration.client_side_validation and modified_tenant_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `modified_tenant_id`, must not be `None`")  # noqa: E501
 
         self._modified_tenant_id = modified_tenant_id
 
@@ -141,7 +145,7 @@ class SupportSession(object):
 
 
         :return: The modified_user_id of this SupportSession.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._modified_user_id
 
@@ -151,8 +155,10 @@ class SupportSession(object):
 
 
         :param modified_user_id: The modified_user_id of this SupportSession.  # noqa: E501
-        :type: str
+        :type modified_user_id: object
         """
+        if self.local_vars_configuration.client_side_validation and modified_user_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `modified_user_id`, must not be `None`")  # noqa: E501
 
         self._modified_user_id = modified_user_id
 
@@ -172,32 +178,40 @@ class SupportSession(object):
 
 
         :param responses: The responses of this SupportSession.  # noqa: E501
-        :type: list[SupportSessionResponse]
+        :type responses: list[SupportSessionResponse]
         """
 
         self._responses = responses
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

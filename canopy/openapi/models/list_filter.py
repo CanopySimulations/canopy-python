@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -35,11 +38,11 @@ class ListFilter(object):
     openapi_types = {
         'items_per_page': 'int',
         'continuation_token': 'str',
-        'order_by_custom_property': 'str',
-        'order_by_property': 'str',
+        'order_by_custom_property': 'object',
+        'order_by_property': 'OrderByProperty',
         'order_by_descending': 'bool',
         'filter_name': 'str',
-        'query': 'ListFilterGroup',
+        'query': 'ListFilterQuery',
         'include_if_delete_requested': 'bool',
         'include_if_has_parent_worksheet': 'bool'
     }
@@ -59,7 +62,7 @@ class ListFilter(object):
     def __init__(self, items_per_page=None, continuation_token=None, order_by_custom_property=None, order_by_property=None, order_by_descending=None, filter_name=None, query=None, include_if_delete_requested=None, include_if_has_parent_worksheet=None, local_vars_configuration=None):  # noqa: E501
         """ListFilter - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._items_per_page = None
@@ -75,18 +78,13 @@ class ListFilter(object):
 
         if items_per_page is not None:
             self.items_per_page = items_per_page
-        if continuation_token is not None:
-            self.continuation_token = continuation_token
-        if order_by_custom_property is not None:
-            self.order_by_custom_property = order_by_custom_property
-        if order_by_property is not None:
-            self.order_by_property = order_by_property
+        self.continuation_token = continuation_token
+        self.order_by_custom_property = order_by_custom_property
+        self.order_by_property = order_by_property
         if order_by_descending is not None:
             self.order_by_descending = order_by_descending
-        if filter_name is not None:
-            self.filter_name = filter_name
-        if query is not None:
-            self.query = query
+        self.filter_name = filter_name
+        self.query = query
         if include_if_delete_requested is not None:
             self.include_if_delete_requested = include_if_delete_requested
         if include_if_has_parent_worksheet is not None:
@@ -108,7 +106,7 @@ class ListFilter(object):
 
 
         :param items_per_page: The items_per_page of this ListFilter.  # noqa: E501
-        :type: int
+        :type items_per_page: int
         """
 
         self._items_per_page = items_per_page
@@ -129,7 +127,7 @@ class ListFilter(object):
 
 
         :param continuation_token: The continuation_token of this ListFilter.  # noqa: E501
-        :type: str
+        :type continuation_token: str
         """
 
         self._continuation_token = continuation_token
@@ -140,7 +138,7 @@ class ListFilter(object):
 
 
         :return: The order_by_custom_property of this ListFilter.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._order_by_custom_property
 
@@ -150,7 +148,7 @@ class ListFilter(object):
 
 
         :param order_by_custom_property: The order_by_custom_property of this ListFilter.  # noqa: E501
-        :type: str
+        :type order_by_custom_property: object
         """
 
         self._order_by_custom_property = order_by_custom_property
@@ -161,7 +159,7 @@ class ListFilter(object):
 
 
         :return: The order_by_property of this ListFilter.  # noqa: E501
-        :rtype: str
+        :rtype: OrderByProperty
         """
         return self._order_by_property
 
@@ -171,14 +169,8 @@ class ListFilter(object):
 
 
         :param order_by_property: The order_by_property of this ListFilter.  # noqa: E501
-        :type: str
+        :type order_by_property: OrderByProperty
         """
-        allowed_values = ["creationDate", "modifiedDate", "name", "index", "state"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and order_by_property not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `order_by_property` ({0}), must be one of {1}"  # noqa: E501
-                .format(order_by_property, allowed_values)
-            )
 
         self._order_by_property = order_by_property
 
@@ -198,7 +190,7 @@ class ListFilter(object):
 
 
         :param order_by_descending: The order_by_descending of this ListFilter.  # noqa: E501
-        :type: bool
+        :type order_by_descending: bool
         """
 
         self._order_by_descending = order_by_descending
@@ -219,7 +211,7 @@ class ListFilter(object):
 
 
         :param filter_name: The filter_name of this ListFilter.  # noqa: E501
-        :type: str
+        :type filter_name: str
         """
 
         self._filter_name = filter_name
@@ -230,7 +222,7 @@ class ListFilter(object):
 
 
         :return: The query of this ListFilter.  # noqa: E501
-        :rtype: ListFilterGroup
+        :rtype: ListFilterQuery
         """
         return self._query
 
@@ -240,7 +232,7 @@ class ListFilter(object):
 
 
         :param query: The query of this ListFilter.  # noqa: E501
-        :type: ListFilterGroup
+        :type query: ListFilterQuery
         """
 
         self._query = query
@@ -261,7 +253,7 @@ class ListFilter(object):
 
 
         :param include_if_delete_requested: The include_if_delete_requested of this ListFilter.  # noqa: E501
-        :type: bool
+        :type include_if_delete_requested: bool
         """
 
         self._include_if_delete_requested = include_if_delete_requested
@@ -282,32 +274,40 @@ class ListFilter(object):
 
 
         :param include_if_has_parent_worksheet: The include_if_has_parent_worksheet of this ListFilter.  # noqa: E501
-        :type: bool
+        :type include_if_has_parent_worksheet: bool
         """
 
         self._include_if_has_parent_worksheet = include_if_has_parent_worksheet
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

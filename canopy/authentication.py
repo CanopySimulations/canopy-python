@@ -7,6 +7,7 @@ import datetime
 
 class Authentication(object):
     _client: canopy.openapi.ApiClient
+    _identity: canopy.openapi.models.GrantTypeHandlerResponse
 
     def __init__(
             self,
@@ -58,12 +59,16 @@ class Authentication(object):
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
+        response_types_map = {
+            200: "GrantTypeHandlerResponse",
+        }
+
         token_result = self._client.call_api(
             '/token',
             'POST',
             post_params=post_params,
             header_params=header_params,
-            response_type=object)
+            response_types_map=response_types_map)
 
         self._identity = token_result[0]
         self.__update_from_identity()
@@ -74,8 +79,8 @@ class Authentication(object):
 
         post_params = {
             'grant_type': 'refresh_token',
-            'refresh_token': self._identity['refresh_token'],
-            'tenant': self._identity['tenant_id'],
+            'refresh_token': self._identity.refresh_token,
+            'tenant': self._identity.tenant_id,
             'client_id': self._client_id,
             'client_secret': self._client_secret,
         }
@@ -84,19 +89,23 @@ class Authentication(object):
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
+        response_types_map = {
+            200: "GrantTypeHandlerResponse",
+        }
+
         token_result = self._client.call_api(
             '/token',
             'POST',
             post_params=post_params,
             header_params=header_params,
-            response_type=object)
+            response_types_map=response_types_map)
 
         self._identity = token_result[0]
         self.__update_from_identity()
 
     def __update_from_identity(self):
-        self._client.configuration.access_token = self._identity['access_token']
-        expires_delta = datetime.timedelta(seconds=self._identity['expires_in'])
+        self._client.configuration.access_token = self._identity.access_token
+        expires_delta = datetime.timedelta(seconds=self._identity.expires_in)
         self._expires = datetime.datetime.now() + expires_delta
 
     @property
@@ -104,11 +113,11 @@ class Authentication(object):
         if self._identity is None:
             raise RuntimeError('You must call authenticate before requesting tenant ID.')
 
-        return self._identity['tenant_id']
+        return self._identity.tenant_id
 
     @property
     def user_id(self) -> str:
         if self._identity is None:
             raise RuntimeError('You must call authenticate before requesting user ID.')
 
-        return self._identity['user_id']
+        return self._identity.user_id

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -43,14 +46,13 @@ class BatchCreateConfigsResult(object):
     def __init__(self, config_ids=None, local_vars_configuration=None):  # noqa: E501
         """BatchCreateConfigsResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._config_ids = None
         self.discriminator = None
 
-        if config_ids is not None:
-            self.config_ids = config_ids
+        self.config_ids = config_ids
 
     @property
     def config_ids(self):
@@ -68,32 +70,42 @@ class BatchCreateConfigsResult(object):
 
 
         :param config_ids: The config_ids of this BatchCreateConfigsResult.  # noqa: E501
-        :type: list[str]
+        :type config_ids: list[str]
         """
+        if self.local_vars_configuration.client_side_validation and config_ids is None:  # noqa: E501
+            raise ValueError("Invalid value for `config_ids`, must not be `None`")  # noqa: E501
 
         self._config_ids = config_ids
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

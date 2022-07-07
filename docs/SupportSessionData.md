@@ -1,5 +1,6 @@
 # SupportSessionData
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

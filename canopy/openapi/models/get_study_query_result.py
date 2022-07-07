@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,11 +36,11 @@ class GetStudyQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'study': 'CanopyDocument',
-        'converted_sim_version': 'str',
-        'access_information': 'StudyBlobAccessInformation',
+        'study': 'GetConfigQueryResultConfig',
+        'converted_sim_version': 'object',
+        'access_information': 'GetStudyQueryResultAccessInformation',
         'sim_types': 'list[str]',
-        'user_information': 'DocumentUserInformation'
+        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
     }
 
     attribute_map = {
@@ -51,7 +54,7 @@ class GetStudyQueryResult(object):
     def __init__(self, study=None, converted_sim_version=None, access_information=None, sim_types=None, user_information=None, local_vars_configuration=None):  # noqa: E501
         """GetStudyQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._study = None
@@ -61,16 +64,11 @@ class GetStudyQueryResult(object):
         self._user_information = None
         self.discriminator = None
 
-        if study is not None:
-            self.study = study
-        if converted_sim_version is not None:
-            self.converted_sim_version = converted_sim_version
-        if access_information is not None:
-            self.access_information = access_information
-        if sim_types is not None:
-            self.sim_types = sim_types
-        if user_information is not None:
-            self.user_information = user_information
+        self.study = study
+        self.converted_sim_version = converted_sim_version
+        self.access_information = access_information
+        self.sim_types = sim_types
+        self.user_information = user_information
 
     @property
     def study(self):
@@ -78,7 +76,7 @@ class GetStudyQueryResult(object):
 
 
         :return: The study of this GetStudyQueryResult.  # noqa: E501
-        :rtype: CanopyDocument
+        :rtype: GetConfigQueryResultConfig
         """
         return self._study
 
@@ -88,8 +86,10 @@ class GetStudyQueryResult(object):
 
 
         :param study: The study of this GetStudyQueryResult.  # noqa: E501
-        :type: CanopyDocument
+        :type study: GetConfigQueryResultConfig
         """
+        if self.local_vars_configuration.client_side_validation and study is None:  # noqa: E501
+            raise ValueError("Invalid value for `study`, must not be `None`")  # noqa: E501
 
         self._study = study
 
@@ -99,7 +99,7 @@ class GetStudyQueryResult(object):
 
 
         :return: The converted_sim_version of this GetStudyQueryResult.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._converted_sim_version
 
@@ -109,8 +109,10 @@ class GetStudyQueryResult(object):
 
 
         :param converted_sim_version: The converted_sim_version of this GetStudyQueryResult.  # noqa: E501
-        :type: str
+        :type converted_sim_version: object
         """
+        if self.local_vars_configuration.client_side_validation and converted_sim_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `converted_sim_version`, must not be `None`")  # noqa: E501
 
         self._converted_sim_version = converted_sim_version
 
@@ -120,7 +122,7 @@ class GetStudyQueryResult(object):
 
 
         :return: The access_information of this GetStudyQueryResult.  # noqa: E501
-        :rtype: StudyBlobAccessInformation
+        :rtype: GetStudyQueryResultAccessInformation
         """
         return self._access_information
 
@@ -130,8 +132,10 @@ class GetStudyQueryResult(object):
 
 
         :param access_information: The access_information of this GetStudyQueryResult.  # noqa: E501
-        :type: StudyBlobAccessInformation
+        :type access_information: GetStudyQueryResultAccessInformation
         """
+        if self.local_vars_configuration.client_side_validation and access_information is None:  # noqa: E501
+            raise ValueError("Invalid value for `access_information`, must not be `None`")  # noqa: E501
 
         self._access_information = access_information
 
@@ -151,16 +155,8 @@ class GetStudyQueryResult(object):
 
 
         :param sim_types: The sim_types of this GetStudyQueryResult.  # noqa: E501
-        :type: list[str]
+        :type sim_types: list[str]
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths", "TrackConverter"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(sim_types).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `sim_types` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(sim_types) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._sim_types = sim_types
 
@@ -170,7 +166,7 @@ class GetStudyQueryResult(object):
 
 
         :return: The user_information of this GetStudyQueryResult.  # noqa: E501
-        :rtype: DocumentUserInformation
+        :rtype: GetAllSupportSessionsQueryResultUserInformation
         """
         return self._user_information
 
@@ -180,32 +176,42 @@ class GetStudyQueryResult(object):
 
 
         :param user_information: The user_information of this GetStudyQueryResult.  # noqa: E501
-        :type: DocumentUserInformation
+        :type user_information: GetAllSupportSessionsQueryResultUserInformation
         """
+        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
+            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

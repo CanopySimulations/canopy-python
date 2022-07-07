@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class PoolSettings(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'pool_id': 'str',
+        'pool_id': 'object',
         'auto_scale_formula': 'str'
     }
 
@@ -45,17 +48,15 @@ class PoolSettings(object):
     def __init__(self, pool_id=None, auto_scale_formula=None, local_vars_configuration=None):  # noqa: E501
         """PoolSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._pool_id = None
         self._auto_scale_formula = None
         self.discriminator = None
 
-        if pool_id is not None:
-            self.pool_id = pool_id
-        if auto_scale_formula is not None:
-            self.auto_scale_formula = auto_scale_formula
+        self.pool_id = pool_id
+        self.auto_scale_formula = auto_scale_formula
 
     @property
     def pool_id(self):
@@ -63,7 +64,7 @@ class PoolSettings(object):
 
 
         :return: The pool_id of this PoolSettings.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._pool_id
 
@@ -73,8 +74,10 @@ class PoolSettings(object):
 
 
         :param pool_id: The pool_id of this PoolSettings.  # noqa: E501
-        :type: str
+        :type pool_id: object
         """
+        if self.local_vars_configuration.client_side_validation and pool_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `pool_id`, must not be `None`")  # noqa: E501
 
         self._pool_id = pool_id
 
@@ -94,32 +97,42 @@ class PoolSettings(object):
 
 
         :param auto_scale_formula: The auto_scale_formula of this PoolSettings.  # noqa: E501
-        :type: str
+        :type auto_scale_formula: str
         """
+        if self.local_vars_configuration.client_side_validation and auto_scale_formula is None:  # noqa: E501
+            raise ValueError("Invalid value for `auto_scale_formula`, must not be `None`")  # noqa: E501
 
         self._auto_scale_formula = auto_scale_formula
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

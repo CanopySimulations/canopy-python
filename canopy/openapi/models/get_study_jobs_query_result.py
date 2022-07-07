@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class GetStudyJobsQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'query_results': 'StudyJobDocumentsAndContinuationToken',
+        'query_results': 'GetStudyJobsQueryResultQueryResults',
         'group_results': 'list[DocumentCustomPropertyGroup]'
     }
 
@@ -45,17 +48,15 @@ class GetStudyJobsQueryResult(object):
     def __init__(self, query_results=None, group_results=None, local_vars_configuration=None):  # noqa: E501
         """GetStudyJobsQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._query_results = None
         self._group_results = None
         self.discriminator = None
 
-        if query_results is not None:
-            self.query_results = query_results
-        if group_results is not None:
-            self.group_results = group_results
+        self.query_results = query_results
+        self.group_results = group_results
 
     @property
     def query_results(self):
@@ -63,7 +64,7 @@ class GetStudyJobsQueryResult(object):
 
 
         :return: The query_results of this GetStudyJobsQueryResult.  # noqa: E501
-        :rtype: StudyJobDocumentsAndContinuationToken
+        :rtype: GetStudyJobsQueryResultQueryResults
         """
         return self._query_results
 
@@ -73,7 +74,7 @@ class GetStudyJobsQueryResult(object):
 
 
         :param query_results: The query_results of this GetStudyJobsQueryResult.  # noqa: E501
-        :type: StudyJobDocumentsAndContinuationToken
+        :type query_results: GetStudyJobsQueryResultQueryResults
         """
 
         self._query_results = query_results
@@ -94,32 +95,40 @@ class GetStudyJobsQueryResult(object):
 
 
         :param group_results: The group_results of this GetStudyJobsQueryResult.  # noqa: E501
-        :type: list[DocumentCustomPropertyGroup]
+        :type group_results: list[DocumentCustomPropertyGroup]
         """
 
         self._group_results = group_results
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

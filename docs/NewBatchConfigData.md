@@ -1,5 +1,6 @@
 # NewBatchConfigData
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

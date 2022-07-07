@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,34 +36,35 @@ class GetAccountSettingsResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'username': 'str',
-        'email': 'str',
-        'is_enabled': 'bool'
+        'username': 'object',
+        'email': 'object',
+        'is_enabled': 'bool',
+        'is_email_confirmed': 'bool'
     }
 
     attribute_map = {
         'username': 'username',
         'email': 'email',
-        'is_enabled': 'isEnabled'
+        'is_enabled': 'isEnabled',
+        'is_email_confirmed': 'isEmailConfirmed'
     }
 
-    def __init__(self, username=None, email=None, is_enabled=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, username=None, email=None, is_enabled=None, is_email_confirmed=None, local_vars_configuration=None):  # noqa: E501
         """GetAccountSettingsResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._username = None
         self._email = None
         self._is_enabled = None
+        self._is_email_confirmed = None
         self.discriminator = None
 
-        if username is not None:
-            self.username = username
-        if email is not None:
-            self.email = email
-        if is_enabled is not None:
-            self.is_enabled = is_enabled
+        self.username = username
+        self.email = email
+        self.is_enabled = is_enabled
+        self.is_email_confirmed = is_email_confirmed
 
     @property
     def username(self):
@@ -68,7 +72,7 @@ class GetAccountSettingsResult(object):
 
 
         :return: The username of this GetAccountSettingsResult.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._username
 
@@ -78,8 +82,10 @@ class GetAccountSettingsResult(object):
 
 
         :param username: The username of this GetAccountSettingsResult.  # noqa: E501
-        :type: str
+        :type username: object
         """
+        if self.local_vars_configuration.client_side_validation and username is None:  # noqa: E501
+            raise ValueError("Invalid value for `username`, must not be `None`")  # noqa: E501
 
         self._username = username
 
@@ -89,7 +95,7 @@ class GetAccountSettingsResult(object):
 
 
         :return: The email of this GetAccountSettingsResult.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._email
 
@@ -99,8 +105,10 @@ class GetAccountSettingsResult(object):
 
 
         :param email: The email of this GetAccountSettingsResult.  # noqa: E501
-        :type: str
+        :type email: object
         """
+        if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
+            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 
@@ -120,32 +128,65 @@ class GetAccountSettingsResult(object):
 
 
         :param is_enabled: The is_enabled of this GetAccountSettingsResult.  # noqa: E501
-        :type: bool
+        :type is_enabled: bool
         """
+        if self.local_vars_configuration.client_side_validation and is_enabled is None:  # noqa: E501
+            raise ValueError("Invalid value for `is_enabled`, must not be `None`")  # noqa: E501
 
         self._is_enabled = is_enabled
 
-    def to_dict(self):
+    @property
+    def is_email_confirmed(self):
+        """Gets the is_email_confirmed of this GetAccountSettingsResult.  # noqa: E501
+
+
+        :return: The is_email_confirmed of this GetAccountSettingsResult.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_email_confirmed
+
+    @is_email_confirmed.setter
+    def is_email_confirmed(self, is_email_confirmed):
+        """Sets the is_email_confirmed of this GetAccountSettingsResult.
+
+
+        :param is_email_confirmed: The is_email_confirmed of this GetAccountSettingsResult.  # noqa: E501
+        :type is_email_confirmed: bool
+        """
+        if self.local_vars_configuration.client_side_validation and is_email_confirmed is None:  # noqa: E501
+            raise ValueError("Invalid value for `is_email_confirmed`, must not be `None`")  # noqa: E501
+
+        self._is_email_confirmed = is_email_confirmed
+
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

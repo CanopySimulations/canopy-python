@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -47,7 +50,7 @@ class AutoScaleRunError(object):
     def __init__(self, code=None, message=None, values=None, local_vars_configuration=None):  # noqa: E501
         """AutoScaleRunError - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._code = None
@@ -55,12 +58,9 @@ class AutoScaleRunError(object):
         self._values = None
         self.discriminator = None
 
-        if code is not None:
-            self.code = code
-        if message is not None:
-            self.message = message
-        if values is not None:
-            self.values = values
+        self.code = code
+        self.message = message
+        self.values = values
 
     @property
     def code(self):
@@ -78,7 +78,7 @@ class AutoScaleRunError(object):
 
 
         :param code: The code of this AutoScaleRunError.  # noqa: E501
-        :type: str
+        :type code: str
         """
 
         self._code = code
@@ -99,7 +99,7 @@ class AutoScaleRunError(object):
 
 
         :param message: The message of this AutoScaleRunError.  # noqa: E501
-        :type: str
+        :type message: str
         """
 
         self._message = message
@@ -120,32 +120,40 @@ class AutoScaleRunError(object):
 
 
         :param values: The values of this AutoScaleRunError.  # noqa: E501
-        :type: list[NameValuePair]
+        :type values: list[NameValuePair]
         """
 
         self._values = values
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

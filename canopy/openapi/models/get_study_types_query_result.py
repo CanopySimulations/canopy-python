@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -49,7 +52,7 @@ class GetStudyTypesQueryResult(object):
     def __init__(self, study_types=None, sim_types=None, config_types=None, config_type_metadata=None, local_vars_configuration=None):  # noqa: E501
         """GetStudyTypesQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._study_types = None
@@ -58,14 +61,10 @@ class GetStudyTypesQueryResult(object):
         self._config_type_metadata = None
         self.discriminator = None
 
-        if study_types is not None:
-            self.study_types = study_types
-        if sim_types is not None:
-            self.sim_types = sim_types
-        if config_types is not None:
-            self.config_types = config_types
-        if config_type_metadata is not None:
-            self.config_type_metadata = config_type_metadata
+        self.study_types = study_types
+        self.sim_types = sim_types
+        self.config_types = config_types
+        self.config_type_metadata = config_type_metadata
 
     @property
     def study_types(self):
@@ -83,8 +82,10 @@ class GetStudyTypesQueryResult(object):
 
 
         :param study_types: The study_types of this GetStudyTypesQueryResult.  # noqa: E501
-        :type: list[StudyTypeDefinition]
+        :type study_types: list[StudyTypeDefinition]
         """
+        if self.local_vars_configuration.client_side_validation and study_types is None:  # noqa: E501
+            raise ValueError("Invalid value for `study_types`, must not be `None`")  # noqa: E501
 
         self._study_types = study_types
 
@@ -104,8 +105,10 @@ class GetStudyTypesQueryResult(object):
 
 
         :param sim_types: The sim_types of this GetStudyTypesQueryResult.  # noqa: E501
-        :type: list[SimTypeDefinition]
+        :type sim_types: list[SimTypeDefinition]
         """
+        if self.local_vars_configuration.client_side_validation and sim_types is None:  # noqa: E501
+            raise ValueError("Invalid value for `sim_types`, must not be `None`")  # noqa: E501
 
         self._sim_types = sim_types
 
@@ -125,8 +128,10 @@ class GetStudyTypesQueryResult(object):
 
 
         :param config_types: The config_types of this GetStudyTypesQueryResult.  # noqa: E501
-        :type: list[ConfigTypeDefinition]
+        :type config_types: list[ConfigTypeDefinition]
         """
+        if self.local_vars_configuration.client_side_validation and config_types is None:  # noqa: E501
+            raise ValueError("Invalid value for `config_types`, must not be `None`")  # noqa: E501
 
         self._config_types = config_types
 
@@ -146,32 +151,42 @@ class GetStudyTypesQueryResult(object):
 
 
         :param config_type_metadata: The config_type_metadata of this GetStudyTypesQueryResult.  # noqa: E501
-        :type: list[ConfigTypeMetadata]
+        :type config_type_metadata: list[ConfigTypeMetadata]
         """
+        if self.local_vars_configuration.client_side_validation and config_type_metadata is None:  # noqa: E501
+            raise ValueError("Invalid value for `config_type_metadata`, must not be `None`")  # noqa: E501
 
         self._config_type_metadata = config_type_metadata
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

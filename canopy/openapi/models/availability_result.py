@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -35,7 +38,7 @@ class AvailabilityResult(object):
     openapi_types = {
         'database': 'bool',
         'api': 'bool',
-        'additional_tests': 'AdditionalTests'
+        'additional_tests': 'AvailabilityResultAdditionalTests'
     }
 
     attribute_map = {
@@ -47,7 +50,7 @@ class AvailabilityResult(object):
     def __init__(self, database=None, api=None, additional_tests=None, local_vars_configuration=None):  # noqa: E501
         """AvailabilityResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._database = None
@@ -55,12 +58,10 @@ class AvailabilityResult(object):
         self._additional_tests = None
         self.discriminator = None
 
-        if database is not None:
-            self.database = database
+        self.database = database
         if api is not None:
             self.api = api
-        if additional_tests is not None:
-            self.additional_tests = additional_tests
+        self.additional_tests = additional_tests
 
     @property
     def database(self):
@@ -78,7 +79,7 @@ class AvailabilityResult(object):
 
 
         :param database: The database of this AvailabilityResult.  # noqa: E501
-        :type: bool
+        :type database: bool
         """
 
         self._database = database
@@ -99,7 +100,7 @@ class AvailabilityResult(object):
 
 
         :param api: The api of this AvailabilityResult.  # noqa: E501
-        :type: bool
+        :type api: bool
         """
 
         self._api = api
@@ -110,7 +111,7 @@ class AvailabilityResult(object):
 
 
         :return: The additional_tests of this AvailabilityResult.  # noqa: E501
-        :rtype: AdditionalTests
+        :rtype: AvailabilityResultAdditionalTests
         """
         return self._additional_tests
 
@@ -120,32 +121,40 @@ class AvailabilityResult(object):
 
 
         :param additional_tests: The additional_tests of this AvailabilityResult.  # noqa: E501
-        :type: AdditionalTests
+        :type additional_tests: AvailabilityResultAdditionalTests
         """
 
         self._additional_tests = additional_tests
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

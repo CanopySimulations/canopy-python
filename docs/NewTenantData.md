@@ -1,5 +1,6 @@
 # NewTenantData
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

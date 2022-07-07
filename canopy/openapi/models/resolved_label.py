@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -37,7 +40,7 @@ class ResolvedLabel(object):
         'name': 'str',
         'string_value': 'str',
         'numeric_value': 'float',
-        'numeric_statistics': 'ResolvedStatisticLabel',
+        'numeric_statistics': 'ResolvedLabelNumericStatistics',
         'units': 'str'
     }
 
@@ -53,7 +56,7 @@ class ResolvedLabel(object):
     def __init__(self, source=None, name=None, string_value=None, numeric_value=None, numeric_statistics=None, units=None, local_vars_configuration=None):  # noqa: E501
         """ResolvedLabel - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._source = None
@@ -64,18 +67,12 @@ class ResolvedLabel(object):
         self._units = None
         self.discriminator = None
 
-        if source is not None:
-            self.source = source
-        if name is not None:
-            self.name = name
-        if string_value is not None:
-            self.string_value = string_value
-        if numeric_value is not None:
-            self.numeric_value = numeric_value
-        if numeric_statistics is not None:
-            self.numeric_statistics = numeric_statistics
-        if units is not None:
-            self.units = units
+        self.source = source
+        self.name = name
+        self.string_value = string_value
+        self.numeric_value = numeric_value
+        self.numeric_statistics = numeric_statistics
+        self.units = units
 
     @property
     def source(self):
@@ -93,8 +90,10 @@ class ResolvedLabel(object):
 
 
         :param source: The source of this ResolvedLabel.  # noqa: E501
-        :type: str
+        :type source: str
         """
+        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
+            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
 
@@ -114,8 +113,10 @@ class ResolvedLabel(object):
 
 
         :param name: The name of this ResolvedLabel.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -135,7 +136,7 @@ class ResolvedLabel(object):
 
 
         :param string_value: The string_value of this ResolvedLabel.  # noqa: E501
-        :type: str
+        :type string_value: str
         """
 
         self._string_value = string_value
@@ -156,7 +157,7 @@ class ResolvedLabel(object):
 
 
         :param numeric_value: The numeric_value of this ResolvedLabel.  # noqa: E501
-        :type: float
+        :type numeric_value: float
         """
 
         self._numeric_value = numeric_value
@@ -167,7 +168,7 @@ class ResolvedLabel(object):
 
 
         :return: The numeric_statistics of this ResolvedLabel.  # noqa: E501
-        :rtype: ResolvedStatisticLabel
+        :rtype: ResolvedLabelNumericStatistics
         """
         return self._numeric_statistics
 
@@ -177,7 +178,7 @@ class ResolvedLabel(object):
 
 
         :param numeric_statistics: The numeric_statistics of this ResolvedLabel.  # noqa: E501
-        :type: ResolvedStatisticLabel
+        :type numeric_statistics: ResolvedLabelNumericStatistics
         """
 
         self._numeric_statistics = numeric_statistics
@@ -198,32 +199,40 @@ class ResolvedLabel(object):
 
 
         :param units: The units of this ResolvedLabel.  # noqa: E501
-        :type: str
+        :type units: str
         """
 
         self._units = units
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

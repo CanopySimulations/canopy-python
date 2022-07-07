@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -34,28 +37,30 @@ class GetAllSupportSessionsQueryResult(object):
     """
     openapi_types = {
         'documents': 'list[CanopyDocument]',
-        'user_information': 'DocumentUserInformation'
+        'user_information': 'GetAllSupportSessionsQueryResultUserInformation',
+        'query_metadata': 'list[SupportSessionsRequestMetadata]'
     }
 
     attribute_map = {
         'documents': 'documents',
-        'user_information': 'userInformation'
+        'user_information': 'userInformation',
+        'query_metadata': 'queryMetadata'
     }
 
-    def __init__(self, documents=None, user_information=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, documents=None, user_information=None, query_metadata=None, local_vars_configuration=None):  # noqa: E501
         """GetAllSupportSessionsQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._documents = None
         self._user_information = None
+        self._query_metadata = None
         self.discriminator = None
 
-        if documents is not None:
-            self.documents = documents
-        if user_information is not None:
-            self.user_information = user_information
+        self.documents = documents
+        self.user_information = user_information
+        self.query_metadata = query_metadata
 
     @property
     def documents(self):
@@ -73,8 +78,10 @@ class GetAllSupportSessionsQueryResult(object):
 
 
         :param documents: The documents of this GetAllSupportSessionsQueryResult.  # noqa: E501
-        :type: list[CanopyDocument]
+        :type documents: list[CanopyDocument]
         """
+        if self.local_vars_configuration.client_side_validation and documents is None:  # noqa: E501
+            raise ValueError("Invalid value for `documents`, must not be `None`")  # noqa: E501
 
         self._documents = documents
 
@@ -84,7 +91,7 @@ class GetAllSupportSessionsQueryResult(object):
 
 
         :return: The user_information of this GetAllSupportSessionsQueryResult.  # noqa: E501
-        :rtype: DocumentUserInformation
+        :rtype: GetAllSupportSessionsQueryResultUserInformation
         """
         return self._user_information
 
@@ -94,32 +101,65 @@ class GetAllSupportSessionsQueryResult(object):
 
 
         :param user_information: The user_information of this GetAllSupportSessionsQueryResult.  # noqa: E501
-        :type: DocumentUserInformation
+        :type user_information: GetAllSupportSessionsQueryResultUserInformation
         """
+        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
+            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 
-    def to_dict(self):
+    @property
+    def query_metadata(self):
+        """Gets the query_metadata of this GetAllSupportSessionsQueryResult.  # noqa: E501
+
+
+        :return: The query_metadata of this GetAllSupportSessionsQueryResult.  # noqa: E501
+        :rtype: list[SupportSessionsRequestMetadata]
+        """
+        return self._query_metadata
+
+    @query_metadata.setter
+    def query_metadata(self, query_metadata):
+        """Sets the query_metadata of this GetAllSupportSessionsQueryResult.
+
+
+        :param query_metadata: The query_metadata of this GetAllSupportSessionsQueryResult.  # noqa: E501
+        :type query_metadata: list[SupportSessionsRequestMetadata]
+        """
+        if self.local_vars_configuration.client_side_validation and query_metadata is None:  # noqa: E501
+            raise ValueError("Invalid value for `query_metadata`, must not be `None`")  # noqa: E501
+
+        self._query_metadata = query_metadata
+
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

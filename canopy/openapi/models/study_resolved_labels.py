@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class StudyResolvedLabels(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'reference': 'StudyReference',
+        'reference': 'StudyResolvedLabelsReference',
         'simulation_labels': 'list[SimulationResolvedLabels]'
     }
 
@@ -45,17 +48,15 @@ class StudyResolvedLabels(object):
     def __init__(self, reference=None, simulation_labels=None, local_vars_configuration=None):  # noqa: E501
         """StudyResolvedLabels - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._reference = None
         self._simulation_labels = None
         self.discriminator = None
 
-        if reference is not None:
-            self.reference = reference
-        if simulation_labels is not None:
-            self.simulation_labels = simulation_labels
+        self.reference = reference
+        self.simulation_labels = simulation_labels
 
     @property
     def reference(self):
@@ -63,7 +64,7 @@ class StudyResolvedLabels(object):
 
 
         :return: The reference of this StudyResolvedLabels.  # noqa: E501
-        :rtype: StudyReference
+        :rtype: StudyResolvedLabelsReference
         """
         return self._reference
 
@@ -73,8 +74,10 @@ class StudyResolvedLabels(object):
 
 
         :param reference: The reference of this StudyResolvedLabels.  # noqa: E501
-        :type: StudyReference
+        :type reference: StudyResolvedLabelsReference
         """
+        if self.local_vars_configuration.client_side_validation and reference is None:  # noqa: E501
+            raise ValueError("Invalid value for `reference`, must not be `None`")  # noqa: E501
 
         self._reference = reference
 
@@ -94,32 +97,42 @@ class StudyResolvedLabels(object):
 
 
         :param simulation_labels: The simulation_labels of this StudyResolvedLabels.  # noqa: E501
-        :type: list[SimulationResolvedLabels]
+        :type simulation_labels: list[SimulationResolvedLabels]
         """
+        if self.local_vars_configuration.client_side_validation and simulation_labels is None:  # noqa: E501
+            raise ValueError("Invalid value for `simulation_labels`, must not be `None`")  # noqa: E501
 
         self._simulation_labels = simulation_labels
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

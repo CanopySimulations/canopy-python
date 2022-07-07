@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -37,9 +40,9 @@ class StudyTypeDefinition(object):
         'name': 'str',
         'sim_types': 'list[str]',
         'inputs': 'list[SimulationInput]',
-        'pool_type': 'str',
-        'build_pool_type': 'str',
-        'state': 'str',
+        'pool_type': 'PoolType',
+        'build_pool_type': 'PoolType',
+        'state': 'StudyTypeState',
         'valid_for_transient': 'bool',
         'valid_for_inline': 'bool',
         'previous_definitions': 'list[IPreviousDefinitionStudyTypeDefinition]',
@@ -63,7 +66,7 @@ class StudyTypeDefinition(object):
     def __init__(self, study_type=None, name=None, sim_types=None, inputs=None, pool_type=None, build_pool_type=None, state=None, valid_for_transient=None, valid_for_inline=None, previous_definitions=None, implicit_sim_types=None, local_vars_configuration=None):  # noqa: E501
         """StudyTypeDefinition - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._study_type = None
@@ -79,28 +82,17 @@ class StudyTypeDefinition(object):
         self._implicit_sim_types = None
         self.discriminator = None
 
-        if study_type is not None:
-            self.study_type = study_type
-        if name is not None:
-            self.name = name
-        if sim_types is not None:
-            self.sim_types = sim_types
-        if inputs is not None:
-            self.inputs = inputs
-        if pool_type is not None:
-            self.pool_type = pool_type
-        if build_pool_type is not None:
-            self.build_pool_type = build_pool_type
-        if state is not None:
-            self.state = state
-        if valid_for_transient is not None:
-            self.valid_for_transient = valid_for_transient
-        if valid_for_inline is not None:
-            self.valid_for_inline = valid_for_inline
-        if previous_definitions is not None:
-            self.previous_definitions = previous_definitions
-        if implicit_sim_types is not None:
-            self.implicit_sim_types = implicit_sim_types
+        self.study_type = study_type
+        self.name = name
+        self.sim_types = sim_types
+        self.inputs = inputs
+        self.pool_type = pool_type
+        self.build_pool_type = build_pool_type
+        self.state = state
+        self.valid_for_transient = valid_for_transient
+        self.valid_for_inline = valid_for_inline
+        self.previous_definitions = previous_definitions
+        self.implicit_sim_types = implicit_sim_types
 
     @property
     def study_type(self):
@@ -118,14 +110,10 @@ class StudyTypeDefinition(object):
 
 
         :param study_type: The study_type of this StudyTypeDefinition.  # noqa: E501
-        :type: str
+        :type study_type: str
         """
-        allowed_values = ["straightSim", "apexSim", "quasiStaticLap", "generateRacingLine", "quasiStaticLapWithGenerateRacingLine", "deploymentLap", "failureSim", "successSim", "virtual4Post", "limitSim", "driveCycleSim", "dynamicLap", "dynamicLapWithSLS", "dynamicLapHD", "dynamicMultiLap", "tyreThermalDynamicLap", "tyreThermalDynamicMultiLap", "overtakingLap", "allLapSims", "dragSim", "thermalReplay", "tyreReplay", "pacejkaCanopyConverter", "aircraftSim", "channelInference", "telemetry", "iliadCollocation", "subLimitSim", "bankedLimitSim", "postProcessUserMaths", "trackConverter", "unknown"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and study_type not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `study_type` ({0}), must be one of {1}"  # noqa: E501
-                .format(study_type, allowed_values)
-            )
+        if self.local_vars_configuration.client_side_validation and study_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `study_type`, must not be `None`")  # noqa: E501
 
         self._study_type = study_type
 
@@ -145,8 +133,10 @@ class StudyTypeDefinition(object):
 
 
         :param name: The name of this StudyTypeDefinition.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -166,16 +156,10 @@ class StudyTypeDefinition(object):
 
 
         :param sim_types: The sim_types of this StudyTypeDefinition.  # noqa: E501
-        :type: list[str]
+        :type sim_types: list[str]
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths", "TrackConverter"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(sim_types).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `sim_types` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(sim_types) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
+        if self.local_vars_configuration.client_side_validation and sim_types is None:  # noqa: E501
+            raise ValueError("Invalid value for `sim_types`, must not be `None`")  # noqa: E501
 
         self._sim_types = sim_types
 
@@ -195,8 +179,10 @@ class StudyTypeDefinition(object):
 
 
         :param inputs: The inputs of this StudyTypeDefinition.  # noqa: E501
-        :type: list[SimulationInput]
+        :type inputs: list[SimulationInput]
         """
+        if self.local_vars_configuration.client_side_validation and inputs is None:  # noqa: E501
+            raise ValueError("Invalid value for `inputs`, must not be `None`")  # noqa: E501
 
         self._inputs = inputs
 
@@ -206,7 +192,7 @@ class StudyTypeDefinition(object):
 
 
         :return: The pool_type of this StudyTypeDefinition.  # noqa: E501
-        :rtype: str
+        :rtype: PoolType
         """
         return self._pool_type
 
@@ -216,14 +202,8 @@ class StudyTypeDefinition(object):
 
 
         :param pool_type: The pool_type of this StudyTypeDefinition.  # noqa: E501
-        :type: str
+        :type pool_type: PoolType
         """
-        allowed_values = ["primary", "secondary", "heavy", "studyMonitor"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and pool_type not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `pool_type` ({0}), must be one of {1}"  # noqa: E501
-                .format(pool_type, allowed_values)
-            )
 
         self._pool_type = pool_type
 
@@ -233,7 +213,7 @@ class StudyTypeDefinition(object):
 
 
         :return: The build_pool_type of this StudyTypeDefinition.  # noqa: E501
-        :rtype: str
+        :rtype: PoolType
         """
         return self._build_pool_type
 
@@ -243,14 +223,8 @@ class StudyTypeDefinition(object):
 
 
         :param build_pool_type: The build_pool_type of this StudyTypeDefinition.  # noqa: E501
-        :type: str
+        :type build_pool_type: PoolType
         """
-        allowed_values = ["primary", "secondary", "heavy", "studyMonitor"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and build_pool_type not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `build_pool_type` ({0}), must be one of {1}"  # noqa: E501
-                .format(build_pool_type, allowed_values)
-            )
 
         self._build_pool_type = build_pool_type
 
@@ -260,7 +234,7 @@ class StudyTypeDefinition(object):
 
 
         :return: The state of this StudyTypeDefinition.  # noqa: E501
-        :rtype: str
+        :rtype: StudyTypeState
         """
         return self._state
 
@@ -270,14 +244,8 @@ class StudyTypeDefinition(object):
 
 
         :param state: The state of this StudyTypeDefinition.  # noqa: E501
-        :type: str
+        :type state: StudyTypeState
         """
-        allowed_values = ["enabled", "disabled"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
-                .format(state, allowed_values)
-            )
 
         self._state = state
 
@@ -297,8 +265,10 @@ class StudyTypeDefinition(object):
 
 
         :param valid_for_transient: The valid_for_transient of this StudyTypeDefinition.  # noqa: E501
-        :type: bool
+        :type valid_for_transient: bool
         """
+        if self.local_vars_configuration.client_side_validation and valid_for_transient is None:  # noqa: E501
+            raise ValueError("Invalid value for `valid_for_transient`, must not be `None`")  # noqa: E501
 
         self._valid_for_transient = valid_for_transient
 
@@ -318,8 +288,10 @@ class StudyTypeDefinition(object):
 
 
         :param valid_for_inline: The valid_for_inline of this StudyTypeDefinition.  # noqa: E501
-        :type: bool
+        :type valid_for_inline: bool
         """
+        if self.local_vars_configuration.client_side_validation and valid_for_inline is None:  # noqa: E501
+            raise ValueError("Invalid value for `valid_for_inline`, must not be `None`")  # noqa: E501
 
         self._valid_for_inline = valid_for_inline
 
@@ -339,8 +311,10 @@ class StudyTypeDefinition(object):
 
 
         :param previous_definitions: The previous_definitions of this StudyTypeDefinition.  # noqa: E501
-        :type: list[IPreviousDefinitionStudyTypeDefinition]
+        :type previous_definitions: list[IPreviousDefinitionStudyTypeDefinition]
         """
+        if self.local_vars_configuration.client_side_validation and previous_definitions is None:  # noqa: E501
+            raise ValueError("Invalid value for `previous_definitions`, must not be `None`")  # noqa: E501
 
         self._previous_definitions = previous_definitions
 
@@ -360,40 +334,40 @@ class StudyTypeDefinition(object):
 
 
         :param implicit_sim_types: The implicit_sim_types of this StudyTypeDefinition.  # noqa: E501
-        :type: list[str]
+        :type implicit_sim_types: list[str]
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths", "TrackConverter"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(implicit_sim_types).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `implicit_sim_types` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(implicit_sim_types) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._implicit_sim_types = implicit_sim_types
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -1,5 +1,6 @@
 # UpdatedAccountSettings
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

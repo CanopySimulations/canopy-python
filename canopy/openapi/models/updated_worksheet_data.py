@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -35,7 +38,7 @@ class UpdatedWorksheetData(object):
     openapi_types = {
         'name': 'str',
         'properties': 'list[DocumentCustomPropertyData]',
-        'outline': 'WorksheetOutline',
+        'outline': 'NewWorksheetDataOutline',
         'notes': 'str'
     }
 
@@ -49,7 +52,7 @@ class UpdatedWorksheetData(object):
     def __init__(self, name=None, properties=None, outline=None, notes=None, local_vars_configuration=None):  # noqa: E501
         """UpdatedWorksheetData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
@@ -58,14 +61,10 @@ class UpdatedWorksheetData(object):
         self._notes = None
         self.discriminator = None
 
-        if name is not None:
-            self.name = name
-        if properties is not None:
-            self.properties = properties
-        if outline is not None:
-            self.outline = outline
-        if notes is not None:
-            self.notes = notes
+        self.name = name
+        self.properties = properties
+        self.outline = outline
+        self.notes = notes
 
     @property
     def name(self):
@@ -83,7 +82,7 @@ class UpdatedWorksheetData(object):
 
 
         :param name: The name of this UpdatedWorksheetData.  # noqa: E501
-        :type: str
+        :type name: str
         """
 
         self._name = name
@@ -104,7 +103,7 @@ class UpdatedWorksheetData(object):
 
 
         :param properties: The properties of this UpdatedWorksheetData.  # noqa: E501
-        :type: list[DocumentCustomPropertyData]
+        :type properties: list[DocumentCustomPropertyData]
         """
 
         self._properties = properties
@@ -115,7 +114,7 @@ class UpdatedWorksheetData(object):
 
 
         :return: The outline of this UpdatedWorksheetData.  # noqa: E501
-        :rtype: WorksheetOutline
+        :rtype: NewWorksheetDataOutline
         """
         return self._outline
 
@@ -125,7 +124,7 @@ class UpdatedWorksheetData(object):
 
 
         :param outline: The outline of this UpdatedWorksheetData.  # noqa: E501
-        :type: WorksheetOutline
+        :type outline: NewWorksheetDataOutline
         """
 
         self._outline = outline
@@ -146,32 +145,40 @@ class UpdatedWorksheetData(object):
 
 
         :param notes: The notes of this UpdatedWorksheetData.  # noqa: E501
-        :type: str
+        :type notes: str
         """
 
         self._notes = notes
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

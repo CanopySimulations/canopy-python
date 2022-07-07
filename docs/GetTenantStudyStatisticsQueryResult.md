@@ -1,9 +1,10 @@
 # GetTenantStudyStatisticsQueryResult
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**statistics** | [**object**](.md) |  | [optional] [readonly] 
+**statistics** | **object** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

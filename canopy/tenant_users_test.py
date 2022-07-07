@@ -6,9 +6,9 @@ class TenantUsersTest(unittest.TestCase):
 
     def setUp(self):
         self.users = [
-            canopy.openapi.GetTenantUsersQueryResultUserItem('id0', 'u0', 'u0@d.com'),
-            canopy.openapi.GetTenantUsersQueryResultUserItem('id1', 'u1', 'u1@d.com'),
-            canopy.openapi.GetTenantUsersQueryResultUserItem('id2', 'u2', 'u2@d.com'),
+            canopy.openapi.GetTenantUsersQueryResultUserItem('id0', 'u0', 'u0@d.com', roles=[], is_enabled=True),
+            canopy.openapi.GetTenantUsersQueryResultUserItem('id1', 'u1', 'u1@d.com', roles=[], is_enabled=True),
+            canopy.openapi.GetTenantUsersQueryResultUserItem('id2', 'u2', 'u2@d.com', roles=[], is_enabled=True),
         ]
 
         self.target = canopy.TenantUsers(

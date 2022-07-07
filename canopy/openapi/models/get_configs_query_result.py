@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,9 +36,9 @@ class GetConfigsQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'query_results': 'DocumentsAndContinuationToken',
+        'query_results': 'GetConfigsQueryResultQueryResults',
         'group_results': 'list[DocumentCustomPropertyGroup]',
-        'user_information': 'DocumentUserInformation'
+        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
     }
 
     attribute_map = {
@@ -47,7 +50,7 @@ class GetConfigsQueryResult(object):
     def __init__(self, query_results=None, group_results=None, user_information=None, local_vars_configuration=None):  # noqa: E501
         """GetConfigsQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._query_results = None
@@ -55,12 +58,9 @@ class GetConfigsQueryResult(object):
         self._user_information = None
         self.discriminator = None
 
-        if query_results is not None:
-            self.query_results = query_results
-        if group_results is not None:
-            self.group_results = group_results
-        if user_information is not None:
-            self.user_information = user_information
+        self.query_results = query_results
+        self.group_results = group_results
+        self.user_information = user_information
 
     @property
     def query_results(self):
@@ -68,7 +68,7 @@ class GetConfigsQueryResult(object):
 
 
         :return: The query_results of this GetConfigsQueryResult.  # noqa: E501
-        :rtype: DocumentsAndContinuationToken
+        :rtype: GetConfigsQueryResultQueryResults
         """
         return self._query_results
 
@@ -78,7 +78,7 @@ class GetConfigsQueryResult(object):
 
 
         :param query_results: The query_results of this GetConfigsQueryResult.  # noqa: E501
-        :type: DocumentsAndContinuationToken
+        :type query_results: GetConfigsQueryResultQueryResults
         """
 
         self._query_results = query_results
@@ -99,7 +99,7 @@ class GetConfigsQueryResult(object):
 
 
         :param group_results: The group_results of this GetConfigsQueryResult.  # noqa: E501
-        :type: list[DocumentCustomPropertyGroup]
+        :type group_results: list[DocumentCustomPropertyGroup]
         """
 
         self._group_results = group_results
@@ -110,7 +110,7 @@ class GetConfigsQueryResult(object):
 
 
         :return: The user_information of this GetConfigsQueryResult.  # noqa: E501
-        :rtype: DocumentUserInformation
+        :rtype: GetAllSupportSessionsQueryResultUserInformation
         """
         return self._user_information
 
@@ -120,32 +120,42 @@ class GetConfigsQueryResult(object):
 
 
         :param user_information: The user_information of this GetConfigsQueryResult.  # noqa: E501
-        :type: DocumentUserInformation
+        :type user_information: GetAllSupportSessionsQueryResultUserInformation
         """
+        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
+            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

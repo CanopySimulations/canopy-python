@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -35,7 +38,7 @@ class ListFilterCondition(object):
     openapi_types = {
         'source': 'str',
         'name': 'str',
-        'operator': 'str',
+        'operator': 'ConditionOperator',
         'value': 'str'
     }
 
@@ -49,7 +52,7 @@ class ListFilterCondition(object):
     def __init__(self, source=None, name=None, operator=None, value=None, local_vars_configuration=None):  # noqa: E501
         """ListFilterCondition - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._source = None
@@ -58,14 +61,10 @@ class ListFilterCondition(object):
         self._value = None
         self.discriminator = None
 
-        if source is not None:
-            self.source = source
-        if name is not None:
-            self.name = name
-        if operator is not None:
-            self.operator = operator
-        if value is not None:
-            self.value = value
+        self.source = source
+        self.name = name
+        self.operator = operator
+        self.value = value
 
     @property
     def source(self):
@@ -83,8 +82,10 @@ class ListFilterCondition(object):
 
 
         :param source: The source of this ListFilterCondition.  # noqa: E501
-        :type: str
+        :type source: str
         """
+        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
+            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
 
@@ -104,8 +105,10 @@ class ListFilterCondition(object):
 
 
         :param name: The name of this ListFilterCondition.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -115,7 +118,7 @@ class ListFilterCondition(object):
 
 
         :return: The operator of this ListFilterCondition.  # noqa: E501
-        :rtype: str
+        :rtype: ConditionOperator
         """
         return self._operator
 
@@ -125,14 +128,8 @@ class ListFilterCondition(object):
 
 
         :param operator: The operator of this ListFilterCondition.  # noqa: E501
-        :type: str
+        :type operator: ConditionOperator
         """
-        allowed_values = ["equals", "notEquals", "lessThan", "greaterThan", "lessThanOrEquals", "greaterThanOrEquals", "exists", "notExists"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and operator not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `operator` ({0}), must be one of {1}"  # noqa: E501
-                .format(operator, allowed_values)
-            )
 
         self._operator = operator
 
@@ -152,32 +149,40 @@ class ListFilterCondition(object):
 
 
         :param value: The value of this ListFilterCondition.  # noqa: E501
-        :type: str
+        :type value: str
         """
 
         self._value = value
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

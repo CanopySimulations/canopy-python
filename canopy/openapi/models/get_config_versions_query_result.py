@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -34,7 +37,7 @@ class GetConfigVersionsQueryResult(object):
     """
     openapi_types = {
         'versions': 'list[VersionedDocumentMetadata]',
-        'user_information': 'DocumentUserInformation'
+        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
     }
 
     attribute_map = {
@@ -45,17 +48,15 @@ class GetConfigVersionsQueryResult(object):
     def __init__(self, versions=None, user_information=None, local_vars_configuration=None):  # noqa: E501
         """GetConfigVersionsQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._versions = None
         self._user_information = None
         self.discriminator = None
 
-        if versions is not None:
-            self.versions = versions
-        if user_information is not None:
-            self.user_information = user_information
+        self.versions = versions
+        self.user_information = user_information
 
     @property
     def versions(self):
@@ -73,8 +74,10 @@ class GetConfigVersionsQueryResult(object):
 
 
         :param versions: The versions of this GetConfigVersionsQueryResult.  # noqa: E501
-        :type: list[VersionedDocumentMetadata]
+        :type versions: list[VersionedDocumentMetadata]
         """
+        if self.local_vars_configuration.client_side_validation and versions is None:  # noqa: E501
+            raise ValueError("Invalid value for `versions`, must not be `None`")  # noqa: E501
 
         self._versions = versions
 
@@ -84,7 +87,7 @@ class GetConfigVersionsQueryResult(object):
 
 
         :return: The user_information of this GetConfigVersionsQueryResult.  # noqa: E501
-        :rtype: DocumentUserInformation
+        :rtype: GetAllSupportSessionsQueryResultUserInformation
         """
         return self._user_information
 
@@ -94,32 +97,42 @@ class GetConfigVersionsQueryResult(object):
 
 
         :param user_information: The user_information of this GetConfigVersionsQueryResult.  # noqa: E501
-        :type: DocumentUserInformation
+        :type user_information: GetAllSupportSessionsQueryResultUserInformation
         """
+        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
+            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,21 +36,21 @@ class CanopyDocument(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'document_id': 'str',
-        'tenant_id': 'str',
-        'user_id': 'str',
+        'document_id': 'object',
+        'tenant_id': 'object',
+        'user_id': 'object',
         'name': 'str',
         'type': 'str',
-        'sub_type': 'str',
-        'sim_version': 'str',
+        'sub_type': 'object',
+        'sim_version': 'object',
         'creation_date': 'datetime',
         'modified_date': 'datetime',
         'properties': 'object',
         'data': 'object',
-        'support_session': 'SupportSession',
+        'support_session': 'CanopyDocumentSupportSession',
         'notes': 'str',
         'delete_requested': 'bool',
-        'parent_worksheet_id': 'str'
+        'parent_worksheet_id': 'object'
     }
 
     attribute_map = {
@@ -71,7 +74,7 @@ class CanopyDocument(object):
     def __init__(self, document_id=None, tenant_id=None, user_id=None, name=None, type=None, sub_type=None, sim_version=None, creation_date=None, modified_date=None, properties=None, data=None, support_session=None, notes=None, delete_requested=None, parent_worksheet_id=None, local_vars_configuration=None):  # noqa: E501
         """CanopyDocument - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._document_id = None
@@ -91,36 +94,22 @@ class CanopyDocument(object):
         self._parent_worksheet_id = None
         self.discriminator = None
 
-        if document_id is not None:
-            self.document_id = document_id
-        if tenant_id is not None:
-            self.tenant_id = tenant_id
-        if user_id is not None:
-            self.user_id = user_id
-        if name is not None:
-            self.name = name
-        if type is not None:
-            self.type = type
-        if sub_type is not None:
-            self.sub_type = sub_type
-        if sim_version is not None:
-            self.sim_version = sim_version
-        if creation_date is not None:
-            self.creation_date = creation_date
-        if modified_date is not None:
-            self.modified_date = modified_date
-        if properties is not None:
-            self.properties = properties
-        if data is not None:
-            self.data = data
-        if support_session is not None:
-            self.support_session = support_session
-        if notes is not None:
-            self.notes = notes
+        self.document_id = document_id
+        self.tenant_id = tenant_id
+        self.user_id = user_id
+        self.name = name
+        self.type = type
+        self.sub_type = sub_type
+        self.sim_version = sim_version
+        self.creation_date = creation_date
+        self.modified_date = modified_date
+        self.properties = properties
+        self.data = data
+        self.support_session = support_session
+        self.notes = notes
         if delete_requested is not None:
             self.delete_requested = delete_requested
-        if parent_worksheet_id is not None:
-            self.parent_worksheet_id = parent_worksheet_id
+        self.parent_worksheet_id = parent_worksheet_id
 
     @property
     def document_id(self):
@@ -128,7 +117,7 @@ class CanopyDocument(object):
 
 
         :return: The document_id of this CanopyDocument.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._document_id
 
@@ -138,8 +127,10 @@ class CanopyDocument(object):
 
 
         :param document_id: The document_id of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type document_id: object
         """
+        if self.local_vars_configuration.client_side_validation and document_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `document_id`, must not be `None`")  # noqa: E501
 
         self._document_id = document_id
 
@@ -149,7 +140,7 @@ class CanopyDocument(object):
 
 
         :return: The tenant_id of this CanopyDocument.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._tenant_id
 
@@ -159,8 +150,10 @@ class CanopyDocument(object):
 
 
         :param tenant_id: The tenant_id of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type tenant_id: object
         """
+        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -170,7 +163,7 @@ class CanopyDocument(object):
 
 
         :return: The user_id of this CanopyDocument.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._user_id
 
@@ -180,8 +173,10 @@ class CanopyDocument(object):
 
 
         :param user_id: The user_id of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type user_id: object
         """
+        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -201,8 +196,10 @@ class CanopyDocument(object):
 
 
         :param name: The name of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -222,14 +219,10 @@ class CanopyDocument(object):
 
 
         :param type: The type of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type type: str
         """
-        allowed_values = ["automatedTest", "config", "study", "tenantSettings", "adminTenantSettings", "configSubTree", "userSettings", "job"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and type not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"  # noqa: E501
-                .format(type, allowed_values)
-            )
+        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
 
         self._type = type
 
@@ -239,7 +232,7 @@ class CanopyDocument(object):
 
 
         :return: The sub_type of this CanopyDocument.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._sub_type
 
@@ -249,8 +242,10 @@ class CanopyDocument(object):
 
 
         :param sub_type: The sub_type of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type sub_type: object
         """
+        if self.local_vars_configuration.client_side_validation and sub_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `sub_type`, must not be `None`")  # noqa: E501
 
         self._sub_type = sub_type
 
@@ -260,7 +255,7 @@ class CanopyDocument(object):
 
 
         :return: The sim_version of this CanopyDocument.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._sim_version
 
@@ -270,8 +265,10 @@ class CanopyDocument(object):
 
 
         :param sim_version: The sim_version of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type sim_version: object
         """
+        if self.local_vars_configuration.client_side_validation and sim_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `sim_version`, must not be `None`")  # noqa: E501
 
         self._sim_version = sim_version
 
@@ -291,8 +288,10 @@ class CanopyDocument(object):
 
 
         :param creation_date: The creation_date of this CanopyDocument.  # noqa: E501
-        :type: datetime
+        :type creation_date: datetime
         """
+        if self.local_vars_configuration.client_side_validation and creation_date is None:  # noqa: E501
+            raise ValueError("Invalid value for `creation_date`, must not be `None`")  # noqa: E501
 
         self._creation_date = creation_date
 
@@ -312,8 +311,10 @@ class CanopyDocument(object):
 
 
         :param modified_date: The modified_date of this CanopyDocument.  # noqa: E501
-        :type: datetime
+        :type modified_date: datetime
         """
+        if self.local_vars_configuration.client_side_validation and modified_date is None:  # noqa: E501
+            raise ValueError("Invalid value for `modified_date`, must not be `None`")  # noqa: E501
 
         self._modified_date = modified_date
 
@@ -333,7 +334,7 @@ class CanopyDocument(object):
 
 
         :param properties: The properties of this CanopyDocument.  # noqa: E501
-        :type: object
+        :type properties: object
         """
 
         self._properties = properties
@@ -354,7 +355,7 @@ class CanopyDocument(object):
 
 
         :param data: The data of this CanopyDocument.  # noqa: E501
-        :type: object
+        :type data: object
         """
 
         self._data = data
@@ -365,7 +366,7 @@ class CanopyDocument(object):
 
 
         :return: The support_session of this CanopyDocument.  # noqa: E501
-        :rtype: SupportSession
+        :rtype: CanopyDocumentSupportSession
         """
         return self._support_session
 
@@ -375,7 +376,7 @@ class CanopyDocument(object):
 
 
         :param support_session: The support_session of this CanopyDocument.  # noqa: E501
-        :type: SupportSession
+        :type support_session: CanopyDocumentSupportSession
         """
 
         self._support_session = support_session
@@ -396,7 +397,7 @@ class CanopyDocument(object):
 
 
         :param notes: The notes of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type notes: str
         """
 
         self._notes = notes
@@ -417,7 +418,7 @@ class CanopyDocument(object):
 
 
         :param delete_requested: The delete_requested of this CanopyDocument.  # noqa: E501
-        :type: bool
+        :type delete_requested: bool
         """
 
         self._delete_requested = delete_requested
@@ -428,7 +429,7 @@ class CanopyDocument(object):
 
 
         :return: The parent_worksheet_id of this CanopyDocument.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._parent_worksheet_id
 
@@ -438,32 +439,40 @@ class CanopyDocument(object):
 
 
         :param parent_worksheet_id: The parent_worksheet_id of this CanopyDocument.  # noqa: E501
-        :type: str
+        :type parent_worksheet_id: object
         """
 
         self._parent_worksheet_id = parent_worksheet_id
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

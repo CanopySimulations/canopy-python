@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -34,7 +37,7 @@ class UpdatedConfigData(object):
     """
     openapi_types = {
         'name': 'str',
-        'config_type': 'str',
+        'config_type': 'object',
         'properties': 'list[DocumentCustomPropertyData]',
         'config': 'object',
         'notes': 'str',
@@ -53,7 +56,7 @@ class UpdatedConfigData(object):
     def __init__(self, name=None, config_type=None, properties=None, config=None, notes=None, sim_version=None, local_vars_configuration=None):  # noqa: E501
         """UpdatedConfigData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
@@ -64,18 +67,12 @@ class UpdatedConfigData(object):
         self._sim_version = None
         self.discriminator = None
 
-        if name is not None:
-            self.name = name
-        if config_type is not None:
-            self.config_type = config_type
-        if properties is not None:
-            self.properties = properties
-        if config is not None:
-            self.config = config
-        if notes is not None:
-            self.notes = notes
-        if sim_version is not None:
-            self.sim_version = sim_version
+        self.name = name
+        self.config_type = config_type
+        self.properties = properties
+        self.config = config
+        self.notes = notes
+        self.sim_version = sim_version
 
     @property
     def name(self):
@@ -93,7 +90,7 @@ class UpdatedConfigData(object):
 
 
         :param name: The name of this UpdatedConfigData.  # noqa: E501
-        :type: str
+        :type name: str
         """
 
         self._name = name
@@ -104,7 +101,7 @@ class UpdatedConfigData(object):
 
 
         :return: The config_type of this UpdatedConfigData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._config_type
 
@@ -114,7 +111,7 @@ class UpdatedConfigData(object):
 
 
         :param config_type: The config_type of this UpdatedConfigData.  # noqa: E501
-        :type: str
+        :type config_type: object
         """
 
         self._config_type = config_type
@@ -135,7 +132,7 @@ class UpdatedConfigData(object):
 
 
         :param properties: The properties of this UpdatedConfigData.  # noqa: E501
-        :type: list[DocumentCustomPropertyData]
+        :type properties: list[DocumentCustomPropertyData]
         """
 
         self._properties = properties
@@ -156,7 +153,7 @@ class UpdatedConfigData(object):
 
 
         :param config: The config of this UpdatedConfigData.  # noqa: E501
-        :type: object
+        :type config: object
         """
 
         self._config = config
@@ -177,7 +174,7 @@ class UpdatedConfigData(object):
 
 
         :param notes: The notes of this UpdatedConfigData.  # noqa: E501
-        :type: str
+        :type notes: str
         """
 
         self._notes = notes
@@ -198,32 +195,40 @@ class UpdatedConfigData(object):
 
 
         :param sim_version: The sim_version of this UpdatedConfigData.  # noqa: E501
-        :type: str
+        :type sim_version: str
         """
 
         self._sim_version = sim_version
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

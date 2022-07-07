@@ -41,23 +41,30 @@ class SimVersionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_document(sim_version, document_path, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str sim_version: (required)
-        :param str document_path: (required)
-        :param str tenant_id:
+        :param sim_version: (required)
+        :type sim_version: str
+        :param document_path: (required)
+        :type document_path: str
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetSimVersionDocumentQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetSimVersionDocumentQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.sim_version_get_document_with_http_info(sim_version, document_path, **kwargs)  # noqa: E501
@@ -67,25 +74,38 @@ class SimVersionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_document_with_http_info(sim_version, document_path, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str sim_version: (required)
-        :param str document_path: (required)
-        :param str tenant_id:
+        :param sim_version: (required)
+        :type sim_version: str
+        :param document_path: (required)
+        :type document_path: str
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetSimVersionDocumentQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetSimVersionDocumentQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -100,7 +120,10 @@ class SimVersionApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -113,12 +136,10 @@ class SimVersionApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'sim_version' is set
-        if self.api_client.client_side_validation and ('sim_version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['sim_version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('sim_version') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `sim_version` when calling `sim_version_get_document`")  # noqa: E501
         # verify the required parameter 'document_path' is set
-        if self.api_client.client_side_validation and ('document_path' not in local_var_params or  # noqa: E501
-                                                        local_var_params['document_path'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('document_path') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `document_path` when calling `sim_version_get_document`")  # noqa: E501
 
         collection_formats = {}
@@ -130,10 +151,10 @@ class SimVersionApi(object):
             path_params['documentPath'] = local_var_params['document_path']  # noqa: E501
 
         query_params = []
-        if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
+        if local_var_params.get('tenant_id') is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -141,10 +162,14 @@ class SimVersionApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetSimVersionDocumentQueryResult",
+        }
 
         return self.api_client.call_api(
             '/sim-versions/{simVersion}/documents/{documentPath}', 'GET',
@@ -154,35 +179,42 @@ class SimVersionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetSimVersionDocumentQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_get_documents(self, sim_version, **kwargs):  # noqa: E501
         """sim_version_get_documents  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_documents(sim_version, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str sim_version: (required)
-        :param str tenant_id:
+        :param sim_version: (required)
+        :type sim_version: str
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetSimVersionDocumentsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetSimVersionDocumentsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.sim_version_get_documents_with_http_info(sim_version, **kwargs)  # noqa: E501
@@ -192,24 +224,36 @@ class SimVersionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_documents_with_http_info(sim_version, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str sim_version: (required)
-        :param str tenant_id:
+        :param sim_version: (required)
+        :type sim_version: str
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetSimVersionDocumentsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetSimVersionDocumentsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -223,7 +267,10 @@ class SimVersionApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -236,8 +283,7 @@ class SimVersionApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'sim_version' is set
-        if self.api_client.client_side_validation and ('sim_version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['sim_version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('sim_version') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `sim_version` when calling `sim_version_get_documents`")  # noqa: E501
 
         collection_formats = {}
@@ -247,10 +293,10 @@ class SimVersionApi(object):
             path_params['simVersion'] = local_var_params['sim_version']  # noqa: E501
 
         query_params = []
-        if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
+        if local_var_params.get('tenant_id') is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -258,10 +304,14 @@ class SimVersionApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetSimVersionDocumentsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/sim-versions/{simVersion}/documents', 'GET',
@@ -271,35 +321,42 @@ class SimVersionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetSimVersionDocumentsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_get_downloads(self, sim_version, **kwargs):  # noqa: E501
         """sim_version_get_downloads  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_downloads(sim_version, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str sim_version: (required)
-        :param str tenant_id:
+        :param sim_version: (required)
+        :type sim_version: str
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetSimVersionDownloadsQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetSimVersionDownloadsQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.sim_version_get_downloads_with_http_info(sim_version, **kwargs)  # noqa: E501
@@ -309,24 +366,36 @@ class SimVersionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_downloads_with_http_info(sim_version, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str sim_version: (required)
-        :param str tenant_id:
+        :param sim_version: (required)
+        :type sim_version: str
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetSimVersionDownloadsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetSimVersionDownloadsQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -340,7 +409,10 @@ class SimVersionApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -353,8 +425,7 @@ class SimVersionApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'sim_version' is set
-        if self.api_client.client_side_validation and ('sim_version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['sim_version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('sim_version') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `sim_version` when calling `sim_version_get_downloads`")  # noqa: E501
 
         collection_formats = {}
@@ -364,10 +435,10 @@ class SimVersionApi(object):
             path_params['simVersion'] = local_var_params['sim_version']  # noqa: E501
 
         query_params = []
-        if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
+        if local_var_params.get('tenant_id') is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -375,10 +446,14 @@ class SimVersionApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetSimVersionDownloadsQueryResult",
+        }
 
         return self.api_client.call_api(
             '/sim-versions/{simVersion}/downloads', 'GET',
@@ -388,34 +463,40 @@ class SimVersionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetSimVersionDownloadsQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_get_sim_version(self, **kwargs):  # noqa: E501
         """sim_version_get_sim_version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_sim_version(async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id:
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: str
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: object
         """
         kwargs['_return_http_data_only'] = True
         return self.sim_version_get_sim_version_with_http_info(**kwargs)  # noqa: E501
@@ -425,23 +506,34 @@ class SimVersionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_sim_version_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id:
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -454,7 +546,10 @@ class SimVersionApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -472,10 +567,10 @@ class SimVersionApi(object):
         path_params = {}
 
         query_params = []
-        if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
+        if local_var_params.get('tenant_id') is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -483,10 +578,14 @@ class SimVersionApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "object",
+        }
 
         return self.api_client.call_api(
             '/sim-versions/current', 'GET',
@@ -496,36 +595,44 @@ class SimVersionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='str',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_get_wiki_document(self, wiki_version, document_path, **kwargs):  # noqa: E501
         """sim_version_get_wiki_document  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_wiki_document(wiki_version, document_path, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str wiki_version: (required)
-        :param str document_path: (required)
-        :param str tenant_id:
+        :param wiki_version: (required)
+        :type wiki_version: str
+        :param document_path: (required)
+        :type document_path: str
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetWikiDocumentQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetWikiDocumentQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.sim_version_get_wiki_document_with_http_info(wiki_version, document_path, **kwargs)  # noqa: E501
@@ -535,25 +642,38 @@ class SimVersionApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.sim_version_get_wiki_document_with_http_info(wiki_version, document_path, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str wiki_version: (required)
-        :param str document_path: (required)
-        :param str tenant_id:
+        :param wiki_version: (required)
+        :type wiki_version: str
+        :param document_path: (required)
+        :type document_path: str
+        :param tenant_id:
+        :type tenant_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetWikiDocumentQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetWikiDocumentQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -568,7 +688,10 @@ class SimVersionApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -581,12 +704,10 @@ class SimVersionApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'wiki_version' is set
-        if self.api_client.client_side_validation and ('wiki_version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['wiki_version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('wiki_version') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `wiki_version` when calling `sim_version_get_wiki_document`")  # noqa: E501
         # verify the required parameter 'document_path' is set
-        if self.api_client.client_side_validation and ('document_path' not in local_var_params or  # noqa: E501
-                                                        local_var_params['document_path'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('document_path') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `document_path` when calling `sim_version_get_wiki_document`")  # noqa: E501
 
         collection_formats = {}
@@ -598,10 +719,10 @@ class SimVersionApi(object):
             path_params['documentPath'] = local_var_params['document_path']  # noqa: E501
 
         query_params = []
-        if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
+        if local_var_params.get('tenant_id') is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -609,10 +730,14 @@ class SimVersionApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetWikiDocumentQueryResult",
+        }
 
         return self.api_client.call_api(
             '/sim-versions/{wikiVersion}/wiki/{documentPath}', 'GET',
@@ -622,73 +747,93 @@ class SimVersionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetWikiDocumentQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def sim_version_post_sim_version(self, sim_version_data, **kwargs):  # noqa: E501
+    def sim_version_post_sim_version(self, sim_version_post_sim_version_request, **kwargs):  # noqa: E501
         """sim_version_post_sim_version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.sim_version_post_sim_version(sim_version_data, async_req=True)
+
+        >>> thread = api.sim_version_post_sim_version(sim_version_post_sim_version_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param NewSimVersionData sim_version_data: (required)
+        :param sim_version_post_sim_version_request: (required)
+        :type sim_version_post_sim_version_request: SimVersionPostSimVersionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.sim_version_post_sim_version_with_http_info(sim_version_data, **kwargs)  # noqa: E501
+        return self.sim_version_post_sim_version_with_http_info(sim_version_post_sim_version_request, **kwargs)  # noqa: E501
 
-    def sim_version_post_sim_version_with_http_info(self, sim_version_data, **kwargs):  # noqa: E501
+    def sim_version_post_sim_version_with_http_info(self, sim_version_post_sim_version_request, **kwargs):  # noqa: E501
         """sim_version_post_sim_version  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.sim_version_post_sim_version_with_http_info(sim_version_data, async_req=True)
+
+        >>> thread = api.sim_version_post_sim_version_with_http_info(sim_version_post_sim_version_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param NewSimVersionData sim_version_data: (required)
+        :param sim_version_post_sim_version_request: (required)
+        :type sim_version_post_sim_version_request: SimVersionPostSimVersionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: None
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: None
         """
 
         local_var_params = locals()
 
         all_params = [
-            'sim_version_data'
+            'sim_version_post_sim_version_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -700,10 +845,9 @@ class SimVersionApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'sim_version_data' is set
-        if self.api_client.client_side_validation and ('sim_version_data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['sim_version_data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `sim_version_data` when calling `sim_version_post_sim_version`")  # noqa: E501
+        # verify the required parameter 'sim_version_post_sim_version_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('sim_version_post_sim_version_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `sim_version_post_sim_version_request` when calling `sim_version_post_sim_version`")  # noqa: E501
 
         collection_formats = {}
 
@@ -711,20 +855,26 @@ class SimVersionApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'sim_version_data' in local_var_params:
-            body_params = local_var_params['sim_version_data']
+        if 'sim_version_post_sim_version_request' in local_var_params:
+            body_params = local_var_params['sim_version_post_sim_version_request']
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/sim-versions/current', 'POST',
@@ -734,10 +884,11 @@ class SimVersionApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,9 +36,9 @@ class DuplicateConfigsData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'source_tenant_id': 'str',
-        'source_worksheet_id': 'str',
-        'source_config_ids': 'list[str]',
+        'source_tenant_id': 'object',
+        'source_worksheet_id': 'object',
+        'source_config_ids': 'list[object]',
         'source_default_config_ids': 'list[DefaultConfigId]'
     }
 
@@ -49,7 +52,7 @@ class DuplicateConfigsData(object):
     def __init__(self, source_tenant_id=None, source_worksheet_id=None, source_config_ids=None, source_default_config_ids=None, local_vars_configuration=None):  # noqa: E501
         """DuplicateConfigsData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._source_tenant_id = None
@@ -58,14 +61,10 @@ class DuplicateConfigsData(object):
         self._source_default_config_ids = None
         self.discriminator = None
 
-        if source_tenant_id is not None:
-            self.source_tenant_id = source_tenant_id
-        if source_worksheet_id is not None:
-            self.source_worksheet_id = source_worksheet_id
-        if source_config_ids is not None:
-            self.source_config_ids = source_config_ids
-        if source_default_config_ids is not None:
-            self.source_default_config_ids = source_default_config_ids
+        self.source_tenant_id = source_tenant_id
+        self.source_worksheet_id = source_worksheet_id
+        self.source_config_ids = source_config_ids
+        self.source_default_config_ids = source_default_config_ids
 
     @property
     def source_tenant_id(self):
@@ -73,7 +72,7 @@ class DuplicateConfigsData(object):
 
 
         :return: The source_tenant_id of this DuplicateConfigsData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._source_tenant_id
 
@@ -83,7 +82,7 @@ class DuplicateConfigsData(object):
 
 
         :param source_tenant_id: The source_tenant_id of this DuplicateConfigsData.  # noqa: E501
-        :type: str
+        :type source_tenant_id: object
         """
 
         self._source_tenant_id = source_tenant_id
@@ -94,7 +93,7 @@ class DuplicateConfigsData(object):
 
 
         :return: The source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._source_worksheet_id
 
@@ -104,7 +103,7 @@ class DuplicateConfigsData(object):
 
 
         :param source_worksheet_id: The source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
-        :type: str
+        :type source_worksheet_id: object
         """
 
         self._source_worksheet_id = source_worksheet_id
@@ -115,7 +114,7 @@ class DuplicateConfigsData(object):
 
 
         :return: The source_config_ids of this DuplicateConfigsData.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[object]
         """
         return self._source_config_ids
 
@@ -125,7 +124,7 @@ class DuplicateConfigsData(object):
 
 
         :param source_config_ids: The source_config_ids of this DuplicateConfigsData.  # noqa: E501
-        :type: list[str]
+        :type source_config_ids: list[object]
         """
 
         self._source_config_ids = source_config_ids
@@ -146,32 +145,40 @@ class DuplicateConfigsData(object):
 
 
         :param source_default_config_ids: The source_default_config_ids of this DuplicateConfigsData.  # noqa: E501
-        :type: list[DefaultConfigId]
+        :type source_default_config_ids: list[DefaultConfigId]
         """
 
         self._source_default_config_ids = source_default_config_ids
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

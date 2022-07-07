@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -49,7 +52,7 @@ class UpdatedAccountSettings(object):
     def __init__(self, new_username=None, new_email=None, new_password=None, is_enabled=None, local_vars_configuration=None):  # noqa: E501
         """UpdatedAccountSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._new_username = None
@@ -58,14 +61,10 @@ class UpdatedAccountSettings(object):
         self._is_enabled = None
         self.discriminator = None
 
-        if new_username is not None:
-            self.new_username = new_username
-        if new_email is not None:
-            self.new_email = new_email
-        if new_password is not None:
-            self.new_password = new_password
-        if is_enabled is not None:
-            self.is_enabled = is_enabled
+        self.new_username = new_username
+        self.new_email = new_email
+        self.new_password = new_password
+        self.is_enabled = is_enabled
 
     @property
     def new_username(self):
@@ -83,7 +82,7 @@ class UpdatedAccountSettings(object):
 
 
         :param new_username: The new_username of this UpdatedAccountSettings.  # noqa: E501
-        :type: str
+        :type new_username: str
         """
 
         self._new_username = new_username
@@ -104,7 +103,7 @@ class UpdatedAccountSettings(object):
 
 
         :param new_email: The new_email of this UpdatedAccountSettings.  # noqa: E501
-        :type: str
+        :type new_email: str
         """
 
         self._new_email = new_email
@@ -125,7 +124,7 @@ class UpdatedAccountSettings(object):
 
 
         :param new_password: The new_password of this UpdatedAccountSettings.  # noqa: E501
-        :type: str
+        :type new_password: str
         """
 
         self._new_password = new_password
@@ -146,32 +145,40 @@ class UpdatedAccountSettings(object):
 
 
         :param is_enabled: The is_enabled of this UpdatedAccountSettings.  # noqa: E501
-        :type: bool
+        :type is_enabled: bool
         """
 
         self._is_enabled = is_enabled
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

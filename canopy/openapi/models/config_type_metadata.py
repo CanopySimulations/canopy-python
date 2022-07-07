@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class ConfigTypeMetadata(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'singular_key': 'str',
+        'singular_key': 'object',
         'plural_key': 'str',
         'name': 'str',
         'title_name': 'str',
@@ -51,7 +54,7 @@ class ConfigTypeMetadata(object):
     def __init__(self, singular_key=None, plural_key=None, name=None, title_name=None, icon=None, local_vars_configuration=None):  # noqa: E501
         """ConfigTypeMetadata - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._singular_key = None
@@ -61,16 +64,11 @@ class ConfigTypeMetadata(object):
         self._icon = None
         self.discriminator = None
 
-        if singular_key is not None:
-            self.singular_key = singular_key
-        if plural_key is not None:
-            self.plural_key = plural_key
-        if name is not None:
-            self.name = name
-        if title_name is not None:
-            self.title_name = title_name
-        if icon is not None:
-            self.icon = icon
+        self.singular_key = singular_key
+        self.plural_key = plural_key
+        self.name = name
+        self.title_name = title_name
+        self.icon = icon
 
     @property
     def singular_key(self):
@@ -78,7 +76,7 @@ class ConfigTypeMetadata(object):
 
 
         :return: The singular_key of this ConfigTypeMetadata.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._singular_key
 
@@ -88,8 +86,10 @@ class ConfigTypeMetadata(object):
 
 
         :param singular_key: The singular_key of this ConfigTypeMetadata.  # noqa: E501
-        :type: str
+        :type singular_key: object
         """
+        if self.local_vars_configuration.client_side_validation and singular_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `singular_key`, must not be `None`")  # noqa: E501
 
         self._singular_key = singular_key
 
@@ -109,8 +109,10 @@ class ConfigTypeMetadata(object):
 
 
         :param plural_key: The plural_key of this ConfigTypeMetadata.  # noqa: E501
-        :type: str
+        :type plural_key: str
         """
+        if self.local_vars_configuration.client_side_validation and plural_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `plural_key`, must not be `None`")  # noqa: E501
 
         self._plural_key = plural_key
 
@@ -130,8 +132,10 @@ class ConfigTypeMetadata(object):
 
 
         :param name: The name of this ConfigTypeMetadata.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -151,8 +155,10 @@ class ConfigTypeMetadata(object):
 
 
         :param title_name: The title_name of this ConfigTypeMetadata.  # noqa: E501
-        :type: str
+        :type title_name: str
         """
+        if self.local_vars_configuration.client_side_validation and title_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `title_name`, must not be `None`")  # noqa: E501
 
         self._title_name = title_name
 
@@ -172,32 +178,40 @@ class ConfigTypeMetadata(object):
 
 
         :param icon: The icon of this ConfigTypeMetadata.  # noqa: E501
-        :type: str
+        :type icon: str
         """
 
         self._icon = icon
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

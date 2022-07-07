@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -36,8 +39,8 @@ class SimTypeDefinition(object):
         'sim_type': 'str',
         'name': 'str',
         'known_output_files': 'list[str]',
-        'state': 'str',
-        'input_telemetry_channels': 'SimTypeInputTelemetryChannels',
+        'state': 'SimTypeState',
+        'input_telemetry_channels': 'SimTypeDefinitionInputTelemetryChannels',
         'previous_definitions': 'list[IPreviousDefinitionSimTypeDefinition]'
     }
 
@@ -53,7 +56,7 @@ class SimTypeDefinition(object):
     def __init__(self, sim_type=None, name=None, known_output_files=None, state=None, input_telemetry_channels=None, previous_definitions=None, local_vars_configuration=None):  # noqa: E501
         """SimTypeDefinition - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._sim_type = None
@@ -64,18 +67,12 @@ class SimTypeDefinition(object):
         self._previous_definitions = None
         self.discriminator = None
 
-        if sim_type is not None:
-            self.sim_type = sim_type
-        if name is not None:
-            self.name = name
-        if known_output_files is not None:
-            self.known_output_files = known_output_files
-        if state is not None:
-            self.state = state
-        if input_telemetry_channels is not None:
-            self.input_telemetry_channels = input_telemetry_channels
-        if previous_definitions is not None:
-            self.previous_definitions = previous_definitions
+        self.sim_type = sim_type
+        self.name = name
+        self.known_output_files = known_output_files
+        self.state = state
+        self.input_telemetry_channels = input_telemetry_channels
+        self.previous_definitions = previous_definitions
 
     @property
     def sim_type(self):
@@ -93,14 +90,10 @@ class SimTypeDefinition(object):
 
 
         :param sim_type: The sim_type of this SimTypeDefinition.  # noqa: E501
-        :type: str
+        :type sim_type: str
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths", "TrackConverter"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and sim_type not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `sim_type` ({0}), must be one of {1}"  # noqa: E501
-                .format(sim_type, allowed_values)
-            )
+        if self.local_vars_configuration.client_side_validation and sim_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `sim_type`, must not be `None`")  # noqa: E501
 
         self._sim_type = sim_type
 
@@ -120,8 +113,10 @@ class SimTypeDefinition(object):
 
 
         :param name: The name of this SimTypeDefinition.  # noqa: E501
-        :type: str
+        :type name: str
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -141,8 +136,10 @@ class SimTypeDefinition(object):
 
 
         :param known_output_files: The known_output_files of this SimTypeDefinition.  # noqa: E501
-        :type: list[str]
+        :type known_output_files: list[str]
         """
+        if self.local_vars_configuration.client_side_validation and known_output_files is None:  # noqa: E501
+            raise ValueError("Invalid value for `known_output_files`, must not be `None`")  # noqa: E501
 
         self._known_output_files = known_output_files
 
@@ -152,7 +149,7 @@ class SimTypeDefinition(object):
 
 
         :return: The state of this SimTypeDefinition.  # noqa: E501
-        :rtype: str
+        :rtype: SimTypeState
         """
         return self._state
 
@@ -162,14 +159,8 @@ class SimTypeDefinition(object):
 
 
         :param state: The state of this SimTypeDefinition.  # noqa: E501
-        :type: str
+        :type state: SimTypeState
         """
-        allowed_values = ["enabled", "disabled"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
-                .format(state, allowed_values)
-            )
 
         self._state = state
 
@@ -179,7 +170,7 @@ class SimTypeDefinition(object):
 
 
         :return: The input_telemetry_channels of this SimTypeDefinition.  # noqa: E501
-        :rtype: SimTypeInputTelemetryChannels
+        :rtype: SimTypeDefinitionInputTelemetryChannels
         """
         return self._input_telemetry_channels
 
@@ -189,7 +180,7 @@ class SimTypeDefinition(object):
 
 
         :param input_telemetry_channels: The input_telemetry_channels of this SimTypeDefinition.  # noqa: E501
-        :type: SimTypeInputTelemetryChannels
+        :type input_telemetry_channels: SimTypeDefinitionInputTelemetryChannels
         """
 
         self._input_telemetry_channels = input_telemetry_channels
@@ -210,32 +201,42 @@ class SimTypeDefinition(object):
 
 
         :param previous_definitions: The previous_definitions of this SimTypeDefinition.  # noqa: E501
-        :type: list[IPreviousDefinitionSimTypeDefinition]
+        :type previous_definitions: list[IPreviousDefinitionSimTypeDefinition]
         """
+        if self.local_vars_configuration.client_side_validation and previous_definitions is None:  # noqa: E501
+            raise ValueError("Invalid value for `previous_definitions`, must not be `None`")  # noqa: E501
 
         self._previous_definitions = previous_definitions
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -1,5 +1,6 @@
 # RegistrationData
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

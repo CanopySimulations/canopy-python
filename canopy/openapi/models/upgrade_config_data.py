@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class UpgradeConfigData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'config_type': 'str',
+        'config_type': 'object',
         'config': 'object',
         'sim_version': 'str'
     }
@@ -47,7 +50,7 @@ class UpgradeConfigData(object):
     def __init__(self, config_type=None, config=None, sim_version=None, local_vars_configuration=None):  # noqa: E501
         """UpgradeConfigData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._config_type = None
@@ -55,12 +58,9 @@ class UpgradeConfigData(object):
         self._sim_version = None
         self.discriminator = None
 
-        if config_type is not None:
-            self.config_type = config_type
-        if config is not None:
-            self.config = config
-        if sim_version is not None:
-            self.sim_version = sim_version
+        self.config_type = config_type
+        self.config = config
+        self.sim_version = sim_version
 
     @property
     def config_type(self):
@@ -68,7 +68,7 @@ class UpgradeConfigData(object):
 
 
         :return: The config_type of this UpgradeConfigData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._config_type
 
@@ -78,7 +78,7 @@ class UpgradeConfigData(object):
 
 
         :param config_type: The config_type of this UpgradeConfigData.  # noqa: E501
-        :type: str
+        :type config_type: object
         """
 
         self._config_type = config_type
@@ -99,7 +99,7 @@ class UpgradeConfigData(object):
 
 
         :param config: The config of this UpgradeConfigData.  # noqa: E501
-        :type: object
+        :type config: object
         """
 
         self._config = config
@@ -120,32 +120,40 @@ class UpgradeConfigData(object):
 
 
         :param sim_version: The sim_version of this UpgradeConfigData.  # noqa: E501
-        :type: str
+        :type sim_version: str
         """
 
         self._sim_version = sim_version
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

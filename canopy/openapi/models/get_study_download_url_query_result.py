@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -45,17 +48,15 @@ class GetStudyDownloadUrlQueryResult(object):
     def __init__(self, access_signature=None, expiry=None, local_vars_configuration=None):  # noqa: E501
         """GetStudyDownloadUrlQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._access_signature = None
         self._expiry = None
         self.discriminator = None
 
-        if access_signature is not None:
-            self.access_signature = access_signature
-        if expiry is not None:
-            self.expiry = expiry
+        self.access_signature = access_signature
+        self.expiry = expiry
 
     @property
     def access_signature(self):
@@ -73,8 +74,10 @@ class GetStudyDownloadUrlQueryResult(object):
 
 
         :param access_signature: The access_signature of this GetStudyDownloadUrlQueryResult.  # noqa: E501
-        :type: str
+        :type access_signature: str
         """
+        if self.local_vars_configuration.client_side_validation and access_signature is None:  # noqa: E501
+            raise ValueError("Invalid value for `access_signature`, must not be `None`")  # noqa: E501
 
         self._access_signature = access_signature
 
@@ -94,32 +97,42 @@ class GetStudyDownloadUrlQueryResult(object):
 
 
         :param expiry: The expiry of this GetStudyDownloadUrlQueryResult.  # noqa: E501
-        :type: str
+        :type expiry: str
         """
+        if self.local_vars_configuration.client_side_validation and expiry is None:  # noqa: E501
+            raise ValueError("Invalid value for `expiry`, must not be `None`")  # noqa: E501
 
         self._expiry = expiry
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -36,10 +39,10 @@ class AdminTenantSettingsBuilder(object):
         'study_types': 'list[str]',
         'tags': 'list[str]',
         'internal_tags': 'list[str]',
-        'sim_version': 'str',
-        'pool_settings': 'PoolSettings',
-        'secondary_pool_settings': 'PoolSettings',
-        'heavy_pool_settings': 'PoolSettings'
+        'sim_version': 'object',
+        'pool_settings': 'AdminTenantSettingsPoolSettings',
+        'secondary_pool_settings': 'AdminTenantSettingsPoolSettings',
+        'heavy_pool_settings': 'AdminTenantSettingsPoolSettings'
     }
 
     attribute_map = {
@@ -55,7 +58,7 @@ class AdminTenantSettingsBuilder(object):
     def __init__(self, study_types=None, tags=None, internal_tags=None, sim_version=None, pool_settings=None, secondary_pool_settings=None, heavy_pool_settings=None, local_vars_configuration=None):  # noqa: E501
         """AdminTenantSettingsBuilder - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._study_types = None
@@ -67,20 +70,13 @@ class AdminTenantSettingsBuilder(object):
         self._heavy_pool_settings = None
         self.discriminator = None
 
-        if study_types is not None:
-            self.study_types = study_types
-        if tags is not None:
-            self.tags = tags
-        if internal_tags is not None:
-            self.internal_tags = internal_tags
-        if sim_version is not None:
-            self.sim_version = sim_version
-        if pool_settings is not None:
-            self.pool_settings = pool_settings
-        if secondary_pool_settings is not None:
-            self.secondary_pool_settings = secondary_pool_settings
-        if heavy_pool_settings is not None:
-            self.heavy_pool_settings = heavy_pool_settings
+        self.study_types = study_types
+        self.tags = tags
+        self.internal_tags = internal_tags
+        self.sim_version = sim_version
+        self.pool_settings = pool_settings
+        self.secondary_pool_settings = secondary_pool_settings
+        self.heavy_pool_settings = heavy_pool_settings
 
     @property
     def study_types(self):
@@ -98,16 +94,8 @@ class AdminTenantSettingsBuilder(object):
 
 
         :param study_types: The study_types of this AdminTenantSettingsBuilder.  # noqa: E501
-        :type: list[str]
+        :type study_types: list[str]
         """
-        allowed_values = ["straightSim", "apexSim", "quasiStaticLap", "generateRacingLine", "quasiStaticLapWithGenerateRacingLine", "deploymentLap", "failureSim", "successSim", "virtual4Post", "limitSim", "driveCycleSim", "dynamicLap", "dynamicLapWithSLS", "dynamicLapHD", "dynamicMultiLap", "tyreThermalDynamicLap", "tyreThermalDynamicMultiLap", "overtakingLap", "allLapSims", "dragSim", "thermalReplay", "tyreReplay", "pacejkaCanopyConverter", "aircraftSim", "channelInference", "telemetry", "iliadCollocation", "subLimitSim", "bankedLimitSim", "postProcessUserMaths", "trackConverter", "unknown"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(study_types).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `study_types` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(study_types) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._study_types = study_types
 
@@ -127,7 +115,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :param tags: The tags of this AdminTenantSettingsBuilder.  # noqa: E501
-        :type: list[str]
+        :type tags: list[str]
         """
 
         self._tags = tags
@@ -148,7 +136,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :param internal_tags: The internal_tags of this AdminTenantSettingsBuilder.  # noqa: E501
-        :type: list[str]
+        :type internal_tags: list[str]
         """
 
         self._internal_tags = internal_tags
@@ -159,7 +147,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :return: The sim_version of this AdminTenantSettingsBuilder.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._sim_version
 
@@ -169,7 +157,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :param sim_version: The sim_version of this AdminTenantSettingsBuilder.  # noqa: E501
-        :type: str
+        :type sim_version: object
         """
 
         self._sim_version = sim_version
@@ -180,7 +168,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :return: The pool_settings of this AdminTenantSettingsBuilder.  # noqa: E501
-        :rtype: PoolSettings
+        :rtype: AdminTenantSettingsPoolSettings
         """
         return self._pool_settings
 
@@ -190,7 +178,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :param pool_settings: The pool_settings of this AdminTenantSettingsBuilder.  # noqa: E501
-        :type: PoolSettings
+        :type pool_settings: AdminTenantSettingsPoolSettings
         """
 
         self._pool_settings = pool_settings
@@ -201,7 +189,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :return: The secondary_pool_settings of this AdminTenantSettingsBuilder.  # noqa: E501
-        :rtype: PoolSettings
+        :rtype: AdminTenantSettingsPoolSettings
         """
         return self._secondary_pool_settings
 
@@ -211,7 +199,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :param secondary_pool_settings: The secondary_pool_settings of this AdminTenantSettingsBuilder.  # noqa: E501
-        :type: PoolSettings
+        :type secondary_pool_settings: AdminTenantSettingsPoolSettings
         """
 
         self._secondary_pool_settings = secondary_pool_settings
@@ -222,7 +210,7 @@ class AdminTenantSettingsBuilder(object):
 
 
         :return: The heavy_pool_settings of this AdminTenantSettingsBuilder.  # noqa: E501
-        :rtype: PoolSettings
+        :rtype: AdminTenantSettingsPoolSettings
         """
         return self._heavy_pool_settings
 
@@ -232,32 +220,40 @@ class AdminTenantSettingsBuilder(object):
 
 
         :param heavy_pool_settings: The heavy_pool_settings of this AdminTenantSettingsBuilder.  # noqa: E501
-        :type: PoolSettings
+        :type heavy_pool_settings: AdminTenantSettingsPoolSettings
         """
 
         self._heavy_pool_settings = heavy_pool_settings
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

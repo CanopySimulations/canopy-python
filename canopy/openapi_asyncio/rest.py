@@ -15,14 +15,11 @@ import json
 import logging
 import re
 import ssl
-from typing import Dict
 
 import aiohttp
-import certifi
 # python 2 and python 3 compatibility library
 from six.moves.urllib.parse import urlencode
 
-from canopy.request_with_retry import request_with_retry
 from canopy.openapi.exceptions import ApiException, ApiValueError
 
 logger = logging.getLogger(__name__)
@@ -53,14 +50,7 @@ class RESTClientObject(object):
         if maxsize is None:
             maxsize = configuration.connection_pool_maxsize
 
-        # ca_certs
-        if configuration.ssl_ca_cert:
-            ca_certs = configuration.ssl_ca_cert
-        else:
-            # if not set certificate file, use Mozilla's root certificates.
-            ca_certs = certifi.where()
-
-        ssl_context = ssl.create_default_context(cafile=ca_certs)
+        ssl_context = ssl.create_default_context(cafile=configuration.ssl_ca_cert)
         if configuration.cert_file:
             ssl_context.load_cert_chain(
                 configuration.cert_file, keyfile=configuration.key_file
@@ -75,21 +65,14 @@ class RESTClientObject(object):
             ssl=ssl_context
         )
 
-        # https://github.com/aio-libs/aiohttp/issues/3203#issuecomment-544136905
-        self.default_timeout = 30  # aiohttp.ClientTimeout(total=None, sock_connect=30, sock_read=30)
-
         self.proxy = configuration.proxy
+        self.proxy_headers = configuration.proxy_headers
 
         # https pool manager
-        if self.proxy:
-            self.pool_manager = aiohttp.ClientSession(
-                connector=connector
-            )
-        else:
-            self.pool_manager = aiohttp.ClientSession(
-                connector=connector,
-                trust_env=True
-            )
+        self.pool_manager = aiohttp.ClientSession(
+            connector=connector,
+            trust_env=True
+        )
 
     async def close(self):
         await self.pool_manager.close()
@@ -125,7 +108,7 @@ class RESTClientObject(object):
 
         post_params = post_params or {}
         headers = headers or {}
-        timeout = _request_timeout or self.default_timeout
+        timeout = _request_timeout or 5 * 60
 
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'
@@ -138,7 +121,9 @@ class RESTClientObject(object):
         }
 
         if self.proxy:
-            args['proxy'] = self.proxy
+            args["proxy"] = self.proxy
+        if self.proxy_headers:
+            args["proxy_headers"] = self.proxy_headers
 
         if query_params:
             args["url"] += '?' + urlencode(query_params)
@@ -179,10 +164,10 @@ class RESTClientObject(object):
                          declared content type."""
                 raise ApiException(status=0, reason=msg)
 
-        r = await request_with_retry(lambda: self.pool_manager.request(**args), url, True)
+        r = await self.pool_manager.request(**args)
         if _preload_content:
 
-            data = await r.text()
+            data = await r.read()
             r = RESTResponse(r, data)
 
             # log response body

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -47,7 +50,7 @@ class StudyBlobAccessInformation(object):
     def __init__(self, url=None, access_signature=None, jobs=None, local_vars_configuration=None):  # noqa: E501
         """StudyBlobAccessInformation - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._url = None
@@ -55,12 +58,9 @@ class StudyBlobAccessInformation(object):
         self._jobs = None
         self.discriminator = None
 
-        if url is not None:
-            self.url = url
-        if access_signature is not None:
-            self.access_signature = access_signature
-        if jobs is not None:
-            self.jobs = jobs
+        self.url = url
+        self.access_signature = access_signature
+        self.jobs = jobs
 
     @property
     def url(self):
@@ -78,8 +78,10 @@ class StudyBlobAccessInformation(object):
 
 
         :param url: The url of this StudyBlobAccessInformation.  # noqa: E501
-        :type: str
+        :type url: str
         """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 
@@ -99,8 +101,10 @@ class StudyBlobAccessInformation(object):
 
 
         :param access_signature: The access_signature of this StudyBlobAccessInformation.  # noqa: E501
-        :type: str
+        :type access_signature: str
         """
+        if self.local_vars_configuration.client_side_validation and access_signature is None:  # noqa: E501
+            raise ValueError("Invalid value for `access_signature`, must not be `None`")  # noqa: E501
 
         self._access_signature = access_signature
 
@@ -120,32 +124,42 @@ class StudyBlobAccessInformation(object):
 
 
         :param jobs: The jobs of this StudyBlobAccessInformation.  # noqa: E501
-        :type: list[BlobAccessInformation]
+        :type jobs: list[BlobAccessInformation]
         """
+        if self.local_vars_configuration.client_side_validation and jobs is None:  # noqa: E501
+            raise ValueError("Invalid value for `jobs`, must not be `None`")  # noqa: E501
 
         self._jobs = jobs
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

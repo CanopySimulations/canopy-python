@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -45,17 +48,15 @@ class GetTenantBillableStoredSimulationCountQueryResult(object):
     def __init__(self, succeeded_simulations=None, succeeded_storage_credits=None, local_vars_configuration=None):  # noqa: E501
         """GetTenantBillableStoredSimulationCountQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._succeeded_simulations = None
         self._succeeded_storage_credits = None
         self.discriminator = None
 
-        if succeeded_simulations is not None:
-            self.succeeded_simulations = succeeded_simulations
-        if succeeded_storage_credits is not None:
-            self.succeeded_storage_credits = succeeded_storage_credits
+        self.succeeded_simulations = succeeded_simulations
+        self.succeeded_storage_credits = succeeded_storage_credits
 
     @property
     def succeeded_simulations(self):
@@ -73,8 +74,10 @@ class GetTenantBillableStoredSimulationCountQueryResult(object):
 
 
         :param succeeded_simulations: The succeeded_simulations of this GetTenantBillableStoredSimulationCountQueryResult.  # noqa: E501
-        :type: int
+        :type succeeded_simulations: int
         """
+        if self.local_vars_configuration.client_side_validation and succeeded_simulations is None:  # noqa: E501
+            raise ValueError("Invalid value for `succeeded_simulations`, must not be `None`")  # noqa: E501
 
         self._succeeded_simulations = succeeded_simulations
 
@@ -94,32 +97,42 @@ class GetTenantBillableStoredSimulationCountQueryResult(object):
 
 
         :param succeeded_storage_credits: The succeeded_storage_credits of this GetTenantBillableStoredSimulationCountQueryResult.  # noqa: E501
-        :type: int
+        :type succeeded_storage_credits: int
         """
+        if self.local_vars_configuration.client_side_validation and succeeded_storage_credits is None:  # noqa: E501
+            raise ValueError("Invalid value for `succeeded_storage_credits`, must not be `None`")  # noqa: E501
 
         self._succeeded_storage_credits = succeeded_storage_credits
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

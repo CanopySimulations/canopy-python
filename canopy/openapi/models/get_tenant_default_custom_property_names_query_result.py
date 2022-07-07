@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,10 +36,10 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'settings': 'TenantDefaultCustomPropertyNames',
+        'settings': 'GetTenantDefaultCustomPropertyNamesQueryResultSettings',
         'custom_property_groups': 'list[DocumentTypeCustomPropertyGroups]',
         'study_types': 'list[str]',
-        'config_types': 'list[str]'
+        'config_types': 'list[object]'
     }
 
     attribute_map = {
@@ -49,7 +52,7 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
     def __init__(self, settings=None, custom_property_groups=None, study_types=None, config_types=None, local_vars_configuration=None):  # noqa: E501
         """GetTenantDefaultCustomPropertyNamesQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._settings = None
@@ -58,14 +61,10 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
         self._config_types = None
         self.discriminator = None
 
-        if settings is not None:
-            self.settings = settings
-        if custom_property_groups is not None:
-            self.custom_property_groups = custom_property_groups
-        if study_types is not None:
-            self.study_types = study_types
-        if config_types is not None:
-            self.config_types = config_types
+        self.settings = settings
+        self.custom_property_groups = custom_property_groups
+        self.study_types = study_types
+        self.config_types = config_types
 
     @property
     def settings(self):
@@ -73,7 +72,7 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
 
 
         :return: The settings of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
-        :rtype: TenantDefaultCustomPropertyNames
+        :rtype: GetTenantDefaultCustomPropertyNamesQueryResultSettings
         """
         return self._settings
 
@@ -83,8 +82,10 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
 
 
         :param settings: The settings of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
-        :type: TenantDefaultCustomPropertyNames
+        :type settings: GetTenantDefaultCustomPropertyNamesQueryResultSettings
         """
+        if self.local_vars_configuration.client_side_validation and settings is None:  # noqa: E501
+            raise ValueError("Invalid value for `settings`, must not be `None`")  # noqa: E501
 
         self._settings = settings
 
@@ -104,8 +105,10 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
 
 
         :param custom_property_groups: The custom_property_groups of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
-        :type: list[DocumentTypeCustomPropertyGroups]
+        :type custom_property_groups: list[DocumentTypeCustomPropertyGroups]
         """
+        if self.local_vars_configuration.client_side_validation and custom_property_groups is None:  # noqa: E501
+            raise ValueError("Invalid value for `custom_property_groups`, must not be `None`")  # noqa: E501
 
         self._custom_property_groups = custom_property_groups
 
@@ -125,16 +128,8 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
 
 
         :param study_types: The study_types of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
-        :type: list[str]
+        :type study_types: list[str]
         """
-        allowed_values = ["straightSim", "apexSim", "quasiStaticLap", "generateRacingLine", "quasiStaticLapWithGenerateRacingLine", "deploymentLap", "failureSim", "successSim", "virtual4Post", "limitSim", "driveCycleSim", "dynamicLap", "dynamicLapWithSLS", "dynamicLapHD", "dynamicMultiLap", "tyreThermalDynamicLap", "tyreThermalDynamicMultiLap", "overtakingLap", "allLapSims", "dragSim", "thermalReplay", "tyreReplay", "pacejkaCanopyConverter", "aircraftSim", "channelInference", "telemetry", "iliadCollocation", "subLimitSim", "bankedLimitSim", "postProcessUserMaths", "trackConverter", "unknown"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(study_types).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `study_types` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(study_types) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._study_types = study_types
 
@@ -144,7 +139,7 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
 
 
         :return: The config_types of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[object]
         """
         return self._config_types
 
@@ -154,32 +149,42 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
 
 
         :param config_types: The config_types of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
-        :type: list[str]
+        :type config_types: list[object]
         """
+        if self.local_vars_configuration.client_side_validation and config_types is None:  # noqa: E501
+            raise ValueError("Invalid value for `config_types`, must not be `None`")  # noqa: E501
 
         self._config_types = config_types
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

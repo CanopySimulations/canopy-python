@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class ListFilterGroup(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'operator': 'str',
+        'operator': 'GroupOperator',
         'conditions': 'list[ListFilterCondition]',
         'groups': 'list[ListFilterGroup]'
     }
@@ -47,7 +50,7 @@ class ListFilterGroup(object):
     def __init__(self, operator=None, conditions=None, groups=None, local_vars_configuration=None):  # noqa: E501
         """ListFilterGroup - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._operator = None
@@ -55,12 +58,9 @@ class ListFilterGroup(object):
         self._groups = None
         self.discriminator = None
 
-        if operator is not None:
-            self.operator = operator
-        if conditions is not None:
-            self.conditions = conditions
-        if groups is not None:
-            self.groups = groups
+        self.operator = operator
+        self.conditions = conditions
+        self.groups = groups
 
     @property
     def operator(self):
@@ -68,7 +68,7 @@ class ListFilterGroup(object):
 
 
         :return: The operator of this ListFilterGroup.  # noqa: E501
-        :rtype: str
+        :rtype: GroupOperator
         """
         return self._operator
 
@@ -78,14 +78,8 @@ class ListFilterGroup(object):
 
 
         :param operator: The operator of this ListFilterGroup.  # noqa: E501
-        :type: str
+        :type operator: GroupOperator
         """
-        allowed_values = ["and", "or"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and operator not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `operator` ({0}), must be one of {1}"  # noqa: E501
-                .format(operator, allowed_values)
-            )
 
         self._operator = operator
 
@@ -105,7 +99,7 @@ class ListFilterGroup(object):
 
 
         :param conditions: The conditions of this ListFilterGroup.  # noqa: E501
-        :type: list[ListFilterCondition]
+        :type conditions: list[ListFilterCondition]
         """
 
         self._conditions = conditions
@@ -126,32 +120,40 @@ class ListFilterGroup(object):
 
 
         :param groups: The groups of this ListFilterGroup.  # noqa: E501
-        :type: list[ListFilterGroup]
+        :type groups: list[ListFilterGroup]
         """
 
         self._groups = groups
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -45,17 +48,15 @@ class SimulationColumnLabelDefinitions(object):
     def __init__(self, sim_type=None, labels=None, local_vars_configuration=None):  # noqa: E501
         """SimulationColumnLabelDefinitions - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._sim_type = None
         self._labels = None
         self.discriminator = None
 
-        if sim_type is not None:
-            self.sim_type = sim_type
-        if labels is not None:
-            self.labels = labels
+        self.sim_type = sim_type
+        self.labels = labels
 
     @property
     def sim_type(self):
@@ -73,14 +74,10 @@ class SimulationColumnLabelDefinitions(object):
 
 
         :param sim_type: The sim_type of this SimulationColumnLabelDefinitions.  # noqa: E501
-        :type: str
+        :type sim_type: str
         """
-        allowed_values = ["StraightSim", "ApexSim", "QuasiStaticLap", "GenerateRacingLine", "DeploymentLap", "FailureSim", "SuccessSim", "Virtual4Post", "LimitSim", "DriveCycleSim", "DynamicLap", "DragSim", "DynamicMultiLap", "ThermalReplay", "TyreReplay", "PacejkaCanopyConverter", "AircraftSim", "ChannelInference", "Telemetry", "OvertakingLap", "TyreThermalDynamicLap", "TyreThermalDynamicMultiLap", "DynamicLapWithSLS", "DynamicLapHD", "IliadCollocation", "SubLimitSim", "BankedLimitSim", "ConstraintSatisfier", "PostProcessUserMaths", "TrackConverter"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and sim_type not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `sim_type` ({0}), must be one of {1}"  # noqa: E501
-                .format(sim_type, allowed_values)
-            )
+        if self.local_vars_configuration.client_side_validation and sim_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `sim_type`, must not be `None`")  # noqa: E501
 
         self._sim_type = sim_type
 
@@ -100,32 +97,42 @@ class SimulationColumnLabelDefinitions(object):
 
 
         :param labels: The labels of this SimulationColumnLabelDefinitions.  # noqa: E501
-        :type: list[LabelDefinition]
+        :type labels: list[LabelDefinition]
         """
+        if self.local_vars_configuration.client_side_validation and labels is None:  # noqa: E501
+            raise ValueError("Invalid value for `labels`, must not be `None`")  # noqa: E501
 
         self._labels = labels
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

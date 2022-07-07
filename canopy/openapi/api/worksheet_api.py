@@ -41,23 +41,30 @@ class WorksheetApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.worksheet_get_worksheet(tenant_id, worksheet_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str worksheet_id: (required)
-        :param str config_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param worksheet_id: (required)
+        :type worksheet_id: str
+        :param config_version:
+        :type config_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetWorksheetQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetWorksheetQueryResult
         """
         kwargs['_return_http_data_only'] = True
         return self.worksheet_get_worksheet_with_http_info(tenant_id, worksheet_id, **kwargs)  # noqa: E501
@@ -67,25 +74,38 @@ class WorksheetApi(object):
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
+
         >>> thread = api.worksheet_get_worksheet_with_http_info(tenant_id, worksheet_id, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str worksheet_id: (required)
-        :param str config_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param worksheet_id: (required)
+        :type worksheet_id: str
+        :param config_version:
+        :type config_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetWorksheetQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetWorksheetQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -100,7 +120,10 @@ class WorksheetApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -113,12 +136,10 @@ class WorksheetApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `worksheet_get_worksheet`")  # noqa: E501
         # verify the required parameter 'worksheet_id' is set
-        if self.api_client.client_side_validation and ('worksheet_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['worksheet_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('worksheet_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `worksheet_id` when calling `worksheet_get_worksheet`")  # noqa: E501
 
         collection_formats = {}
@@ -130,10 +151,10 @@ class WorksheetApi(object):
             path_params['worksheetId'] = local_var_params['worksheet_id']  # noqa: E501
 
         query_params = []
-        if 'config_version' in local_var_params and local_var_params['config_version'] is not None:  # noqa: E501
+        if local_var_params.get('config_version') is not None:  # noqa: E501
             query_params.append(('configVersion', local_var_params['config_version']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -141,10 +162,14 @@ class WorksheetApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetWorksheetQueryResult",
+        }
 
         return self.api_client.call_api(
             '/worksheets/{tenantId}/{worksheetId}', 'GET',
@@ -154,66 +179,89 @@ class WorksheetApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetWorksheetQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def worksheet_post_duplicate_configs(self, tenant_id, worksheet_id, data, **kwargs):  # noqa: E501
+    def worksheet_post_duplicate_configs(self, tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, **kwargs):  # noqa: E501
         """worksheet_post_duplicate_configs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.worksheet_post_duplicate_configs(tenant_id, worksheet_id, data, async_req=True)
+
+        >>> thread = api.worksheet_post_duplicate_configs(tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str worksheet_id: (required)
-        :param DuplicateConfigsData data: (required)
-        :param str sim_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param worksheet_id: (required)
+        :type worksheet_id: str
+        :param worksheet_post_duplicate_configs_request: (required)
+        :type worksheet_post_duplicate_configs_request: WorksheetPostDuplicateConfigsRequest
+        :param sim_version:
+        :type sim_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: DuplicateConfigsResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: DuplicateConfigsResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.worksheet_post_duplicate_configs_with_http_info(tenant_id, worksheet_id, data, **kwargs)  # noqa: E501
+        return self.worksheet_post_duplicate_configs_with_http_info(tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, **kwargs)  # noqa: E501
 
-    def worksheet_post_duplicate_configs_with_http_info(self, tenant_id, worksheet_id, data, **kwargs):  # noqa: E501
+    def worksheet_post_duplicate_configs_with_http_info(self, tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, **kwargs):  # noqa: E501
         """worksheet_post_duplicate_configs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.worksheet_post_duplicate_configs_with_http_info(tenant_id, worksheet_id, data, async_req=True)
+
+        >>> thread = api.worksheet_post_duplicate_configs_with_http_info(tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str worksheet_id: (required)
-        :param DuplicateConfigsData data: (required)
-        :param str sim_version:
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param worksheet_id: (required)
+        :type worksheet_id: str
+        :param worksheet_post_duplicate_configs_request: (required)
+        :type worksheet_post_duplicate_configs_request: WorksheetPostDuplicateConfigsRequest
+        :param sim_version:
+        :type sim_version: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(DuplicateConfigsResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(DuplicateConfigsResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -221,7 +269,7 @@ class WorksheetApi(object):
         all_params = [
             'tenant_id',
             'worksheet_id',
-            'data',
+            'worksheet_post_duplicate_configs_request',
             'sim_version'
         ]
         all_params.extend(
@@ -229,7 +277,10 @@ class WorksheetApi(object):
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -242,17 +293,14 @@ class WorksheetApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `worksheet_post_duplicate_configs`")  # noqa: E501
         # verify the required parameter 'worksheet_id' is set
-        if self.api_client.client_side_validation and ('worksheet_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['worksheet_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('worksheet_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `worksheet_id` when calling `worksheet_post_duplicate_configs`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `worksheet_post_duplicate_configs`")  # noqa: E501
+        # verify the required parameter 'worksheet_post_duplicate_configs_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('worksheet_post_duplicate_configs_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `worksheet_post_duplicate_configs_request` when calling `worksheet_post_duplicate_configs`")  # noqa: E501
 
         collection_formats = {}
 
@@ -263,27 +311,35 @@ class WorksheetApi(object):
             path_params['worksheetId'] = local_var_params['worksheet_id']  # noqa: E501
 
         query_params = []
-        if 'sim_version' in local_var_params and local_var_params['sim_version'] is not None:  # noqa: E501
+        if local_var_params.get('sim_version') is not None:  # noqa: E501
             query_params.append(('simVersion', local_var_params['sim_version']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'worksheet_post_duplicate_configs_request' in local_var_params:
+            body_params = local_var_params['worksheet_post_duplicate_configs_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "DuplicateConfigsResult",
+        }
 
         return self.api_client.call_api(
             '/worksheets/{tenantId}/{worksheetId}/duplicate', 'POST',
@@ -293,76 +349,98 @@ class WorksheetApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='DuplicateConfigsResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def worksheet_post_worksheet(self, tenant_id, data, **kwargs):  # noqa: E501
+    def worksheet_post_worksheet(self, tenant_id, worksheet_post_worksheet_request, **kwargs):  # noqa: E501
         """worksheet_post_worksheet  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.worksheet_post_worksheet(tenant_id, data, async_req=True)
+
+        >>> thread = api.worksheet_post_worksheet(tenant_id, worksheet_post_worksheet_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param NewWorksheetData data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param worksheet_post_worksheet_request: (required)
+        :type worksheet_post_worksheet_request: WorksheetPostWorksheetRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetWorksheetQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetWorksheetQueryResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.worksheet_post_worksheet_with_http_info(tenant_id, data, **kwargs)  # noqa: E501
+        return self.worksheet_post_worksheet_with_http_info(tenant_id, worksheet_post_worksheet_request, **kwargs)  # noqa: E501
 
-    def worksheet_post_worksheet_with_http_info(self, tenant_id, data, **kwargs):  # noqa: E501
+    def worksheet_post_worksheet_with_http_info(self, tenant_id, worksheet_post_worksheet_request, **kwargs):  # noqa: E501
         """worksheet_post_worksheet  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.worksheet_post_worksheet_with_http_info(tenant_id, data, async_req=True)
+
+        >>> thread = api.worksheet_post_worksheet_with_http_info(tenant_id, worksheet_post_worksheet_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param NewWorksheetData data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param worksheet_post_worksheet_request: (required)
+        :type worksheet_post_worksheet_request: WorksheetPostWorksheetRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetWorksheetQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetWorksheetQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'tenant_id',
-            'data'
+            'worksheet_post_worksheet_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -375,13 +453,11 @@ class WorksheetApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `worksheet_post_worksheet`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `worksheet_post_worksheet`")  # noqa: E501
+        # verify the required parameter 'worksheet_post_worksheet_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('worksheet_post_worksheet_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `worksheet_post_worksheet_request` when calling `worksheet_post_worksheet`")  # noqa: E501
 
         collection_formats = {}
 
@@ -391,24 +467,32 @@ class WorksheetApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'worksheet_post_worksheet_request' in local_var_params:
+            body_params = local_var_params['worksheet_post_worksheet_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetWorksheetQueryResult",
+        }
 
         return self.api_client.call_api(
             '/worksheets/{tenantId}', 'POST',
@@ -418,64 +502,85 @@ class WorksheetApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetWorksheetQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
 
-    def worksheet_put_worksheet(self, tenant_id, worksheet_id, data, **kwargs):  # noqa: E501
+    def worksheet_put_worksheet(self, tenant_id, worksheet_id, worksheet_put_worksheet_request, **kwargs):  # noqa: E501
         """worksheet_put_worksheet  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.worksheet_put_worksheet(tenant_id, worksheet_id, data, async_req=True)
+
+        >>> thread = api.worksheet_put_worksheet(tenant_id, worksheet_id, worksheet_put_worksheet_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str worksheet_id: (required)
-        :param UpdatedWorksheetData data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param worksheet_id: (required)
+        :type worksheet_id: str
+        :param worksheet_put_worksheet_request: (required)
+        :type worksheet_put_worksheet_request: WorksheetPutWorksheetRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: GetWorksheetQueryResult
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: GetWorksheetQueryResult
         """
         kwargs['_return_http_data_only'] = True
-        return self.worksheet_put_worksheet_with_http_info(tenant_id, worksheet_id, data, **kwargs)  # noqa: E501
+        return self.worksheet_put_worksheet_with_http_info(tenant_id, worksheet_id, worksheet_put_worksheet_request, **kwargs)  # noqa: E501
 
-    def worksheet_put_worksheet_with_http_info(self, tenant_id, worksheet_id, data, **kwargs):  # noqa: E501
+    def worksheet_put_worksheet_with_http_info(self, tenant_id, worksheet_id, worksheet_put_worksheet_request, **kwargs):  # noqa: E501
         """worksheet_put_worksheet  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.worksheet_put_worksheet_with_http_info(tenant_id, worksheet_id, data, async_req=True)
+
+        >>> thread = api.worksheet_put_worksheet_with_http_info(tenant_id, worksheet_id, worksheet_put_worksheet_request, async_req=True)
         >>> result = thread.get()
 
-        :param async_req bool: execute request asynchronously
-        :param str tenant_id: (required)
-        :param str worksheet_id: (required)
-        :param UpdatedWorksheetData data: (required)
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param worksheet_id: (required)
+        :type worksheet_id: str
+        :param worksheet_put_worksheet_request: (required)
+        :type worksheet_put_worksheet_request: WorksheetPutWorksheetRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
                                        and headers
+        :type _return_http_data_only: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
+        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(GetWorksheetQueryResult, status_code(int), headers(HTTPHeaderDict))
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
+        :rtype: tuple(GetWorksheetQueryResult, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -483,14 +588,17 @@ class WorksheetApi(object):
         all_params = [
             'tenant_id',
             'worksheet_id',
-            'data'
+            'worksheet_put_worksheet_request'
         ]
         all_params.extend(
             [
                 'async_req',
                 '_return_http_data_only',
                 '_preload_content',
-                '_request_timeout'
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -503,17 +611,14 @@ class WorksheetApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and ('tenant_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['tenant_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `tenant_id` when calling `worksheet_put_worksheet`")  # noqa: E501
         # verify the required parameter 'worksheet_id' is set
-        if self.api_client.client_side_validation and ('worksheet_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['worksheet_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('worksheet_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `worksheet_id` when calling `worksheet_put_worksheet`")  # noqa: E501
-        # verify the required parameter 'data' is set
-        if self.api_client.client_side_validation and ('data' not in local_var_params or  # noqa: E501
-                                                        local_var_params['data'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `data` when calling `worksheet_put_worksheet`")  # noqa: E501
+        # verify the required parameter 'worksheet_put_worksheet_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('worksheet_put_worksheet_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `worksheet_put_worksheet_request` when calling `worksheet_put_worksheet`")  # noqa: E501
 
         collection_formats = {}
 
@@ -525,24 +630,32 @@ class WorksheetApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'data' in local_var_params:
-            body_params = local_var_params['data']
+        if 'worksheet_put_worksheet_request' in local_var_params:
+            body_params = local_var_params['worksheet_put_worksheet_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = ['oauth2']  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetWorksheetQueryResult",
+        }
 
         return self.api_client.call_api(
             '/worksheets/{tenantId}/{worksheetId}', 'PUT',
@@ -552,10 +665,11 @@ class WorksheetApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GetWorksheetQueryResult',  # noqa: E501
+            response_types_map=response_types_map,
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))

@@ -1,6 +1,6 @@
 # canopy.openapi.SimVersionApi
 
-All URIs are relative to *https://api.canopysimulations.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,19 +19,29 @@ Method | HTTP request | Description
 
 ### Example
 
-* OAuth Authentication (oauth2):
+* OAuth Authentication (Bearer):
 ```python
 from __future__ import print_function
 import time
 import canopy.openapi
 from canopy.openapi.rest import ApiException
 from pprint import pprint
-configuration = canopy.openapi.Configuration()
-# Configure OAuth2 access token for authorization: oauth2
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
 
-# Defining host is optional and default to https://api.canopysimulations.com
-configuration.host = "https://api.canopysimulations.com"
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: Bearer
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with canopy.openapi.ApiClient(configuration) as api_client:
@@ -62,17 +72,17 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth2](../README.md#oauth2)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, text/json
+ - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -83,19 +93,29 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* OAuth Authentication (oauth2):
+* OAuth Authentication (Bearer):
 ```python
 from __future__ import print_function
 import time
 import canopy.openapi
 from canopy.openapi.rest import ApiException
 from pprint import pprint
-configuration = canopy.openapi.Configuration()
-# Configure OAuth2 access token for authorization: oauth2
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
 
-# Defining host is optional and default to https://api.canopysimulations.com
-configuration.host = "https://api.canopysimulations.com"
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: Bearer
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with canopy.openapi.ApiClient(configuration) as api_client:
@@ -124,17 +144,17 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth2](../README.md#oauth2)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, text/json
+ - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -145,19 +165,29 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* OAuth Authentication (oauth2):
+* OAuth Authentication (Bearer):
 ```python
 from __future__ import print_function
 import time
 import canopy.openapi
 from canopy.openapi.rest import ApiException
 from pprint import pprint
-configuration = canopy.openapi.Configuration()
-# Configure OAuth2 access token for authorization: oauth2
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
 
-# Defining host is optional and default to https://api.canopysimulations.com
-configuration.host = "https://api.canopysimulations.com"
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: Bearer
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with canopy.openapi.ApiClient(configuration) as api_client:
@@ -186,40 +216,50 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth2](../README.md#oauth2)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, text/json
+ - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sim_version_get_sim_version**
-> str sim_version_get_sim_version(tenant_id=tenant_id)
+> object sim_version_get_sim_version(tenant_id=tenant_id)
 
 
 
 ### Example
 
-* OAuth Authentication (oauth2):
+* OAuth Authentication (Bearer):
 ```python
 from __future__ import print_function
 import time
 import canopy.openapi
 from canopy.openapi.rest import ApiException
 from pprint import pprint
-configuration = canopy.openapi.Configuration()
-# Configure OAuth2 access token for authorization: oauth2
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
 
-# Defining host is optional and default to https://api.canopysimulations.com
-configuration.host = "https://api.canopysimulations.com"
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: Bearer
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with canopy.openapi.ApiClient(configuration) as api_client:
@@ -242,21 +282,21 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**str**
+**object**
 
 ### Authorization
 
-[oauth2](../README.md#oauth2)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, text/json
+ - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -267,19 +307,29 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* OAuth Authentication (oauth2):
+* OAuth Authentication (Bearer):
 ```python
 from __future__ import print_function
 import time
 import canopy.openapi
 from canopy.openapi.rest import ApiException
 from pprint import pprint
-configuration = canopy.openapi.Configuration()
-# Configure OAuth2 access token for authorization: oauth2
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
 
-# Defining host is optional and default to https://api.canopysimulations.com
-configuration.host = "https://api.canopysimulations.com"
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: Bearer
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with canopy.openapi.ApiClient(configuration) as api_client:
@@ -310,49 +360,59 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth2](../README.md#oauth2)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, text/json
+ - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sim_version_post_sim_version**
-> sim_version_post_sim_version(sim_version_data)
+> sim_version_post_sim_version(sim_version_post_sim_version_request)
 
 
 
 ### Example
 
-* OAuth Authentication (oauth2):
+* OAuth Authentication (Bearer):
 ```python
 from __future__ import print_function
 import time
 import canopy.openapi
 from canopy.openapi.rest import ApiException
 from pprint import pprint
-configuration = canopy.openapi.Configuration()
-# Configure OAuth2 access token for authorization: oauth2
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
 
-# Defining host is optional and default to https://api.canopysimulations.com
-configuration.host = "https://api.canopysimulations.com"
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: Bearer
+configuration = canopy.openapi.Configuration(
+    host = "http://localhost"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SimVersionApi(api_client)
-    sim_version_data = canopy.openapi.NewSimVersionData() # NewSimVersionData | 
+    sim_version_post_sim_version_request = canopy.openapi.SimVersionPostSimVersionRequest() # SimVersionPostSimVersionRequest | 
 
     try:
-        api_instance.sim_version_post_sim_version(sim_version_data)
+        api_instance.sim_version_post_sim_version(sim_version_post_sim_version_request)
     except ApiException as e:
         print("Exception when calling SimVersionApi->sim_version_post_sim_version: %s\n" % e)
 ```
@@ -361,7 +421,7 @@ with canopy.openapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sim_version_data** | [**NewSimVersionData**](NewSimVersionData.md)|  | 
+ **sim_version_post_sim_version_request** | [**SimVersionPostSimVersionRequest**](SimVersionPostSimVersionRequest.md)|  | 
 
 ### Return type
 
@@ -369,17 +429,17 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2](../README.md#oauth2)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | No Content |  -  |
+**200** | Success |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

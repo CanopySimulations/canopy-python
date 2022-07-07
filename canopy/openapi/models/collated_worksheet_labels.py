@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,7 +36,7 @@ class CollatedWorksheetLabels(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'label_definitions': 'CollatedLabelDefinitions',
+        'label_definitions': 'CollatedWorksheetLabelsLabelDefinitions',
         'configs': 'list[ConfigResolvedLabels]',
         'studies': 'list[StudyResolvedLabels]'
     }
@@ -47,7 +50,7 @@ class CollatedWorksheetLabels(object):
     def __init__(self, label_definitions=None, configs=None, studies=None, local_vars_configuration=None):  # noqa: E501
         """CollatedWorksheetLabels - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._label_definitions = None
@@ -55,12 +58,9 @@ class CollatedWorksheetLabels(object):
         self._studies = None
         self.discriminator = None
 
-        if label_definitions is not None:
-            self.label_definitions = label_definitions
-        if configs is not None:
-            self.configs = configs
-        if studies is not None:
-            self.studies = studies
+        self.label_definitions = label_definitions
+        self.configs = configs
+        self.studies = studies
 
     @property
     def label_definitions(self):
@@ -68,7 +68,7 @@ class CollatedWorksheetLabels(object):
 
 
         :return: The label_definitions of this CollatedWorksheetLabels.  # noqa: E501
-        :rtype: CollatedLabelDefinitions
+        :rtype: CollatedWorksheetLabelsLabelDefinitions
         """
         return self._label_definitions
 
@@ -78,8 +78,10 @@ class CollatedWorksheetLabels(object):
 
 
         :param label_definitions: The label_definitions of this CollatedWorksheetLabels.  # noqa: E501
-        :type: CollatedLabelDefinitions
+        :type label_definitions: CollatedWorksheetLabelsLabelDefinitions
         """
+        if self.local_vars_configuration.client_side_validation and label_definitions is None:  # noqa: E501
+            raise ValueError("Invalid value for `label_definitions`, must not be `None`")  # noqa: E501
 
         self._label_definitions = label_definitions
 
@@ -99,8 +101,10 @@ class CollatedWorksheetLabels(object):
 
 
         :param configs: The configs of this CollatedWorksheetLabels.  # noqa: E501
-        :type: list[ConfigResolvedLabels]
+        :type configs: list[ConfigResolvedLabels]
         """
+        if self.local_vars_configuration.client_side_validation and configs is None:  # noqa: E501
+            raise ValueError("Invalid value for `configs`, must not be `None`")  # noqa: E501
 
         self._configs = configs
 
@@ -120,32 +124,42 @@ class CollatedWorksheetLabels(object):
 
 
         :param studies: The studies of this CollatedWorksheetLabels.  # noqa: E501
-        :type: list[StudyResolvedLabels]
+        :type studies: list[StudyResolvedLabels]
         """
+        if self.local_vars_configuration.client_side_validation and studies is None:  # noqa: E501
+            raise ValueError("Invalid value for `studies`, must not be `None`")  # noqa: E501
 
         self._studies = studies
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

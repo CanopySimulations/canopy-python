@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -33,13 +36,13 @@ class GetTenantsQueryResultTenantItem(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'tenant_id': 'str',
-        'name': 'str',
-        'short_name': 'str',
+        'tenant_id': 'object',
+        'name': 'object',
+        'short_name': 'object',
         'creation_date': 'datetime',
         'is_enabled': 'bool',
-        'database_id': 'str',
-        'region': 'str'
+        'database_id': 'object',
+        'region': 'object'
     }
 
     attribute_map = {
@@ -55,7 +58,7 @@ class GetTenantsQueryResultTenantItem(object):
     def __init__(self, tenant_id=None, name=None, short_name=None, creation_date=None, is_enabled=None, database_id=None, region=None, local_vars_configuration=None):  # noqa: E501
         """GetTenantsQueryResultTenantItem - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._tenant_id = None
@@ -67,20 +70,13 @@ class GetTenantsQueryResultTenantItem(object):
         self._region = None
         self.discriminator = None
 
-        if tenant_id is not None:
-            self.tenant_id = tenant_id
-        if name is not None:
-            self.name = name
-        if short_name is not None:
-            self.short_name = short_name
-        if creation_date is not None:
-            self.creation_date = creation_date
-        if is_enabled is not None:
-            self.is_enabled = is_enabled
-        if database_id is not None:
-            self.database_id = database_id
-        if region is not None:
-            self.region = region
+        self.tenant_id = tenant_id
+        self.name = name
+        self.short_name = short_name
+        self.creation_date = creation_date
+        self.is_enabled = is_enabled
+        self.database_id = database_id
+        self.region = region
 
     @property
     def tenant_id(self):
@@ -88,7 +84,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The tenant_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._tenant_id
 
@@ -98,8 +94,10 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param tenant_id: The tenant_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type: str
+        :type tenant_id: object
         """
+        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -109,7 +107,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The name of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._name
 
@@ -119,8 +117,10 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param name: The name of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type: str
+        :type name: object
         """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -130,7 +130,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The short_name of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._short_name
 
@@ -140,8 +140,10 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param short_name: The short_name of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type: str
+        :type short_name: object
         """
+        if self.local_vars_configuration.client_side_validation and short_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `short_name`, must not be `None`")  # noqa: E501
 
         self._short_name = short_name
 
@@ -161,8 +163,10 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param creation_date: The creation_date of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type: datetime
+        :type creation_date: datetime
         """
+        if self.local_vars_configuration.client_side_validation and creation_date is None:  # noqa: E501
+            raise ValueError("Invalid value for `creation_date`, must not be `None`")  # noqa: E501
 
         self._creation_date = creation_date
 
@@ -182,8 +186,10 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param is_enabled: The is_enabled of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type: bool
+        :type is_enabled: bool
         """
+        if self.local_vars_configuration.client_side_validation and is_enabled is None:  # noqa: E501
+            raise ValueError("Invalid value for `is_enabled`, must not be `None`")  # noqa: E501
 
         self._is_enabled = is_enabled
 
@@ -193,7 +199,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The database_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._database_id
 
@@ -203,8 +209,10 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param database_id: The database_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type: str
+        :type database_id: object
         """
+        if self.local_vars_configuration.client_side_validation and database_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `database_id`, must not be `None`")  # noqa: E501
 
         self._database_id = database_id
 
@@ -214,7 +222,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The region of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._region
 
@@ -224,32 +232,42 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param region: The region of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type: str
+        :type region: object
         """
+        if self.local_vars_configuration.client_side_validation and region is None:  # noqa: E501
+            raise ValueError("Invalid value for `region`, must not be `None`")  # noqa: E501
 
         self._region = region
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

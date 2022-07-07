@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from canopy.openapi.configuration import Configuration
@@ -35,7 +38,7 @@ class UserSettings(object):
     openapi_types = {
         'channels': 'list[ChannelSettings]',
         'charts': 'list[ChartSettings]',
-        'label_definitions': 'LabelDefinitions'
+        'label_definitions': 'CollatedLabelDefinitionsWorksheet'
     }
 
     attribute_map = {
@@ -47,7 +50,7 @@ class UserSettings(object):
     def __init__(self, channels=None, charts=None, label_definitions=None, local_vars_configuration=None):  # noqa: E501
         """UserSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._channels = None
@@ -55,12 +58,9 @@ class UserSettings(object):
         self._label_definitions = None
         self.discriminator = None
 
-        if channels is not None:
-            self.channels = channels
-        if charts is not None:
-            self.charts = charts
-        if label_definitions is not None:
-            self.label_definitions = label_definitions
+        self.channels = channels
+        self.charts = charts
+        self.label_definitions = label_definitions
 
     @property
     def channels(self):
@@ -78,7 +78,7 @@ class UserSettings(object):
 
 
         :param channels: The channels of this UserSettings.  # noqa: E501
-        :type: list[ChannelSettings]
+        :type channels: list[ChannelSettings]
         """
 
         self._channels = channels
@@ -99,7 +99,7 @@ class UserSettings(object):
 
 
         :param charts: The charts of this UserSettings.  # noqa: E501
-        :type: list[ChartSettings]
+        :type charts: list[ChartSettings]
         """
 
         self._charts = charts
@@ -110,7 +110,7 @@ class UserSettings(object):
 
 
         :return: The label_definitions of this UserSettings.  # noqa: E501
-        :rtype: LabelDefinitions
+        :rtype: CollatedLabelDefinitionsWorksheet
         """
         return self._label_definitions
 
@@ -120,32 +120,40 @@ class UserSettings(object):
 
 
         :param label_definitions: The label_definitions of this UserSettings.  # noqa: E501
-        :type: LabelDefinitions
+        :type label_definitions: CollatedLabelDefinitionsWorksheet
         """
 
         self._label_definitions = label_definitions
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 
