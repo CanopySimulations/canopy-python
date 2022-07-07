@@ -1,3 +1,7 @@
+# 8.29 Release
+## New Features
+ - Client code has been regenerated with the latest OpenAPI generator. This may cause some breaking changes, although this has been minimised as much as possible.
+
 # 8.28 Release
 ## New Features
  - Enums received from the API are not longer validated against a known list. This prevents otherwise innocuous updates to the API from breaking clients.
