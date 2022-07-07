@@ -749,16 +749,16 @@ class MembershipApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def membership_post_email_confirmation(self, **kwargs):  # noqa: E501
+    def membership_post_email_confirmation(self, membership_post_email_confirmation_request, **kwargs):  # noqa: E501
         """membership_post_email_confirmation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_email_confirmation(async_req=True)
+        >>> thread = api.membership_post_email_confirmation(membership_post_email_confirmation_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_email_confirmation_request:
+        :param membership_post_email_confirmation_request: (required)
         :type membership_post_email_confirmation_request: MembershipPostEmailConfirmationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -776,18 +776,18 @@ class MembershipApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.membership_post_email_confirmation_with_http_info(**kwargs)  # noqa: E501
+        return self.membership_post_email_confirmation_with_http_info(membership_post_email_confirmation_request, **kwargs)  # noqa: E501
 
-    def membership_post_email_confirmation_with_http_info(self, **kwargs):  # noqa: E501
+    def membership_post_email_confirmation_with_http_info(self, membership_post_email_confirmation_request, **kwargs):  # noqa: E501
         """membership_post_email_confirmation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_email_confirmation_with_http_info(async_req=True)
+        >>> thread = api.membership_post_email_confirmation_with_http_info(membership_post_email_confirmation_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_email_confirmation_request:
+        :param membership_post_email_confirmation_request: (required)
         :type membership_post_email_confirmation_request: MembershipPostEmailConfirmationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -838,6 +838,9 @@ class MembershipApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'membership_post_email_confirmation_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('membership_post_email_confirmation_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `membership_post_email_confirmation_request` when calling `membership_post_email_confirmation`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1022,16 +1025,16 @@ class MembershipApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def membership_post_identified_user(self, **kwargs):  # noqa: E501
+    def membership_post_identified_user(self, membership_post_identified_user_request, **kwargs):  # noqa: E501
         """membership_post_identified_user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_identified_user(async_req=True)
+        >>> thread = api.membership_post_identified_user(membership_post_identified_user_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_identified_user_request:
+        :param membership_post_identified_user_request: (required)
         :type membership_post_identified_user_request: MembershipPostIdentifiedUserRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1049,18 +1052,18 @@ class MembershipApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.membership_post_identified_user_with_http_info(**kwargs)  # noqa: E501
+        return self.membership_post_identified_user_with_http_info(membership_post_identified_user_request, **kwargs)  # noqa: E501
 
-    def membership_post_identified_user_with_http_info(self, **kwargs):  # noqa: E501
+    def membership_post_identified_user_with_http_info(self, membership_post_identified_user_request, **kwargs):  # noqa: E501
         """membership_post_identified_user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_identified_user_with_http_info(async_req=True)
+        >>> thread = api.membership_post_identified_user_with_http_info(membership_post_identified_user_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_identified_user_request:
+        :param membership_post_identified_user_request: (required)
         :type membership_post_identified_user_request: MembershipPostIdentifiedUserRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1111,6 +1114,9 @@ class MembershipApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'membership_post_identified_user_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('membership_post_identified_user_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `membership_post_identified_user_request` when calling `membership_post_identified_user`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1275,16 +1281,16 @@ class MembershipApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def membership_post_password_reset_confirmation(self, **kwargs):  # noqa: E501
+    def membership_post_password_reset_confirmation(self, membership_post_password_reset_confirmation_request, **kwargs):  # noqa: E501
         """membership_post_password_reset_confirmation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_password_reset_confirmation(async_req=True)
+        >>> thread = api.membership_post_password_reset_confirmation(membership_post_password_reset_confirmation_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_password_reset_confirmation_request:
+        :param membership_post_password_reset_confirmation_request: (required)
         :type membership_post_password_reset_confirmation_request: MembershipPostPasswordResetConfirmationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1302,18 +1308,18 @@ class MembershipApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.membership_post_password_reset_confirmation_with_http_info(**kwargs)  # noqa: E501
+        return self.membership_post_password_reset_confirmation_with_http_info(membership_post_password_reset_confirmation_request, **kwargs)  # noqa: E501
 
-    def membership_post_password_reset_confirmation_with_http_info(self, **kwargs):  # noqa: E501
+    def membership_post_password_reset_confirmation_with_http_info(self, membership_post_password_reset_confirmation_request, **kwargs):  # noqa: E501
         """membership_post_password_reset_confirmation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_password_reset_confirmation_with_http_info(async_req=True)
+        >>> thread = api.membership_post_password_reset_confirmation_with_http_info(membership_post_password_reset_confirmation_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_password_reset_confirmation_request:
+        :param membership_post_password_reset_confirmation_request: (required)
         :type membership_post_password_reset_confirmation_request: MembershipPostPasswordResetConfirmationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1364,6 +1370,9 @@ class MembershipApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'membership_post_password_reset_confirmation_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('membership_post_password_reset_confirmation_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `membership_post_password_reset_confirmation_request` when calling `membership_post_password_reset_confirmation`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1409,16 +1418,16 @@ class MembershipApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def membership_post_password_reset_request(self, **kwargs):  # noqa: E501
+    def membership_post_password_reset_request(self, membership_post_password_reset_request_request, **kwargs):  # noqa: E501
         """membership_post_password_reset_request  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_password_reset_request(async_req=True)
+        >>> thread = api.membership_post_password_reset_request(membership_post_password_reset_request_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_password_reset_request_request:
+        :param membership_post_password_reset_request_request: (required)
         :type membership_post_password_reset_request_request: MembershipPostPasswordResetRequestRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1436,18 +1445,18 @@ class MembershipApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.membership_post_password_reset_request_with_http_info(**kwargs)  # noqa: E501
+        return self.membership_post_password_reset_request_with_http_info(membership_post_password_reset_request_request, **kwargs)  # noqa: E501
 
-    def membership_post_password_reset_request_with_http_info(self, **kwargs):  # noqa: E501
+    def membership_post_password_reset_request_with_http_info(self, membership_post_password_reset_request_request, **kwargs):  # noqa: E501
         """membership_post_password_reset_request  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_password_reset_request_with_http_info(async_req=True)
+        >>> thread = api.membership_post_password_reset_request_with_http_info(membership_post_password_reset_request_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_password_reset_request_request:
+        :param membership_post_password_reset_request_request: (required)
         :type membership_post_password_reset_request_request: MembershipPostPasswordResetRequestRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1498,6 +1507,9 @@ class MembershipApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'membership_post_password_reset_request_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('membership_post_password_reset_request_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `membership_post_password_reset_request_request` when calling `membership_post_password_reset_request`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1543,16 +1555,16 @@ class MembershipApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def membership_post_registration(self, **kwargs):  # noqa: E501
+    def membership_post_registration(self, membership_post_registration_request, **kwargs):  # noqa: E501
         """membership_post_registration  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_registration(async_req=True)
+        >>> thread = api.membership_post_registration(membership_post_registration_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_registration_request:
+        :param membership_post_registration_request: (required)
         :type membership_post_registration_request: MembershipPostRegistrationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1570,18 +1582,18 @@ class MembershipApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.membership_post_registration_with_http_info(**kwargs)  # noqa: E501
+        return self.membership_post_registration_with_http_info(membership_post_registration_request, **kwargs)  # noqa: E501
 
-    def membership_post_registration_with_http_info(self, **kwargs):  # noqa: E501
+    def membership_post_registration_with_http_info(self, membership_post_registration_request, **kwargs):  # noqa: E501
         """membership_post_registration  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.membership_post_registration_with_http_info(async_req=True)
+        >>> thread = api.membership_post_registration_with_http_info(membership_post_registration_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_registration_request:
+        :param membership_post_registration_request: (required)
         :type membership_post_registration_request: MembershipPostRegistrationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1632,6 +1644,9 @@ class MembershipApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'membership_post_registration_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('membership_post_registration_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `membership_post_registration_request` when calling `membership_post_registration`")  # noqa: E501
 
         collection_formats = {}
 

@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_email_confirmation**
-> membership_post_email_confirmation(membership_post_email_confirmation_request=membership_post_email_confirmation_request)
+> membership_post_email_confirmation(membership_post_email_confirmation_request)
 
 
 
@@ -379,10 +379,10 @@ configuration = canopy.openapi.Configuration(
 with canopy.openapi.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.MembershipApi(api_client)
-    membership_post_email_confirmation_request = canopy.openapi.MembershipPostEmailConfirmationRequest() # MembershipPostEmailConfirmationRequest |  (optional)
+    membership_post_email_confirmation_request = canopy.openapi.MembershipPostEmailConfirmationRequest() # MembershipPostEmailConfirmationRequest | 
 
     try:
-        api_instance.membership_post_email_confirmation(membership_post_email_confirmation_request=membership_post_email_confirmation_request)
+        api_instance.membership_post_email_confirmation(membership_post_email_confirmation_request)
     except ApiException as e:
         print("Exception when calling MembershipApi->membership_post_email_confirmation: %s\n" % e)
 ```
@@ -391,7 +391,7 @@ with canopy.openapi.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **membership_post_email_confirmation_request** | [**MembershipPostEmailConfirmationRequest**](MembershipPostEmailConfirmationRequest.md)|  | [optional] 
+ **membership_post_email_confirmation_request** | [**MembershipPostEmailConfirmationRequest**](MembershipPostEmailConfirmationRequest.md)|  | 
 
 ### Return type
 
@@ -474,7 +474,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_identified_user**
-> membership_post_identified_user(membership_post_identified_user_request=membership_post_identified_user_request)
+> membership_post_identified_user(membership_post_identified_user_request)
 
 
 
@@ -497,10 +497,10 @@ configuration = canopy.openapi.Configuration(
 with canopy.openapi.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.MembershipApi(api_client)
-    membership_post_identified_user_request = canopy.openapi.MembershipPostIdentifiedUserRequest() # MembershipPostIdentifiedUserRequest |  (optional)
+    membership_post_identified_user_request = canopy.openapi.MembershipPostIdentifiedUserRequest() # MembershipPostIdentifiedUserRequest | 
 
     try:
-        api_instance.membership_post_identified_user(membership_post_identified_user_request=membership_post_identified_user_request)
+        api_instance.membership_post_identified_user(membership_post_identified_user_request)
     except ApiException as e:
         print("Exception when calling MembershipApi->membership_post_identified_user: %s\n" % e)
 ```
@@ -509,7 +509,7 @@ with canopy.openapi.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **membership_post_identified_user_request** | [**MembershipPostIdentifiedUserRequest**](MembershipPostIdentifiedUserRequest.md)|  | [optional] 
+ **membership_post_identified_user_request** | [**MembershipPostIdentifiedUserRequest**](MembershipPostIdentifiedUserRequest.md)|  | 
 
 ### Return type
 
@@ -586,7 +586,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_password_reset_confirmation**
-> membership_post_password_reset_confirmation(membership_post_password_reset_confirmation_request=membership_post_password_reset_confirmation_request)
+> membership_post_password_reset_confirmation(membership_post_password_reset_confirmation_request)
 
 
 
@@ -609,10 +609,10 @@ configuration = canopy.openapi.Configuration(
 with canopy.openapi.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.MembershipApi(api_client)
-    membership_post_password_reset_confirmation_request = canopy.openapi.MembershipPostPasswordResetConfirmationRequest() # MembershipPostPasswordResetConfirmationRequest |  (optional)
+    membership_post_password_reset_confirmation_request = canopy.openapi.MembershipPostPasswordResetConfirmationRequest() # MembershipPostPasswordResetConfirmationRequest | 
 
     try:
-        api_instance.membership_post_password_reset_confirmation(membership_post_password_reset_confirmation_request=membership_post_password_reset_confirmation_request)
+        api_instance.membership_post_password_reset_confirmation(membership_post_password_reset_confirmation_request)
     except ApiException as e:
         print("Exception when calling MembershipApi->membership_post_password_reset_confirmation: %s\n" % e)
 ```
@@ -621,7 +621,7 @@ with canopy.openapi.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **membership_post_password_reset_confirmation_request** | [**MembershipPostPasswordResetConfirmationRequest**](MembershipPostPasswordResetConfirmationRequest.md)|  | [optional] 
+ **membership_post_password_reset_confirmation_request** | [**MembershipPostPasswordResetConfirmationRequest**](MembershipPostPasswordResetConfirmationRequest.md)|  | 
 
 ### Return type
 
@@ -644,7 +644,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_password_reset_request**
-> membership_post_password_reset_request(membership_post_password_reset_request_request=membership_post_password_reset_request_request)
+> membership_post_password_reset_request(membership_post_password_reset_request_request)
 
 
 
@@ -667,10 +667,10 @@ configuration = canopy.openapi.Configuration(
 with canopy.openapi.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.MembershipApi(api_client)
-    membership_post_password_reset_request_request = canopy.openapi.MembershipPostPasswordResetRequestRequest() # MembershipPostPasswordResetRequestRequest |  (optional)
+    membership_post_password_reset_request_request = canopy.openapi.MembershipPostPasswordResetRequestRequest() # MembershipPostPasswordResetRequestRequest | 
 
     try:
-        api_instance.membership_post_password_reset_request(membership_post_password_reset_request_request=membership_post_password_reset_request_request)
+        api_instance.membership_post_password_reset_request(membership_post_password_reset_request_request)
     except ApiException as e:
         print("Exception when calling MembershipApi->membership_post_password_reset_request: %s\n" % e)
 ```
@@ -679,7 +679,7 @@ with canopy.openapi.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **membership_post_password_reset_request_request** | [**MembershipPostPasswordResetRequestRequest**](MembershipPostPasswordResetRequestRequest.md)|  | [optional] 
+ **membership_post_password_reset_request_request** | [**MembershipPostPasswordResetRequestRequest**](MembershipPostPasswordResetRequestRequest.md)|  | 
 
 ### Return type
 
@@ -702,7 +702,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **membership_post_registration**
-> membership_post_registration(membership_post_registration_request=membership_post_registration_request)
+> membership_post_registration(membership_post_registration_request)
 
 
 
@@ -736,10 +736,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.MembershipApi(api_client)
-    membership_post_registration_request = canopy.openapi.MembershipPostRegistrationRequest() # MembershipPostRegistrationRequest |  (optional)
+    membership_post_registration_request = canopy.openapi.MembershipPostRegistrationRequest() # MembershipPostRegistrationRequest | 
 
     try:
-        api_instance.membership_post_registration(membership_post_registration_request=membership_post_registration_request)
+        api_instance.membership_post_registration(membership_post_registration_request)
     except ApiException as e:
         print("Exception when calling MembershipApi->membership_post_registration: %s\n" % e)
 ```
@@ -748,7 +748,7 @@ with canopy.openapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **membership_post_registration_request** | [**MembershipPostRegistrationRequest**](MembershipPostRegistrationRequest.md)|  | [optional] 
+ **membership_post_registration_request** | [**MembershipPostRegistrationRequest**](MembershipPostRegistrationRequest.md)|  | 
 
 ### Return type
 
