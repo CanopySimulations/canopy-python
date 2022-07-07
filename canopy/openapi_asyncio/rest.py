@@ -15,11 +15,13 @@ import json
 import logging
 import re
 import ssl
+from typing import Dict
 
 import aiohttp
 # python 2 and python 3 compatibility library
 from six.moves.urllib.parse import urlencode
 
+from canopy.request_with_retry import request_with_retry
 from canopy.openapi.exceptions import ApiException, ApiValueError
 
 logger = logging.getLogger(__name__)
@@ -49,7 +51,7 @@ class RESTClientObject(object):
         # maxsize is number of requests to host that are allowed in parallel
         if maxsize is None:
             maxsize = configuration.connection_pool_maxsize
-
+        
         ssl_context = ssl.create_default_context(cafile=configuration.ssl_ca_cert)
         if configuration.cert_file:
             ssl_context.load_cert_chain(
@@ -65,14 +67,22 @@ class RESTClientObject(object):
             ssl=ssl_context
         )
 
+        # https://github.com/aio-libs/aiohttp/issues/3203#issuecomment-544136905
+        self.default_timeout = 30  # aiohttp.ClientTimeout(total=None, sock_connect=30, sock_read=30)
+
         self.proxy = configuration.proxy
         self.proxy_headers = configuration.proxy_headers
 
         # https pool manager
-        self.pool_manager = aiohttp.ClientSession(
-            connector=connector,
-            trust_env=True
-        )
+        if self.proxy:
+            self.pool_manager = aiohttp.ClientSession(
+                connector=connector
+            )
+        else:
+            self.pool_manager = aiohttp.ClientSession(
+                connector=connector,
+                trust_env=True
+            )
 
     async def close(self):
         await self.pool_manager.close()
@@ -108,7 +118,7 @@ class RESTClientObject(object):
 
         post_params = post_params or {}
         headers = headers or {}
-        timeout = _request_timeout or 5 * 60
+        timeout = _request_timeout or self.default_timeout
 
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'
@@ -164,7 +174,7 @@ class RESTClientObject(object):
                          declared content type."""
                 raise ApiException(status=0, reason=msg)
 
-        r = await self.pool_manager.request(**args)
+        r = await request_with_retry(lambda: self.pool_manager.request(**args), url, True)
         if _preload_content:
 
             data = await r.read()

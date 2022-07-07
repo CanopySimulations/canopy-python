@@ -19,6 +19,7 @@ from multiprocessing.pool import ThreadPool
 import os
 import re
 import tempfile
+import numpy as np
 
 # python 2 and python 3 compatibility library
 import six
@@ -238,7 +239,7 @@ class ApiClient(object):
             return None
         elif isinstance(obj, self.PRIMITIVE_TYPES):
             return obj
-        elif isinstance(obj, list):
+        elif isinstance(obj, (list, np.ndarray)):
             return [self.sanitize_for_serialization(sub_obj)
                     for sub_obj in obj]
         elif isinstance(obj, tuple):

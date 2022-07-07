@@ -86,7 +86,7 @@ class Configuration(object):
 
     _default = None
 
-    def __init__(self, host=None,
+    def __init__(self, host="https://api.canopysimulations.com",
                  api_key=None, api_key_prefix=None,
                  username=None, password=None,
                  discard_unknown_keys=False,
@@ -402,7 +402,7 @@ class Configuration(object):
         """
         return [
             {
-                'url': "",
+                'url': "https://api.canopysimulations.com/",
                 'description': "No description provided",
             }
         ]
