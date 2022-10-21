@@ -1,10 +1,8 @@
-from typing import Optional, Callable, Awaitable, Union
+from typing import Optional
 
 import canopy
 import aiohttp
 import atexit
-import asyncio
-from aiohttp.client_exceptions import ClientResponseError, ClientConnectionError, ServerTimeoutError, ClientError
 import logging
 import certifi
 
@@ -26,9 +24,16 @@ class Session(object):
             tenant_name: Optional[str] = None,
             password: Optional[str] = None,
             proxy: Optional[canopy.ProxyConfiguration] = None,
-            openapi_configuration: Optional[canopy.openapi.Configuration] = None):
+            openapi_configuration: Optional[
+                canopy.openapi.Configuration
+            ] = None
+    ):
 
-        self._configuration = openapi_configuration if openapi_configuration is not None else canopy.openapi.Configuration()
+        self._configuration = (
+            openapi_configuration
+            if openapi_configuration is not None
+            else canopy.openapi.Configuration()
+        )
         if self._configuration.host is None:
             self._configuration.host = 'https://api.canopysimulations.com'
         if proxy is not None:
@@ -38,8 +43,12 @@ class Session(object):
         if self._configuration.ssl_ca_cert is None:
             self._configuration.ssl_ca_cert = certifi.where()
             
-        self._sync_client = canopy.openapi.ApiClient(configuration=self._configuration)
-        self._async_client = canopy.openapi_asyncio.ApiClient(configuration=self._configuration)
+        self._sync_client = canopy.openapi.ApiClient(
+            configuration=self._configuration
+        )
+        self._async_client = canopy.openapi_asyncio.ApiClient(
+            configuration=self._configuration
+        )
 
         if authentication_data is not None:
             client_id = authentication_data.client_id
@@ -56,10 +65,18 @@ class Session(object):
             tenant_name,
             password)
         self._units = canopy.Units()
-        self._user_settings = canopy.UserSettingsCache(self._sync_client, self._authentication)
-        self._tenant_users = canopy.TenantUsersCache(self._sync_client, self._authentication)
-        self._tenant_sim_version = canopy.TenantSimVersionCache(self._sync_client, self._authentication)
-        self._study_types = canopy.StudyTypesCache(self._sync_client, self._authentication, self._tenant_sim_version)
+        self._user_settings = canopy.UserSettingsCache(
+            self._sync_client, self._authentication
+        )
+        self._tenant_users = canopy.TenantUsersCache(
+            self._sync_client, self._authentication
+        )
+        self._tenant_sim_version = canopy.TenantSimVersionCache(
+            self._sync_client, self._authentication
+        )
+        self._study_types = canopy.StudyTypesCache(
+            self._sync_client, self._authentication, self._tenant_sim_version
+        )
 
         atexit.register(self.close)
 
@@ -139,10 +156,14 @@ class Session(object):
         return self._async_client.rest_client.default_timeout
 
     async def try_load_text(self, url: str, error_subject: str) -> str:
-        return await canopy.request_with_retry(lambda: self._load_text(url), error_subject, False)
+        return await canopy.request_with_retry(
+            lambda: self._load_text(url), error_subject, False
+        )
 
     async def try_load_bytes(self, url: str, error_subject: str) -> bytes:
-        return await canopy.request_with_retry(lambda: self._load_bytes(url), error_subject, False)
+        return await canopy.request_with_retry(
+            lambda: self._load_bytes(url), error_subject, False
+        )
 
     async def _load_text(self, url: str) -> str:
         async with self._get_async_session(url) as response:
