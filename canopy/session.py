@@ -1,5 +1,7 @@
 from typing import Optional
 
+from functools import cached_property
+
 import canopy
 import aiohttp
 import atexit
@@ -11,8 +13,6 @@ logger = logging.getLogger(__name__)
 
 
 class Session(object):
-    _sync_client: canopy.openapi.ApiClient
-    _async_client: canopy.openapi_asyncio.ApiClient
     _is_closed: bool = False
 
     def __init__(
@@ -43,13 +43,6 @@ class Session(object):
         if self._configuration.ssl_ca_cert is None:
             self._configuration.ssl_ca_cert = certifi.where()
             
-        self._sync_client = canopy.openapi.ApiClient(
-            configuration=self._configuration
-        )
-        self._async_client = canopy.openapi_asyncio.ApiClient(
-            configuration=self._configuration
-        )
-
         if authentication_data is not None:
             client_id = authentication_data.client_id
             client_secret = authentication_data.client_secret
@@ -119,9 +112,21 @@ class Session(object):
     def sync_client(self) -> canopy.openapi.ApiClient:
         return self._sync_client
 
+    @cached_property
+    def _sync_client(self) -> canopy.openapi.ApiClient:
+        return canopy.openapi.ApiClient(
+            configuration=self._configuration
+        )
+
     @property
     def async_client(self) -> canopy.openapi_asyncio.ApiClient:
         return self._async_client
+
+    @cached_property
+    def _async_client(self) -> canopy.openapi_asyncio.ApiClient:
+        return canopy.openapi_asyncio.ApiClient(
+            configuration=self._configuration
+        )
 
     @property
     def async_client_session(self) -> aiohttp.ClientSession:
