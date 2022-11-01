@@ -69,7 +69,7 @@ class Session(object):
         return self
 
     def __exit__(self, exc_type, exc, tb):
-        if (self._async_client is not None):
+        if self._async_client is not None:
             canopy.run(self.close())
         else:
             self.close_sync()
@@ -105,7 +105,7 @@ class Session(object):
 
         self._is_closed = True
         return True
-    
+
     def _on_closed(self):
         if hasattr(atexit, 'unregister'):
             atexit.unregister(self.close)
