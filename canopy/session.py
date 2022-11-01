@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class Session(object):
     _sync_client: canopy.openapi.ApiClient
-    _async_client: canopy.openapi_asyncio.ApiClient
+    _async_client: Optional[canopy.openapi_asyncio.ApiClient] = None
     _is_closed: bool = False
 
     def __init__(
@@ -39,7 +39,6 @@ class Session(object):
             self._configuration.ssl_ca_cert = certifi.where()
             
         self._sync_client = canopy.openapi.ApiClient(configuration=self._configuration)
-        self._async_client = canopy.openapi_asyncio.ApiClient(configuration=self._configuration)
 
         if authentication_data is not None:
             client_id = authentication_data.client_id
@@ -66,23 +65,48 @@ class Session(object):
     def __enter__(self):
         return self
 
-    def __exit__(self, exc_type, exc, tb):
-        canopy.run(self.close())
-
     async def __aenter__(self):
         return self
+
+    def __exit__(self, exc_type, exc, tb):
+        if (self._async_client is not None):
+            canopy.run(self.close())
+        else:
+            self.close_sync()
 
     async def __aexit__(self, exc_type, exc, tb):
         await self.close()
 
     async def close(self):
-        if self._is_closed:
+        if not self._try_initiate_close():
             return
 
-        self._is_closed = True
-        await self.async_client.close()
+        if self._async_client is not None:
+            await self._async_client.close()
+
         self.sync_client.close()
-        print('closing')
+
+        self._on_closed()
+
+    async def close_sync(self):
+        if not self._try_initiate_close():
+            return
+
+        if self._async_client is not None:
+            logging.warning('Session closed synchronously but async client was created.')
+
+        self.sync_client.close()
+
+        self._on_closed()
+
+    def _try_initiate_close(self) -> bool:
+        if self._is_closed:
+            return False
+
+        self._is_closed = True
+        return True
+    
+    def _on_closed(self):
         if hasattr(atexit, 'unregister'):
             atexit.unregister(self.close)
 
@@ -104,11 +128,15 @@ class Session(object):
 
     @property
     def async_client(self) -> canopy.openapi_asyncio.ApiClient:
+        # We lazy-load the async client as during initialization it requres an event loop
+        # to exist on the thread, which might not exist for customers not using asyncio.
+        if self._async_client is None:
+            self._async_client = canopy.openapi_asyncio.ApiClient(configuration=self._configuration)
         return self._async_client
 
     @property
     def async_client_session(self) -> aiohttp.ClientSession:
-        return self._async_client.rest_client.pool_manager
+        return self.async_client.rest_client.pool_manager
 
     @property
     def authentication(self) -> canopy.Authentication:

@@ -14,4 +14,4 @@ class SerializableValue(Generic[T]):
         self.value = value
 
     def serialize(self) -> str:
-        return json.dumps(self._session.async_client.sanitize_for_serialization(self.value))
+        return json.dumps(self._session.sync_client.sanitize_for_serialization(self.value))
