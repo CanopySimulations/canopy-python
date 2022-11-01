@@ -1,3 +1,7 @@
+# 8.35 Release
+## New Features
+ - Minor to help users in environments without asyncio. Drop Python 3.6 tests and add Python 3.10 and 3.11 tests.
+
 # 8.32 Release
 ## New Features
  - Restore use of certifi to find SSL CA store if none is specified.
