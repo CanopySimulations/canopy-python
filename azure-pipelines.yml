@@ -16,6 +16,8 @@ variables:
   minor: $[counter(variables.major, 0)]
   buildVersion: $[format('{0}.{1}', variables.major, variables.minor)]
 
+  isPullRequest: $[eq(variables['Build.Reason'], 'PullRequest')]
+
 name: '$(buildVersion)'
 
 jobs:
@@ -52,12 +54,14 @@ jobs:
 
     - script: |
         pytest integration_tests
+      condition: and(succeeded(), eq(variables['isPullRequest'], 'False'))
       displayName: 'pytest integration_tests'
       env:
         CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS: $(CanopyPythonIntegrationTestCredentials)
 
   - job: Build
     dependsOn: Test
+    condition: and(succeeded(), eq(variables['isPullRequest'], 'False'))
 
     steps:
     - task: UsePythonVersion@0
