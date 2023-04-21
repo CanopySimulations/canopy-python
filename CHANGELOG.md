@@ -1,3 +1,8 @@
+# 8.38 Release
+## New Features
+ - You can now pass a `default_timeout` parameter when creating a `Session` to adjust the default timeout.
+ - The default timeout is now 120 seconds. Previously it was 30 seconds.
+
 # 8.35 Release
 ## New Features
  - Minor to help users in environments without asyncio. Drop Python 3.6 tests and add Python 3.10 and 3.11 tests.
