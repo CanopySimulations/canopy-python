@@ -9,3 +9,4 @@ aiohttp
 munch
 
 pytest-asyncio
+ipykernel

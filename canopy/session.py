@@ -16,6 +16,7 @@ class Session(object):
     _sync_client: canopy.openapi.ApiClient
     _async_client: Optional[canopy.openapi_asyncio.ApiClient] = None
     _is_closed: bool = False
+    _default_timeout: int = 120
 
     def __init__(
             self,
@@ -26,6 +27,7 @@ class Session(object):
             tenant_name: Optional[str] = None,
             password: Optional[str] = None,
             proxy: Optional[canopy.ProxyConfiguration] = None,
+            default_timeout: Optional[int] = None,
             openapi_configuration: Optional[canopy.openapi.Configuration] = None):
 
         self._configuration = openapi_configuration if openapi_configuration is not None else canopy.openapi.Configuration()
@@ -37,8 +39,12 @@ class Session(object):
 
         if self._configuration.ssl_ca_cert is None:
             self._configuration.ssl_ca_cert = certifi.where()
+
+        if default_timeout is not None:
+            self._default_timeout = default_timeout
             
         self._sync_client = canopy.openapi.ApiClient(configuration=self._configuration)
+        self._sync_client.rest_client.default_timeout = self._default_timeout
 
         if authentication_data is not None:
             client_id = authentication_data.client_id
@@ -132,6 +138,7 @@ class Session(object):
         # to exist on the thread, which might not exist for customers not using asyncio.
         if self._async_client is None:
             self._async_client = canopy.openapi_asyncio.ApiClient(configuration=self._configuration)
+            self._async_client.rest_client.default_timeout = self._default_timeout
         return self._async_client
 
     @property
@@ -163,7 +170,7 @@ class Session(object):
         return self._units
 
     @property
-    def async_default_timeout(self) -> aiohttp.ClientSession:
+    def async_default_timeout(self) -> int:
         return self._async_client.rest_client.default_timeout
 
     async def try_load_text(self, url: str, error_subject: str) -> str:
