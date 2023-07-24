@@ -94,7 +94,7 @@ class Session(object):
 
         self._on_closed()
 
-    async def close_sync(self):
+    def close_sync(self):
         if not self._try_initiate_close():
             return
 
