@@ -46,61 +46,33 @@ class Authentication(object):
         self._tenant_name = authentication_data.tenant_name
         self._password = authentication_data.password
 
-        post_params = {
-            'grant_type': 'password',
-            'username': self._username,
-            'tenant': self._tenant_name,
-            'password': self._password,
-            'client_id': self._client_id,
-            'client_secret': self._client_secret,
-        }
+        token_api = canopy.openapi.TokenApi(self._client)
 
-        header_params = {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        token_result = token_api.token_post_token(
+            grant_type = 'password',
+            username = self._username,
+            tenant = self._tenant_name,
+            password = self._password,
+            client_id = self._client_id,
+            client_secret = self._client_secret)
 
-        response_types_map = {
-            200: "GrantTypeHandlerResponse",
-        }
-
-        token_result = self._client.call_api(
-            '/token',
-            'POST',
-            post_params=post_params,
-            header_params=header_params,
-            response_types_map=response_types_map)
-
-        self._identity = token_result[0]
+        self._identity = token_result
         self.__update_from_identity()
 
     def refresh_access_token(self):
         if self._identity is None:
             raise RuntimeError('You must call authenticate before refreshing the access token.')
 
-        post_params = {
-            'grant_type': 'refresh_token',
-            'refresh_token': self._identity.refresh_token,
-            'tenant': self._identity.tenant_id,
-            'client_id': self._client_id,
-            'client_secret': self._client_secret,
-        }
+        token_api = canopy.openapi.TokenApi(self._client)
 
-        header_params = {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        token_result = token_api.token_post_token(
+            grant_type = 'refresh_token',
+            refresh_token = self._identity.refresh_token,
+            tenant = self._identity.tenant_id,
+            client_id = self._client_id,
+            client_secret = self._client_secret)
 
-        response_types_map = {
-            200: "GrantTypeHandlerResponse",
-        }
-
-        token_result = self._client.call_api(
-            '/token',
-            'POST',
-            post_params=post_params,
-            header_params=header_params,
-            response_types_map=response_types_map)
-
-        self._identity = token_result[0]
+        self._identity = token_result
         self.__update_from_identity()
 
     def __update_from_identity(self):
