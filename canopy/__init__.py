@@ -9,6 +9,7 @@ from canopy.defined_kwargs import defined_kwargs
 from canopy.proxy_configuration import ProxyConfiguration
 from canopy.authentication_data import AuthenticationData
 from canopy.authentication import Authentication
+from canopy.open_id_connect import OpenIDConnect
 from canopy.user_settings_cache import UserSettingsCache
 from canopy.units import Units
 from canopy.tenant_users import TenantUsers
