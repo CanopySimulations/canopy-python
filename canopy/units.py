@@ -104,6 +104,8 @@ def create_default_units():
         UnitDefinition('kW', 'W', factor=1e3, offset=0),
         UnitDefinition('MW', 'W', factor=1e6, offset=0),
         UnitDefinition('GW', 'W', factor=1e9, offset=0),
+        UnitDefinition('PS', 'W', factor=735.4987, offset=0),
+        UnitDefinition('hp', 'W', factor=745.6999, offset=0),
 
         UnitDefinition('kJ', 'J', factor=1e3, offset=0),
         UnitDefinition('MJ', 'J', factor=1e6, offset=0),

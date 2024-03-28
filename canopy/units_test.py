@@ -23,6 +23,12 @@ class UnitsTest(unittest.TestCase):
         self.assertAlmostEqual(
             self.units.convert_value_between_units(1000, 'Pa', 'inHg'),
             0.2953, delta=0.0001);
+        self.assertAlmostEqual(
+            self.units.convert_value_between_units(1, 'kW', 'PS'),
+            1.3596, delta=0.0001);
+        self.assertAlmostEqual(
+            self.units.convert_value_between_units(1, 'kW', 'hp'),
+            1.3410, delta=0.0001);
 
     def test_try_get_conversion_to_si(self):
         existing = self.units.try_get_conversion_to_si('F')
