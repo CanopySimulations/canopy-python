@@ -68,11 +68,11 @@ class Authentication(object):
         token_result = token_api.token_post_token(
             grant_type = 'refresh_token',
             refresh_token = self._identity.refresh_token,
-            tenant = self._identity.tenant_id,
             client_id = self._client_id,
             client_secret = self._client_secret)
 
-        self._identity = token_result
+        self._identity.access_token = token_result.access_token
+        self._identity.expires_in = token_result.expires_in
         self.__update_from_identity()
 
     def __update_from_identity(self):

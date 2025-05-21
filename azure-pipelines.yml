@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  python.buildVersion: '3.7'
+  python.buildVersion: '3.8'
 
   major: 8
   minor: $[counter(variables.major, 0)]
@@ -24,8 +24,6 @@ jobs:
   - job: Test
     strategy:
       matrix:
-        Python37:
-          python.version: '3.7'
         Python38:
           python.version: '3.8'
         Python39:
@@ -34,6 +32,10 @@ jobs:
           python.version: '3.10'
         Python311:
           python.version: '3.11'
+        Python312:
+          python.version: '3.12'
+        Python313:
+          python.version: '3.13'
 
     steps:
     - task: UsePythonVersion@0
