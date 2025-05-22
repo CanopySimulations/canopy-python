@@ -7,7 +7,7 @@ urllib3 >= 1.15.1
 pandas >= 0.25.1
 aiohttp
 munch
-authlib
+Authlib
 
 pytest-asyncio
 ipykernel
