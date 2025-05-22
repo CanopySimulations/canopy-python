@@ -2,6 +2,12 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/anaconda
 {
 	"name": "Anaconda (Python 3)",
+	"runArgs": [
+		"--network=host"
+	],
+
+	//"forwardPorts": [4201],
+
 	"build": { 
 		"context": "..",
 		"dockerfile": "Dockerfile"
@@ -10,7 +16,9 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ms-python.python"
+				"ms-python.python",
+				"ms-toolsai.jupyter-keymap",
+				"ms-python.debugpy"
 			]
 		}
 	},

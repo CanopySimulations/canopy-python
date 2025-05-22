@@ -30,3 +30,14 @@ def prompt_for_authentication(
         username=username,
         tenant_name=tenant_name,
         password=password)
+
+def prompt_for_authentication_browser(
+        client_id: Optional[str] = None,
+        client_secret: Optional[str] = None) -> tuple[str, str]:
+
+    if client_id is None:
+        client_id = input('Client ID:')
+    if client_secret is None:
+        client_secret = getpass.getpass(prompt='Client Secret:')
+
+    return [client_id, client_secret]
