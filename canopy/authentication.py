@@ -1,11 +1,11 @@
+import asyncio
+from aiohttp import web, ClientSession
 from authlib.integrations.requests_client import OAuth2Session
-from http.server import HTTPServer, BaseHTTPRequestHandler
 from secrets import token_urlsafe
 from typing import Optional
 
 import canopy
 import datetime
-import requests
 import threading
 import time
 import webbrowser
@@ -43,44 +43,47 @@ class Authentication(object):
         elif datetime.datetime.now() >= self._expires:
             self.refresh_access_token()
 
-    def sign_in_with_browser(self):
+    async def sign_in_with_browser(self):
         client_id, client_secret = canopy.prompt_for_authentication_browser()
         # === Configuration ===
         DISCOVERY_URL = 'https://identity.canopysimulations.com' + '/.well-known/openid-configuration'
         REDIRECT_URI_HOST = 'http://localhost'
         SCOPE = "openid profile canopy_api IdentityServerApi offline_access"
 
-        config = requests.get(DISCOVERY_URL, verify=False).json()
+        async with ClientSession() as session:
+            async with session.get(DISCOVERY_URL) as response:
+                config = await response.json()
+
         AUTHORIZATION_ENDPOINT = config['authorization_endpoint']
         TOKEN_ENDPOINT = config['token_endpoint']
         USERINFO_ENDPOINT = config['userinfo_endpoint']
 
-        # === Local server to capture callback ===
-        class CallbackHandler(BaseHTTPRequestHandler):
-            def do_GET(self):
-                self.server.path = self.path
-                self.send_response(200)
-                self.end_headers()
-                self.wfile.write(b'Login complete. You can close this window.')
+        authorization_response_future = asyncio.Future()
+        async def callback_handler(request):
+            authorization_response_future.set_result(request.rel_url)
+            response = web.Response(text="Login complete. You can close this tab.")
+            asyncio.create_task(shutdown_server())
+            return response
+        
+        async def shutdown_server():
+            await runner.result().cleanup()
 
-        authorization_response = None
-        port = None
-        def start_callback_server():
-            server = HTTPServer(('0.0.0.0', 0), CallbackHandler)
-            global port
-            port = server.server_port
-            server.handle_request()
-            global authorization_response
-            authorization_response = server.path
+        port = asyncio.Future()
+        runner = asyncio.Future()
+        # === aiohttp app runner ===
+        async def run_server():
+            app = web.Application()
+            app.router.add_get('/', callback_handler)
+            runner.set_result(web.AppRunner(app))
+            await runner.result().setup()
+            site = web.TCPSite(runner.result(), '0.0.0.0')
+            port.set_result(site._port)
+            await site.start()
 
         # === Main OIDC flow with discovery ===
-        server_thread = threading.Thread(target=start_callback_server, daemon=True)
-        server_thread.start()
+        asyncio.create_task(run_server())
 
-        while(port == None):
-            time.sleep(0.1)
-
-        client = OAuth2Session(client_id=client_id, client_secret=client_secret, redirect_uri=REDIRECT_URI_HOST + ':' + str(port), scope=SCOPE, code_challenge_method='S256')
+        client = OAuth2Session(client_id=client_id, client_secret=client_secret, redirect_uri=REDIRECT_URI_HOST + ':' + str(await port), scope=SCOPE, code_challenge_method='S256')
 
         code_verifier = token_urlsafe(48)
         # Generate auth URL
@@ -89,14 +92,11 @@ class Authentication(object):
         # Open browser
         webbrowser.open(auth_url)
 
-        server_thread.join()
-
         # Exchange code for token
         token_result = client.fetch_token(
             TOKEN_ENDPOINT,
-            authorization_response=authorization_response,
-            code_verifier=code_verifier,
-            verify=False,
+            authorization_response = str(await authorization_response_future),
+            code_verifier=code_verifier
         )
 
         userinfo = client.get(USERINFO_ENDPOINT).json()
