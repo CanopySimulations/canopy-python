@@ -58,6 +58,7 @@ class TenantSettingsPutTenantChannelWhitelistsRequest(object):
     def additive_channel_whitelist(self):
         """Gets the additive_channel_whitelist of this TenantSettingsPutTenantChannelWhitelistsRequest.  # noqa: E501
 
+        The list of channels in the channel whitelist.  # noqa: E501
 
         :return: The additive_channel_whitelist of this TenantSettingsPutTenantChannelWhitelistsRequest.  # noqa: E501
         :rtype: list[str]
@@ -68,6 +69,7 @@ class TenantSettingsPutTenantChannelWhitelistsRequest(object):
     def additive_channel_whitelist(self, additive_channel_whitelist):
         """Sets the additive_channel_whitelist of this TenantSettingsPutTenantChannelWhitelistsRequest.
 
+        The list of channels in the channel whitelist.  # noqa: E501
 
         :param additive_channel_whitelist: The additive_channel_whitelist of this TenantSettingsPutTenantChannelWhitelistsRequest.  # noqa: E501
         :type additive_channel_whitelist: list[str]

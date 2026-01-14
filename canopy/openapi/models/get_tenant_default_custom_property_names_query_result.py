@@ -84,8 +84,6 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
         :param settings: The settings of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
         :type settings: GetTenantDefaultCustomPropertyNamesQueryResultSettings
         """
-        if self.local_vars_configuration.client_side_validation and settings is None:  # noqa: E501
-            raise ValueError("Invalid value for `settings`, must not be `None`")  # noqa: E501
 
         self._settings = settings
 
@@ -107,8 +105,6 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
         :param custom_property_groups: The custom_property_groups of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
         :type custom_property_groups: list[DocumentTypeCustomPropertyGroups]
         """
-        if self.local_vars_configuration.client_side_validation and custom_property_groups is None:  # noqa: E501
-            raise ValueError("Invalid value for `custom_property_groups`, must not be `None`")  # noqa: E501
 
         self._custom_property_groups = custom_property_groups
 
@@ -151,8 +147,6 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
         :param config_types: The config_types of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
         :type config_types: list[object]
         """
-        if self.local_vars_configuration.client_side_validation and config_types is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_types`, must not be `None`")  # noqa: E501
 
         self._config_types = config_types
 

@@ -6,9 +6,12 @@ from __future__ import absolute_import
 from canopy.openapi.api.account_settings_api import AccountSettingsApi
 from canopy.openapi.api.availability_api import AvailabilityApi
 from canopy.openapi.api.config_api import ConfigApi
+from canopy.openapi.api.deployments_api import DeploymentsApi
+from canopy.openapi.api.encryption_api import EncryptionApi
 from canopy.openapi.api.end_to_end_test_inbox_api import EndToEndTestInboxApi
 from canopy.openapi.api.list_filter_api import ListFilterApi
 from canopy.openapi.api.membership_api import MembershipApi
+from canopy.openapi.api.multi_factor_authentication_api import MultiFactorAuthenticationApi
 from canopy.openapi.api.pool_api import PoolApi
 from canopy.openapi.api.sim_version_api import SimVersionApi
 from canopy.openapi.api.study_api import StudyApi

@@ -72,8 +72,6 @@ class TenantDefaultCustomPropertyNames(object):
         :param default_custom_property_names: The default_custom_property_names of this TenantDefaultCustomPropertyNames.  # noqa: E501
         :type default_custom_property_names: list[DefaultCustomPropertyNames]
         """
-        if self.local_vars_configuration.client_side_validation and default_custom_property_names is None:  # noqa: E501
-            raise ValueError("Invalid value for `default_custom_property_names`, must not be `None`")  # noqa: E501
 
         self._default_custom_property_names = default_custom_property_names
 

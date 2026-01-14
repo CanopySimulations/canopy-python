@@ -58,6 +58,7 @@ class TenantSettingsPutTenantDefaultCustomPropertyNamesRequest(object):
     def default_custom_property_names(self):
         """Gets the default_custom_property_names of this TenantSettingsPutTenantDefaultCustomPropertyNamesRequest.  # noqa: E501
 
+        The list of default custom property names for the tenant.  # noqa: E501
 
         :return: The default_custom_property_names of this TenantSettingsPutTenantDefaultCustomPropertyNamesRequest.  # noqa: E501
         :rtype: list[DefaultCustomPropertyNames]
@@ -68,6 +69,7 @@ class TenantSettingsPutTenantDefaultCustomPropertyNamesRequest(object):
     def default_custom_property_names(self, default_custom_property_names):
         """Sets the default_custom_property_names of this TenantSettingsPutTenantDefaultCustomPropertyNamesRequest.
 
+        The list of default custom property names for the tenant.  # noqa: E501
 
         :param default_custom_property_names: The default_custom_property_names of this TenantSettingsPutTenantDefaultCustomPropertyNamesRequest.  # noqa: E501
         :type default_custom_property_names: list[DefaultCustomPropertyNames]

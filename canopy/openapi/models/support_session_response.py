@@ -63,7 +63,8 @@ class SupportSessionResponse(object):
 
         self.tenant_id = tenant_id
         self.user_id = user_id
-        self.creation_date = creation_date
+        if creation_date is not None:
+            self.creation_date = creation_date
         self.message = message
 
     @property
@@ -84,8 +85,6 @@ class SupportSessionResponse(object):
         :param tenant_id: The tenant_id of this SupportSessionResponse.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -107,8 +106,6 @@ class SupportSessionResponse(object):
         :param user_id: The user_id of this SupportSessionResponse.  # noqa: E501
         :type user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -130,8 +127,6 @@ class SupportSessionResponse(object):
         :param creation_date: The creation_date of this SupportSessionResponse.  # noqa: E501
         :type creation_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and creation_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `creation_date`, must not be `None`")  # noqa: E501
 
         self._creation_date = creation_date
 
@@ -153,8 +148,6 @@ class SupportSessionResponse(object):
         :param message: The message of this SupportSessionResponse.  # noqa: E501
         :type message: str
         """
-        if self.local_vars_configuration.client_side_validation and message is None:  # noqa: E501
-            raise ValueError("Invalid value for `message`, must not be `None`")  # noqa: E501
 
         self._message = message
 

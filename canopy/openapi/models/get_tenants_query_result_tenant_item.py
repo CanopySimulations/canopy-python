@@ -73,8 +73,10 @@ class GetTenantsQueryResultTenantItem(object):
         self.tenant_id = tenant_id
         self.name = name
         self.short_name = short_name
-        self.creation_date = creation_date
-        self.is_enabled = is_enabled
+        if creation_date is not None:
+            self.creation_date = creation_date
+        if is_enabled is not None:
+            self.is_enabled = is_enabled
         self.database_id = database_id
         self.region = region
 
@@ -96,8 +98,6 @@ class GetTenantsQueryResultTenantItem(object):
         :param tenant_id: The tenant_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -119,8 +119,6 @@ class GetTenantsQueryResultTenantItem(object):
         :param name: The name of this GetTenantsQueryResultTenantItem.  # noqa: E501
         :type name: object
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -142,8 +140,6 @@ class GetTenantsQueryResultTenantItem(object):
         :param short_name: The short_name of this GetTenantsQueryResultTenantItem.  # noqa: E501
         :type short_name: object
         """
-        if self.local_vars_configuration.client_side_validation and short_name is None:  # noqa: E501
-            raise ValueError("Invalid value for `short_name`, must not be `None`")  # noqa: E501
 
         self._short_name = short_name
 
@@ -165,8 +161,6 @@ class GetTenantsQueryResultTenantItem(object):
         :param creation_date: The creation_date of this GetTenantsQueryResultTenantItem.  # noqa: E501
         :type creation_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and creation_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `creation_date`, must not be `None`")  # noqa: E501
 
         self._creation_date = creation_date
 
@@ -188,8 +182,6 @@ class GetTenantsQueryResultTenantItem(object):
         :param is_enabled: The is_enabled of this GetTenantsQueryResultTenantItem.  # noqa: E501
         :type is_enabled: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_enabled is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_enabled`, must not be `None`")  # noqa: E501
 
         self._is_enabled = is_enabled
 
@@ -211,8 +203,6 @@ class GetTenantsQueryResultTenantItem(object):
         :param database_id: The database_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
         :type database_id: object
         """
-        if self.local_vars_configuration.client_side_validation and database_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `database_id`, must not be `None`")  # noqa: E501
 
         self._database_id = database_id
 
@@ -234,8 +224,6 @@ class GetTenantsQueryResultTenantItem(object):
         :param region: The region of this GetTenantsQueryResultTenantItem.  # noqa: E501
         :type region: object
         """
-        if self.local_vars_configuration.client_side_validation and region is None:  # noqa: E501
-            raise ValueError("Invalid value for `region`, must not be `None`")  # noqa: E501
 
         self._region = region
 

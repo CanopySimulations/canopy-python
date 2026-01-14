@@ -76,8 +76,6 @@ class StudyInputHash(object):
         :param hash: The hash of this StudyInputHash.  # noqa: E501
         :type hash: str
         """
-        if self.local_vars_configuration.client_side_validation and hash is None:  # noqa: E501
-            raise ValueError("Invalid value for `hash`, must not be `None`")  # noqa: E501
 
         self._hash = hash
 
@@ -99,8 +97,6 @@ class StudyInputHash(object):
         :param hash_sim_versions: The hash_sim_versions of this StudyInputHash.  # noqa: E501
         :type hash_sim_versions: list[object]
         """
-        if self.local_vars_configuration.client_side_validation and hash_sim_versions is None:  # noqa: E501
-            raise ValueError("Invalid value for `hash_sim_versions`, must not be `None`")  # noqa: E501
 
         self._hash_sim_versions = hash_sim_versions
 

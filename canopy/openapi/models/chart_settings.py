@@ -84,8 +84,6 @@ class ChartSettings(object):
         :param chart_type: The chart_type of this ChartSettings.  # noqa: E501
         :type chart_type: object
         """
-        if self.local_vars_configuration.client_side_validation and chart_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `chart_type`, must not be `None`")  # noqa: E501
 
         self._chart_type = chart_type
 
@@ -107,8 +105,6 @@ class ChartSettings(object):
         :param chart_id: The chart_id of this ChartSettings.  # noqa: E501
         :type chart_id: str
         """
-        if self.local_vars_configuration.client_side_validation and chart_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `chart_id`, must not be `None`")  # noqa: E501
 
         self._chart_id = chart_id
 
@@ -130,8 +126,6 @@ class ChartSettings(object):
         :param preferred_chart_id: The preferred_chart_id of this ChartSettings.  # noqa: E501
         :type preferred_chart_id: str
         """
-        if self.local_vars_configuration.client_side_validation and preferred_chart_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `preferred_chart_id`, must not be `None`")  # noqa: E501
 
         self._preferred_chart_id = preferred_chart_id
 

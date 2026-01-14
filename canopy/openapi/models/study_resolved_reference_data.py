@@ -76,8 +76,10 @@ class StudyResolvedReferenceData(object):
         self._is_support_session_open = None
         self.discriminator = None
 
-        self.creation_date = creation_date
-        self.modified_date = modified_date
+        if creation_date is not None:
+            self.creation_date = creation_date
+        if modified_date is not None:
+            self.modified_date = modified_date
         self.user_id = user_id
         self.name = name
         self.study_document = study_document
@@ -104,8 +106,6 @@ class StudyResolvedReferenceData(object):
         :param creation_date: The creation_date of this StudyResolvedReferenceData.  # noqa: E501
         :type creation_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and creation_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `creation_date`, must not be `None`")  # noqa: E501
 
         self._creation_date = creation_date
 
@@ -127,8 +127,6 @@ class StudyResolvedReferenceData(object):
         :param modified_date: The modified_date of this StudyResolvedReferenceData.  # noqa: E501
         :type modified_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and modified_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `modified_date`, must not be `None`")  # noqa: E501
 
         self._modified_date = modified_date
 
@@ -150,8 +148,6 @@ class StudyResolvedReferenceData(object):
         :param user_id: The user_id of this StudyResolvedReferenceData.  # noqa: E501
         :type user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -173,8 +169,6 @@ class StudyResolvedReferenceData(object):
         :param name: The name of this StudyResolvedReferenceData.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -196,8 +190,6 @@ class StudyResolvedReferenceData(object):
         :param study_document: The study_document of this StudyResolvedReferenceData.  # noqa: E501
         :type study_document: StudyResolvedReferenceDataStudyDocument
         """
-        if self.local_vars_configuration.client_side_validation and study_document is None:  # noqa: E501
-            raise ValueError("Invalid value for `study_document`, must not be `None`")  # noqa: E501
 
         self._study_document = study_document
 
@@ -219,8 +211,6 @@ class StudyResolvedReferenceData(object):
         :param input_hashes: The input_hashes of this StudyResolvedReferenceData.  # noqa: E501
         :type input_hashes: list[StudyInputHashes]
         """
-        if self.local_vars_configuration.client_side_validation and input_hashes is None:  # noqa: E501
-            raise ValueError("Invalid value for `input_hashes`, must not be `None`")  # noqa: E501
 
         self._input_hashes = input_hashes
 
@@ -242,8 +232,6 @@ class StudyResolvedReferenceData(object):
         :param sim_types: The sim_types of this StudyResolvedReferenceData.  # noqa: E501
         :type sim_types: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and sim_types is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_types`, must not be `None`")  # noqa: E501
 
         self._sim_types = sim_types
 
@@ -265,8 +253,6 @@ class StudyResolvedReferenceData(object):
         :param sim_version: The sim_version of this StudyResolvedReferenceData.  # noqa: E501
         :type sim_version: object
         """
-        if self.local_vars_configuration.client_side_validation and sim_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_version`, must not be `None`")  # noqa: E501
 
         self._sim_version = sim_version
 

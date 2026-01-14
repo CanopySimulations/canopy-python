@@ -36,7 +36,7 @@ class WorksheetRowStudy(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'reference': 'WorksheetStudyReference'
+        'reference': 'StudyResolvedLabelsReference'
     }
 
     attribute_map = {
@@ -60,7 +60,7 @@ class WorksheetRowStudy(object):
 
 
         :return: The reference of this WorksheetRowStudy.  # noqa: E501
-        :rtype: WorksheetStudyReference
+        :rtype: StudyResolvedLabelsReference
         """
         return self._reference
 
@@ -70,7 +70,7 @@ class WorksheetRowStudy(object):
 
 
         :param reference: The reference of this WorksheetRowStudy.  # noqa: E501
-        :type reference: WorksheetStudyReference
+        :type reference: StudyResolvedLabelsReference
         """
 
         self._reference = reference

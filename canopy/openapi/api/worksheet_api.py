@@ -37,7 +37,7 @@ class WorksheetApi(object):
         self.api_client = api_client
 
     def worksheet_get_worksheet(self, tenant_id, worksheet_id, **kwargs):  # noqa: E501
-        """worksheet_get_worksheet  # noqa: E501
+        """Gets a worksheet, including all resolved references and labels.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,11 +45,11 @@ class WorksheetApi(object):
         >>> thread = api.worksheet_get_worksheet(tenant_id, worksheet_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the worksheet. (required)
         :type tenant_id: str
-        :param worksheet_id: (required)
+        :param worksheet_id: The worksheet ID. (required)
         :type worksheet_id: str
-        :param config_version:
+        :param config_version: An optional version string, if a previous version of the worksheet is required.
         :type config_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -70,7 +70,7 @@ class WorksheetApi(object):
         return self.worksheet_get_worksheet_with_http_info(tenant_id, worksheet_id, **kwargs)  # noqa: E501
 
     def worksheet_get_worksheet_with_http_info(self, tenant_id, worksheet_id, **kwargs):  # noqa: E501
-        """worksheet_get_worksheet  # noqa: E501
+        """Gets a worksheet, including all resolved references and labels.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -78,11 +78,11 @@ class WorksheetApi(object):
         >>> thread = api.worksheet_get_worksheet_with_http_info(tenant_id, worksheet_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the worksheet. (required)
         :type tenant_id: str
-        :param worksheet_id: (required)
+        :param worksheet_id: The worksheet ID. (required)
         :type worksheet_id: str
-        :param config_version:
+        :param config_version: An optional version string, if a previous version of the worksheet is required.
         :type config_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -189,7 +189,7 @@ class WorksheetApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def worksheet_post_duplicate_configs(self, tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, **kwargs):  # noqa: E501
-        """worksheet_post_duplicate_configs  # noqa: E501
+        """Duplicates the specified set of configs from the (optional) source worksheet to the target worksheet.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -197,13 +197,13 @@ class WorksheetApi(object):
         >>> thread = api.worksheet_post_duplicate_configs(tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the target worksheet. (required)
         :type tenant_id: str
-        :param worksheet_id: (required)
+        :param worksheet_id: The target worksheet ID. (required)
         :type worksheet_id: str
-        :param worksheet_post_duplicate_configs_request: (required)
+        :param worksheet_post_duplicate_configs_request: The data defining which configs to duplicate. (required)
         :type worksheet_post_duplicate_configs_request: WorksheetPostDuplicateConfigsRequest
-        :param sim_version:
+        :param sim_version: The sim version of the default configs.
         :type sim_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -224,7 +224,7 @@ class WorksheetApi(object):
         return self.worksheet_post_duplicate_configs_with_http_info(tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, **kwargs)  # noqa: E501
 
     def worksheet_post_duplicate_configs_with_http_info(self, tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, **kwargs):  # noqa: E501
-        """worksheet_post_duplicate_configs  # noqa: E501
+        """Duplicates the specified set of configs from the (optional) source worksheet to the target worksheet.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -232,13 +232,13 @@ class WorksheetApi(object):
         >>> thread = api.worksheet_post_duplicate_configs_with_http_info(tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the target worksheet. (required)
         :type tenant_id: str
-        :param worksheet_id: (required)
+        :param worksheet_id: The target worksheet ID. (required)
         :type worksheet_id: str
-        :param worksheet_post_duplicate_configs_request: (required)
+        :param worksheet_post_duplicate_configs_request: The data defining which configs to duplicate. (required)
         :type worksheet_post_duplicate_configs_request: WorksheetPostDuplicateConfigsRequest
-        :param sim_version:
+        :param sim_version: The sim version of the default configs.
         :type sim_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -359,7 +359,7 @@ class WorksheetApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def worksheet_post_worksheet(self, tenant_id, worksheet_post_worksheet_request, **kwargs):  # noqa: E501
-        """worksheet_post_worksheet  # noqa: E501
+        """Creates a new worksheet.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -367,9 +367,9 @@ class WorksheetApi(object):
         >>> thread = api.worksheet_post_worksheet(tenant_id, worksheet_post_worksheet_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param worksheet_post_worksheet_request: (required)
+        :param worksheet_post_worksheet_request: The data defining the new worksheet. (required)
         :type worksheet_post_worksheet_request: WorksheetPostWorksheetRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -390,7 +390,7 @@ class WorksheetApi(object):
         return self.worksheet_post_worksheet_with_http_info(tenant_id, worksheet_post_worksheet_request, **kwargs)  # noqa: E501
 
     def worksheet_post_worksheet_with_http_info(self, tenant_id, worksheet_post_worksheet_request, **kwargs):  # noqa: E501
-        """worksheet_post_worksheet  # noqa: E501
+        """Creates a new worksheet.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -398,9 +398,9 @@ class WorksheetApi(object):
         >>> thread = api.worksheet_post_worksheet_with_http_info(tenant_id, worksheet_post_worksheet_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param worksheet_post_worksheet_request: (required)
+        :param worksheet_post_worksheet_request: The data defining the new worksheet. (required)
         :type worksheet_post_worksheet_request: WorksheetPostWorksheetRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -512,7 +512,7 @@ class WorksheetApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def worksheet_put_worksheet(self, tenant_id, worksheet_id, worksheet_put_worksheet_request, **kwargs):  # noqa: E501
-        """worksheet_put_worksheet  # noqa: E501
+        """Updates a worksheet.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -520,11 +520,11 @@ class WorksheetApi(object):
         >>> thread = api.worksheet_put_worksheet(tenant_id, worksheet_id, worksheet_put_worksheet_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the worksheet. (required)
         :type tenant_id: str
-        :param worksheet_id: (required)
+        :param worksheet_id: The worksheet ID. (required)
         :type worksheet_id: str
-        :param worksheet_put_worksheet_request: (required)
+        :param worksheet_put_worksheet_request: The updated worksheet data. (required)
         :type worksheet_put_worksheet_request: WorksheetPutWorksheetRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -545,7 +545,7 @@ class WorksheetApi(object):
         return self.worksheet_put_worksheet_with_http_info(tenant_id, worksheet_id, worksheet_put_worksheet_request, **kwargs)  # noqa: E501
 
     def worksheet_put_worksheet_with_http_info(self, tenant_id, worksheet_id, worksheet_put_worksheet_request, **kwargs):  # noqa: E501
-        """worksheet_put_worksheet  # noqa: E501
+        """Updates a worksheet.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -553,11 +553,11 @@ class WorksheetApi(object):
         >>> thread = api.worksheet_put_worksheet_with_http_info(tenant_id, worksheet_id, worksheet_put_worksheet_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the worksheet. (required)
         :type tenant_id: str
-        :param worksheet_id: (required)
+        :param worksheet_id: The worksheet ID. (required)
         :type worksheet_id: str
-        :param worksheet_put_worksheet_request: (required)
+        :param worksheet_put_worksheet_request: The updated worksheet data. (required)
         :type worksheet_put_worksheet_request: WorksheetPutWorksheetRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

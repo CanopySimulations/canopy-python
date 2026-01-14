@@ -37,7 +37,7 @@ class UserSettingsApi(object):
         self.api_client = api_client
 
     def user_settings_get_user_settings(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """user_settings_get_user_settings  # noqa: E501
+        """Gets the specified user settings.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,9 +45,9 @@ class UserSettingsApi(object):
         >>> thread = api.user_settings_get_user_settings(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -68,7 +68,7 @@ class UserSettingsApi(object):
         return self.user_settings_get_user_settings_with_http_info(tenant_id, user_id, **kwargs)  # noqa: E501
 
     def user_settings_get_user_settings_with_http_info(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """user_settings_get_user_settings  # noqa: E501
+        """Gets the specified user settings.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -76,9 +76,9 @@ class UserSettingsApi(object):
         >>> thread = api.user_settings_get_user_settings_with_http_info(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -182,7 +182,7 @@ class UserSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def user_settings_put_user_settings(self, tenant_id, user_id, user_settings_put_user_settings_request, **kwargs):  # noqa: E501
-        """user_settings_put_user_settings  # noqa: E501
+        """Updates the specified user settings.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -190,11 +190,11 @@ class UserSettingsApi(object):
         >>> thread = api.user_settings_put_user_settings(tenant_id, user_id, user_settings_put_user_settings_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID. (required)
         :type user_id: str
-        :param user_settings_put_user_settings_request: (required)
+        :param user_settings_put_user_settings_request: The updated user settings, including the ETag returned when the settings were requested. (required)
         :type user_settings_put_user_settings_request: UserSettingsPutUserSettingsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -215,7 +215,7 @@ class UserSettingsApi(object):
         return self.user_settings_put_user_settings_with_http_info(tenant_id, user_id, user_settings_put_user_settings_request, **kwargs)  # noqa: E501
 
     def user_settings_put_user_settings_with_http_info(self, tenant_id, user_id, user_settings_put_user_settings_request, **kwargs):  # noqa: E501
-        """user_settings_put_user_settings  # noqa: E501
+        """Updates the specified user settings.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -223,11 +223,11 @@ class UserSettingsApi(object):
         >>> thread = api.user_settings_put_user_settings_with_http_info(tenant_id, user_id, user_settings_put_user_settings_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID. (required)
         :type user_id: str
-        :param user_settings_put_user_settings_request: (required)
+        :param user_settings_put_user_settings_request: The updated user settings, including the ETag returned when the settings were requested. (required)
         :type user_settings_put_user_settings_request: UserSettingsPutUserSettingsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

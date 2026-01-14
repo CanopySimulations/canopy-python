@@ -84,8 +84,6 @@ class TenantInformation(object):
         :param tenant_id: The tenant_id of this TenantInformation.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -107,8 +105,6 @@ class TenantInformation(object):
         :param name: The name of this TenantInformation.  # noqa: E501
         :type name: object
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -130,8 +126,6 @@ class TenantInformation(object):
         :param short_name: The short_name of this TenantInformation.  # noqa: E501
         :type short_name: object
         """
-        if self.local_vars_configuration.client_side_validation and short_name is None:  # noqa: E501
-            raise ValueError("Invalid value for `short_name`, must not be `None`")  # noqa: E501
 
         self._short_name = short_name
 
@@ -153,8 +147,6 @@ class TenantInformation(object):
         :param users: The users of this TenantInformation.  # noqa: E501
         :type users: list[UserInformation]
         """
-        if self.local_vars_configuration.client_side_validation and users is None:  # noqa: E501
-            raise ValueError("Invalid value for `users`, must not be `None`")  # noqa: E501
 
         self._users = users
 

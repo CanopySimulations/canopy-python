@@ -56,7 +56,8 @@ class SimulationInput(object):
         self.discriminator = None
 
         self.config_type = config_type
-        self.is_required = is_required
+        if is_required is not None:
+            self.is_required = is_required
 
     @property
     def config_type(self):
@@ -76,8 +77,6 @@ class SimulationInput(object):
         :param config_type: The config_type of this SimulationInput.  # noqa: E501
         :type config_type: object
         """
-        if self.local_vars_configuration.client_side_validation and config_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_type`, must not be `None`")  # noqa: E501
 
         self._config_type = config_type
 
@@ -99,8 +98,6 @@ class SimulationInput(object):
         :param is_required: The is_required of this SimulationInput.  # noqa: E501
         :type is_required: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_required is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_required`, must not be `None`")  # noqa: E501
 
         self._is_required = is_required
 

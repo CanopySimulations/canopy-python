@@ -58,6 +58,7 @@ class TenantSettingsPutTenantChannelImportMappingsRequest(object):
     def channel_import_mappings(self):
         """Gets the channel_import_mappings of this TenantSettingsPutTenantChannelImportMappingsRequest.  # noqa: E501
 
+        The list of channel import mappings.  # noqa: E501
 
         :return: The channel_import_mappings of this TenantSettingsPutTenantChannelImportMappingsRequest.  # noqa: E501
         :rtype: list[ChannelImportMapping]
@@ -68,6 +69,7 @@ class TenantSettingsPutTenantChannelImportMappingsRequest(object):
     def channel_import_mappings(self, channel_import_mappings):
         """Sets the channel_import_mappings of this TenantSettingsPutTenantChannelImportMappingsRequest.
 
+        The list of channel import mappings.  # noqa: E501
 
         :param channel_import_mappings: The channel_import_mappings of this TenantSettingsPutTenantChannelImportMappingsRequest.  # noqa: E501
         :type channel_import_mappings: list[ChannelImportMapping]

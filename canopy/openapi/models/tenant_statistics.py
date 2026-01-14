@@ -62,6 +62,7 @@ class TenantStatistics(object):
     def tenant_id(self):
         """Gets the tenant_id of this TenantStatistics.  # noqa: E501
 
+        The tenant ID.  # noqa: E501
 
         :return: The tenant_id of this TenantStatistics.  # noqa: E501
         :rtype: object
@@ -72,12 +73,11 @@ class TenantStatistics(object):
     def tenant_id(self, tenant_id):
         """Sets the tenant_id of this TenantStatistics.
 
+        The tenant ID.  # noqa: E501
 
         :param tenant_id: The tenant_id of this TenantStatistics.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -85,6 +85,7 @@ class TenantStatistics(object):
     def statistics(self):
         """Gets the statistics of this TenantStatistics.  # noqa: E501
 
+        The study statistics.  # noqa: E501
 
         :return: The statistics of this TenantStatistics.  # noqa: E501
         :rtype: object
@@ -95,6 +96,7 @@ class TenantStatistics(object):
     def statistics(self, statistics):
         """Sets the statistics of this TenantStatistics.
 
+        The study statistics.  # noqa: E501
 
         :param statistics: The statistics of this TenantStatistics.  # noqa: E501
         :type statistics: object

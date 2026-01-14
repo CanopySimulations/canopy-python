@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**operator** | [**GroupOperator**](GroupOperator.md) |  | 
+**operator** | [**GroupOperator**](GroupOperator.md) |  | [optional] 
 **conditions** | [**list[ListFilterCondition]**](ListFilterCondition.md) |  | [optional] 
 **groups** | [**list[ListFilterGroup]**](ListFilterGroup.md) |  | [optional] 
 

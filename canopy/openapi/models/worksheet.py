@@ -108,8 +108,6 @@ class Worksheet(object):
         :param tenant_id: The tenant_id of this Worksheet.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -131,8 +129,6 @@ class Worksheet(object):
         :param user_id: The user_id of this Worksheet.  # noqa: E501
         :type user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -154,8 +150,6 @@ class Worksheet(object):
         :param worksheet_id: The worksheet_id of this Worksheet.  # noqa: E501
         :type worksheet_id: object
         """
-        if self.local_vars_configuration.client_side_validation and worksheet_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `worksheet_id`, must not be `None`")  # noqa: E501
 
         self._worksheet_id = worksheet_id
 
@@ -177,8 +171,6 @@ class Worksheet(object):
         :param name: The name of this Worksheet.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -200,8 +192,6 @@ class Worksheet(object):
         :param outline: The outline of this Worksheet.  # noqa: E501
         :type outline: WorksheetOutline
         """
-        if self.local_vars_configuration.client_side_validation and outline is None:  # noqa: E501
-            raise ValueError("Invalid value for `outline`, must not be `None`")  # noqa: E501
 
         self._outline = outline
 

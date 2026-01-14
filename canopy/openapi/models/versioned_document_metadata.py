@@ -60,7 +60,8 @@ class VersionedDocumentMetadata(object):
 
         self.tenant_id = tenant_id
         self.user_id = user_id
-        self.timestamp = timestamp
+        if timestamp is not None:
+            self.timestamp = timestamp
 
     @property
     def tenant_id(self):
@@ -80,8 +81,6 @@ class VersionedDocumentMetadata(object):
         :param tenant_id: The tenant_id of this VersionedDocumentMetadata.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -103,8 +102,6 @@ class VersionedDocumentMetadata(object):
         :param user_id: The user_id of this VersionedDocumentMetadata.  # noqa: E501
         :type user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -126,8 +123,6 @@ class VersionedDocumentMetadata(object):
         :param timestamp: The timestamp of this VersionedDocumentMetadata.  # noqa: E501
         :type timestamp: datetime
         """
-        if self.local_vars_configuration.client_side_validation and timestamp is None:  # noqa: E501
-            raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
 

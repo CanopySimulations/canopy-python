@@ -58,9 +58,12 @@ class GetPoolsItemInterval(object):
         self._data_ingress_gi_b = None
         self.discriminator = None
 
-        self.total_core_hours = total_core_hours
-        self.data_egress_gi_b = data_egress_gi_b
-        self.data_ingress_gi_b = data_ingress_gi_b
+        if total_core_hours is not None:
+            self.total_core_hours = total_core_hours
+        if data_egress_gi_b is not None:
+            self.data_egress_gi_b = data_egress_gi_b
+        if data_ingress_gi_b is not None:
+            self.data_ingress_gi_b = data_ingress_gi_b
 
     @property
     def total_core_hours(self):
@@ -80,8 +83,6 @@ class GetPoolsItemInterval(object):
         :param total_core_hours: The total_core_hours of this GetPoolsItemInterval.  # noqa: E501
         :type total_core_hours: float
         """
-        if self.local_vars_configuration.client_side_validation and total_core_hours is None:  # noqa: E501
-            raise ValueError("Invalid value for `total_core_hours`, must not be `None`")  # noqa: E501
 
         self._total_core_hours = total_core_hours
 
@@ -103,8 +104,6 @@ class GetPoolsItemInterval(object):
         :param data_egress_gi_b: The data_egress_gi_b of this GetPoolsItemInterval.  # noqa: E501
         :type data_egress_gi_b: float
         """
-        if self.local_vars_configuration.client_side_validation and data_egress_gi_b is None:  # noqa: E501
-            raise ValueError("Invalid value for `data_egress_gi_b`, must not be `None`")  # noqa: E501
 
         self._data_egress_gi_b = data_egress_gi_b
 
@@ -126,8 +125,6 @@ class GetPoolsItemInterval(object):
         :param data_ingress_gi_b: The data_ingress_gi_b of this GetPoolsItemInterval.  # noqa: E501
         :type data_ingress_gi_b: float
         """
-        if self.local_vars_configuration.client_side_validation and data_ingress_gi_b is None:  # noqa: E501
-            raise ValueError("Invalid value for `data_ingress_gi_b`, must not be `None`")  # noqa: E501
 
         self._data_ingress_gi_b = data_ingress_gi_b
 

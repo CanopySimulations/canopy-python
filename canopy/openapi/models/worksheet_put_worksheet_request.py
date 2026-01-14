@@ -38,7 +38,7 @@ class WorksheetPutWorksheetRequest(object):
     openapi_types = {
         'name': 'str',
         'properties': 'list[DocumentCustomPropertyData]',
-        'outline': 'NewWorksheetDataOutline',
+        'outline': 'UpdatedWorksheetDataOutline',
         'notes': 'str'
     }
 
@@ -70,6 +70,7 @@ class WorksheetPutWorksheetRequest(object):
     def name(self):
         """Gets the name of this WorksheetPutWorksheetRequest.  # noqa: E501
 
+        The name of the worksheet.  # noqa: E501
 
         :return: The name of this WorksheetPutWorksheetRequest.  # noqa: E501
         :rtype: str
@@ -80,6 +81,7 @@ class WorksheetPutWorksheetRequest(object):
     def name(self, name):
         """Sets the name of this WorksheetPutWorksheetRequest.
 
+        The name of the worksheet.  # noqa: E501
 
         :param name: The name of this WorksheetPutWorksheetRequest.  # noqa: E501
         :type name: str
@@ -91,6 +93,7 @@ class WorksheetPutWorksheetRequest(object):
     def properties(self):
         """Gets the properties of this WorksheetPutWorksheetRequest.  # noqa: E501
 
+        The custom properties of the worksheet.  # noqa: E501
 
         :return: The properties of this WorksheetPutWorksheetRequest.  # noqa: E501
         :rtype: list[DocumentCustomPropertyData]
@@ -101,6 +104,7 @@ class WorksheetPutWorksheetRequest(object):
     def properties(self, properties):
         """Sets the properties of this WorksheetPutWorksheetRequest.
 
+        The custom properties of the worksheet.  # noqa: E501
 
         :param properties: The properties of this WorksheetPutWorksheetRequest.  # noqa: E501
         :type properties: list[DocumentCustomPropertyData]
@@ -114,7 +118,7 @@ class WorksheetPutWorksheetRequest(object):
 
 
         :return: The outline of this WorksheetPutWorksheetRequest.  # noqa: E501
-        :rtype: NewWorksheetDataOutline
+        :rtype: UpdatedWorksheetDataOutline
         """
         return self._outline
 
@@ -124,7 +128,7 @@ class WorksheetPutWorksheetRequest(object):
 
 
         :param outline: The outline of this WorksheetPutWorksheetRequest.  # noqa: E501
-        :type outline: NewWorksheetDataOutline
+        :type outline: UpdatedWorksheetDataOutline
         """
 
         self._outline = outline
@@ -133,6 +137,7 @@ class WorksheetPutWorksheetRequest(object):
     def notes(self):
         """Gets the notes of this WorksheetPutWorksheetRequest.  # noqa: E501
 
+        The notes for the worksheet.  # noqa: E501
 
         :return: The notes of this WorksheetPutWorksheetRequest.  # noqa: E501
         :rtype: str
@@ -143,6 +148,7 @@ class WorksheetPutWorksheetRequest(object):
     def notes(self, notes):
         """Sets the notes of this WorksheetPutWorksheetRequest.
 
+        The notes for the worksheet.  # noqa: E501
 
         :param notes: The notes of this WorksheetPutWorksheetRequest.  # noqa: E501
         :type notes: str

@@ -58,6 +58,7 @@ class ConfigPutConfigOwnerRequest(object):
     def user_id(self):
         """Gets the user_id of this ConfigPutConfigOwnerRequest.  # noqa: E501
 
+        The user ID of the config owner.  # noqa: E501
 
         :return: The user_id of this ConfigPutConfigOwnerRequest.  # noqa: E501
         :rtype: object
@@ -68,6 +69,7 @@ class ConfigPutConfigOwnerRequest(object):
     def user_id(self, user_id):
         """Sets the user_id of this ConfigPutConfigOwnerRequest.
 
+        The user ID of the config owner.  # noqa: E501
 
         :param user_id: The user_id of this ConfigPutConfigOwnerRequest.  # noqa: E501
         :type user_id: object

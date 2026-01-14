@@ -36,7 +36,7 @@ class TenantSettingsPutTenantWorksheetLabelDefinitionsRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'label_definitions': 'CollatedLabelDefinitionsWorksheet'
+        'label_definitions': 'UpdatedWorksheetLabelDefinitionsLabelDefinitions'
     }
 
     attribute_map = {
@@ -60,7 +60,7 @@ class TenantSettingsPutTenantWorksheetLabelDefinitionsRequest(object):
 
 
         :return: The label_definitions of this TenantSettingsPutTenantWorksheetLabelDefinitionsRequest.  # noqa: E501
-        :rtype: CollatedLabelDefinitionsWorksheet
+        :rtype: UpdatedWorksheetLabelDefinitionsLabelDefinitions
         """
         return self._label_definitions
 
@@ -70,7 +70,7 @@ class TenantSettingsPutTenantWorksheetLabelDefinitionsRequest(object):
 
 
         :param label_definitions: The label_definitions of this TenantSettingsPutTenantWorksheetLabelDefinitionsRequest.  # noqa: E501
-        :type label_definitions: CollatedLabelDefinitionsWorksheet
+        :type label_definitions: UpdatedWorksheetLabelDefinitionsLabelDefinitions
         """
 
         self._label_definitions = label_definitions

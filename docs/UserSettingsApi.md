@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**user_settings_get_user_settings**](UserSettingsApi.md#user_settings_get_user_settings) | **GET** /user-settings/{tenantId}/{userId} | 
-[**user_settings_put_user_settings**](UserSettingsApi.md#user_settings_put_user_settings) | **PUT** /user-settings/{tenantId}/{userId} | 
+[**user_settings_get_user_settings**](UserSettingsApi.md#user_settings_get_user_settings) | **GET** /user-settings/{tenantId}/{userId} | Gets the specified user settings.
+[**user_settings_put_user_settings**](UserSettingsApi.md#user_settings_put_user_settings) | **PUT** /user-settings/{tenantId}/{userId} | Updates the specified user settings.
 
 
 # **user_settings_get_user_settings**
 > GetUserSettingsQueryResult user_settings_get_user_settings(tenant_id, user_id)
 
-
+Gets the specified user settings.
 
 ### Example
 
@@ -43,10 +43,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.UserSettingsApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-user_id = 'user_id_example' # str | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID of the user.
+user_id = 'user_id_example' # str | The user ID.
 
     try:
+        # Gets the specified user settings.
         api_response = api_instance.user_settings_get_user_settings(tenant_id, user_id)
         pprint(api_response)
     except ApiException as e:
@@ -57,8 +58,8 @@ user_id = 'user_id_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **user_id** | **str**|  | 
+ **tenant_id** | **str**| The tenant ID of the user. | 
+ **user_id** | **str**| The user ID. | 
 
 ### Return type
 
@@ -76,14 +77,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_settings_put_user_settings**
 > str user_settings_put_user_settings(tenant_id, user_id, user_settings_put_user_settings_request)
 
-
+Updates the specified user settings.
 
 ### Example
 
@@ -115,11 +116,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.UserSettingsApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-user_id = 'user_id_example' # str | 
-user_settings_put_user_settings_request = canopy.openapi.UserSettingsPutUserSettingsRequest() # UserSettingsPutUserSettingsRequest | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID of the user.
+user_id = 'user_id_example' # str | The user ID.
+user_settings_put_user_settings_request = canopy.openapi.UserSettingsPutUserSettingsRequest() # UserSettingsPutUserSettingsRequest | The updated user settings, including the ETag returned when the settings were requested.
 
     try:
+        # Updates the specified user settings.
         api_response = api_instance.user_settings_put_user_settings(tenant_id, user_id, user_settings_put_user_settings_request)
         pprint(api_response)
     except ApiException as e:
@@ -130,9 +132,9 @@ user_settings_put_user_settings_request = canopy.openapi.UserSettingsPutUserSett
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **user_id** | **str**|  | 
- **user_settings_put_user_settings_request** | [**UserSettingsPutUserSettingsRequest**](UserSettingsPutUserSettingsRequest.md)|  | 
+ **tenant_id** | **str**| The tenant ID of the user. | 
+ **user_id** | **str**| The user ID. | 
+ **user_settings_put_user_settings_request** | [**UserSettingsPutUserSettingsRequest**](UserSettingsPutUserSettingsRequest.md)| The updated user settings, including the ETag returned when the settings were requested. | 
 
 ### Return type
 
@@ -150,7 +152,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

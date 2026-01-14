@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_filter_upgrade_list_filter**](ListFilterApi.md#list_filter_upgrade_list_filter) | **GET** /list-filters/upgrade | 
+[**list_filter_upgrade_list_filter**](ListFilterApi.md#list_filter_upgrade_list_filter) | **GET** /list-filters/upgrade | Upgrades a list filter from the old format to the new format.  This is used to upgrade list filters that were created before the new format,  supporting more complex queries, was introduced.
 
 
 # **list_filter_upgrade_list_filter**
 > ListFilter list_filter_upgrade_list_filter(filter=filter)
 
-
+Upgrades a list filter from the old format to the new format.  This is used to upgrade list filters that were created before the new format,  supporting more complex queries, was introduced.
 
 ### Example
 
@@ -42,9 +42,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.ListFilterApi(api_client)
-    filter = 'filter_example' # str |  (optional)
+    filter = 'filter_example' # str | The serialized JSON representation of an old-style filter. (optional)
 
     try:
+        # Upgrades a list filter from the old format to the new format.  This is used to upgrade list filters that were created before the new format,  supporting more complex queries, was introduced.
         api_response = api_instance.list_filter_upgrade_list_filter(filter=filter)
         pprint(api_response)
     except ApiException as e:
@@ -55,7 +56,7 @@ with canopy.openapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **str**|  | [optional] 
+ **filter** | **str**| The serialized JSON representation of an old-style filter. | [optional] 
 
 ### Return type
 
@@ -73,7 +74,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

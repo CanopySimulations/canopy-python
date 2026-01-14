@@ -88,8 +88,6 @@ class ConfigTypeMetadata(object):
         :param singular_key: The singular_key of this ConfigTypeMetadata.  # noqa: E501
         :type singular_key: object
         """
-        if self.local_vars_configuration.client_side_validation and singular_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `singular_key`, must not be `None`")  # noqa: E501
 
         self._singular_key = singular_key
 
@@ -111,8 +109,6 @@ class ConfigTypeMetadata(object):
         :param plural_key: The plural_key of this ConfigTypeMetadata.  # noqa: E501
         :type plural_key: str
         """
-        if self.local_vars_configuration.client_side_validation and plural_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `plural_key`, must not be `None`")  # noqa: E501
 
         self._plural_key = plural_key
 
@@ -134,8 +130,6 @@ class ConfigTypeMetadata(object):
         :param name: The name of this ConfigTypeMetadata.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -157,8 +151,6 @@ class ConfigTypeMetadata(object):
         :param title_name: The title_name of this ConfigTypeMetadata.  # noqa: E501
         :type title_name: str
         """
-        if self.local_vars_configuration.client_side_validation and title_name is None:  # noqa: E501
-            raise ValueError("Invalid value for `title_name`, must not be `None`")  # noqa: E501
 
         self._title_name = title_name
 

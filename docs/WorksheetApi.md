@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**worksheet_get_worksheet**](WorksheetApi.md#worksheet_get_worksheet) | **GET** /worksheets/{tenantId}/{worksheetId} | 
-[**worksheet_post_duplicate_configs**](WorksheetApi.md#worksheet_post_duplicate_configs) | **POST** /worksheets/{tenantId}/{worksheetId}/duplicate | 
-[**worksheet_post_worksheet**](WorksheetApi.md#worksheet_post_worksheet) | **POST** /worksheets/{tenantId} | 
-[**worksheet_put_worksheet**](WorksheetApi.md#worksheet_put_worksheet) | **PUT** /worksheets/{tenantId}/{worksheetId} | 
+[**worksheet_get_worksheet**](WorksheetApi.md#worksheet_get_worksheet) | **GET** /worksheets/{tenantId}/{worksheetId} | Gets a worksheet, including all resolved references and labels.
+[**worksheet_post_duplicate_configs**](WorksheetApi.md#worksheet_post_duplicate_configs) | **POST** /worksheets/{tenantId}/{worksheetId}/duplicate | Duplicates the specified set of configs from the (optional) source worksheet to the target worksheet.
+[**worksheet_post_worksheet**](WorksheetApi.md#worksheet_post_worksheet) | **POST** /worksheets/{tenantId} | Creates a new worksheet.
+[**worksheet_put_worksheet**](WorksheetApi.md#worksheet_put_worksheet) | **PUT** /worksheets/{tenantId}/{worksheetId} | Updates a worksheet.
 
 
 # **worksheet_get_worksheet**
 > GetWorksheetQueryResult worksheet_get_worksheet(tenant_id, worksheet_id, config_version=config_version)
 
-
+Gets a worksheet, including all resolved references and labels.
 
 ### Example
 
@@ -45,11 +45,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.WorksheetApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-worksheet_id = 'worksheet_id_example' # str | 
-config_version = 'config_version_example' # str |  (optional)
+    tenant_id = 'tenant_id_example' # str | The tenant ID of the worksheet.
+worksheet_id = 'worksheet_id_example' # str | The worksheet ID.
+config_version = 'config_version_example' # str | An optional version string, if a previous version of the worksheet is required. (optional)
 
     try:
+        # Gets a worksheet, including all resolved references and labels.
         api_response = api_instance.worksheet_get_worksheet(tenant_id, worksheet_id, config_version=config_version)
         pprint(api_response)
     except ApiException as e:
@@ -60,9 +61,9 @@ config_version = 'config_version_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **worksheet_id** | **str**|  | 
- **config_version** | **str**|  | [optional] 
+ **tenant_id** | **str**| The tenant ID of the worksheet. | 
+ **worksheet_id** | **str**| The worksheet ID. | 
+ **config_version** | **str**| An optional version string, if a previous version of the worksheet is required. | [optional] 
 
 ### Return type
 
@@ -80,14 +81,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **worksheet_post_duplicate_configs**
 > DuplicateConfigsResult worksheet_post_duplicate_configs(tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, sim_version=sim_version)
 
-
+Duplicates the specified set of configs from the (optional) source worksheet to the target worksheet.
 
 ### Example
 
@@ -119,12 +120,13 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.WorksheetApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-worksheet_id = 'worksheet_id_example' # str | 
-worksheet_post_duplicate_configs_request = canopy.openapi.WorksheetPostDuplicateConfigsRequest() # WorksheetPostDuplicateConfigsRequest | 
-sim_version = 'sim_version_example' # str |  (optional)
+    tenant_id = 'tenant_id_example' # str | The tenant ID of the target worksheet.
+worksheet_id = 'worksheet_id_example' # str | The target worksheet ID.
+worksheet_post_duplicate_configs_request = canopy.openapi.WorksheetPostDuplicateConfigsRequest() # WorksheetPostDuplicateConfigsRequest | The data defining which configs to duplicate.
+sim_version = 'sim_version_example' # str | The sim version of the default configs. (optional)
 
     try:
+        # Duplicates the specified set of configs from the (optional) source worksheet to the target worksheet.
         api_response = api_instance.worksheet_post_duplicate_configs(tenant_id, worksheet_id, worksheet_post_duplicate_configs_request, sim_version=sim_version)
         pprint(api_response)
     except ApiException as e:
@@ -135,10 +137,10 @@ sim_version = 'sim_version_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **worksheet_id** | **str**|  | 
- **worksheet_post_duplicate_configs_request** | [**WorksheetPostDuplicateConfigsRequest**](WorksheetPostDuplicateConfigsRequest.md)|  | 
- **sim_version** | **str**|  | [optional] 
+ **tenant_id** | **str**| The tenant ID of the target worksheet. | 
+ **worksheet_id** | **str**| The target worksheet ID. | 
+ **worksheet_post_duplicate_configs_request** | [**WorksheetPostDuplicateConfigsRequest**](WorksheetPostDuplicateConfigsRequest.md)| The data defining which configs to duplicate. | 
+ **sim_version** | **str**| The sim version of the default configs. | [optional] 
 
 ### Return type
 
@@ -156,14 +158,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **worksheet_post_worksheet**
 > GetWorksheetQueryResult worksheet_post_worksheet(tenant_id, worksheet_post_worksheet_request)
 
-
+Creates a new worksheet.
 
 ### Example
 
@@ -195,10 +197,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.WorksheetApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-worksheet_post_worksheet_request = canopy.openapi.WorksheetPostWorksheetRequest() # WorksheetPostWorksheetRequest | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID.
+worksheet_post_worksheet_request = canopy.openapi.WorksheetPostWorksheetRequest() # WorksheetPostWorksheetRequest | The data defining the new worksheet.
 
     try:
+        # Creates a new worksheet.
         api_response = api_instance.worksheet_post_worksheet(tenant_id, worksheet_post_worksheet_request)
         pprint(api_response)
     except ApiException as e:
@@ -209,8 +212,8 @@ worksheet_post_worksheet_request = canopy.openapi.WorksheetPostWorksheetRequest(
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **worksheet_post_worksheet_request** | [**WorksheetPostWorksheetRequest**](WorksheetPostWorksheetRequest.md)|  | 
+ **tenant_id** | **str**| The tenant ID. | 
+ **worksheet_post_worksheet_request** | [**WorksheetPostWorksheetRequest**](WorksheetPostWorksheetRequest.md)| The data defining the new worksheet. | 
 
 ### Return type
 
@@ -228,14 +231,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **worksheet_put_worksheet**
 > GetWorksheetQueryResult worksheet_put_worksheet(tenant_id, worksheet_id, worksheet_put_worksheet_request)
 
-
+Updates a worksheet.
 
 ### Example
 
@@ -267,11 +270,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.WorksheetApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-worksheet_id = 'worksheet_id_example' # str | 
-worksheet_put_worksheet_request = canopy.openapi.WorksheetPutWorksheetRequest() # WorksheetPutWorksheetRequest | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID of the worksheet.
+worksheet_id = 'worksheet_id_example' # str | The worksheet ID.
+worksheet_put_worksheet_request = canopy.openapi.WorksheetPutWorksheetRequest() # WorksheetPutWorksheetRequest | The updated worksheet data.
 
     try:
+        # Updates a worksheet.
         api_response = api_instance.worksheet_put_worksheet(tenant_id, worksheet_id, worksheet_put_worksheet_request)
         pprint(api_response)
     except ApiException as e:
@@ -282,9 +286,9 @@ worksheet_put_worksheet_request = canopy.openapi.WorksheetPutWorksheetRequest() 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **worksheet_id** | **str**|  | 
- **worksheet_put_worksheet_request** | [**WorksheetPutWorksheetRequest**](WorksheetPutWorksheetRequest.md)|  | 
+ **tenant_id** | **str**| The tenant ID of the worksheet. | 
+ **worksheet_id** | **str**| The worksheet ID. | 
+ **worksheet_put_worksheet_request** | [**WorksheetPutWorksheetRequest**](WorksheetPutWorksheetRequest.md)| The updated worksheet data. | 
 
 ### Return type
 
@@ -302,7 +306,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -38,6 +38,7 @@ class UpdatedAccountSettings(object):
     openapi_types = {
         'new_username': 'str',
         'new_email': 'str',
+        'current_password': 'str',
         'new_password': 'str',
         'is_enabled': 'bool'
     }
@@ -45,11 +46,12 @@ class UpdatedAccountSettings(object):
     attribute_map = {
         'new_username': 'newUsername',
         'new_email': 'newEmail',
+        'current_password': 'currentPassword',
         'new_password': 'newPassword',
         'is_enabled': 'isEnabled'
     }
 
-    def __init__(self, new_username=None, new_email=None, new_password=None, is_enabled=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, new_username=None, new_email=None, current_password=None, new_password=None, is_enabled=None, local_vars_configuration=None):  # noqa: E501
         """UpdatedAccountSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -57,12 +59,14 @@ class UpdatedAccountSettings(object):
 
         self._new_username = None
         self._new_email = None
+        self._current_password = None
         self._new_password = None
         self._is_enabled = None
         self.discriminator = None
 
         self.new_username = new_username
         self.new_email = new_email
+        self.current_password = current_password
         self.new_password = new_password
         self.is_enabled = is_enabled
 
@@ -107,6 +111,27 @@ class UpdatedAccountSettings(object):
         """
 
         self._new_email = new_email
+
+    @property
+    def current_password(self):
+        """Gets the current_password of this UpdatedAccountSettings.  # noqa: E501
+
+
+        :return: The current_password of this UpdatedAccountSettings.  # noqa: E501
+        :rtype: str
+        """
+        return self._current_password
+
+    @current_password.setter
+    def current_password(self, current_password):
+        """Sets the current_password of this UpdatedAccountSettings.
+
+
+        :param current_password: The current_password of this UpdatedAccountSettings.  # noqa: E501
+        :type current_password: str
+        """
+
+        self._current_password = current_password
 
     @property
     def new_password(self):

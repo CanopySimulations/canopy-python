@@ -82,6 +82,7 @@ class ConfigPostConfigRequest(object):
     def name(self):
         """Gets the name of this ConfigPostConfigRequest.  # noqa: E501
 
+        The name of the config.  # noqa: E501
 
         :return: The name of this ConfigPostConfigRequest.  # noqa: E501
         :rtype: str
@@ -92,6 +93,7 @@ class ConfigPostConfigRequest(object):
     def name(self, name):
         """Sets the name of this ConfigPostConfigRequest.
 
+        The name of the config.  # noqa: E501
 
         :param name: The name of this ConfigPostConfigRequest.  # noqa: E501
         :type name: str
@@ -103,6 +105,7 @@ class ConfigPostConfigRequest(object):
     def config_type(self):
         """Gets the config_type of this ConfigPostConfigRequest.  # noqa: E501
 
+        The type of the config.  # noqa: E501
 
         :return: The config_type of this ConfigPostConfigRequest.  # noqa: E501
         :rtype: object
@@ -113,6 +116,7 @@ class ConfigPostConfigRequest(object):
     def config_type(self, config_type):
         """Sets the config_type of this ConfigPostConfigRequest.
 
+        The type of the config.  # noqa: E501
 
         :param config_type: The config_type of this ConfigPostConfigRequest.  # noqa: E501
         :type config_type: object
@@ -124,6 +128,7 @@ class ConfigPostConfigRequest(object):
     def properties(self):
         """Gets the properties of this ConfigPostConfigRequest.  # noqa: E501
 
+        The custom properties of the config.  # noqa: E501
 
         :return: The properties of this ConfigPostConfigRequest.  # noqa: E501
         :rtype: list[DocumentCustomPropertyData]
@@ -134,6 +139,7 @@ class ConfigPostConfigRequest(object):
     def properties(self, properties):
         """Sets the properties of this ConfigPostConfigRequest.
 
+        The custom properties of the config.  # noqa: E501
 
         :param properties: The properties of this ConfigPostConfigRequest.  # noqa: E501
         :type properties: list[DocumentCustomPropertyData]
@@ -145,6 +151,7 @@ class ConfigPostConfigRequest(object):
     def config(self):
         """Gets the config of this ConfigPostConfigRequest.  # noqa: E501
 
+        The JSON configuration data.  # noqa: E501
 
         :return: The config of this ConfigPostConfigRequest.  # noqa: E501
         :rtype: object
@@ -155,6 +162,7 @@ class ConfigPostConfigRequest(object):
     def config(self, config):
         """Sets the config of this ConfigPostConfigRequest.
 
+        The JSON configuration data.  # noqa: E501
 
         :param config: The config of this ConfigPostConfigRequest.  # noqa: E501
         :type config: object
@@ -166,6 +174,7 @@ class ConfigPostConfigRequest(object):
     def notes(self):
         """Gets the notes of this ConfigPostConfigRequest.  # noqa: E501
 
+        The notes for the config.  # noqa: E501
 
         :return: The notes of this ConfigPostConfigRequest.  # noqa: E501
         :rtype: str
@@ -176,6 +185,7 @@ class ConfigPostConfigRequest(object):
     def notes(self, notes):
         """Sets the notes of this ConfigPostConfigRequest.
 
+        The notes for the config.  # noqa: E501
 
         :param notes: The notes of this ConfigPostConfigRequest.  # noqa: E501
         :type notes: str
@@ -187,6 +197,7 @@ class ConfigPostConfigRequest(object):
     def sim_version(self):
         """Gets the sim_version of this ConfigPostConfigRequest.  # noqa: E501
 
+        The sim version for the config.  # noqa: E501
 
         :return: The sim_version of this ConfigPostConfigRequest.  # noqa: E501
         :rtype: str
@@ -197,6 +208,7 @@ class ConfigPostConfigRequest(object):
     def sim_version(self, sim_version):
         """Sets the sim_version of this ConfigPostConfigRequest.
 
+        The sim version for the config.  # noqa: E501
 
         :param sim_version: The sim_version of this ConfigPostConfigRequest.  # noqa: E501
         :type sim_version: str
@@ -208,6 +220,7 @@ class ConfigPostConfigRequest(object):
     def parent_worksheet_id(self):
         """Gets the parent_worksheet_id of this ConfigPostConfigRequest.  # noqa: E501
 
+        The ID of the parent worksheet for the config.  # noqa: E501
 
         :return: The parent_worksheet_id of this ConfigPostConfigRequest.  # noqa: E501
         :rtype: object
@@ -218,6 +231,7 @@ class ConfigPostConfigRequest(object):
     def parent_worksheet_id(self, parent_worksheet_id):
         """Sets the parent_worksheet_id of this ConfigPostConfigRequest.
 
+        The ID of the parent worksheet for the config.  # noqa: E501
 
         :param parent_worksheet_id: The parent_worksheet_id of this ConfigPostConfigRequest.  # noqa: E501
         :type parent_worksheet_id: object

@@ -62,6 +62,7 @@ class GetTenantAccessInformationQueryResult(object):
     def tenant_url(self):
         """Gets the tenant_url of this GetTenantAccessInformationQueryResult.  # noqa: E501
 
+        The URL of the tenant's primary blob container.  # noqa: E501
 
         :return: The tenant_url of this GetTenantAccessInformationQueryResult.  # noqa: E501
         :rtype: str
@@ -72,12 +73,11 @@ class GetTenantAccessInformationQueryResult(object):
     def tenant_url(self, tenant_url):
         """Sets the tenant_url of this GetTenantAccessInformationQueryResult.
 
+        The URL of the tenant's primary blob container.  # noqa: E501
 
         :param tenant_url: The tenant_url of this GetTenantAccessInformationQueryResult.  # noqa: E501
         :type tenant_url: str
         """
-        if self.local_vars_configuration.client_side_validation and tenant_url is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_url`, must not be `None`")  # noqa: E501
 
         self._tenant_url = tenant_url
 
@@ -85,6 +85,7 @@ class GetTenantAccessInformationQueryResult(object):
     def access_signature(self):
         """Gets the access_signature of this GetTenantAccessInformationQueryResult.  # noqa: E501
 
+        The shared access signature for the tenant's primary blob container.  # noqa: E501
 
         :return: The access_signature of this GetTenantAccessInformationQueryResult.  # noqa: E501
         :rtype: str
@@ -95,12 +96,11 @@ class GetTenantAccessInformationQueryResult(object):
     def access_signature(self, access_signature):
         """Sets the access_signature of this GetTenantAccessInformationQueryResult.
 
+        The shared access signature for the tenant's primary blob container.  # noqa: E501
 
         :param access_signature: The access_signature of this GetTenantAccessInformationQueryResult.  # noqa: E501
         :type access_signature: str
         """
-        if self.local_vars_configuration.client_side_validation and access_signature is None:  # noqa: E501
-            raise ValueError("Invalid value for `access_signature`, must not be `None`")  # noqa: E501
 
         self._access_signature = access_signature
 

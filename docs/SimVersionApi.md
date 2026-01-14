@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**sim_version_get_document**](SimVersionApi.md#sim_version_get_document) | **GET** /sim-versions/{simVersion}/documents/{documentPath} | 
-[**sim_version_get_documents**](SimVersionApi.md#sim_version_get_documents) | **GET** /sim-versions/{simVersion}/documents | 
-[**sim_version_get_downloads**](SimVersionApi.md#sim_version_get_downloads) | **GET** /sim-versions/{simVersion}/downloads | 
-[**sim_version_get_sim_version**](SimVersionApi.md#sim_version_get_sim_version) | **GET** /sim-versions/current | 
-[**sim_version_get_wiki_document**](SimVersionApi.md#sim_version_get_wiki_document) | **GET** /sim-versions/{wikiVersion}/wiki/{documentPath} | 
-[**sim_version_post_sim_version**](SimVersionApi.md#sim_version_post_sim_version) | **POST** /sim-versions/current | 
+[**sim_version_get_document**](SimVersionApi.md#sim_version_get_document) | **GET** /sim-versions/{simVersion}/documents/{documentPath} | Gets a specific document associated with the specified sim version and tenant.
+[**sim_version_get_documents**](SimVersionApi.md#sim_version_get_documents) | **GET** /sim-versions/{simVersion}/documents | Gets the list of documents associated with the specified sim version and tenant.
+[**sim_version_get_downloads**](SimVersionApi.md#sim_version_get_downloads) | **GET** /sim-versions/{simVersion}/downloads | Gets the downloads for the specified sim version and tenant.  Downloads could include DiL models, or SimLauncherLocal.
+[**sim_version_get_sim_version**](SimVersionApi.md#sim_version_get_sim_version) | **GET** /sim-versions/current | Gets the sim version for a specific tenant.  This will be the global sim version if the tenant doesn&#39;t have a specific sim version set, otherwise it will be the tenant specific sim version.  Note that user sim versions are implemented purely as a front-end feature, so this method will always return the tenant sim version.
+[**sim_version_get_wiki_document**](SimVersionApi.md#sim_version_get_wiki_document) | **GET** /sim-versions/{wikiVersion}/wiki/{documentPath} | Gets a document from the wiki associated with the specified sim version and tenant.  Note that the wiki used to contain all our documentation, but now only contains sim  version descriptions. The documentation has been moved to the new support platform.
+[**sim_version_post_sim_version**](SimVersionApi.md#sim_version_post_sim_version) | **POST** /sim-versions/current | Updates the global sim version for the platform.  This is the default sim version which will be used if a user hasn&#39;t got a specific tenant or user sim version set.
 
 
 # **sim_version_get_document**
 > GetSimVersionDocumentQueryResult sim_version_get_document(sim_version, document_path, tenant_id=tenant_id)
 
-
+Gets a specific document associated with the specified sim version and tenant.
 
 ### Example
 
@@ -47,11 +47,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SimVersionApi(api_client)
-    sim_version = 'sim_version_example' # str | 
-document_path = 'document_path_example' # str | 
-tenant_id = 'tenant_id_example' # str |  (optional)
+    sim_version = 'sim_version_example' # str | The sim version.
+document_path = 'document_path_example' # str | The path to the document.
+tenant_id = 'tenant_id_example' # str | The tenant ID. (optional)
 
     try:
+        # Gets a specific document associated with the specified sim version and tenant.
         api_response = api_instance.sim_version_get_document(sim_version, document_path, tenant_id=tenant_id)
         pprint(api_response)
     except ApiException as e:
@@ -62,9 +63,9 @@ tenant_id = 'tenant_id_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sim_version** | **str**|  | 
- **document_path** | **str**|  | 
- **tenant_id** | **str**|  | [optional] 
+ **sim_version** | **str**| The sim version. | 
+ **document_path** | **str**| The path to the document. | 
+ **tenant_id** | **str**| The tenant ID. | [optional] 
 
 ### Return type
 
@@ -82,14 +83,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sim_version_get_documents**
 > GetSimVersionDocumentsQueryResult sim_version_get_documents(sim_version, tenant_id=tenant_id)
 
-
+Gets the list of documents associated with the specified sim version and tenant.
 
 ### Example
 
@@ -121,10 +122,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SimVersionApi(api_client)
-    sim_version = 'sim_version_example' # str | 
-tenant_id = 'tenant_id_example' # str |  (optional)
+    sim_version = 'sim_version_example' # str | The sim version.
+tenant_id = 'tenant_id_example' # str | The tenant ID. (optional)
 
     try:
+        # Gets the list of documents associated with the specified sim version and tenant.
         api_response = api_instance.sim_version_get_documents(sim_version, tenant_id=tenant_id)
         pprint(api_response)
     except ApiException as e:
@@ -135,8 +137,8 @@ tenant_id = 'tenant_id_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sim_version** | **str**|  | 
- **tenant_id** | **str**|  | [optional] 
+ **sim_version** | **str**| The sim version. | 
+ **tenant_id** | **str**| The tenant ID. | [optional] 
 
 ### Return type
 
@@ -154,14 +156,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sim_version_get_downloads**
 > GetSimVersionDownloadsQueryResult sim_version_get_downloads(sim_version, tenant_id=tenant_id)
 
-
+Gets the downloads for the specified sim version and tenant.  Downloads could include DiL models, or SimLauncherLocal.
 
 ### Example
 
@@ -193,10 +195,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SimVersionApi(api_client)
-    sim_version = 'sim_version_example' # str | 
-tenant_id = 'tenant_id_example' # str |  (optional)
+    sim_version = 'sim_version_example' # str | The sim version.
+tenant_id = 'tenant_id_example' # str | The tenant ID. (optional)
 
     try:
+        # Gets the downloads for the specified sim version and tenant.  Downloads could include DiL models, or SimLauncherLocal.
         api_response = api_instance.sim_version_get_downloads(sim_version, tenant_id=tenant_id)
         pprint(api_response)
     except ApiException as e:
@@ -207,8 +210,8 @@ tenant_id = 'tenant_id_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sim_version** | **str**|  | 
- **tenant_id** | **str**|  | [optional] 
+ **sim_version** | **str**| The sim version. | 
+ **tenant_id** | **str**| The tenant ID. | [optional] 
 
 ### Return type
 
@@ -226,14 +229,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sim_version_get_sim_version**
 > object sim_version_get_sim_version(tenant_id=tenant_id)
 
-
+Gets the sim version for a specific tenant.  This will be the global sim version if the tenant doesn't have a specific sim version set, otherwise it will be the tenant specific sim version.  Note that user sim versions are implemented purely as a front-end feature, so this method will always return the tenant sim version.
 
 ### Example
 
@@ -265,9 +268,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SimVersionApi(api_client)
-    tenant_id = 'tenant_id_example' # str |  (optional)
+    tenant_id = 'tenant_id_example' # str | The tenant ID. (optional)
 
     try:
+        # Gets the sim version for a specific tenant.  This will be the global sim version if the tenant doesn't have a specific sim version set, otherwise it will be the tenant specific sim version.  Note that user sim versions are implemented purely as a front-end feature, so this method will always return the tenant sim version.
         api_response = api_instance.sim_version_get_sim_version(tenant_id=tenant_id)
         pprint(api_response)
     except ApiException as e:
@@ -278,7 +282,7 @@ with canopy.openapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | [optional] 
+ **tenant_id** | **str**| The tenant ID. | [optional] 
 
 ### Return type
 
@@ -296,14 +300,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sim_version_get_wiki_document**
 > GetWikiDocumentQueryResult sim_version_get_wiki_document(wiki_version, document_path, tenant_id=tenant_id)
 
-
+Gets a document from the wiki associated with the specified sim version and tenant.  Note that the wiki used to contain all our documentation, but now only contains sim  version descriptions. The documentation has been moved to the new support platform.
 
 ### Example
 
@@ -335,11 +339,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SimVersionApi(api_client)
-    wiki_version = 'wiki_version_example' # str | 
-document_path = 'document_path_example' # str | 
-tenant_id = 'tenant_id_example' # str |  (optional)
+    wiki_version = 'wiki_version_example' # str | The sim version of the wiki.
+document_path = 'document_path_example' # str | The path to the document.
+tenant_id = 'tenant_id_example' # str | The tenant ID. (optional)
 
     try:
+        # Gets a document from the wiki associated with the specified sim version and tenant.  Note that the wiki used to contain all our documentation, but now only contains sim  version descriptions. The documentation has been moved to the new support platform.
         api_response = api_instance.sim_version_get_wiki_document(wiki_version, document_path, tenant_id=tenant_id)
         pprint(api_response)
     except ApiException as e:
@@ -350,9 +355,9 @@ tenant_id = 'tenant_id_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **wiki_version** | **str**|  | 
- **document_path** | **str**|  | 
- **tenant_id** | **str**|  | [optional] 
+ **wiki_version** | **str**| The sim version of the wiki. | 
+ **document_path** | **str**| The path to the document. | 
+ **tenant_id** | **str**| The tenant ID. | [optional] 
 
 ### Return type
 
@@ -370,14 +375,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sim_version_post_sim_version**
 > sim_version_post_sim_version(sim_version_post_sim_version_request)
 
-
+Updates the global sim version for the platform.  This is the default sim version which will be used if a user hasn't got a specific tenant or user sim version set.
 
 ### Example
 
@@ -409,9 +414,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SimVersionApi(api_client)
-    sim_version_post_sim_version_request = canopy.openapi.SimVersionPostSimVersionRequest() # SimVersionPostSimVersionRequest | 
+    sim_version_post_sim_version_request = canopy.openapi.SimVersionPostSimVersionRequest() # SimVersionPostSimVersionRequest | A data structure containing the new sim version.
 
     try:
+        # Updates the global sim version for the platform.  This is the default sim version which will be used if a user hasn't got a specific tenant or user sim version set.
         api_instance.sim_version_post_sim_version(sim_version_post_sim_version_request)
     except ApiException as e:
         print("Exception when calling SimVersionApi->sim_version_post_sim_version: %s\n" % e)
@@ -421,7 +427,7 @@ with canopy.openapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sim_version_post_sim_version_request** | [**SimVersionPostSimVersionRequest**](SimVersionPostSimVersionRequest.md)|  | 
+ **sim_version_post_sim_version_request** | [**SimVersionPostSimVersionRequest**](SimVersionPostSimVersionRequest.md)| A data structure containing the new sim version. | 
 
 ### Return type
 
@@ -439,7 +445,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -76,8 +76,6 @@ class GetAdminTenantSettingsQueryResult(object):
         :param settings: The settings of this GetAdminTenantSettingsQueryResult.  # noqa: E501
         :type settings: GetAdminTenantSettingsQueryResultSettings
         """
-        if self.local_vars_configuration.client_side_validation and settings is None:  # noqa: E501
-            raise ValueError("Invalid value for `settings`, must not be `None`")  # noqa: E501
 
         self._settings = settings
 

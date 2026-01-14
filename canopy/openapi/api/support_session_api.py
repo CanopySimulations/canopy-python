@@ -37,7 +37,7 @@ class SupportSessionApi(object):
         self.api_client = api_client
 
     def support_session_get_all_support_sessions(self, **kwargs):  # noqa: E501
-        """support_session_get_all_support_sessions  # noqa: E501
+        """Returns all the open support sessions on the platform.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -64,7 +64,7 @@ class SupportSessionApi(object):
         return self.support_session_get_all_support_sessions_with_http_info(**kwargs)  # noqa: E501
 
     def support_session_get_all_support_sessions_with_http_info(self, **kwargs):  # noqa: E501
-        """support_session_get_all_support_sessions  # noqa: E501
+        """Returns all the open support sessions on the platform.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -162,7 +162,7 @@ class SupportSessionApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def support_session_get_support_session(self, tenant_id, document_id, **kwargs):  # noqa: E501
-        """support_session_get_support_session  # noqa: E501
+        """Gets the support session for the specified document (config, study or worksheet).  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -170,9 +170,9 @@ class SupportSessionApi(object):
         >>> thread = api.support_session_get_support_session(tenant_id, document_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param document_id: (required)
+        :param document_id: The document ID. (required)
         :type document_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -193,7 +193,7 @@ class SupportSessionApi(object):
         return self.support_session_get_support_session_with_http_info(tenant_id, document_id, **kwargs)  # noqa: E501
 
     def support_session_get_support_session_with_http_info(self, tenant_id, document_id, **kwargs):  # noqa: E501
-        """support_session_get_support_session  # noqa: E501
+        """Gets the support session for the specified document (config, study or worksheet).  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -201,9 +201,9 @@ class SupportSessionApi(object):
         >>> thread = api.support_session_get_support_session_with_http_info(tenant_id, document_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param document_id: (required)
+        :param document_id: The document ID. (required)
         :type document_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -462,7 +462,7 @@ class SupportSessionApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def support_session_put_support_session(self, tenant_id, document_id, support_session_put_support_session_request, **kwargs):  # noqa: E501
-        """support_session_put_support_session  # noqa: E501
+        """Updates the support session for the specified document (config, study or worksheet).  Note that messages are now handled by Zendesk, and this method is now only used to  open or close a support session.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -470,11 +470,11 @@ class SupportSessionApi(object):
         >>> thread = api.support_session_put_support_session(tenant_id, document_id, support_session_put_support_session_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param document_id: (required)
+        :param document_id: The document ID. (required)
         :type document_id: str
-        :param support_session_put_support_session_request: (required)
+        :param support_session_put_support_session_request: The updated support session data. This is appended to the support session. (required)
         :type support_session_put_support_session_request: SupportSessionPutSupportSessionRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -495,7 +495,7 @@ class SupportSessionApi(object):
         return self.support_session_put_support_session_with_http_info(tenant_id, document_id, support_session_put_support_session_request, **kwargs)  # noqa: E501
 
     def support_session_put_support_session_with_http_info(self, tenant_id, document_id, support_session_put_support_session_request, **kwargs):  # noqa: E501
-        """support_session_put_support_session  # noqa: E501
+        """Updates the support session for the specified document (config, study or worksheet).  Note that messages are now handled by Zendesk, and this method is now only used to  open or close a support session.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -503,11 +503,11 @@ class SupportSessionApi(object):
         >>> thread = api.support_session_put_support_session_with_http_info(tenant_id, document_id, support_session_put_support_session_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param document_id: (required)
+        :param document_id: The document ID. (required)
         :type document_id: str
-        :param support_session_put_support_session_request: (required)
+        :param support_session_put_support_session_request: The updated support session data. This is appended to the support session. (required)
         :type support_session_put_support_session_request: SupportSessionPutSupportSessionRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

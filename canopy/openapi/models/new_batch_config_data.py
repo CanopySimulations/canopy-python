@@ -58,6 +58,7 @@ class NewBatchConfigData(object):
     def items(self):
         """Gets the items of this NewBatchConfigData.  # noqa: E501
 
+        The list of new configs to create.  # noqa: E501
 
         :return: The items of this NewBatchConfigData.  # noqa: E501
         :rtype: list[NewConfigData]
@@ -68,6 +69,7 @@ class NewBatchConfigData(object):
     def items(self, items):
         """Sets the items of this NewBatchConfigData.
 
+        The list of new configs to create.  # noqa: E501
 
         :param items: The items of this NewBatchConfigData.  # noqa: E501
         :type items: list[NewConfigData]

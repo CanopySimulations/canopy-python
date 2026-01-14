@@ -55,7 +55,8 @@ class DefaultCustomPropertyNames(object):
         self._names = None
         self.discriminator = None
 
-        self.target = target
+        if target is not None:
+            self.target = target
         self.names = names
 
     @property
@@ -76,8 +77,6 @@ class DefaultCustomPropertyNames(object):
         :param target: The target of this DefaultCustomPropertyNames.  # noqa: E501
         :type target: str
         """
-        if self.local_vars_configuration.client_side_validation and target is None:  # noqa: E501
-            raise ValueError("Invalid value for `target`, must not be `None`")  # noqa: E501
 
         self._target = target
 
@@ -99,8 +98,6 @@ class DefaultCustomPropertyNames(object):
         :param names: The names of this DefaultCustomPropertyNames.  # noqa: E501
         :type names: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and names is None:  # noqa: E501
-            raise ValueError("Invalid value for `names`, must not be `None`")  # noqa: E501
 
         self._names = names
 

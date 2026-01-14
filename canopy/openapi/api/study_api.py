@@ -37,7 +37,7 @@ class StudyApi(object):
         self.api_client = api_client
 
     def study_delete_study(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_delete_study  # noqa: E501
+        """Deletes a study. If the study is in progress it will be aborted, although this may not  immediately free up the nodes.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,11 +45,11 @@ class StudyApi(object):
         >>> thread = api.study_delete_study(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param undelete:
+        :param undelete: Whether the study should be deleted or undeleted.
         :type undelete: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -70,7 +70,7 @@ class StudyApi(object):
         return self.study_delete_study_with_http_info(tenant_id, study_id, **kwargs)  # noqa: E501
 
     def study_delete_study_with_http_info(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_delete_study  # noqa: E501
+        """Deletes a study. If the study is in progress it will be aborted, although this may not  immediately free up the nodes.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -78,11 +78,11 @@ class StudyApi(object):
         >>> thread = api.study_delete_study_with_http_info(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param undelete:
+        :param undelete: Whether the study should be deleted or undeleted.
         :type undelete: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -339,7 +339,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_all_tenants_study_statistics(self, **kwargs):  # noqa: E501
-        """study_get_all_tenants_study_statistics  # noqa: E501
+        """Returns study statistics for all tenants.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -347,9 +347,9 @@ class StudyApi(object):
         >>> thread = api.study_get_all_tenants_study_statistics(async_req=True)
         >>> result = thread.get()
 
-        :param start_date:
+        :param start_date: The start date for the range of the statistics.
         :type start_date: str
-        :param end_date:
+        :param end_date: The end date for the range of the statistics.
         :type end_date: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -370,7 +370,7 @@ class StudyApi(object):
         return self.study_get_all_tenants_study_statistics_with_http_info(**kwargs)  # noqa: E501
 
     def study_get_all_tenants_study_statistics_with_http_info(self, **kwargs):  # noqa: E501
-        """study_get_all_tenants_study_statistics  # noqa: E501
+        """Returns study statistics for all tenants.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -378,9 +378,9 @@ class StudyApi(object):
         >>> thread = api.study_get_all_tenants_study_statistics_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param start_date:
+        :param start_date: The start date for the range of the statistics.
         :type start_date: str
-        :param end_date:
+        :param end_date: The end date for the range of the statistics.
         :type end_date: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -477,8 +477,384 @@ class StudyApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
+    def study_get_job_full_download(self, tenant_id, study_id, job_id, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads complete job data as a ZIP file.  This includes all inputs and results for a specific job.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_job_full_download(tenant_id, study_id, job_id, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param job_id: The job ID. (required)
+        :type job_id: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param channels_as_csv: Whether to convert the vector channel data to CSV files from individual binary files.
+        :type channels_as_csv: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.study_get_job_full_download_with_http_info(tenant_id, study_id, job_id, access_signature, expiry, **kwargs)  # noqa: E501
+
+    def study_get_job_full_download_with_http_info(self, tenant_id, study_id, job_id, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads complete job data as a ZIP file.  This includes all inputs and results for a specific job.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_job_full_download_with_http_info(tenant_id, study_id, job_id, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param job_id: The job ID. (required)
+        :type job_id: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param channels_as_csv: Whether to convert the vector channel data to CSV files from individual binary files.
+        :type channels_as_csv: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'job_id',
+            'access_signature',
+            'expiry',
+            'file_name',
+            'channels_as_csv'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method study_get_job_full_download" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_get_job_full_download`")  # noqa: E501
+        # verify the required parameter 'study_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('study_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `study_id` when calling `study_get_job_full_download`")  # noqa: E501
+        # verify the required parameter 'job_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('job_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `job_id` when calling `study_get_job_full_download`")  # noqa: E501
+        # verify the required parameter 'access_signature' is set
+        if self.api_client.client_side_validation and local_var_params.get('access_signature') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `access_signature` when calling `study_get_job_full_download`")  # noqa: E501
+        # verify the required parameter 'expiry' is set
+        if self.api_client.client_side_validation and local_var_params.get('expiry') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `expiry` when calling `study_get_job_full_download`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+        if 'study_id' in local_var_params:
+            path_params['studyId'] = local_var_params['study_id']  # noqa: E501
+        if 'job_id' in local_var_params:
+            path_params['jobId'] = local_var_params['job_id']  # noqa: E501
+
+        query_params = []
+        if local_var_params.get('access_signature') is not None:  # noqa: E501
+            query_params.append(('accessSignature', local_var_params['access_signature']))  # noqa: E501
+        if local_var_params.get('expiry') is not None:  # noqa: E501
+            query_params.append(('expiry', local_var_params['expiry']))  # noqa: E501
+        if local_var_params.get('file_name') is not None:  # noqa: E501
+            query_params.append(('fileName', local_var_params['file_name']))  # noqa: E501
+        if local_var_params.get('channels_as_csv') is not None:  # noqa: E501
+            query_params.append(('channelsAsCsv', local_var_params['channels_as_csv']))  # noqa: E501
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/studies/{tenantId}/{studyId}/jobs/{jobId}/download/full', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def study_get_job_vector_download(self, tenant_id, study_id, job_id, sim_type, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads job vector results for a specific simulation type as CSV.  This provides time-series data for the specified sim type.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_job_vector_download(tenant_id, study_id, job_id, sim_type, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param job_id: The job ID. (required)
+        :type job_id: str
+        :param sim_type: The simulation type (e.g., \"DynamicLap\", \"StraightLine\"). (required)
+        :type sim_type: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param x_domain: The xDomain to filter vector results by. If null or empty, all xDomains are included.
+        :type x_domain: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.study_get_job_vector_download_with_http_info(tenant_id, study_id, job_id, sim_type, access_signature, expiry, **kwargs)  # noqa: E501
+
+    def study_get_job_vector_download_with_http_info(self, tenant_id, study_id, job_id, sim_type, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads job vector results for a specific simulation type as CSV.  This provides time-series data for the specified sim type.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_job_vector_download_with_http_info(tenant_id, study_id, job_id, sim_type, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param job_id: The job ID. (required)
+        :type job_id: str
+        :param sim_type: The simulation type (e.g., \"DynamicLap\", \"StraightLine\"). (required)
+        :type sim_type: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param x_domain: The xDomain to filter vector results by. If null or empty, all xDomains are included.
+        :type x_domain: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'job_id',
+            'sim_type',
+            'access_signature',
+            'expiry',
+            'file_name',
+            'x_domain'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method study_get_job_vector_download" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_get_job_vector_download`")  # noqa: E501
+        # verify the required parameter 'study_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('study_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `study_id` when calling `study_get_job_vector_download`")  # noqa: E501
+        # verify the required parameter 'job_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('job_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `job_id` when calling `study_get_job_vector_download`")  # noqa: E501
+        # verify the required parameter 'sim_type' is set
+        if self.api_client.client_side_validation and local_var_params.get('sim_type') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `sim_type` when calling `study_get_job_vector_download`")  # noqa: E501
+        # verify the required parameter 'access_signature' is set
+        if self.api_client.client_side_validation and local_var_params.get('access_signature') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `access_signature` when calling `study_get_job_vector_download`")  # noqa: E501
+        # verify the required parameter 'expiry' is set
+        if self.api_client.client_side_validation and local_var_params.get('expiry') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `expiry` when calling `study_get_job_vector_download`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+        if 'study_id' in local_var_params:
+            path_params['studyId'] = local_var_params['study_id']  # noqa: E501
+        if 'job_id' in local_var_params:
+            path_params['jobId'] = local_var_params['job_id']  # noqa: E501
+        if 'sim_type' in local_var_params:
+            path_params['simType'] = local_var_params['sim_type']  # noqa: E501
+
+        query_params = []
+        if local_var_params.get('access_signature') is not None:  # noqa: E501
+            query_params.append(('accessSignature', local_var_params['access_signature']))  # noqa: E501
+        if local_var_params.get('expiry') is not None:  # noqa: E501
+            query_params.append(('expiry', local_var_params['expiry']))  # noqa: E501
+        if local_var_params.get('file_name') is not None:  # noqa: E501
+            query_params.append(('fileName', local_var_params['file_name']))  # noqa: E501
+        if local_var_params.get('x_domain') is not None:  # noqa: E501
+            query_params.append(('xDomain', local_var_params['x_domain']))  # noqa: E501
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/studies/{tenantId}/{studyId}/jobs/{jobId}/download/vector/{simType}', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def study_get_sim_type(self, sim_type, **kwargs):  # noqa: E501
-        """study_get_sim_type  # noqa: E501
+        """Gets information about a specific sim type for a tenant.  This returns a subset of the data from the GetStudyTypes method.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -486,9 +862,9 @@ class StudyApi(object):
         >>> thread = api.study_get_sim_type(sim_type, async_req=True)
         >>> result = thread.get()
 
-        :param sim_type: (required)
+        :param sim_type: The sim type whose data should be returned. (required)
         :type sim_type: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -509,7 +885,7 @@ class StudyApi(object):
         return self.study_get_sim_type_with_http_info(sim_type, **kwargs)  # noqa: E501
 
     def study_get_sim_type_with_http_info(self, sim_type, **kwargs):  # noqa: E501
-        """study_get_sim_type  # noqa: E501
+        """Gets information about a specific sim type for a tenant.  This returns a subset of the data from the GetStudyTypes method.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -517,9 +893,9 @@ class StudyApi(object):
         >>> thread = api.study_get_sim_type_with_http_info(sim_type, async_req=True)
         >>> result = thread.get()
 
-        :param sim_type: (required)
+        :param sim_type: The sim type whose data should be returned. (required)
         :type sim_type: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -620,7 +996,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_studies(self, tenant_id, **kwargs):  # noqa: E501
-        """study_get_studies  # noqa: E501
+        """Gets the list of studies for a tenant. The results will be paged.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -628,13 +1004,13 @@ class StudyApi(object):
         >>> thread = api.study_get_studies(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param filter:
+        :param filter: The filter. This should be a JSON serialized Canopy.Api.Controllers.Simulations.ListFilterData.
         :type filter: str
-        :param include_transient:
+        :param include_transient: Whether transient studies (such as Verify Car) should be included.
         :type include_transient: bool
-        :param result_type:
+        :param result_type: The result type. This can be `queryOnly` (return the list of studies),  `groupOnly` (return the groups which can be used for further filtering and sorting),  or `all` (return both the list of studies and the groups).
         :type result_type: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -655,7 +1031,7 @@ class StudyApi(object):
         return self.study_get_studies_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def study_get_studies_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """study_get_studies  # noqa: E501
+        """Gets the list of studies for a tenant. The results will be paged.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -663,13 +1039,13 @@ class StudyApi(object):
         >>> thread = api.study_get_studies_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param filter:
+        :param filter: The filter. This should be a JSON serialized Canopy.Api.Controllers.Simulations.ListFilterData.
         :type filter: str
-        :param include_transient:
+        :param include_transient: Whether transient studies (such as Verify Car) should be included.
         :type include_transient: bool
-        :param result_type:
+        :param result_type: The result type. This can be `queryOnly` (return the list of studies),  `groupOnly` (return the groups which can be used for further filtering and sorting),  or `all` (return both the list of studies and the groups).
         :type result_type: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -776,7 +1152,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_study(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_get_study  # noqa: E501
+        """Gets the specified study data. Note that this does not return the study results,  but it returns the access signatures necessary to download the results.  It also returns mapping from relevant tenant and user IDs to their names.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -784,11 +1160,11 @@ class StudyApi(object):
         >>> thread = api.study_get_study(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param sim_version:
+        :param sim_version: The required sim version.  This will upgrade or downgrade the study definition to conform to  the specified sim version.
         :type sim_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -809,7 +1185,7 @@ class StudyApi(object):
         return self.study_get_study_with_http_info(tenant_id, study_id, **kwargs)  # noqa: E501
 
     def study_get_study_with_http_info(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_get_study  # noqa: E501
+        """Gets the specified study data. Note that this does not return the study results,  but it returns the access signatures necessary to download the results.  It also returns mapping from relevant tenant and user IDs to their names.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -817,11 +1193,11 @@ class StudyApi(object):
         >>> thread = api.study_get_study_with_http_info(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param sim_version:
+        :param sim_version: The required sim version.  This will upgrade or downgrade the study definition to conform to  the specified sim version.
         :type sim_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1090,7 +1466,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_study_download(self, tenant_id, study_id, access_signature, expiry, **kwargs):  # noqa: E501
-        """study_get_study_download  # noqa: E501
+        """Downloads a ZIP file containing the requested study data.  It primarily exists for use by web browsers, which can't provide the authentication  headers and so must pass in an access signature instead.  If you are using this API method outside of the web browser, there is probably a better way  to download the required data.  Note: For the fastest and most reliable way to download studies, look in the documentation  for \"Download Tokens\".  This method, while more convenient than Download Tokens, can be unreliable for large studies  as any connection issues can result in a truncated download.  The URL containing the required access signature can be obtained using the GetStudyDownloadUrlAsync (`download-url`) method.  When downloading study results programmatically it is faster and more efficient to read the required data directly  from blob storage.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1098,21 +1474,21 @@ class StudyApi(object):
         >>> thread = api.study_get_study_download(tenant_id, study_id, access_signature, expiry, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the study. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param access_signature: (required)
+        :param access_signature: The access signature provided by the `download-url` method. (required)
         :type access_signature: str
-        :param expiry: (required)
+        :param expiry: The access signature expiry. (required)
         :type expiry: str
-        :param file_name:
+        :param file_name: The preferred file name.
         :type file_name: str
-        :param full:
+        :param full: Whether to download the full study.
         :type full: bool
-        :param channels_as_csv:
+        :param channels_as_csv: Whether to convert the vector channel data to CSV files from individual binary files.
         :type channels_as_csv: bool
-        :param merged_scalar_results_only:
+        :param merged_scalar_results_only: Whether to only download the merged scalar results.
         :type merged_scalar_results_only: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1133,7 +1509,7 @@ class StudyApi(object):
         return self.study_get_study_download_with_http_info(tenant_id, study_id, access_signature, expiry, **kwargs)  # noqa: E501
 
     def study_get_study_download_with_http_info(self, tenant_id, study_id, access_signature, expiry, **kwargs):  # noqa: E501
-        """study_get_study_download  # noqa: E501
+        """Downloads a ZIP file containing the requested study data.  It primarily exists for use by web browsers, which can't provide the authentication  headers and so must pass in an access signature instead.  If you are using this API method outside of the web browser, there is probably a better way  to download the required data.  Note: For the fastest and most reliable way to download studies, look in the documentation  for \"Download Tokens\".  This method, while more convenient than Download Tokens, can be unreliable for large studies  as any connection issues can result in a truncated download.  The URL containing the required access signature can be obtained using the GetStudyDownloadUrlAsync (`download-url`) method.  When downloading study results programmatically it is faster and more efficient to read the required data directly  from blob storage.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1141,21 +1517,21 @@ class StudyApi(object):
         >>> thread = api.study_get_study_download_with_http_info(tenant_id, study_id, access_signature, expiry, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the study. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param access_signature: (required)
+        :param access_signature: The access signature provided by the `download-url` method. (required)
         :type access_signature: str
-        :param expiry: (required)
+        :param expiry: The access signature expiry. (required)
         :type expiry: str
-        :param file_name:
+        :param file_name: The preferred file name.
         :type file_name: str
-        :param full:
+        :param full: Whether to download the full study.
         :type full: bool
-        :param channels_as_csv:
+        :param channels_as_csv: Whether to convert the vector channel data to CSV files from individual binary files.
         :type channels_as_csv: bool
-        :param merged_scalar_results_only:
+        :param merged_scalar_results_only: Whether to only download the merged scalar results.
         :type merged_scalar_results_only: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1468,7 +1844,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_study_download_url(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_get_study_download_url  # noqa: E501
+        """Gets the access signature and expiry to enable the browser to download a study.  This works around the fact that browsers can't provide authentication headers when downloading.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1476,9 +1852,9 @@ class StudyApi(object):
         >>> thread = api.study_get_study_download_url(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1499,7 +1875,7 @@ class StudyApi(object):
         return self.study_get_study_download_url_with_http_info(tenant_id, study_id, **kwargs)  # noqa: E501
 
     def study_get_study_download_url_with_http_info(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_get_study_download_url  # noqa: E501
+        """Gets the access signature and expiry to enable the browser to download a study.  This works around the fact that browsers can't provide authentication headers when downloading.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1507,9 +1883,9 @@ class StudyApi(object):
         >>> thread = api.study_get_study_download_url_with_http_info(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1767,8 +2143,181 @@ class StudyApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
+    def study_get_study_full_download(self, tenant_id, study_id, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads the complete study including all jobs and results as a ZIP file.  This is the recommended endpoint for downloading everything in a study.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_study_full_download(tenant_id, study_id, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param channels_as_csv: Whether to convert the vector channel data to CSV files from individual binary files.
+        :type channels_as_csv: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.study_get_study_full_download_with_http_info(tenant_id, study_id, access_signature, expiry, **kwargs)  # noqa: E501
+
+    def study_get_study_full_download_with_http_info(self, tenant_id, study_id, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads the complete study including all jobs and results as a ZIP file.  This is the recommended endpoint for downloading everything in a study.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_study_full_download_with_http_info(tenant_id, study_id, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param channels_as_csv: Whether to convert the vector channel data to CSV files from individual binary files.
+        :type channels_as_csv: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'access_signature',
+            'expiry',
+            'file_name',
+            'channels_as_csv'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method study_get_study_full_download" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_get_study_full_download`")  # noqa: E501
+        # verify the required parameter 'study_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('study_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `study_id` when calling `study_get_study_full_download`")  # noqa: E501
+        # verify the required parameter 'access_signature' is set
+        if self.api_client.client_side_validation and local_var_params.get('access_signature') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `access_signature` when calling `study_get_study_full_download`")  # noqa: E501
+        # verify the required parameter 'expiry' is set
+        if self.api_client.client_side_validation and local_var_params.get('expiry') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `expiry` when calling `study_get_study_full_download`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+        if 'study_id' in local_var_params:
+            path_params['studyId'] = local_var_params['study_id']  # noqa: E501
+
+        query_params = []
+        if local_var_params.get('access_signature') is not None:  # noqa: E501
+            query_params.append(('accessSignature', local_var_params['access_signature']))  # noqa: E501
+        if local_var_params.get('expiry') is not None:  # noqa: E501
+            query_params.append(('expiry', local_var_params['expiry']))  # noqa: E501
+        if local_var_params.get('file_name') is not None:  # noqa: E501
+            query_params.append(('fileName', local_var_params['file_name']))  # noqa: E501
+        if local_var_params.get('channels_as_csv') is not None:  # noqa: E501
+            query_params.append(('channelsAsCsv', local_var_params['channels_as_csv']))  # noqa: E501
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/studies/{tenantId}/{studyId}/download/full', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def study_get_study_job(self, tenant_id, study_id, job_id, **kwargs):  # noqa: E501
-        """study_get_study_job  # noqa: E501
+        """Gets a study job, including the inputs and a mapping of relevant tenant and user IDs to their names.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1776,13 +2325,13 @@ class StudyApi(object):
         >>> thread = api.study_get_study_job(tenant_id, study_id, job_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param job_id: (required)
+        :param job_id: The job ID. (required)
         :type job_id: str
-        :param sim_version:
+        :param sim_version: The required sim version. The job inputs will be upgraded or downgraded to this version if necessary.
         :type sim_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1803,7 +2352,7 @@ class StudyApi(object):
         return self.study_get_study_job_with_http_info(tenant_id, study_id, job_id, **kwargs)  # noqa: E501
 
     def study_get_study_job_with_http_info(self, tenant_id, study_id, job_id, **kwargs):  # noqa: E501
-        """study_get_study_job  # noqa: E501
+        """Gets a study job, including the inputs and a mapping of relevant tenant and user IDs to their names.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1811,13 +2360,13 @@ class StudyApi(object):
         >>> thread = api.study_get_study_job_with_http_info(tenant_id, study_id, job_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param job_id: (required)
+        :param job_id: The job ID. (required)
         :type job_id: str
-        :param sim_version:
+        :param sim_version: The required sim version. The job inputs will be upgraded or downgraded to this version if necessary.
         :type sim_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1914,6 +2463,159 @@ class StudyApi(object):
 
         return self.api_client.call_api(
             '/studies/{tenantId}/{studyId}/jobs/{jobId}', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def study_get_study_job_count(self, tenant_id, study_post_study_request, **kwargs):  # noqa: E501
+        """Gets the Variations Count for a study without scheduling it.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_study_job_count(tenant_id, study_post_study_request, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The id of the tenant. (required)
+        :type tenant_id: str
+        :param study_post_study_request: The data representing the new study. (required)
+        :type study_post_study_request: StudyPostStudyRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetStudyJobCountResult
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.study_get_study_job_count_with_http_info(tenant_id, study_post_study_request, **kwargs)  # noqa: E501
+
+    def study_get_study_job_count_with_http_info(self, tenant_id, study_post_study_request, **kwargs):  # noqa: E501
+        """Gets the Variations Count for a study without scheduling it.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_study_job_count_with_http_info(tenant_id, study_post_study_request, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The id of the tenant. (required)
+        :type tenant_id: str
+        :param study_post_study_request: The data representing the new study. (required)
+        :type study_post_study_request: StudyPostStudyRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetStudyJobCountResult, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'study_post_study_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method study_get_study_job_count" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_get_study_job_count`")  # noqa: E501
+        # verify the required parameter 'study_post_study_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('study_post_study_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `study_post_study_request` when calling `study_get_study_job_count`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'study_post_study_request' in local_var_params:
+            body_params = local_var_params['study_post_study_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetStudyJobCountResult",
+        }
+
+        return self.api_client.call_api(
+            '/studies/{tenantId}/jobs-count', 'POST',
             path_params,
             query_params,
             header_params,
@@ -2102,7 +2804,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_study_job_download(self, tenant_id, study_id, job_id, access_signature, expiry, **kwargs):  # noqa: E501
-        """study_get_study_job_download  # noqa: E501
+        """Downloads a ZIP file containing the requested study data.  This method primarily exists for use by web browsers, which can't provide the authentication  headers and so must pass in an access signature instead.  If you are using this API method outside of the web browser, there is probably a better way  to download the required data.  Note: For the fastest and most reliable way to download studies, look in the documentation  for \"Download Tokens\".  This method, while more convenient than Download Tokens, can be unreliable for large studies  as any connection issues can result in a truncated download.  The URL containing the required access signature can be obtained using the GetStudyDownloadUrlAsync (`download-url`) method.  When downloading study results programmatically it is faster and more efficient to read the required data directly  from blob storage.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2110,22 +2812,24 @@ class StudyApi(object):
         >>> thread = api.study_get_study_job_download(tenant_id, study_id, job_id, access_signature, expiry, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the study. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param job_id: (required)
+        :param job_id: The job ID. (required)
         :type job_id: str
-        :param access_signature: (required)
+        :param access_signature: The access signature provided by the `download-url` method. (required)
         :type access_signature: str
-        :param expiry: (required)
+        :param expiry: The access signature expiry. (required)
         :type expiry: str
-        :param file_name:
+        :param file_name: The preferred file name.
         :type file_name: str
-        :param channels_as_csv:
+        :param channels_as_csv: Whether to convert the vector channel data to CSV files from individual binary files.
         :type channels_as_csv: bool
-        :param sim_type_channels:
+        :param sim_type_channels: The sim type to download channels for.
         :type sim_type_channels: str
+        :param x_domain: The xDomain to filter vector results by. If null or empty, all xDomains are included.
+        :type x_domain: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2145,7 +2849,7 @@ class StudyApi(object):
         return self.study_get_study_job_download_with_http_info(tenant_id, study_id, job_id, access_signature, expiry, **kwargs)  # noqa: E501
 
     def study_get_study_job_download_with_http_info(self, tenant_id, study_id, job_id, access_signature, expiry, **kwargs):  # noqa: E501
-        """study_get_study_job_download  # noqa: E501
+        """Downloads a ZIP file containing the requested study data.  This method primarily exists for use by web browsers, which can't provide the authentication  headers and so must pass in an access signature instead.  If you are using this API method outside of the web browser, there is probably a better way  to download the required data.  Note: For the fastest and most reliable way to download studies, look in the documentation  for \"Download Tokens\".  This method, while more convenient than Download Tokens, can be unreliable for large studies  as any connection issues can result in a truncated download.  The URL containing the required access signature can be obtained using the GetStudyDownloadUrlAsync (`download-url`) method.  When downloading study results programmatically it is faster and more efficient to read the required data directly  from blob storage.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2153,22 +2857,24 @@ class StudyApi(object):
         >>> thread = api.study_get_study_job_download_with_http_info(tenant_id, study_id, job_id, access_signature, expiry, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the study. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param job_id: (required)
+        :param job_id: The job ID. (required)
         :type job_id: str
-        :param access_signature: (required)
+        :param access_signature: The access signature provided by the `download-url` method. (required)
         :type access_signature: str
-        :param expiry: (required)
+        :param expiry: The access signature expiry. (required)
         :type expiry: str
-        :param file_name:
+        :param file_name: The preferred file name.
         :type file_name: str
-        :param channels_as_csv:
+        :param channels_as_csv: Whether to convert the vector channel data to CSV files from individual binary files.
         :type channels_as_csv: bool
-        :param sim_type_channels:
+        :param sim_type_channels: The sim type to download channels for.
         :type sim_type_channels: str
+        :param x_domain: The xDomain to filter vector results by. If null or empty, all xDomains are included.
+        :type x_domain: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2203,7 +2909,8 @@ class StudyApi(object):
             'expiry',
             'file_name',
             'channels_as_csv',
-            'sim_type_channels'
+            'sim_type_channels',
+            'x_domain'
         ]
         all_params.extend(
             [
@@ -2262,6 +2969,8 @@ class StudyApi(object):
             query_params.append(('channelsAsCsv', local_var_params['channels_as_csv']))  # noqa: E501
         if local_var_params.get('sim_type_channels') is not None:  # noqa: E501
             query_params.append(('simTypeChannels', local_var_params['sim_type_channels']))  # noqa: E501
+        if local_var_params.get('x_domain') is not None:  # noqa: E501
+            query_params.append(('xDomain', local_var_params['x_domain']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -2486,7 +3195,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_study_job_metadata(self, tenant_id, study_id, job_id, **kwargs):  # noqa: E501
-        """study_get_study_job_metadata  # noqa: E501
+        """Gets the metadata for a study job, which excludes certain information  such as the job inputs to keep the data smaller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2494,11 +3203,11 @@ class StudyApi(object):
         >>> thread = api.study_get_study_job_metadata(tenant_id, study_id, job_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the study. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param job_id: (required)
+        :param job_id: The job ID. (required)
         :type job_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2519,7 +3228,7 @@ class StudyApi(object):
         return self.study_get_study_job_metadata_with_http_info(tenant_id, study_id, job_id, **kwargs)  # noqa: E501
 
     def study_get_study_job_metadata_with_http_info(self, tenant_id, study_id, job_id, **kwargs):  # noqa: E501
-        """study_get_study_job_metadata  # noqa: E501
+        """Gets the metadata for a study job, which excludes certain information  such as the job inputs to keep the data smaller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2527,11 +3236,11 @@ class StudyApi(object):
         >>> thread = api.study_get_study_job_metadata_with_http_info(tenant_id, study_id, job_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the study. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param job_id: (required)
+        :param job_id: The job ID. (required)
         :type job_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2806,7 +3515,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_study_jobs(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_get_study_jobs  # noqa: E501
+        """Gets the list of study jobs for a study. The results may be paged.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2814,11 +3523,11 @@ class StudyApi(object):
         >>> thread = api.study_get_study_jobs(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the study. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param filter:
+        :param filter: The JSON serialized filter data.
         :type filter: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2839,7 +3548,7 @@ class StudyApi(object):
         return self.study_get_study_jobs_with_http_info(tenant_id, study_id, **kwargs)  # noqa: E501
 
     def study_get_study_jobs_with_http_info(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_get_study_jobs  # noqa: E501
+        """Gets the list of study jobs for a study. The results may be paged.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2847,11 +3556,11 @@ class StudyApi(object):
         >>> thread = api.study_get_study_jobs_with_http_info(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the study. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param filter:
+        :param filter: The JSON serialized filter data.
         :type filter: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3119,8 +3828,174 @@ class StudyApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
+    def study_get_study_merged_scalar_download(self, tenant_id, study_id, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads merged scalar results as a single CSV file.  This contains all scalar results merged into one file by the post-processor.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_study_merged_scalar_download(tenant_id, study_id, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.study_get_study_merged_scalar_download_with_http_info(tenant_id, study_id, access_signature, expiry, **kwargs)  # noqa: E501
+
+    def study_get_study_merged_scalar_download_with_http_info(self, tenant_id, study_id, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads merged scalar results as a single CSV file.  This contains all scalar results merged into one file by the post-processor.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_study_merged_scalar_download_with_http_info(tenant_id, study_id, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'access_signature',
+            'expiry',
+            'file_name'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method study_get_study_merged_scalar_download" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_get_study_merged_scalar_download`")  # noqa: E501
+        # verify the required parameter 'study_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('study_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `study_id` when calling `study_get_study_merged_scalar_download`")  # noqa: E501
+        # verify the required parameter 'access_signature' is set
+        if self.api_client.client_side_validation and local_var_params.get('access_signature') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `access_signature` when calling `study_get_study_merged_scalar_download`")  # noqa: E501
+        # verify the required parameter 'expiry' is set
+        if self.api_client.client_side_validation and local_var_params.get('expiry') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `expiry` when calling `study_get_study_merged_scalar_download`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+        if 'study_id' in local_var_params:
+            path_params['studyId'] = local_var_params['study_id']  # noqa: E501
+
+        query_params = []
+        if local_var_params.get('access_signature') is not None:  # noqa: E501
+            query_params.append(('accessSignature', local_var_params['access_signature']))  # noqa: E501
+        if local_var_params.get('expiry') is not None:  # noqa: E501
+            query_params.append(('expiry', local_var_params['expiry']))  # noqa: E501
+        if local_var_params.get('file_name') is not None:  # noqa: E501
+            query_params.append(('fileName', local_var_params['file_name']))  # noqa: E501
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/studies/{tenantId}/{studyId}/download/scalar/merged', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def study_get_study_metadata(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_get_study_metadata  # noqa: E501
+        """Gets the metadata for a study, which excludes certain information  such as the study definition to keep the data smaller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3128,9 +4003,9 @@ class StudyApi(object):
         >>> thread = api.study_get_study_metadata(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3151,7 +4026,7 @@ class StudyApi(object):
         return self.study_get_study_metadata_with_http_info(tenant_id, study_id, **kwargs)  # noqa: E501
 
     def study_get_study_metadata_with_http_info(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_get_study_metadata  # noqa: E501
+        """Gets the metadata for a study, which excludes certain information  such as the study definition to keep the data smaller.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3159,9 +4034,9 @@ class StudyApi(object):
         >>> thread = api.study_get_study_metadata_with_http_info(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3564,8 +4439,174 @@ class StudyApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
+    def study_get_study_scalar_download(self, tenant_id, study_id, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads study scalar results as a ZIP file containing individual job results.  Use /download/scalar/merged for a single merged CSV file.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_study_scalar_download(tenant_id, study_id, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.study_get_study_scalar_download_with_http_info(tenant_id, study_id, access_signature, expiry, **kwargs)  # noqa: E501
+
+    def study_get_study_scalar_download_with_http_info(self, tenant_id, study_id, access_signature, expiry, **kwargs):  # noqa: E501
+        """Downloads study scalar results as a ZIP file containing individual job results.  Use /download/scalar/merged for a single merged CSV file.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_get_study_scalar_download_with_http_info(tenant_id, study_id, access_signature, expiry, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID of the study. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param access_signature: The access signature provided by the `download-url` method. (required)
+        :type access_signature: str
+        :param expiry: The access signature expiry. (required)
+        :type expiry: str
+        :param file_name: The preferred file name.
+        :type file_name: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'access_signature',
+            'expiry',
+            'file_name'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method study_get_study_scalar_download" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_get_study_scalar_download`")  # noqa: E501
+        # verify the required parameter 'study_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('study_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `study_id` when calling `study_get_study_scalar_download`")  # noqa: E501
+        # verify the required parameter 'access_signature' is set
+        if self.api_client.client_side_validation and local_var_params.get('access_signature') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `access_signature` when calling `study_get_study_scalar_download`")  # noqa: E501
+        # verify the required parameter 'expiry' is set
+        if self.api_client.client_side_validation and local_var_params.get('expiry') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `expiry` when calling `study_get_study_scalar_download`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+        if 'study_id' in local_var_params:
+            path_params['studyId'] = local_var_params['study_id']  # noqa: E501
+
+        query_params = []
+        if local_var_params.get('access_signature') is not None:  # noqa: E501
+            query_params.append(('accessSignature', local_var_params['access_signature']))  # noqa: E501
+        if local_var_params.get('expiry') is not None:  # noqa: E501
+            query_params.append(('expiry', local_var_params['expiry']))  # noqa: E501
+        if local_var_params.get('file_name') is not None:  # noqa: E501
+            query_params.append(('fileName', local_var_params['file_name']))  # noqa: E501
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/studies/{tenantId}/{studyId}/download/scalar', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def study_get_study_type(self, study_type, **kwargs):  # noqa: E501
-        """study_get_study_type  # noqa: E501
+        """Gets a study type definition for a tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3573,9 +4614,9 @@ class StudyApi(object):
         >>> thread = api.study_get_study_type(study_type, async_req=True)
         >>> result = thread.get()
 
-        :param study_type: (required)
+        :param study_type: The study type. (required)
         :type study_type: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3596,7 +4637,7 @@ class StudyApi(object):
         return self.study_get_study_type_with_http_info(study_type, **kwargs)  # noqa: E501
 
     def study_get_study_type_with_http_info(self, study_type, **kwargs):  # noqa: E501
-        """study_get_study_type  # noqa: E501
+        """Gets a study type definition for a tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3604,9 +4645,9 @@ class StudyApi(object):
         >>> thread = api.study_get_study_type_with_http_info(study_type, async_req=True)
         >>> result = thread.get()
 
-        :param study_type: (required)
+        :param study_type: The study type. (required)
         :type study_type: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3707,7 +4748,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_study_types(self, **kwargs):  # noqa: E501
-        """study_get_study_types  # noqa: E501
+        """Gets the study type information for a specific tenant.  This method also returns information about the simulations and config types  which are indirectly available to the tenant through their set of  study types.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3715,7 +4756,7 @@ class StudyApi(object):
         >>> thread = api.study_get_study_types(async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3736,7 +4777,7 @@ class StudyApi(object):
         return self.study_get_study_types_with_http_info(**kwargs)  # noqa: E501
 
     def study_get_study_types_with_http_info(self, **kwargs):  # noqa: E501
-        """study_get_study_types  # noqa: E501
+        """Gets the study type information for a specific tenant.  This method also returns information about the simulations and config types  which are indirectly available to the tenant through their set of  study types.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3744,7 +4785,7 @@ class StudyApi(object):
         >>> thread = api.study_get_study_types_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3815,7 +4856,7 @@ class StudyApi(object):
             ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['Bearer']  # noqa: E501
+        auth_settings = []  # noqa: E501
 
         response_types_map = {
             200: "GetStudyTypesQueryResult",
@@ -3991,7 +5032,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_tenant_access_information(self, tenant_id, **kwargs):  # noqa: E501
-        """study_get_tenant_access_information  # noqa: E501
+        """Gets the URL and shared access signature for a tenant's primary blob storage container.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3999,7 +5040,7 @@ class StudyApi(object):
         >>> thread = api.study_get_tenant_access_information(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4020,7 +5061,7 @@ class StudyApi(object):
         return self.study_get_tenant_access_information_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def study_get_tenant_access_information_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """study_get_tenant_access_information  # noqa: E501
+        """Gets the URL and shared access signature for a tenant's primary blob storage container.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4028,7 +5069,7 @@ class StudyApi(object):
         >>> thread = api.study_get_tenant_access_information_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4126,7 +5167,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_tenant_billable_stored_simulation_count(self, tenant_id, **kwargs):  # noqa: E501
-        """study_get_tenant_billable_stored_simulation_count  # noqa: E501
+        """Gets the number of billable stored simulations for a tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4134,7 +5175,7 @@ class StudyApi(object):
         >>> thread = api.study_get_tenant_billable_stored_simulation_count(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4155,7 +5196,7 @@ class StudyApi(object):
         return self.study_get_tenant_billable_stored_simulation_count_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def study_get_tenant_billable_stored_simulation_count_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """study_get_tenant_billable_stored_simulation_count  # noqa: E501
+        """Gets the number of billable stored simulations for a tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4163,7 +5204,7 @@ class StudyApi(object):
         >>> thread = api.study_get_tenant_billable_stored_simulation_count_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4261,7 +5302,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_get_tenant_study_statistics(self, tenant_id, **kwargs):  # noqa: E501
-        """study_get_tenant_study_statistics  # noqa: E501
+        """Returns the study statistics for a tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4269,11 +5310,11 @@ class StudyApi(object):
         >>> thread = api.study_get_tenant_study_statistics(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param start_date:
+        :param start_date: The start date for the range of the statistics.
         :type start_date: str
-        :param end_date:
+        :param end_date: The end date for the range of the statistics.
         :type end_date: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4294,7 +5335,7 @@ class StudyApi(object):
         return self.study_get_tenant_study_statistics_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def study_get_tenant_study_statistics_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """study_get_tenant_study_statistics  # noqa: E501
+        """Returns the study statistics for a tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4302,11 +5343,11 @@ class StudyApi(object):
         >>> thread = api.study_get_tenant_study_statistics_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param start_date:
+        :param start_date: The start date for the range of the statistics.
         :type start_date: str
-        :param end_date:
+        :param end_date: The end date for the range of the statistics.
         :type end_date: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4410,7 +5451,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_merge_study(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_merge_study  # noqa: E501
+        """Merges a study baseline definition into the main study document.  This is used by Canopy personnel only.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4418,11 +5459,11 @@ class StudyApi(object):
         >>> thread = api.study_merge_study(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param force_merge_from_baseline:
+        :param force_merge_from_baseline: Whether to force merging from the baseline, even if not necessary.
         :type force_merge_from_baseline: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4443,7 +5484,7 @@ class StudyApi(object):
         return self.study_merge_study_with_http_info(tenant_id, study_id, **kwargs)  # noqa: E501
 
     def study_merge_study_with_http_info(self, tenant_id, study_id, **kwargs):  # noqa: E501
-        """study_merge_study  # noqa: E501
+        """Merges a study baseline definition into the main study document.  This is used by Canopy personnel only.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4451,11 +5492,11 @@ class StudyApi(object):
         >>> thread = api.study_merge_study_with_http_info(tenant_id, study_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param force_merge_from_baseline:
+        :param force_merge_from_baseline: Whether to force merging from the baseline, even if not necessary.
         :type force_merge_from_baseline: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4712,7 +5753,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_post_study(self, tenant_id, study_post_study_request, **kwargs):  # noqa: E501
-        """study_post_study  # noqa: E501
+        """Creates a new study which will be scheduled to run on the platform.  The study will not be complete when this method returns, but you can  use the returned Study ID to poll the status of the study.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4720,11 +5761,11 @@ class StudyApi(object):
         >>> thread = api.study_post_study(tenant_id, study_post_study_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_post_study_request: (required)
+        :param study_post_study_request: The data representing the new study. (required)
         :type study_post_study_request: StudyPostStudyRequest
-        :param run_inline:
+        :param run_inline: Whether to run the study inline. Inline studies are no longer supported.
         :type run_inline: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -4745,7 +5786,7 @@ class StudyApi(object):
         return self.study_post_study_with_http_info(tenant_id, study_post_study_request, **kwargs)  # noqa: E501
 
     def study_post_study_with_http_info(self, tenant_id, study_post_study_request, **kwargs):  # noqa: E501
-        """study_post_study  # noqa: E501
+        """Creates a new study which will be scheduled to run on the platform.  The study will not be complete when this method returns, but you can  use the returned Study ID to poll the status of the study.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -4753,11 +5794,11 @@ class StudyApi(object):
         >>> thread = api.study_post_study_with_http_info(tenant_id, study_post_study_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_post_study_request: (required)
+        :param study_post_study_request: The data representing the new study. (required)
         :type study_post_study_request: StudyPostStudyRequest
-        :param run_inline:
+        :param run_inline: Whether to run the study inline. Inline studies are no longer supported.
         :type run_inline: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -5042,7 +6083,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_put_study(self, tenant_id, study_id, study_put_study_request, **kwargs):  # noqa: E501
-        """study_put_study  # noqa: E501
+        """Updates a previously created study.  This can be used to rename a study, or to add custom properties or notes.  If any data isn't provided then it will be removed from the study.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -5050,11 +6091,11 @@ class StudyApi(object):
         >>> thread = api.study_put_study(tenant_id, study_id, study_put_study_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param study_put_study_request: (required)
+        :param study_put_study_request: The updated study data. (required)
         :type study_put_study_request: StudyPutStudyRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -5075,7 +6116,7 @@ class StudyApi(object):
         return self.study_put_study_with_http_info(tenant_id, study_id, study_put_study_request, **kwargs)  # noqa: E501
 
     def study_put_study_with_http_info(self, tenant_id, study_id, study_put_study_request, **kwargs):  # noqa: E501
-        """study_put_study  # noqa: E501
+        """Updates a previously created study.  This can be used to rename a study, or to add custom properties or notes.  If any data isn't provided then it will be removed from the study.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -5083,11 +6124,11 @@ class StudyApi(object):
         >>> thread = api.study_put_study_with_http_info(tenant_id, study_id, study_put_study_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param study_put_study_request: (required)
+        :param study_put_study_request: The updated study data. (required)
         :type study_put_study_request: StudyPutStudyRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -5366,7 +6407,7 @@ class StudyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def study_put_study_owner(self, tenant_id, study_id, config_put_config_owner_request, **kwargs):  # noqa: E501
-        """study_put_study_owner  # noqa: E501
+        """Changes the owner of a study. This can be called while the study is still in progress.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -5374,11 +6415,11 @@ class StudyApi(object):
         >>> thread = api.study_put_study_owner(tenant_id, study_id, config_put_config_owner_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param config_put_config_owner_request: (required)
+        :param config_put_config_owner_request: The new study owner. (required)
         :type config_put_config_owner_request: ConfigPutConfigOwnerRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -5399,7 +6440,7 @@ class StudyApi(object):
         return self.study_put_study_owner_with_http_info(tenant_id, study_id, config_put_config_owner_request, **kwargs)  # noqa: E501
 
     def study_put_study_owner_with_http_info(self, tenant_id, study_id, config_put_config_owner_request, **kwargs):  # noqa: E501
-        """study_put_study_owner  # noqa: E501
+        """Changes the owner of a study. This can be called while the study is still in progress.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -5407,11 +6448,11 @@ class StudyApi(object):
         >>> thread = api.study_put_study_owner_with_http_info(tenant_id, study_id, config_put_config_owner_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param study_id: (required)
+        :param study_id: The study ID. (required)
         :type study_id: str
-        :param config_put_config_owner_request: (required)
+        :param config_put_config_owner_request: The new study owner. (required)
         :type config_put_config_owner_request: ConfigPutConfigOwnerRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -5507,6 +6548,163 @@ class StudyApi(object):
 
         return self.api_client.call_api(
             '/studies/{tenantId}/{studyId}/owner', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def study_put_study_priority(self, tenant_id, study_id, body, **kwargs):  # noqa: E501
+        """Set the highest priority for a running study.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_put_study_priority(tenant_id, study_id, body, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param body: The priority. (required)
+        :type body: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.study_put_study_priority_with_http_info(tenant_id, study_id, body, **kwargs)  # noqa: E501
+
+    def study_put_study_priority_with_http_info(self, tenant_id, study_id, body, **kwargs):  # noqa: E501
+        """Set the highest priority for a running study.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.study_put_study_priority_with_http_info(tenant_id, study_id, body, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The tenant ID. (required)
+        :type tenant_id: str
+        :param study_id: The study ID. (required)
+        :type study_id: str
+        :param body: The priority. (required)
+        :type body: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'study_id',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method study_put_study_priority" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `study_put_study_priority`")  # noqa: E501
+        # verify the required parameter 'study_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('study_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `study_id` when calling `study_put_study_priority`")  # noqa: E501
+        # verify the required parameter 'body' is set
+        if self.api_client.client_side_validation and local_var_params.get('body') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `body` when calling `study_put_study_priority`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+        if 'study_id' in local_var_params:
+            path_params['studyId'] = local_var_params['study_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
+        # HTTP header `Content-Type`
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/studies/{tenantId}/{studyId}/priority', 'PUT',
             path_params,
             query_params,
             header_params,

@@ -63,8 +63,10 @@ class ComputeNodeResult(object):
 
         self.compute_node_id = compute_node_id
         self.state = state
-        self.running_tasks = running_tasks
-        self.is_dedicated = is_dedicated
+        if running_tasks is not None:
+            self.running_tasks = running_tasks
+        if is_dedicated is not None:
+            self.is_dedicated = is_dedicated
 
     @property
     def compute_node_id(self):
@@ -84,8 +86,6 @@ class ComputeNodeResult(object):
         :param compute_node_id: The compute_node_id of this ComputeNodeResult.  # noqa: E501
         :type compute_node_id: str
         """
-        if self.local_vars_configuration.client_side_validation and compute_node_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `compute_node_id`, must not be `None`")  # noqa: E501
 
         self._compute_node_id = compute_node_id
 
@@ -128,8 +128,6 @@ class ComputeNodeResult(object):
         :param running_tasks: The running_tasks of this ComputeNodeResult.  # noqa: E501
         :type running_tasks: int
         """
-        if self.local_vars_configuration.client_side_validation and running_tasks is None:  # noqa: E501
-            raise ValueError("Invalid value for `running_tasks`, must not be `None`")  # noqa: E501
 
         self._running_tasks = running_tasks
 
@@ -151,8 +149,6 @@ class ComputeNodeResult(object):
         :param is_dedicated: The is_dedicated of this ComputeNodeResult.  # noqa: E501
         :type is_dedicated: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_dedicated is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_dedicated`, must not be `None`")  # noqa: E501
 
         self._is_dedicated = is_dedicated
 

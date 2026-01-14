@@ -80,8 +80,6 @@ class SimTypeInputTelemetryEvaluatedChannelSuffix(object):
         :param sim_config_lookup_path: The sim_config_lookup_path of this SimTypeInputTelemetryEvaluatedChannelSuffix.  # noqa: E501
         :type sim_config_lookup_path: str
         """
-        if self.local_vars_configuration.client_side_validation and sim_config_lookup_path is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_config_lookup_path`, must not be `None`")  # noqa: E501
 
         self._sim_config_lookup_path = sim_config_lookup_path
 
@@ -103,8 +101,6 @@ class SimTypeInputTelemetryEvaluatedChannelSuffix(object):
         :param property_key: The property_key of this SimTypeInputTelemetryEvaluatedChannelSuffix.  # noqa: E501
         :type property_key: str
         """
-        if self.local_vars_configuration.client_side_validation and property_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `property_key`, must not be `None`")  # noqa: E501
 
         self._property_key = property_key
 
@@ -126,8 +122,6 @@ class SimTypeInputTelemetryEvaluatedChannelSuffix(object):
         :param suffix: The suffix of this SimTypeInputTelemetryEvaluatedChannelSuffix.  # noqa: E501
         :type suffix: str
         """
-        if self.local_vars_configuration.client_side_validation and suffix is None:  # noqa: E501
-            raise ValueError("Invalid value for `suffix`, must not be `None`")  # noqa: E501
 
         self._suffix = suffix
 

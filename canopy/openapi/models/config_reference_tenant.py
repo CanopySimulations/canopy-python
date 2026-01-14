@@ -80,8 +80,6 @@ class ConfigReferenceTenant(object):
         :param tenant_id: The tenant_id of this ConfigReferenceTenant.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -103,8 +101,6 @@ class ConfigReferenceTenant(object):
         :param target_id: The target_id of this ConfigReferenceTenant.  # noqa: E501
         :type target_id: object
         """
-        if self.local_vars_configuration.client_side_validation and target_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `target_id`, must not be `None`")  # noqa: E501
 
         self._target_id = target_id
 

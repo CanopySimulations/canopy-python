@@ -76,8 +76,6 @@ class SimVersionDocumentNameResult(object):
         :param name: The name of this SimVersionDocumentNameResult.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -99,8 +97,6 @@ class SimVersionDocumentNameResult(object):
         :param path: The path of this SimVersionDocumentNameResult.  # noqa: E501
         :type path: str
         """
-        if self.local_vars_configuration.client_side_validation and path is None:  # noqa: E501
-            raise ValueError("Invalid value for `path`, must not be `None`")  # noqa: E501
 
         self._path = path
 

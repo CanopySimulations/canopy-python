@@ -62,6 +62,7 @@ class GetStudyJobMetadataQueryResultAccessInformation(object):
     def url(self):
         """Gets the url of this GetStudyJobMetadataQueryResultAccessInformation.  # noqa: E501
 
+        The URL of the blob or blob storage area.  # noqa: E501
 
         :return: The url of this GetStudyJobMetadataQueryResultAccessInformation.  # noqa: E501
         :rtype: str
@@ -72,12 +73,11 @@ class GetStudyJobMetadataQueryResultAccessInformation(object):
     def url(self, url):
         """Sets the url of this GetStudyJobMetadataQueryResultAccessInformation.
 
+        The URL of the blob or blob storage area.  # noqa: E501
 
         :param url: The url of this GetStudyJobMetadataQueryResultAccessInformation.  # noqa: E501
         :type url: str
         """
-        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
-            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 
@@ -85,6 +85,7 @@ class GetStudyJobMetadataQueryResultAccessInformation(object):
     def access_signature(self):
         """Gets the access_signature of this GetStudyJobMetadataQueryResultAccessInformation.  # noqa: E501
 
+        The access signature for accessing the blob or blob storage area.  # noqa: E501
 
         :return: The access_signature of this GetStudyJobMetadataQueryResultAccessInformation.  # noqa: E501
         :rtype: str
@@ -95,12 +96,11 @@ class GetStudyJobMetadataQueryResultAccessInformation(object):
     def access_signature(self, access_signature):
         """Sets the access_signature of this GetStudyJobMetadataQueryResultAccessInformation.
 
+        The access signature for accessing the blob or blob storage area.  # noqa: E501
 
         :param access_signature: The access_signature of this GetStudyJobMetadataQueryResultAccessInformation.  # noqa: E501
         :type access_signature: str
         """
-        if self.local_vars_configuration.client_side_validation and access_signature is None:  # noqa: E501
-            raise ValueError("Invalid value for `access_signature`, must not be `None`")  # noqa: E501
 
         self._access_signature = access_signature
 

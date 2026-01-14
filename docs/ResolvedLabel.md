@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**source** | **str** |  | 
-**name** | **str** |  | 
+**source** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
 **string_value** | **str** |  | [optional] 
 **numeric_value** | **float** |  | [optional] 
 **numeric_statistics** | [**ResolvedLabelNumericStatistics**](ResolvedLabelNumericStatistics.md) |  | [optional] 

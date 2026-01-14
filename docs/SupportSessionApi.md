@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**support_session_get_all_support_sessions**](SupportSessionApi.md#support_session_get_all_support_sessions) | **GET** /support-sessions/all | 
-[**support_session_get_support_session**](SupportSessionApi.md#support_session_get_support_session) | **GET** /support-sessions/{tenantId}/{documentId} | 
+[**support_session_get_all_support_sessions**](SupportSessionApi.md#support_session_get_all_support_sessions) | **GET** /support-sessions/all | Returns all the open support sessions on the platform.
+[**support_session_get_support_session**](SupportSessionApi.md#support_session_get_support_session) | **GET** /support-sessions/{tenantId}/{documentId} | Gets the support session for the specified document (config, study or worksheet).
 [**support_session_get_support_session_deprecated**](SupportSessionApi.md#support_session_get_support_session_deprecated) | **GET** /support-sessions/{tenantId}/{userId}/{documentId} | 
-[**support_session_put_support_session**](SupportSessionApi.md#support_session_put_support_session) | **PUT** /support-sessions/{tenantId}/{documentId} | 
+[**support_session_put_support_session**](SupportSessionApi.md#support_session_put_support_session) | **PUT** /support-sessions/{tenantId}/{documentId} | Updates the support session for the specified document (config, study or worksheet).  Note that messages are now handled by Zendesk, and this method is now only used to  open or close a support session.
 [**support_session_put_support_session_deprecated**](SupportSessionApi.md#support_session_put_support_session_deprecated) | **PUT** /support-sessions/{tenantId}/{userId}/{documentId} | 
 
 
 # **support_session_get_all_support_sessions**
 > GetAllSupportSessionsQueryResult support_session_get_all_support_sessions()
 
-
+Returns all the open support sessions on the platform.
 
 ### Example
 
@@ -48,6 +48,7 @@ with canopy.openapi.ApiClient(configuration) as api_client:
     api_instance = canopy.openapi.SupportSessionApi(api_client)
     
     try:
+        # Returns all the open support sessions on the platform.
         api_response = api_instance.support_session_get_all_support_sessions()
         pprint(api_response)
     except ApiException as e:
@@ -73,14 +74,14 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **support_session_get_support_session**
 > GetSupportSessionQueryResult support_session_get_support_session(tenant_id, document_id)
 
-
+Gets the support session for the specified document (config, study or worksheet).
 
 ### Example
 
@@ -112,10 +113,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SupportSessionApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-document_id = 'document_id_example' # str | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID.
+document_id = 'document_id_example' # str | The document ID.
 
     try:
+        # Gets the support session for the specified document (config, study or worksheet).
         api_response = api_instance.support_session_get_support_session(tenant_id, document_id)
         pprint(api_response)
     except ApiException as e:
@@ -126,8 +128,8 @@ document_id = 'document_id_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **document_id** | **str**|  | 
+ **tenant_id** | **str**| The tenant ID. | 
+ **document_id** | **str**| The document ID. | 
 
 ### Return type
 
@@ -145,7 +147,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -219,14 +221,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **support_session_put_support_session**
 > support_session_put_support_session(tenant_id, document_id, support_session_put_support_session_request)
 
-
+Updates the support session for the specified document (config, study or worksheet).  Note that messages are now handled by Zendesk, and this method is now only used to  open or close a support session.
 
 ### Example
 
@@ -258,11 +260,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.SupportSessionApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-document_id = 'document_id_example' # str | 
-support_session_put_support_session_request = canopy.openapi.SupportSessionPutSupportSessionRequest() # SupportSessionPutSupportSessionRequest | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID.
+document_id = 'document_id_example' # str | The document ID.
+support_session_put_support_session_request = canopy.openapi.SupportSessionPutSupportSessionRequest() # SupportSessionPutSupportSessionRequest | The updated support session data. This is appended to the support session.
 
     try:
+        # Updates the support session for the specified document (config, study or worksheet).  Note that messages are now handled by Zendesk, and this method is now only used to  open or close a support session.
         api_instance.support_session_put_support_session(tenant_id, document_id, support_session_put_support_session_request)
     except ApiException as e:
         print("Exception when calling SupportSessionApi->support_session_put_support_session: %s\n" % e)
@@ -272,9 +275,9 @@ support_session_put_support_session_request = canopy.openapi.SupportSessionPutSu
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **document_id** | **str**|  | 
- **support_session_put_support_session_request** | [**SupportSessionPutSupportSessionRequest**](SupportSessionPutSupportSessionRequest.md)|  | 
+ **tenant_id** | **str**| The tenant ID. | 
+ **document_id** | **str**| The document ID. | 
+ **support_session_put_support_session_request** | [**SupportSessionPutSupportSessionRequest**](SupportSessionPutSupportSessionRequest.md)| The updated support session data. This is appended to the support session. | 
 
 ### Return type
 
@@ -292,7 +295,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -367,7 +370,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

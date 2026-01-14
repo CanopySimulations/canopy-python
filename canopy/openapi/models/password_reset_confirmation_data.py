@@ -122,8 +122,6 @@ class PasswordResetConfirmationData(object):
         :param token: The token of this PasswordResetConfirmationData.  # noqa: E501
         :type token: str
         """
-        if self.local_vars_configuration.client_side_validation and token is None:  # noqa: E501
-            raise ValueError("Invalid value for `token`, must not be `None`")  # noqa: E501
 
         self._token = token
 

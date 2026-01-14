@@ -75,6 +75,7 @@ class NewStudyDataSource(object):
     def config_type(self):
         """Gets the config_type of this NewStudyDataSource.  # noqa: E501
 
+        The config type of the data source.  # noqa: E501
 
         :return: The config_type of this NewStudyDataSource.  # noqa: E501
         :rtype: object
@@ -85,6 +86,7 @@ class NewStudyDataSource(object):
     def config_type(self, config_type):
         """Sets the config_type of this NewStudyDataSource.
 
+        The config type of the data source.  # noqa: E501
 
         :param config_type: The config_type of this NewStudyDataSource.  # noqa: E501
         :type config_type: object
@@ -96,6 +98,7 @@ class NewStudyDataSource(object):
     def user_id(self):
         """Gets the user_id of this NewStudyDataSource.  # noqa: E501
 
+        The user ID associated with the data source.  # noqa: E501
 
         :return: The user_id of this NewStudyDataSource.  # noqa: E501
         :rtype: object
@@ -106,6 +109,7 @@ class NewStudyDataSource(object):
     def user_id(self, user_id):
         """Sets the user_id of this NewStudyDataSource.
 
+        The user ID associated with the data source.  # noqa: E501
 
         :param user_id: The user_id of this NewStudyDataSource.  # noqa: E501
         :type user_id: object
@@ -117,6 +121,7 @@ class NewStudyDataSource(object):
     def config_id(self):
         """Gets the config_id of this NewStudyDataSource.  # noqa: E501
 
+        The ID of the config associated with the data source.  # noqa: E501
 
         :return: The config_id of this NewStudyDataSource.  # noqa: E501
         :rtype: str
@@ -127,6 +132,7 @@ class NewStudyDataSource(object):
     def config_id(self, config_id):
         """Sets the config_id of this NewStudyDataSource.
 
+        The ID of the config associated with the data source.  # noqa: E501
 
         :param config_id: The config_id of this NewStudyDataSource.  # noqa: E501
         :type config_id: str
@@ -138,6 +144,7 @@ class NewStudyDataSource(object):
     def name(self):
         """Gets the name of this NewStudyDataSource.  # noqa: E501
 
+        The name of the data source.  # noqa: E501
 
         :return: The name of this NewStudyDataSource.  # noqa: E501
         :rtype: str
@@ -148,6 +155,7 @@ class NewStudyDataSource(object):
     def name(self, name):
         """Sets the name of this NewStudyDataSource.
 
+        The name of the data source.  # noqa: E501
 
         :param name: The name of this NewStudyDataSource.  # noqa: E501
         :type name: str
@@ -159,6 +167,7 @@ class NewStudyDataSource(object):
     def is_edited(self):
         """Gets the is_edited of this NewStudyDataSource.  # noqa: E501
 
+        Whether the data source has been edited.  # noqa: E501
 
         :return: The is_edited of this NewStudyDataSource.  # noqa: E501
         :rtype: bool
@@ -169,6 +178,7 @@ class NewStudyDataSource(object):
     def is_edited(self, is_edited):
         """Sets the is_edited of this NewStudyDataSource.
 
+        Whether the data source has been edited.  # noqa: E501
 
         :param is_edited: The is_edited of this NewStudyDataSource.  # noqa: E501
         :type is_edited: bool

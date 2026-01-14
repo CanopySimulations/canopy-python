@@ -76,8 +76,6 @@ class GetSimVersionDownloadsQueryResult(object):
         :param sim_version: The sim_version of this GetSimVersionDownloadsQueryResult.  # noqa: E501
         :type sim_version: object
         """
-        if self.local_vars_configuration.client_side_validation and sim_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_version`, must not be `None`")  # noqa: E501
 
         self._sim_version = sim_version
 
@@ -99,8 +97,6 @@ class GetSimVersionDownloadsQueryResult(object):
         :param downloads: The downloads of this GetSimVersionDownloadsQueryResult.  # noqa: E501
         :type downloads: list[FileDownloadMetadata]
         """
-        if self.local_vars_configuration.client_side_validation and downloads is None:  # noqa: E501
-            raise ValueError("Invalid value for `downloads`, must not be `None`")  # noqa: E501
 
         self._downloads = downloads
 

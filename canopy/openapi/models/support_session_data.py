@@ -62,6 +62,7 @@ class SupportSessionData(object):
     def message(self):
         """Gets the message of this SupportSessionData.  # noqa: E501
 
+        The message associated with the support session.  # noqa: E501
 
         :return: The message of this SupportSessionData.  # noqa: E501
         :rtype: str
@@ -72,6 +73,7 @@ class SupportSessionData(object):
     def message(self, message):
         """Sets the message of this SupportSessionData.
 
+        The message associated with the support session.  # noqa: E501
 
         :param message: The message of this SupportSessionData.  # noqa: E501
         :type message: str
@@ -83,6 +85,7 @@ class SupportSessionData(object):
     def is_closed(self):
         """Gets the is_closed of this SupportSessionData.  # noqa: E501
 
+        Indicates whether the support session is closed.  # noqa: E501
 
         :return: The is_closed of this SupportSessionData.  # noqa: E501
         :rtype: bool
@@ -93,6 +96,7 @@ class SupportSessionData(object):
     def is_closed(self, is_closed):
         """Sets the is_closed of this SupportSessionData.
 
+        Indicates whether the support session is closed.  # noqa: E501
 
         :param is_closed: The is_closed of this SupportSessionData.  # noqa: E501
         :type is_closed: bool

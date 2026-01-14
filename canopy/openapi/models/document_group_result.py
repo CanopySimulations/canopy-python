@@ -56,7 +56,8 @@ class DocumentGroupResult(object):
         self.discriminator = None
 
         self.key = key
-        self.count = count
+        if count is not None:
+            self.count = count
 
     @property
     def key(self):
@@ -76,8 +77,6 @@ class DocumentGroupResult(object):
         :param key: The key of this DocumentGroupResult.  # noqa: E501
         :type key: str
         """
-        if self.local_vars_configuration.client_side_validation and key is None:  # noqa: E501
-            raise ValueError("Invalid value for `key`, must not be `None`")  # noqa: E501
 
         self._key = key
 
@@ -99,8 +98,6 @@ class DocumentGroupResult(object):
         :param count: The count of this DocumentGroupResult.  # noqa: E501
         :type count: int
         """
-        if self.local_vars_configuration.client_side_validation and count is None:  # noqa: E501
-            raise ValueError("Invalid value for `count`, must not be `None`")  # noqa: E501
 
         self._count = count
 

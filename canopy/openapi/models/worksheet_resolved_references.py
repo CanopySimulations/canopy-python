@@ -76,8 +76,6 @@ class WorksheetResolvedReferences(object):
         :param configs: The configs of this WorksheetResolvedReferences.  # noqa: E501
         :type configs: list[ConfigResolvedReference]
         """
-        if self.local_vars_configuration.client_side_validation and configs is None:  # noqa: E501
-            raise ValueError("Invalid value for `configs`, must not be `None`")  # noqa: E501
 
         self._configs = configs
 
@@ -99,8 +97,6 @@ class WorksheetResolvedReferences(object):
         :param studies: The studies of this WorksheetResolvedReferences.  # noqa: E501
         :type studies: list[StudyResolvedReference]
         """
-        if self.local_vars_configuration.client_side_validation and studies is None:  # noqa: E501
-            raise ValueError("Invalid value for `studies`, must not be `None`")  # noqa: E501
 
         self._studies = studies
 

@@ -37,7 +37,7 @@ class AvailabilityApi(object):
         self.api_client = api_client
 
     def availability_get(self, **kwargs):  # noqa: E501
-        """availability_get  # noqa: E501
+        """Tests the availability of the API.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,9 +45,9 @@ class AvailabilityApi(object):
         >>> thread = api.availability_get(async_req=True)
         >>> result = thread.get()
 
-        :param full:
+        :param full: If true, a full test is performed, including running a simple simulation.
         :type full: bool
-        :param ping:
+        :param ping: If true, no internal tests are performed, and the API responding is the extent of the test.  This takes precedence over the `full` parameter if both are specified.
         :type ping: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -68,7 +68,7 @@ class AvailabilityApi(object):
         return self.availability_get_with_http_info(**kwargs)  # noqa: E501
 
     def availability_get_with_http_info(self, **kwargs):  # noqa: E501
-        """availability_get  # noqa: E501
+        """Tests the availability of the API.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -76,9 +76,9 @@ class AvailabilityApi(object):
         >>> thread = api.availability_get_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param full:
+        :param full: If true, a full test is performed, including running a simple simulation.
         :type full: bool
-        :param ping:
+        :param ping: If true, no internal tests are performed, and the API responding is the extent of the test.  This takes precedence over the `full` parameter if both are specified.
         :type ping: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -156,6 +156,7 @@ class AvailabilityApi(object):
 
         response_types_map = {
             200: "AvailabilityResult",
+            503: "AvailabilityResult",
         }
 
         return self.api_client.call_api(
@@ -176,7 +177,7 @@ class AvailabilityApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def availability_head(self, **kwargs):  # noqa: E501
-        """availability_head  # noqa: E501
+        """This method performs a simple `ping` test of the API, where the API responding is  considered a successful test.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -203,7 +204,7 @@ class AvailabilityApi(object):
         return self.availability_head_with_http_info(**kwargs)  # noqa: E501
 
     def availability_head_with_http_info(self, **kwargs):  # noqa: E501
-        """availability_head  # noqa: E501
+        """This method performs a simple `ping` test of the API, where the API responding is  considered a successful test.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True

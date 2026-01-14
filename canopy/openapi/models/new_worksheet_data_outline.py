@@ -37,7 +37,7 @@ class NewWorksheetDataOutline(object):
     """
     openapi_types = {
         'rows': 'list[WorksheetRow]',
-        'label_definitions': 'GetTenantWorksheetLabelDefinitionsQueryResultLabelDefinitions'
+        'label_definitions': 'CollatedLabelDefinitionsWorksheet'
     }
 
     attribute_map = {
@@ -76,8 +76,6 @@ class NewWorksheetDataOutline(object):
         :param rows: The rows of this NewWorksheetDataOutline.  # noqa: E501
         :type rows: list[WorksheetRow]
         """
-        if self.local_vars_configuration.client_side_validation and rows is None:  # noqa: E501
-            raise ValueError("Invalid value for `rows`, must not be `None`")  # noqa: E501
 
         self._rows = rows
 
@@ -87,7 +85,7 @@ class NewWorksheetDataOutline(object):
 
 
         :return: The label_definitions of this NewWorksheetDataOutline.  # noqa: E501
-        :rtype: GetTenantWorksheetLabelDefinitionsQueryResultLabelDefinitions
+        :rtype: CollatedLabelDefinitionsWorksheet
         """
         return self._label_definitions
 
@@ -97,10 +95,8 @@ class NewWorksheetDataOutline(object):
 
 
         :param label_definitions: The label_definitions of this NewWorksheetDataOutline.  # noqa: E501
-        :type label_definitions: GetTenantWorksheetLabelDefinitionsQueryResultLabelDefinitions
+        :type label_definitions: CollatedLabelDefinitionsWorksheet
         """
-        if self.local_vars_configuration.client_side_validation and label_definitions is None:  # noqa: E501
-            raise ValueError("Invalid value for `label_definitions`, must not be `None`")  # noqa: E501
 
         self._label_definitions = label_definitions
 

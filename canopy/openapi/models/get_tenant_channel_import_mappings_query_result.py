@@ -72,8 +72,6 @@ class GetTenantChannelImportMappingsQueryResult(object):
         :param channel_import_mappings: The channel_import_mappings of this GetTenantChannelImportMappingsQueryResult.  # noqa: E501
         :type channel_import_mappings: list[ChannelImportMapping]
         """
-        if self.local_vars_configuration.client_side_validation and channel_import_mappings is None:  # noqa: E501
-            raise ValueError("Invalid value for `channel_import_mappings`, must not be `None`")  # noqa: E501
 
         self._channel_import_mappings = channel_import_mappings
 

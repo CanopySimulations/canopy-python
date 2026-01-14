@@ -66,6 +66,7 @@ class StudyPutStudyRequest(object):
     def name(self):
         """Gets the name of this StudyPutStudyRequest.  # noqa: E501
 
+        The name of the study.  # noqa: E501
 
         :return: The name of this StudyPutStudyRequest.  # noqa: E501
         :rtype: str
@@ -76,6 +77,7 @@ class StudyPutStudyRequest(object):
     def name(self, name):
         """Sets the name of this StudyPutStudyRequest.
 
+        The name of the study.  # noqa: E501
 
         :param name: The name of this StudyPutStudyRequest.  # noqa: E501
         :type name: str
@@ -87,6 +89,7 @@ class StudyPutStudyRequest(object):
     def properties(self):
         """Gets the properties of this StudyPutStudyRequest.  # noqa: E501
 
+        The list of custom properties associated with the study.  # noqa: E501
 
         :return: The properties of this StudyPutStudyRequest.  # noqa: E501
         :rtype: list[DocumentCustomPropertyData]
@@ -97,6 +100,7 @@ class StudyPutStudyRequest(object):
     def properties(self, properties):
         """Sets the properties of this StudyPutStudyRequest.
 
+        The list of custom properties associated with the study.  # noqa: E501
 
         :param properties: The properties of this StudyPutStudyRequest.  # noqa: E501
         :type properties: list[DocumentCustomPropertyData]
@@ -108,6 +112,7 @@ class StudyPutStudyRequest(object):
     def notes(self):
         """Gets the notes of this StudyPutStudyRequest.  # noqa: E501
 
+        The notes associated with the study.  # noqa: E501
 
         :return: The notes of this StudyPutStudyRequest.  # noqa: E501
         :rtype: str
@@ -118,6 +123,7 @@ class StudyPutStudyRequest(object):
     def notes(self, notes):
         """Sets the notes of this StudyPutStudyRequest.
 
+        The notes associated with the study.  # noqa: E501
 
         :param notes: The notes of this StudyPutStudyRequest.  # noqa: E501
         :type notes: str

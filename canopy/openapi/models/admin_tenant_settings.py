@@ -36,110 +36,47 @@ class AdminTenantSettings(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'study_types': 'list[str]',
-        'tags': 'list[str]',
-        'internal_tags': 'list[str]',
         'sim_version': 'object',
         'pool_settings': 'AdminTenantSettingsPoolSettings',
         'secondary_pool_settings': 'AdminTenantSettingsPoolSettings',
-        'heavy_pool_settings': 'AdminTenantSettingsPoolSettings'
+        'heavy_pool_settings': 'AdminTenantSettingsPoolSettings',
+        'study_types': 'list[str]',
+        'tags': 'list[str]',
+        'internal_tags': 'list[str]'
     }
 
     attribute_map = {
-        'study_types': 'studyTypes',
-        'tags': 'tags',
-        'internal_tags': 'internalTags',
         'sim_version': 'simVersion',
         'pool_settings': 'poolSettings',
         'secondary_pool_settings': 'secondaryPoolSettings',
-        'heavy_pool_settings': 'heavyPoolSettings'
+        'heavy_pool_settings': 'heavyPoolSettings',
+        'study_types': 'studyTypes',
+        'tags': 'tags',
+        'internal_tags': 'internalTags'
     }
 
-    def __init__(self, study_types=None, tags=None, internal_tags=None, sim_version=None, pool_settings=None, secondary_pool_settings=None, heavy_pool_settings=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, sim_version=None, pool_settings=None, secondary_pool_settings=None, heavy_pool_settings=None, study_types=None, tags=None, internal_tags=None, local_vars_configuration=None):  # noqa: E501
         """AdminTenantSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._study_types = None
-        self._tags = None
-        self._internal_tags = None
         self._sim_version = None
         self._pool_settings = None
         self._secondary_pool_settings = None
         self._heavy_pool_settings = None
+        self._study_types = None
+        self._tags = None
+        self._internal_tags = None
         self.discriminator = None
 
-        self.study_types = study_types
-        self.tags = tags
-        self.internal_tags = internal_tags
         self.sim_version = sim_version
         self.pool_settings = pool_settings
         self.secondary_pool_settings = secondary_pool_settings
         self.heavy_pool_settings = heavy_pool_settings
-
-    @property
-    def study_types(self):
-        """Gets the study_types of this AdminTenantSettings.  # noqa: E501
-
-
-        :return: The study_types of this AdminTenantSettings.  # noqa: E501
-        :rtype: list[str]
-        """
-        return self._study_types
-
-    @study_types.setter
-    def study_types(self, study_types):
-        """Sets the study_types of this AdminTenantSettings.
-
-
-        :param study_types: The study_types of this AdminTenantSettings.  # noqa: E501
-        :type study_types: list[str]
-        """
-
-        self._study_types = study_types
-
-    @property
-    def tags(self):
-        """Gets the tags of this AdminTenantSettings.  # noqa: E501
-
-
-        :return: The tags of this AdminTenantSettings.  # noqa: E501
-        :rtype: list[str]
-        """
-        return self._tags
-
-    @tags.setter
-    def tags(self, tags):
-        """Sets the tags of this AdminTenantSettings.
-
-
-        :param tags: The tags of this AdminTenantSettings.  # noqa: E501
-        :type tags: list[str]
-        """
-
-        self._tags = tags
-
-    @property
-    def internal_tags(self):
-        """Gets the internal_tags of this AdminTenantSettings.  # noqa: E501
-
-
-        :return: The internal_tags of this AdminTenantSettings.  # noqa: E501
-        :rtype: list[str]
-        """
-        return self._internal_tags
-
-    @internal_tags.setter
-    def internal_tags(self, internal_tags):
-        """Sets the internal_tags of this AdminTenantSettings.
-
-
-        :param internal_tags: The internal_tags of this AdminTenantSettings.  # noqa: E501
-        :type internal_tags: list[str]
-        """
-
-        self._internal_tags = internal_tags
+        self.study_types = study_types
+        self.tags = tags
+        self.internal_tags = internal_tags
 
     @property
     def sim_version(self):
@@ -224,6 +161,69 @@ class AdminTenantSettings(object):
         """
 
         self._heavy_pool_settings = heavy_pool_settings
+
+    @property
+    def study_types(self):
+        """Gets the study_types of this AdminTenantSettings.  # noqa: E501
+
+
+        :return: The study_types of this AdminTenantSettings.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._study_types
+
+    @study_types.setter
+    def study_types(self, study_types):
+        """Sets the study_types of this AdminTenantSettings.
+
+
+        :param study_types: The study_types of this AdminTenantSettings.  # noqa: E501
+        :type study_types: list[str]
+        """
+
+        self._study_types = study_types
+
+    @property
+    def tags(self):
+        """Gets the tags of this AdminTenantSettings.  # noqa: E501
+
+
+        :return: The tags of this AdminTenantSettings.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._tags
+
+    @tags.setter
+    def tags(self, tags):
+        """Sets the tags of this AdminTenantSettings.
+
+
+        :param tags: The tags of this AdminTenantSettings.  # noqa: E501
+        :type tags: list[str]
+        """
+
+        self._tags = tags
+
+    @property
+    def internal_tags(self):
+        """Gets the internal_tags of this AdminTenantSettings.  # noqa: E501
+
+
+        :return: The internal_tags of this AdminTenantSettings.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._internal_tags
+
+    @internal_tags.setter
+    def internal_tags(self, internal_tags):
+        """Sets the internal_tags of this AdminTenantSettings.
+
+
+        :param internal_tags: The internal_tags of this AdminTenantSettings.  # noqa: E501
+        :type internal_tags: list[str]
+        """
+
+        self._internal_tags = internal_tags
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

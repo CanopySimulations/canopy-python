@@ -62,6 +62,7 @@ class GetStudyDownloadUrlQueryResult(object):
     def access_signature(self):
         """Gets the access_signature of this GetStudyDownloadUrlQueryResult.  # noqa: E501
 
+        The access signature granting access to the requested study.  # noqa: E501
 
         :return: The access_signature of this GetStudyDownloadUrlQueryResult.  # noqa: E501
         :rtype: str
@@ -72,12 +73,11 @@ class GetStudyDownloadUrlQueryResult(object):
     def access_signature(self, access_signature):
         """Sets the access_signature of this GetStudyDownloadUrlQueryResult.
 
+        The access signature granting access to the requested study.  # noqa: E501
 
         :param access_signature: The access_signature of this GetStudyDownloadUrlQueryResult.  # noqa: E501
         :type access_signature: str
         """
-        if self.local_vars_configuration.client_side_validation and access_signature is None:  # noqa: E501
-            raise ValueError("Invalid value for `access_signature`, must not be `None`")  # noqa: E501
 
         self._access_signature = access_signature
 
@@ -85,6 +85,7 @@ class GetStudyDownloadUrlQueryResult(object):
     def expiry(self):
         """Gets the expiry of this GetStudyDownloadUrlQueryResult.  # noqa: E501
 
+        The expiry time of the access signature as a ISO8601 formatted string.  # noqa: E501
 
         :return: The expiry of this GetStudyDownloadUrlQueryResult.  # noqa: E501
         :rtype: str
@@ -95,12 +96,11 @@ class GetStudyDownloadUrlQueryResult(object):
     def expiry(self, expiry):
         """Sets the expiry of this GetStudyDownloadUrlQueryResult.
 
+        The expiry time of the access signature as a ISO8601 formatted string.  # noqa: E501
 
         :param expiry: The expiry of this GetStudyDownloadUrlQueryResult.  # noqa: E501
         :type expiry: str
         """
-        if self.local_vars_configuration.client_side_validation and expiry is None:  # noqa: E501
-            raise ValueError("Invalid value for `expiry`, must not be `None`")  # noqa: E501
 
         self._expiry = expiry
 

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | 
+**name** | **str** |  | [optional] 
 **config_id** | **object** |  | [optional] 
 **user_id** | **object** |  | [optional] 
 

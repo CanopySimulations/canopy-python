@@ -37,27 +37,28 @@ class TokenApi(object):
         self.api_client = api_client
 
     def token_post_token(self, **kwargs):  # noqa: E501
-        """token_post_token  # noqa: E501
+        """Gets a token for the specified user.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the identity.canopysimulations.com/connect/token endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.token_post_token(async_req=True)
         >>> result = thread.get()
 
-        :param grant_type:
+        :param grant_type: The grant type. Either `password` or `refresh_token`.
         :type grant_type: str
-        :param refresh_token:
+        :param refresh_token: The refresh token. Required for `refresh_token` grant type.
         :type refresh_token: str
-        :param username:
+        :param username: The user's username. Required for `password` grant type.
         :type username: str
-        :param tenant:
+        :param tenant: The user's tenant short name. Required for `password` grant type.
         :type tenant: str
-        :param password:
+        :param password: The user's password. Required for `password` grant type.
         :type password: str
-        :param client_id:
+        :param client_id: The client ID. Required for `password` or `refresh_token` grant type.
         :type client_id: str
-        :param client_secret:
+        :param client_secret: The client secret. Required for `password` grant type.
         :type client_secret: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -78,27 +79,28 @@ class TokenApi(object):
         return self.token_post_token_with_http_info(**kwargs)  # noqa: E501
 
     def token_post_token_with_http_info(self, **kwargs):  # noqa: E501
-        """token_post_token  # noqa: E501
+        """Gets a token for the specified user.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the identity.canopysimulations.com/connect/token endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.token_post_token_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param grant_type:
+        :param grant_type: The grant type. Either `password` or `refresh_token`.
         :type grant_type: str
-        :param refresh_token:
+        :param refresh_token: The refresh token. Required for `refresh_token` grant type.
         :type refresh_token: str
-        :param username:
+        :param username: The user's username. Required for `password` grant type.
         :type username: str
-        :param tenant:
+        :param tenant: The user's tenant short name. Required for `password` grant type.
         :type tenant: str
-        :param password:
+        :param password: The user's password. Required for `password` grant type.
         :type password: str
-        :param client_id:
+        :param client_id: The client ID. Required for `password` or `refresh_token` grant type.
         :type client_id: str
-        :param client_secret:
+        :param client_secret: The client secret. Required for `password` grant type.
         :type client_secret: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

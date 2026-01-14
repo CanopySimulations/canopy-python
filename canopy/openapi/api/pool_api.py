@@ -37,7 +37,7 @@ class PoolApi(object):
         self.api_client = api_client
 
     def pool_get_pool_status(self, tenant_id, **kwargs):  # noqa: E501
-        """pool_get_pool_status  # noqa: E501
+        """Gets the status of a pool.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,9 +45,9 @@ class PoolApi(object):
         >>> thread = api.pool_get_pool_status(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param pool_type:
+        :param pool_type: The type of pool. This can be one of `primary`, `secondary`, `heavy`.
         :type pool_type: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -68,7 +68,7 @@ class PoolApi(object):
         return self.pool_get_pool_status_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def pool_get_pool_status_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """pool_get_pool_status  # noqa: E501
+        """Gets the status of a pool.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -76,9 +76,9 @@ class PoolApi(object):
         >>> thread = api.pool_get_pool_status_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param pool_type:
+        :param pool_type: The type of pool. This can be one of `primary`, `secondary`, `heavy`.
         :type pool_type: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -179,7 +179,7 @@ class PoolApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def pool_get_pools(self, **kwargs):  # noqa: E501
-        """pool_get_pools  # noqa: E501
+        """Gets the status of all pools.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -206,7 +206,7 @@ class PoolApi(object):
         return self.pool_get_pools_with_http_info(**kwargs)  # noqa: E501
 
     def pool_get_pools_with_http_info(self, **kwargs):  # noqa: E501
-        """pool_get_pools  # noqa: E501
+        """Gets the status of all pools.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -304,7 +304,7 @@ class PoolApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def pool_get_test_auto_scale_formula(self, tenant_id, **kwargs):  # noqa: E501
-        """pool_get_test_auto_scale_formula  # noqa: E501
+        """Tests an auto-scale formula on a specific pool without applying it.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -312,11 +312,11 @@ class PoolApi(object):
         >>> thread = api.pool_get_test_auto_scale_formula(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param pool_id:
+        :param pool_id: The pool ID.
         :type pool_id: str
-        :param formula:
+        :param formula: The formula to test.
         :type formula: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -337,7 +337,7 @@ class PoolApi(object):
         return self.pool_get_test_auto_scale_formula_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def pool_get_test_auto_scale_formula_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """pool_get_test_auto_scale_formula  # noqa: E501
+        """Tests an auto-scale formula on a specific pool without applying it.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -345,11 +345,11 @@ class PoolApi(object):
         >>> thread = api.pool_get_test_auto_scale_formula_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param pool_id:
+        :param pool_id: The pool ID.
         :type pool_id: str
-        :param formula:
+        :param formula: The formula to test.
         :type formula: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

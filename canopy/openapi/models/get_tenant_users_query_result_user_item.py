@@ -68,7 +68,8 @@ class GetTenantUsersQueryResultUserItem(object):
         self.username = username
         self.email = email
         self.roles = roles
-        self.is_enabled = is_enabled
+        if is_enabled is not None:
+            self.is_enabled = is_enabled
 
     @property
     def user_id(self):
@@ -88,8 +89,6 @@ class GetTenantUsersQueryResultUserItem(object):
         :param user_id: The user_id of this GetTenantUsersQueryResultUserItem.  # noqa: E501
         :type user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -111,8 +110,6 @@ class GetTenantUsersQueryResultUserItem(object):
         :param username: The username of this GetTenantUsersQueryResultUserItem.  # noqa: E501
         :type username: object
         """
-        if self.local_vars_configuration.client_side_validation and username is None:  # noqa: E501
-            raise ValueError("Invalid value for `username`, must not be `None`")  # noqa: E501
 
         self._username = username
 
@@ -134,8 +131,6 @@ class GetTenantUsersQueryResultUserItem(object):
         :param email: The email of this GetTenantUsersQueryResultUserItem.  # noqa: E501
         :type email: object
         """
-        if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
-            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 
@@ -157,8 +152,6 @@ class GetTenantUsersQueryResultUserItem(object):
         :param roles: The roles of this GetTenantUsersQueryResultUserItem.  # noqa: E501
         :type roles: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and roles is None:  # noqa: E501
-            raise ValueError("Invalid value for `roles`, must not be `None`")  # noqa: E501
 
         self._roles = roles
 
@@ -180,8 +173,6 @@ class GetTenantUsersQueryResultUserItem(object):
         :param is_enabled: The is_enabled of this GetTenantUsersQueryResultUserItem.  # noqa: E501
         :type is_enabled: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_enabled is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_enabled`, must not be `None`")  # noqa: E501
 
         self._is_enabled = is_enabled
 

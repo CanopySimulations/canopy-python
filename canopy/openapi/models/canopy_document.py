@@ -50,7 +50,8 @@ class CanopyDocument(object):
         'support_session': 'CanopyDocumentSupportSession',
         'notes': 'str',
         'delete_requested': 'bool',
-        'parent_worksheet_id': 'object'
+        'parent_worksheet_id': 'object',
+        'lower_name': 'str'
     }
 
     attribute_map = {
@@ -68,10 +69,11 @@ class CanopyDocument(object):
         'support_session': 'supportSession',
         'notes': 'notes',
         'delete_requested': 'deleteRequested',
-        'parent_worksheet_id': 'parentWorksheetId'
+        'parent_worksheet_id': 'parentWorksheetId',
+        'lower_name': 'lowerName'
     }
 
-    def __init__(self, document_id=None, tenant_id=None, user_id=None, name=None, type=None, sub_type=None, sim_version=None, creation_date=None, modified_date=None, properties=None, data=None, support_session=None, notes=None, delete_requested=None, parent_worksheet_id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, document_id=None, tenant_id=None, user_id=None, name=None, type=None, sub_type=None, sim_version=None, creation_date=None, modified_date=None, properties=None, data=None, support_session=None, notes=None, delete_requested=None, parent_worksheet_id=None, lower_name=None, local_vars_configuration=None):  # noqa: E501
         """CanopyDocument - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -92,17 +94,21 @@ class CanopyDocument(object):
         self._notes = None
         self._delete_requested = None
         self._parent_worksheet_id = None
+        self._lower_name = None
         self.discriminator = None
 
         self.document_id = document_id
         self.tenant_id = tenant_id
         self.user_id = user_id
         self.name = name
-        self.type = type
+        if type is not None:
+            self.type = type
         self.sub_type = sub_type
         self.sim_version = sim_version
-        self.creation_date = creation_date
-        self.modified_date = modified_date
+        if creation_date is not None:
+            self.creation_date = creation_date
+        if modified_date is not None:
+            self.modified_date = modified_date
         self.properties = properties
         self.data = data
         self.support_session = support_session
@@ -110,6 +116,7 @@ class CanopyDocument(object):
         if delete_requested is not None:
             self.delete_requested = delete_requested
         self.parent_worksheet_id = parent_worksheet_id
+        self.lower_name = lower_name
 
     @property
     def document_id(self):
@@ -129,8 +136,6 @@ class CanopyDocument(object):
         :param document_id: The document_id of this CanopyDocument.  # noqa: E501
         :type document_id: object
         """
-        if self.local_vars_configuration.client_side_validation and document_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `document_id`, must not be `None`")  # noqa: E501
 
         self._document_id = document_id
 
@@ -152,8 +157,6 @@ class CanopyDocument(object):
         :param tenant_id: The tenant_id of this CanopyDocument.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -175,8 +178,6 @@ class CanopyDocument(object):
         :param user_id: The user_id of this CanopyDocument.  # noqa: E501
         :type user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -198,8 +199,6 @@ class CanopyDocument(object):
         :param name: The name of this CanopyDocument.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -221,8 +220,6 @@ class CanopyDocument(object):
         :param type: The type of this CanopyDocument.  # noqa: E501
         :type type: str
         """
-        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
-            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
 
         self._type = type
 
@@ -244,8 +241,6 @@ class CanopyDocument(object):
         :param sub_type: The sub_type of this CanopyDocument.  # noqa: E501
         :type sub_type: object
         """
-        if self.local_vars_configuration.client_side_validation and sub_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `sub_type`, must not be `None`")  # noqa: E501
 
         self._sub_type = sub_type
 
@@ -267,8 +262,6 @@ class CanopyDocument(object):
         :param sim_version: The sim_version of this CanopyDocument.  # noqa: E501
         :type sim_version: object
         """
-        if self.local_vars_configuration.client_side_validation and sim_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_version`, must not be `None`")  # noqa: E501
 
         self._sim_version = sim_version
 
@@ -290,8 +283,6 @@ class CanopyDocument(object):
         :param creation_date: The creation_date of this CanopyDocument.  # noqa: E501
         :type creation_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and creation_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `creation_date`, must not be `None`")  # noqa: E501
 
         self._creation_date = creation_date
 
@@ -313,8 +304,6 @@ class CanopyDocument(object):
         :param modified_date: The modified_date of this CanopyDocument.  # noqa: E501
         :type modified_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and modified_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `modified_date`, must not be `None`")  # noqa: E501
 
         self._modified_date = modified_date
 
@@ -443,6 +432,27 @@ class CanopyDocument(object):
         """
 
         self._parent_worksheet_id = parent_worksheet_id
+
+    @property
+    def lower_name(self):
+        """Gets the lower_name of this CanopyDocument.  # noqa: E501
+
+
+        :return: The lower_name of this CanopyDocument.  # noqa: E501
+        :rtype: str
+        """
+        return self._lower_name
+
+    @lower_name.setter
+    def lower_name(self, lower_name):
+        """Sets the lower_name of this CanopyDocument.
+
+
+        :param lower_name: The lower_name of this CanopyDocument.  # noqa: E501
+        :type lower_name: str
+        """
+
+        self._lower_name = lower_name
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -62,6 +62,7 @@ class UpgradeConfigQueryResult(object):
     def config(self):
         """Gets the config of this UpgradeConfigQueryResult.  # noqa: E501
 
+        The upgraded config data.  # noqa: E501
 
         :return: The config of this UpgradeConfigQueryResult.  # noqa: E501
         :rtype: object
@@ -72,6 +73,7 @@ class UpgradeConfigQueryResult(object):
     def config(self, config):
         """Sets the config of this UpgradeConfigQueryResult.
 
+        The upgraded config data.  # noqa: E501
 
         :param config: The config of this UpgradeConfigQueryResult.  # noqa: E501
         :type config: object
@@ -83,6 +85,7 @@ class UpgradeConfigQueryResult(object):
     def converted_sim_version(self):
         """Gets the converted_sim_version of this UpgradeConfigQueryResult.  # noqa: E501
 
+        The sim version the config now conforms to.  # noqa: E501
 
         :return: The converted_sim_version of this UpgradeConfigQueryResult.  # noqa: E501
         :rtype: object
@@ -93,12 +96,11 @@ class UpgradeConfigQueryResult(object):
     def converted_sim_version(self, converted_sim_version):
         """Sets the converted_sim_version of this UpgradeConfigQueryResult.
 
+        The sim version the config now conforms to.  # noqa: E501
 
         :param converted_sim_version: The converted_sim_version of this UpgradeConfigQueryResult.  # noqa: E501
         :type converted_sim_version: object
         """
-        if self.local_vars_configuration.client_side_validation and converted_sim_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `converted_sim_version`, must not be `None`")  # noqa: E501
 
         self._converted_sim_version = converted_sim_version
 

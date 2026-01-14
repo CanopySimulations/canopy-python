@@ -38,7 +38,7 @@ class GetConfigQueryResult(object):
     openapi_types = {
         'config': 'GetConfigQueryResultConfig',
         'converted_sim_version': 'object',
-        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
+        'user_information': 'GetConfigQueryResultUserInformation'
     }
 
     attribute_map = {
@@ -80,8 +80,6 @@ class GetConfigQueryResult(object):
         :param config: The config of this GetConfigQueryResult.  # noqa: E501
         :type config: GetConfigQueryResultConfig
         """
-        if self.local_vars_configuration.client_side_validation and config is None:  # noqa: E501
-            raise ValueError("Invalid value for `config`, must not be `None`")  # noqa: E501
 
         self._config = config
 
@@ -89,6 +87,7 @@ class GetConfigQueryResult(object):
     def converted_sim_version(self):
         """Gets the converted_sim_version of this GetConfigQueryResult.  # noqa: E501
 
+        The sim version the config has been converted to.  The sim version within the `CanopyDocument` still represents the version  the config was saved as.  # noqa: E501
 
         :return: The converted_sim_version of this GetConfigQueryResult.  # noqa: E501
         :rtype: object
@@ -99,12 +98,11 @@ class GetConfigQueryResult(object):
     def converted_sim_version(self, converted_sim_version):
         """Sets the converted_sim_version of this GetConfigQueryResult.
 
+        The sim version the config has been converted to.  The sim version within the `CanopyDocument` still represents the version  the config was saved as.  # noqa: E501
 
         :param converted_sim_version: The converted_sim_version of this GetConfigQueryResult.  # noqa: E501
         :type converted_sim_version: object
         """
-        if self.local_vars_configuration.client_side_validation and converted_sim_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `converted_sim_version`, must not be `None`")  # noqa: E501
 
         self._converted_sim_version = converted_sim_version
 
@@ -114,7 +112,7 @@ class GetConfigQueryResult(object):
 
 
         :return: The user_information of this GetConfigQueryResult.  # noqa: E501
-        :rtype: GetAllSupportSessionsQueryResultUserInformation
+        :rtype: GetConfigQueryResultUserInformation
         """
         return self._user_information
 
@@ -124,10 +122,8 @@ class GetConfigQueryResult(object):
 
 
         :param user_information: The user_information of this GetConfigQueryResult.  # noqa: E501
-        :type user_information: GetAllSupportSessionsQueryResultUserInformation
+        :type user_information: GetConfigQueryResultUserInformation
         """
-        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 

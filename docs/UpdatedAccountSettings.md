@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **new_username** | **str** |  | [optional] 
 **new_email** | **str** |  | [optional] 
+**current_password** | **str** |  | [optional] 
 **new_password** | **str** |  | [optional] 
 **is_enabled** | **bool** |  | [optional] 
 

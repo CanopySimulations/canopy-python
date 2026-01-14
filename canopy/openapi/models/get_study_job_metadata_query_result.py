@@ -36,7 +36,7 @@ class GetStudyJobMetadataQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'study_job': 'GetConfigQueryResultConfig',
+        'study_job': 'GetStudyJobMetadataQueryResultStudyJob',
         'access_information': 'GetStudyJobMetadataQueryResultAccessInformation'
     }
 
@@ -64,7 +64,7 @@ class GetStudyJobMetadataQueryResult(object):
 
 
         :return: The study_job of this GetStudyJobMetadataQueryResult.  # noqa: E501
-        :rtype: GetConfigQueryResultConfig
+        :rtype: GetStudyJobMetadataQueryResultStudyJob
         """
         return self._study_job
 
@@ -74,10 +74,8 @@ class GetStudyJobMetadataQueryResult(object):
 
 
         :param study_job: The study_job of this GetStudyJobMetadataQueryResult.  # noqa: E501
-        :type study_job: GetConfigQueryResultConfig
+        :type study_job: GetStudyJobMetadataQueryResultStudyJob
         """
-        if self.local_vars_configuration.client_side_validation and study_job is None:  # noqa: E501
-            raise ValueError("Invalid value for `study_job`, must not be `None`")  # noqa: E501
 
         self._study_job = study_job
 
@@ -99,8 +97,6 @@ class GetStudyJobMetadataQueryResult(object):
         :param access_information: The access_information of this GetStudyJobMetadataQueryResult.  # noqa: E501
         :type access_information: GetStudyJobMetadataQueryResultAccessInformation
         """
-        if self.local_vars_configuration.client_side_validation and access_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `access_information`, must not be `None`")  # noqa: E501
 
         self._access_information = access_information
 

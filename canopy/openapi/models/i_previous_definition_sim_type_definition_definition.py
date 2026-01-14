@@ -67,7 +67,8 @@ class IPreviousDefinitionSimTypeDefinitionDefinition(object):
         self._previous_definitions = None
         self.discriminator = None
 
-        self.sim_type = sim_type
+        if sim_type is not None:
+            self.sim_type = sim_type
         self.name = name
         self.known_output_files = known_output_files
         self.state = state
@@ -92,8 +93,6 @@ class IPreviousDefinitionSimTypeDefinitionDefinition(object):
         :param sim_type: The sim_type of this IPreviousDefinitionSimTypeDefinitionDefinition.  # noqa: E501
         :type sim_type: str
         """
-        if self.local_vars_configuration.client_side_validation and sim_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_type`, must not be `None`")  # noqa: E501
 
         self._sim_type = sim_type
 
@@ -115,8 +114,6 @@ class IPreviousDefinitionSimTypeDefinitionDefinition(object):
         :param name: The name of this IPreviousDefinitionSimTypeDefinitionDefinition.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -138,8 +135,6 @@ class IPreviousDefinitionSimTypeDefinitionDefinition(object):
         :param known_output_files: The known_output_files of this IPreviousDefinitionSimTypeDefinitionDefinition.  # noqa: E501
         :type known_output_files: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and known_output_files is None:  # noqa: E501
-            raise ValueError("Invalid value for `known_output_files`, must not be `None`")  # noqa: E501
 
         self._known_output_files = known_output_files
 
@@ -203,8 +198,6 @@ class IPreviousDefinitionSimTypeDefinitionDefinition(object):
         :param previous_definitions: The previous_definitions of this IPreviousDefinitionSimTypeDefinitionDefinition.  # noqa: E501
         :type previous_definitions: list[IPreviousDefinitionSimTypeDefinition]
         """
-        if self.local_vars_configuration.client_side_validation and previous_definitions is None:  # noqa: E501
-            raise ValueError("Invalid value for `previous_definitions`, must not be `None`")  # noqa: E501
 
         self._previous_definitions = previous_definitions
 

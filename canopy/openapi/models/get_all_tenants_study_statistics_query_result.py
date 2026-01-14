@@ -58,6 +58,7 @@ class GetAllTenantsStudyStatisticsQueryResult(object):
     def tenants(self):
         """Gets the tenants of this GetAllTenantsStudyStatisticsQueryResult.  # noqa: E501
 
+        The list of tenants and their study statistics.  # noqa: E501
 
         :return: The tenants of this GetAllTenantsStudyStatisticsQueryResult.  # noqa: E501
         :rtype: list[TenantStatistics]
@@ -68,12 +69,11 @@ class GetAllTenantsStudyStatisticsQueryResult(object):
     def tenants(self, tenants):
         """Sets the tenants of this GetAllTenantsStudyStatisticsQueryResult.
 
+        The list of tenants and their study statistics.  # noqa: E501
 
         :param tenants: The tenants of this GetAllTenantsStudyStatisticsQueryResult.  # noqa: E501
         :type tenants: list[TenantStatistics]
         """
-        if self.local_vars_configuration.client_side_validation and tenants is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenants`, must not be `None`")  # noqa: E501
 
         self._tenants = tenants
 

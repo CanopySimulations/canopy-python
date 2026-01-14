@@ -39,17 +39,19 @@ class TenancyPostTenantRequest(object):
         'name': 'str',
         'short_name': 'str',
         'database_id': 'str',
-        'region': 'str'
+        'region': 'str',
+        'deployment_id': 'int'
     }
 
     attribute_map = {
         'name': 'name',
         'short_name': 'shortName',
         'database_id': 'databaseId',
-        'region': 'region'
+        'region': 'region',
+        'deployment_id': 'deploymentId'
     }
 
-    def __init__(self, name=None, short_name=None, database_id=None, region=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, short_name=None, database_id=None, region=None, deployment_id=None, local_vars_configuration=None):  # noqa: E501
         """TenancyPostTenantRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -59,17 +61,20 @@ class TenancyPostTenantRequest(object):
         self._short_name = None
         self._database_id = None
         self._region = None
+        self._deployment_id = None
         self.discriminator = None
 
         self.name = name
         self.short_name = short_name
         self.database_id = database_id
         self.region = region
+        self.deployment_id = deployment_id
 
     @property
     def name(self):
         """Gets the name of this TenancyPostTenantRequest.  # noqa: E501
 
+        The name of the new tenant.  # noqa: E501
 
         :return: The name of this TenancyPostTenantRequest.  # noqa: E501
         :rtype: str
@@ -80,6 +85,7 @@ class TenancyPostTenantRequest(object):
     def name(self, name):
         """Sets the name of this TenancyPostTenantRequest.
 
+        The name of the new tenant.  # noqa: E501
 
         :param name: The name of this TenancyPostTenantRequest.  # noqa: E501
         :type name: str
@@ -91,6 +97,7 @@ class TenancyPostTenantRequest(object):
     def short_name(self):
         """Gets the short_name of this TenancyPostTenantRequest.  # noqa: E501
 
+        The short name of the new tenant.  # noqa: E501
 
         :return: The short_name of this TenancyPostTenantRequest.  # noqa: E501
         :rtype: str
@@ -101,6 +108,7 @@ class TenancyPostTenantRequest(object):
     def short_name(self, short_name):
         """Sets the short_name of this TenancyPostTenantRequest.
 
+        The short name of the new tenant.  # noqa: E501
 
         :param short_name: The short_name of this TenancyPostTenantRequest.  # noqa: E501
         :type short_name: str
@@ -112,6 +120,7 @@ class TenancyPostTenantRequest(object):
     def database_id(self):
         """Gets the database_id of this TenancyPostTenantRequest.  # noqa: E501
 
+        The ID of the document database for the new tenant.  # noqa: E501
 
         :return: The database_id of this TenancyPostTenantRequest.  # noqa: E501
         :rtype: str
@@ -122,6 +131,7 @@ class TenancyPostTenantRequest(object):
     def database_id(self, database_id):
         """Sets the database_id of this TenancyPostTenantRequest.
 
+        The ID of the document database for the new tenant.  # noqa: E501
 
         :param database_id: The database_id of this TenancyPostTenantRequest.  # noqa: E501
         :type database_id: str
@@ -133,6 +143,7 @@ class TenancyPostTenantRequest(object):
     def region(self):
         """Gets the region of this TenancyPostTenantRequest.  # noqa: E501
 
+        The region for the new tenant.  # noqa: E501
 
         :return: The region of this TenancyPostTenantRequest.  # noqa: E501
         :rtype: str
@@ -143,12 +154,36 @@ class TenancyPostTenantRequest(object):
     def region(self, region):
         """Sets the region of this TenancyPostTenantRequest.
 
+        The region for the new tenant.  # noqa: E501
 
         :param region: The region of this TenancyPostTenantRequest.  # noqa: E501
         :type region: str
         """
 
         self._region = region
+
+    @property
+    def deployment_id(self):
+        """Gets the deployment_id of this TenancyPostTenantRequest.  # noqa: E501
+
+        The deployment ID for the new tenant.  # noqa: E501
+
+        :return: The deployment_id of this TenancyPostTenantRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._deployment_id
+
+    @deployment_id.setter
+    def deployment_id(self, deployment_id):
+        """Sets the deployment_id of this TenancyPostTenantRequest.
+
+        The deployment ID for the new tenant.  # noqa: E501
+
+        :param deployment_id: The deployment_id of this TenancyPostTenantRequest.  # noqa: E501
+        :type deployment_id: int
+        """
+
+        self._deployment_id = deployment_id
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

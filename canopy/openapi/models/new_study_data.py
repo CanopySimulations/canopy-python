@@ -88,6 +88,7 @@ class NewStudyData(object):
     def name(self):
         """Gets the name of this NewStudyData.  # noqa: E501
 
+        The name of the study.  # noqa: E501
 
         :return: The name of this NewStudyData.  # noqa: E501
         :rtype: str
@@ -98,6 +99,7 @@ class NewStudyData(object):
     def name(self, name):
         """Sets the name of this NewStudyData.
 
+        The name of the study.  # noqa: E501
 
         :param name: The name of this NewStudyData.  # noqa: E501
         :type name: str
@@ -109,6 +111,7 @@ class NewStudyData(object):
     def is_transient(self):
         """Gets the is_transient of this NewStudyData.  # noqa: E501
 
+        Whether the study is transient.  # noqa: E501
 
         :return: The is_transient of this NewStudyData.  # noqa: E501
         :rtype: bool
@@ -119,6 +122,7 @@ class NewStudyData(object):
     def is_transient(self, is_transient):
         """Sets the is_transient of this NewStudyData.
 
+        Whether the study is transient.  # noqa: E501
 
         :param is_transient: The is_transient of this NewStudyData.  # noqa: E501
         :type is_transient: bool
@@ -130,6 +134,7 @@ class NewStudyData(object):
     def study_type(self):
         """Gets the study_type of this NewStudyData.  # noqa: E501
 
+        The type of the study.  # noqa: E501
 
         :return: The study_type of this NewStudyData.  # noqa: E501
         :rtype: str
@@ -140,6 +145,7 @@ class NewStudyData(object):
     def study_type(self, study_type):
         """Sets the study_type of this NewStudyData.
 
+        The type of the study.  # noqa: E501
 
         :param study_type: The study_type of this NewStudyData.  # noqa: E501
         :type study_type: str
@@ -151,6 +157,7 @@ class NewStudyData(object):
     def sources(self):
         """Gets the sources of this NewStudyData.  # noqa: E501
 
+        The data sources for the study.  # noqa: E501
 
         :return: The sources of this NewStudyData.  # noqa: E501
         :rtype: list[NewStudyDataSource]
@@ -161,6 +168,7 @@ class NewStudyData(object):
     def sources(self, sources):
         """Sets the sources of this NewStudyData.
 
+        The data sources for the study.  # noqa: E501
 
         :param sources: The sources of this NewStudyData.  # noqa: E501
         :type sources: list[NewStudyDataSource]
@@ -172,6 +180,7 @@ class NewStudyData(object):
     def properties(self):
         """Gets the properties of this NewStudyData.  # noqa: E501
 
+        The custom properties of the study.  # noqa: E501
 
         :return: The properties of this NewStudyData.  # noqa: E501
         :rtype: list[DocumentCustomPropertyData]
@@ -182,6 +191,7 @@ class NewStudyData(object):
     def properties(self, properties):
         """Sets the properties of this NewStudyData.
 
+        The custom properties of the study.  # noqa: E501
 
         :param properties: The properties of this NewStudyData.  # noqa: E501
         :type properties: list[DocumentCustomPropertyData]
@@ -193,6 +203,7 @@ class NewStudyData(object):
     def study(self):
         """Gets the study of this NewStudyData.  # noqa: E501
 
+        The JSON study data.  # noqa: E501
 
         :return: The study of this NewStudyData.  # noqa: E501
         :rtype: object
@@ -203,6 +214,7 @@ class NewStudyData(object):
     def study(self, study):
         """Sets the study of this NewStudyData.
 
+        The JSON study data.  # noqa: E501
 
         :param study: The study of this NewStudyData.  # noqa: E501
         :type study: object
@@ -214,6 +226,7 @@ class NewStudyData(object):
     def notes(self):
         """Gets the notes of this NewStudyData.  # noqa: E501
 
+        The notes for the study.  # noqa: E501
 
         :return: The notes of this NewStudyData.  # noqa: E501
         :rtype: str
@@ -224,6 +237,7 @@ class NewStudyData(object):
     def notes(self, notes):
         """Sets the notes of this NewStudyData.
 
+        The notes for the study.  # noqa: E501
 
         :param notes: The notes of this NewStudyData.  # noqa: E501
         :type notes: str
@@ -235,6 +249,7 @@ class NewStudyData(object):
     def sim_version(self):
         """Gets the sim_version of this NewStudyData.  # noqa: E501
 
+        The sim version for the study.  # noqa: E501
 
         :return: The sim_version of this NewStudyData.  # noqa: E501
         :rtype: str
@@ -245,6 +260,7 @@ class NewStudyData(object):
     def sim_version(self, sim_version):
         """Sets the sim_version of this NewStudyData.
 
+        The sim version for the study.  # noqa: E501
 
         :param sim_version: The sim_version of this NewStudyData.  # noqa: E501
         :type sim_version: str

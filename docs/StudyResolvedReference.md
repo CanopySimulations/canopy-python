@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reference** | [**StudyResolvedLabelsReference**](StudyResolvedLabelsReference.md) |  | 
+**reference** | [**StudyResolvedLabelsReference**](StudyResolvedLabelsReference.md) |  | [optional] 
 **data** | [**StudyResolvedReferenceData**](StudyResolvedReferenceData.md) |  | [optional] 
 **error** | **str** |  | [optional] 
 

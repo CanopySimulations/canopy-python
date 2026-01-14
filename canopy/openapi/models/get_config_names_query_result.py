@@ -62,6 +62,7 @@ class GetConfigNamesQueryResult(object):
     def names(self):
         """Gets the names of this GetConfigNamesQueryResult.  # noqa: E501
 
+        The list of config names.  # noqa: E501
 
         :return: The names of this GetConfigNamesQueryResult.  # noqa: E501
         :rtype: list[DocumentNameResult]
@@ -72,12 +73,11 @@ class GetConfigNamesQueryResult(object):
     def names(self, names):
         """Sets the names of this GetConfigNamesQueryResult.
 
+        The list of config names.  # noqa: E501
 
         :param names: The names of this GetConfigNamesQueryResult.  # noqa: E501
         :type names: list[DocumentNameResult]
         """
-        if self.local_vars_configuration.client_side_validation and names is None:  # noqa: E501
-            raise ValueError("Invalid value for `names`, must not be `None`")  # noqa: E501
 
         self._names = names
 
@@ -85,6 +85,7 @@ class GetConfigNamesQueryResult(object):
     def sim_version_names(self):
         """Gets the sim_version_names of this GetConfigNamesQueryResult.  # noqa: E501
 
+        The list of sim version config names.  If only the names have been requested, these will be merged in with the  `Names` property instead, and this list will be empty.  # noqa: E501
 
         :return: The sim_version_names of this GetConfigNamesQueryResult.  # noqa: E501
         :rtype: list[SimVersionDocumentNameResult]
@@ -95,12 +96,11 @@ class GetConfigNamesQueryResult(object):
     def sim_version_names(self, sim_version_names):
         """Sets the sim_version_names of this GetConfigNamesQueryResult.
 
+        The list of sim version config names.  If only the names have been requested, these will be merged in with the  `Names` property instead, and this list will be empty.  # noqa: E501
 
         :param sim_version_names: The sim_version_names of this GetConfigNamesQueryResult.  # noqa: E501
         :type sim_version_names: list[SimVersionDocumentNameResult]
         """
-        if self.local_vars_configuration.client_side_validation and sim_version_names is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_version_names`, must not be `None`")  # noqa: E501
 
         self._sim_version_names = sim_version_names
 

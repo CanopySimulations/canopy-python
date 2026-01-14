@@ -62,6 +62,7 @@ class DuplicateConfigsResult(object):
     def target_config_ids(self):
         """Gets the target_config_ids of this DuplicateConfigsResult.  # noqa: E501
 
+        The list of cloned config IDs.              This list is in the same order as the supplied source config IDs.  # noqa: E501
 
         :return: The target_config_ids of this DuplicateConfigsResult.  # noqa: E501
         :rtype: list[object]
@@ -72,12 +73,11 @@ class DuplicateConfigsResult(object):
     def target_config_ids(self, target_config_ids):
         """Sets the target_config_ids of this DuplicateConfigsResult.
 
+        The list of cloned config IDs.              This list is in the same order as the supplied source config IDs.  # noqa: E501
 
         :param target_config_ids: The target_config_ids of this DuplicateConfigsResult.  # noqa: E501
         :type target_config_ids: list[object]
         """
-        if self.local_vars_configuration.client_side_validation and target_config_ids is None:  # noqa: E501
-            raise ValueError("Invalid value for `target_config_ids`, must not be `None`")  # noqa: E501
 
         self._target_config_ids = target_config_ids
 
@@ -85,6 +85,7 @@ class DuplicateConfigsResult(object):
     def target_default_config_ids(self):
         """Gets the target_default_config_ids of this DuplicateConfigsResult.  # noqa: E501
 
+        The list of cloned default config IDs.              This list is in the same order as the supplied source default config IDs.  # noqa: E501
 
         :return: The target_default_config_ids of this DuplicateConfigsResult.  # noqa: E501
         :rtype: list[object]
@@ -95,12 +96,11 @@ class DuplicateConfigsResult(object):
     def target_default_config_ids(self, target_default_config_ids):
         """Sets the target_default_config_ids of this DuplicateConfigsResult.
 
+        The list of cloned default config IDs.              This list is in the same order as the supplied source default config IDs.  # noqa: E501
 
         :param target_default_config_ids: The target_default_config_ids of this DuplicateConfigsResult.  # noqa: E501
         :type target_default_config_ids: list[object]
         """
-        if self.local_vars_configuration.client_side_validation and target_default_config_ids is None:  # noqa: E501
-            raise ValueError("Invalid value for `target_default_config_ids`, must not be `None`")  # noqa: E501
 
         self._target_default_config_ids = target_default_config_ids
 

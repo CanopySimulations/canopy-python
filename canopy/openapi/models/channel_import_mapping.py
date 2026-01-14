@@ -76,8 +76,6 @@ class ChannelImportMapping(object):
         :param _from: The _from of this ChannelImportMapping.  # noqa: E501
         :type _from: str
         """
-        if self.local_vars_configuration.client_side_validation and _from is None:  # noqa: E501
-            raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
 
         self.__from = _from
 
@@ -99,8 +97,6 @@ class ChannelImportMapping(object):
         :param to: The to of this ChannelImportMapping.  # noqa: E501
         :type to: str
         """
-        if self.local_vars_configuration.client_side_validation and to is None:  # noqa: E501
-            raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
 
         self._to = to
 

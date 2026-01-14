@@ -40,7 +40,8 @@ class GetTenantQueryResult(object):
         'short_name': 'object',
         'creation_date': 'datetime',
         'is_enabled': 'bool',
-        'database_id': 'object'
+        'database_id': 'object',
+        'deployment_id': 'int'
     }
 
     attribute_map = {
@@ -48,10 +49,11 @@ class GetTenantQueryResult(object):
         'short_name': 'shortName',
         'creation_date': 'creationDate',
         'is_enabled': 'isEnabled',
-        'database_id': 'databaseId'
+        'database_id': 'databaseId',
+        'deployment_id': 'deploymentId'
     }
 
-    def __init__(self, name=None, short_name=None, creation_date=None, is_enabled=None, database_id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, short_name=None, creation_date=None, is_enabled=None, database_id=None, deployment_id=None, local_vars_configuration=None):  # noqa: E501
         """GetTenantQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,13 +64,17 @@ class GetTenantQueryResult(object):
         self._creation_date = None
         self._is_enabled = None
         self._database_id = None
+        self._deployment_id = None
         self.discriminator = None
 
         self.name = name
         self.short_name = short_name
-        self.creation_date = creation_date
-        self.is_enabled = is_enabled
+        if creation_date is not None:
+            self.creation_date = creation_date
+        if is_enabled is not None:
+            self.is_enabled = is_enabled
         self.database_id = database_id
+        self.deployment_id = deployment_id
 
     @property
     def name(self):
@@ -88,8 +94,6 @@ class GetTenantQueryResult(object):
         :param name: The name of this GetTenantQueryResult.  # noqa: E501
         :type name: object
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -111,8 +115,6 @@ class GetTenantQueryResult(object):
         :param short_name: The short_name of this GetTenantQueryResult.  # noqa: E501
         :type short_name: object
         """
-        if self.local_vars_configuration.client_side_validation and short_name is None:  # noqa: E501
-            raise ValueError("Invalid value for `short_name`, must not be `None`")  # noqa: E501
 
         self._short_name = short_name
 
@@ -134,8 +136,6 @@ class GetTenantQueryResult(object):
         :param creation_date: The creation_date of this GetTenantQueryResult.  # noqa: E501
         :type creation_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and creation_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `creation_date`, must not be `None`")  # noqa: E501
 
         self._creation_date = creation_date
 
@@ -157,8 +157,6 @@ class GetTenantQueryResult(object):
         :param is_enabled: The is_enabled of this GetTenantQueryResult.  # noqa: E501
         :type is_enabled: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_enabled is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_enabled`, must not be `None`")  # noqa: E501
 
         self._is_enabled = is_enabled
 
@@ -180,10 +178,29 @@ class GetTenantQueryResult(object):
         :param database_id: The database_id of this GetTenantQueryResult.  # noqa: E501
         :type database_id: object
         """
-        if self.local_vars_configuration.client_side_validation and database_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `database_id`, must not be `None`")  # noqa: E501
 
         self._database_id = database_id
+
+    @property
+    def deployment_id(self):
+        """Gets the deployment_id of this GetTenantQueryResult.  # noqa: E501
+
+
+        :return: The deployment_id of this GetTenantQueryResult.  # noqa: E501
+        :rtype: int
+        """
+        return self._deployment_id
+
+    @deployment_id.setter
+    def deployment_id(self, deployment_id):
+        """Sets the deployment_id of this GetTenantQueryResult.
+
+
+        :param deployment_id: The deployment_id of this GetTenantQueryResult.  # noqa: E501
+        :type deployment_id: int
+        """
+
+        self._deployment_id = deployment_id
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
