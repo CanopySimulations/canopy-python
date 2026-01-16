@@ -123,10 +123,12 @@ Class | Method | HTTP request | Description
 *DeploymentsApi* | [**deployments_get_account_features**](docs/DeploymentsApi.md#deployments_get_account_features) | **GET** /deployments/features | Gets a list of all account features.
 *DeploymentsApi* | [**deployments_get_deployment**](docs/DeploymentsApi.md#deployments_get_deployment) | **GET** /deployments/{deploymentId} | Gets metadata about the specified deployment.
 *DeploymentsApi* | [**deployments_get_deployments**](docs/DeploymentsApi.md#deployments_get_deployments) | **GET** /deployments | Gets a list of all deployments.
+*DeploymentsApi* | [**deployments_get_invoice_bot_deployments**](docs/DeploymentsApi.md#deployments_get_invoice_bot_deployments) | **GET** /deployments/invoicebot | Gets a list of deployments for invoice bot processing.
 *DeploymentsApi* | [**deployments_get_subscription_level**](docs/DeploymentsApi.md#deployments_get_subscription_level) | **GET** /deployments/subscription-levels/{subscriptionLevelId} | Gets metadata about the specified subscription level.
 *DeploymentsApi* | [**deployments_get_subscription_levels**](docs/DeploymentsApi.md#deployments_get_subscription_levels) | **GET** /deployments/subscription-levels | Gets a list of all subscription levels.
 *DeploymentsApi* | [**deployments_post_deployment_note**](docs/DeploymentsApi.md#deployments_post_deployment_note) | **POST** /deployments/{deploymentId}/notes | Adds a note to the specified deployment.
 *DeploymentsApi* | [**deployments_update_deployment**](docs/DeploymentsApi.md#deployments_update_deployment) | **PUT** /deployments/{deploymentId} | Updates the specified deployment.
+*DeploymentsApi* | [**deployments_update_invoice_bot_deployment**](docs/DeploymentsApi.md#deployments_update_invoice_bot_deployment) | **PUT** /deployments/{deploymentId}/invoicebot | Updates invoice bot fields for the specified deployment.
 *EncryptionApi* | [**encryption_decrypt**](docs/EncryptionApi.md#encryption_decrypt) | **POST** /encryption/decrypt | Decrypts the specified data.
 *EncryptionApi* | [**encryption_delete_config_permission**](docs/EncryptionApi.md#encryption_delete_config_permission) | **DELETE** /encryption/config-permissions/{tenantId}/{encryptingTenantShortName}/{decryptingTenantShortName} | Deletes an encryption key permission for the specified tenant.  Config permissions represent which encryption keys are allowed to be used by which tenants to re-encrypt any encrypted configs you provide.
 *EncryptionApi* | [**encryption_delete_key_permission**](docs/EncryptionApi.md#encryption_delete_key_permission) | **DELETE** /encryption/key-permissions/{tenantId}/{encryptingTenantShortName} | Deletes an encryption key permission for the specified tenant.  Key permissions represent which tenants are allowed to use your tenant&#39;s encryption key.
@@ -294,6 +296,7 @@ Class | Method | HTTP request | Description
  - [DeploymentsCreateDeploymentRequest](docs/DeploymentsCreateDeploymentRequest.md)
  - [DeploymentsPostDeploymentNoteRequest](docs/DeploymentsPostDeploymentNoteRequest.md)
  - [DeploymentsUpdateDeploymentRequest](docs/DeploymentsUpdateDeploymentRequest.md)
+ - [DeploymentsUpdateInvoiceBotDeploymentRequest](docs/DeploymentsUpdateInvoiceBotDeploymentRequest.md)
  - [DocumentCustomPropertyData](docs/DocumentCustomPropertyData.md)
  - [DocumentCustomPropertyGroup](docs/DocumentCustomPropertyGroup.md)
  - [DocumentGroupResult](docs/DocumentGroupResult.md)
@@ -339,6 +342,8 @@ Class | Method | HTTP request | Description
  - [GetDeploymentsQueryResult](docs/GetDeploymentsQueryResult.md)
  - [GetDeploymentsQueryResultDeploymentItem](docs/GetDeploymentsQueryResultDeploymentItem.md)
  - [GetEncryptedDataQueryResult](docs/GetEncryptedDataQueryResult.md)
+ - [GetInvoiceBotDeploymentsQueryResult](docs/GetInvoiceBotDeploymentsQueryResult.md)
+ - [GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem](docs/GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.md)
  - [GetKeyPermissionsQueryResult](docs/GetKeyPermissionsQueryResult.md)
  - [GetPoolStatusQueryResult](docs/GetPoolStatusQueryResult.md)
  - [GetPoolsItem](docs/GetPoolsItem.md)
@@ -493,6 +498,7 @@ Class | Method | HTTP request | Description
  - [TextDocument](docs/TextDocument.md)
  - [TextDocumentOptionalContent](docs/TextDocumentOptionalContent.md)
  - [UpdateDeploymentData](docs/UpdateDeploymentData.md)
+ - [UpdateInvoiceBotDeploymentData](docs/UpdateInvoiceBotDeploymentData.md)
  - [UpdatedAccountSettings](docs/UpdatedAccountSettings.md)
  - [UpdatedAdminTenantSettings](docs/UpdatedAdminTenantSettings.md)
  - [UpdatedAdminTenantSettingsSettings](docs/UpdatedAdminTenantSettingsSettings.md)
@@ -537,7 +543,7 @@ Class | Method | HTTP request | Description
 
 - **Type**: OAuth
 - **Flow**: password
-- **Authorization URL**: https://identity.canopysimulations.com/connect/authorize
+- **Authorization URL**: https://canopy-identity-hzxrk7i5lnuwy-copilot-invoicebot-endpoints.azurewebsites.net/connect/authorize
 - **Scopes**: 
  - **canopy_api**: Canopy API access
  - **openid**: Open Id

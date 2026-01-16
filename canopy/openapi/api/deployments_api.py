@@ -564,6 +564,131 @@ class DeploymentsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
+    def deployments_get_invoice_bot_deployments(self, **kwargs):  # noqa: E501
+        """Gets a list of deployments for invoice bot processing.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.deployments_get_invoice_bot_deployments(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetInvoiceBotDeploymentsQueryResult
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.deployments_get_invoice_bot_deployments_with_http_info(**kwargs)  # noqa: E501
+
+    def deployments_get_invoice_bot_deployments_with_http_info(self, **kwargs):  # noqa: E501
+        """Gets a list of deployments for invoice bot processing.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.deployments_get_invoice_bot_deployments_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetInvoiceBotDeploymentsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method deployments_get_invoice_bot_deployments" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetInvoiceBotDeploymentsQueryResult",
+        }
+
+        return self.api_client.call_api(
+            '/deployments/invoicebot', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def deployments_get_subscription_level(self, subscription_level_id, **kwargs):  # noqa: E501
         """Gets metadata about the specified subscription level.  # noqa: E501
 
@@ -1103,6 +1228,150 @@ class DeploymentsApi(object):
 
         return self.api_client.call_api(
             '/deployments/{deploymentId}', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def deployments_update_invoice_bot_deployment(self, deployment_id, **kwargs):  # noqa: E501
+        """Updates invoice bot fields for the specified deployment.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.deployments_update_invoice_bot_deployment(deployment_id, async_req=True)
+        >>> result = thread.get()
+
+        :param deployment_id: The deployment ID. (required)
+        :type deployment_id: int
+        :param deployments_update_invoice_bot_deployment_request: A data structure containing the invoice bot fields to update.
+        :type deployments_update_invoice_bot_deployment_request: DeploymentsUpdateInvoiceBotDeploymentRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.deployments_update_invoice_bot_deployment_with_http_info(deployment_id, **kwargs)  # noqa: E501
+
+    def deployments_update_invoice_bot_deployment_with_http_info(self, deployment_id, **kwargs):  # noqa: E501
+        """Updates invoice bot fields for the specified deployment.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.deployments_update_invoice_bot_deployment_with_http_info(deployment_id, async_req=True)
+        >>> result = thread.get()
+
+        :param deployment_id: The deployment ID. (required)
+        :type deployment_id: int
+        :param deployments_update_invoice_bot_deployment_request: A data structure containing the invoice bot fields to update.
+        :type deployments_update_invoice_bot_deployment_request: DeploymentsUpdateInvoiceBotDeploymentRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'deployment_id',
+            'deployments_update_invoice_bot_deployment_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method deployments_update_invoice_bot_deployment" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'deployment_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('deployment_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `deployment_id` when calling `deployments_update_invoice_bot_deployment`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'deployment_id' in local_var_params:
+            path_params['deploymentId'] = local_var_params['deployment_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'deployments_update_invoice_bot_deployment_request' in local_var_params:
+            body_params = local_var_params['deployments_update_invoice_bot_deployment_request']
+        # HTTP header `Content-Type`
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/deployments/{deploymentId}/invoicebot', 'PUT',
             path_params,
             query_params,
             header_params,

@@ -86,7 +86,7 @@ class Configuration(object):
 
     _default = None
 
-    def __init__(self, host="https://api.canopysimulations.com",
+    def __init__(self, host="canopy-api-hzxrk7i5lnuwy-copilot-invoicebot-endpoints.azurewebsites.net",
                  api_key=None, api_key_prefix=None,
                  username=None, password=None,
                  discard_unknown_keys=False,
@@ -402,7 +402,7 @@ class Configuration(object):
         """
         return [
             {
-                'url': "https://api.canopysimulations.com/",
+                'url': "canopy-api-hzxrk7i5lnuwy-copilot-invoicebot-endpoints.azurewebsites.net",
                 'description': "No description provided",
             }
         ]
