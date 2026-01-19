@@ -543,7 +543,7 @@ Class | Method | HTTP request | Description
 
 - **Type**: OAuth
 - **Flow**: password
-- **Authorization URL**: https://canopy-identity-hzxrk7i5lnuwy-copilot-invoicebot-endpoints.azurewebsites.net/connect/authorize
+- **Authorization URL**: https://identity.canopysimulations.com/connect/authorize
 - **Scopes**: 
  - **canopy_api**: Canopy API access
  - **openid**: Open Id
