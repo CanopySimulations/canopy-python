@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**deployments_get_subscription_levels**](DeploymentsApi.md#deployments_get_subscription_levels) | **GET** /deployments/subscription-levels | Gets a list of all subscription levels.
 [**deployments_post_deployment_note**](DeploymentsApi.md#deployments_post_deployment_note) | **POST** /deployments/{deploymentId}/notes | Adds a note to the specified deployment.
 [**deployments_update_deployment**](DeploymentsApi.md#deployments_update_deployment) | **PUT** /deployments/{deploymentId} | Updates the specified deployment.
-[**deployments_update_invoice_bot_deployment**](DeploymentsApi.md#deployments_update_invoice_bot_deployment) | **PUT** /deployments/{deploymentId}/invoicebot | Updates invoice bot fields for the specified deployment.
+[**deployments_update_invoice_bot_deployment**](DeploymentsApi.md#deployments_update_invoice_bot_deployment) | **PATCH** /deployments/{deploymentId}/invoicebot | Updates invoice bot fields for the specified deployment.
 
 
 # **deployments_create_deployment**

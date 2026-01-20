@@ -60,8 +60,7 @@ class UpdateInvoiceBotDeploymentData(object):
 
         self.invoice_date = invoice_date
         self.invoice_compute_credit = invoice_compute_credit
-        if near_storage_limit is not None:
-            self.near_storage_limit = near_storage_limit
+        self.near_storage_limit = near_storage_limit
 
     @property
     def invoice_date(self):

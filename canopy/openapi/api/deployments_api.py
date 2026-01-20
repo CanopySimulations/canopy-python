@@ -1361,7 +1361,7 @@ class DeploymentsApi(object):
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
-                'PUT', body_params))  # noqa: E501
+                'PATCH', body_params))  # noqa: E501
         if content_types_list:
                 header_params['Content-Type'] = content_types_list
 
@@ -1371,7 +1371,7 @@ class DeploymentsApi(object):
         response_types_map = {}
 
         return self.api_client.call_api(
-            '/deployments/{deploymentId}/invoicebot', 'PUT',
+            '/deployments/{deploymentId}/invoicebot', 'PATCH',
             path_params,
             query_params,
             header_params,
