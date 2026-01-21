@@ -38,7 +38,7 @@ class State(object):
     study_id_2: Optional[str] = None
 
 
-@pytest.mark.asyncio
+@pytest.mark.asyncio(loop_scope="session")
 class TestStudy:
 
     @pytest.fixture(autouse=True, scope='class')

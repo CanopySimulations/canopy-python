@@ -25,7 +25,7 @@ class State(object):
     test_car_config_id_2: Optional[str] = None
 
 
-@pytest.mark.asyncio
+@pytest.mark.asyncio(loop_scope="session")
 class TestConfig:
 
     @pytest.fixture(autouse=True, scope='class')
