@@ -67,7 +67,8 @@ class ConfigResolvedReferenceData(object):
         self._is_support_session_open = None
         self.discriminator = None
 
-        self.modified_date = modified_date
+        if modified_date is not None:
+            self.modified_date = modified_date
         self.user_id = user_id
         self.name = name
         self.config_type = config_type
@@ -92,8 +93,6 @@ class ConfigResolvedReferenceData(object):
         :param modified_date: The modified_date of this ConfigResolvedReferenceData.  # noqa: E501
         :type modified_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and modified_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `modified_date`, must not be `None`")  # noqa: E501
 
         self._modified_date = modified_date
 
@@ -115,8 +114,6 @@ class ConfigResolvedReferenceData(object):
         :param user_id: The user_id of this ConfigResolvedReferenceData.  # noqa: E501
         :type user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -138,8 +135,6 @@ class ConfigResolvedReferenceData(object):
         :param name: The name of this ConfigResolvedReferenceData.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -161,8 +156,6 @@ class ConfigResolvedReferenceData(object):
         :param config_type: The config_type of this ConfigResolvedReferenceData.  # noqa: E501
         :type config_type: object
         """
-        if self.local_vars_configuration.client_side_validation and config_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_type`, must not be `None`")  # noqa: E501
 
         self._config_type = config_type
 
@@ -184,8 +177,6 @@ class ConfigResolvedReferenceData(object):
         :param hashes: The hashes of this ConfigResolvedReferenceData.  # noqa: E501
         :type hashes: list[ConfigHash]
         """
-        if self.local_vars_configuration.client_side_validation and hashes is None:  # noqa: E501
-            raise ValueError("Invalid value for `hashes`, must not be `None`")  # noqa: E501
 
         self._hashes = hashes
 

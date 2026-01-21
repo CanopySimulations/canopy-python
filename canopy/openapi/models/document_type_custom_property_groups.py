@@ -55,7 +55,8 @@ class DocumentTypeCustomPropertyGroups(object):
         self._properties = None
         self.discriminator = None
 
-        self.target = target
+        if target is not None:
+            self.target = target
         self.properties = properties
 
     @property
@@ -76,8 +77,6 @@ class DocumentTypeCustomPropertyGroups(object):
         :param target: The target of this DocumentTypeCustomPropertyGroups.  # noqa: E501
         :type target: str
         """
-        if self.local_vars_configuration.client_side_validation and target is None:  # noqa: E501
-            raise ValueError("Invalid value for `target`, must not be `None`")  # noqa: E501
 
         self._target = target
 
@@ -99,8 +98,6 @@ class DocumentTypeCustomPropertyGroups(object):
         :param properties: The properties of this DocumentTypeCustomPropertyGroups.  # noqa: E501
         :type properties: list[DocumentCustomPropertyGroup]
         """
-        if self.local_vars_configuration.client_side_validation and properties is None:  # noqa: E501
-            raise ValueError("Invalid value for `properties`, must not be `None`")  # noqa: E501
 
         self._properties = properties
 

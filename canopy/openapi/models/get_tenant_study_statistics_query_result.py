@@ -58,6 +58,7 @@ class GetTenantStudyStatisticsQueryResult(object):
     def statistics(self):
         """Gets the statistics of this GetTenantStudyStatisticsQueryResult.  # noqa: E501
 
+        The statistics, as a JSON structure returned from the CosmosDB stored procedure.  # noqa: E501
 
         :return: The statistics of this GetTenantStudyStatisticsQueryResult.  # noqa: E501
         :rtype: object
@@ -68,6 +69,7 @@ class GetTenantStudyStatisticsQueryResult(object):
     def statistics(self, statistics):
         """Sets the statistics of this GetTenantStudyStatisticsQueryResult.
 
+        The statistics, as a JSON structure returned from the CosmosDB stored procedure.  # noqa: E501
 
         :param statistics: The statistics of this GetTenantStudyStatisticsQueryResult.  # noqa: E501
         :type statistics: object

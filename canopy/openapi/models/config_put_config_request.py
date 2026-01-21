@@ -78,6 +78,7 @@ class ConfigPutConfigRequest(object):
     def name(self):
         """Gets the name of this ConfigPutConfigRequest.  # noqa: E501
 
+        The name of the config.  # noqa: E501
 
         :return: The name of this ConfigPutConfigRequest.  # noqa: E501
         :rtype: str
@@ -88,6 +89,7 @@ class ConfigPutConfigRequest(object):
     def name(self, name):
         """Sets the name of this ConfigPutConfigRequest.
 
+        The name of the config.  # noqa: E501
 
         :param name: The name of this ConfigPutConfigRequest.  # noqa: E501
         :type name: str
@@ -99,6 +101,7 @@ class ConfigPutConfigRequest(object):
     def config_type(self):
         """Gets the config_type of this ConfigPutConfigRequest.  # noqa: E501
 
+        The config type.  # noqa: E501
 
         :return: The config_type of this ConfigPutConfigRequest.  # noqa: E501
         :rtype: object
@@ -109,6 +112,7 @@ class ConfigPutConfigRequest(object):
     def config_type(self, config_type):
         """Sets the config_type of this ConfigPutConfigRequest.
 
+        The config type.  # noqa: E501
 
         :param config_type: The config_type of this ConfigPutConfigRequest.  # noqa: E501
         :type config_type: object
@@ -120,6 +124,7 @@ class ConfigPutConfigRequest(object):
     def properties(self):
         """Gets the properties of this ConfigPutConfigRequest.  # noqa: E501
 
+        The list of custom properties associated with the config.  # noqa: E501
 
         :return: The properties of this ConfigPutConfigRequest.  # noqa: E501
         :rtype: list[DocumentCustomPropertyData]
@@ -130,6 +135,7 @@ class ConfigPutConfigRequest(object):
     def properties(self, properties):
         """Sets the properties of this ConfigPutConfigRequest.
 
+        The list of custom properties associated with the config.  # noqa: E501
 
         :param properties: The properties of this ConfigPutConfigRequest.  # noqa: E501
         :type properties: list[DocumentCustomPropertyData]
@@ -141,6 +147,7 @@ class ConfigPutConfigRequest(object):
     def config(self):
         """Gets the config of this ConfigPutConfigRequest.  # noqa: E501
 
+        The JSON contents of the config.  # noqa: E501
 
         :return: The config of this ConfigPutConfigRequest.  # noqa: E501
         :rtype: object
@@ -151,6 +158,7 @@ class ConfigPutConfigRequest(object):
     def config(self, config):
         """Sets the config of this ConfigPutConfigRequest.
 
+        The JSON contents of the config.  # noqa: E501
 
         :param config: The config of this ConfigPutConfigRequest.  # noqa: E501
         :type config: object
@@ -162,6 +170,7 @@ class ConfigPutConfigRequest(object):
     def notes(self):
         """Gets the notes of this ConfigPutConfigRequest.  # noqa: E501
 
+        The notes associated with the config.  # noqa: E501
 
         :return: The notes of this ConfigPutConfigRequest.  # noqa: E501
         :rtype: str
@@ -172,6 +181,7 @@ class ConfigPutConfigRequest(object):
     def notes(self, notes):
         """Sets the notes of this ConfigPutConfigRequest.
 
+        The notes associated with the config.  # noqa: E501
 
         :param notes: The notes of this ConfigPutConfigRequest.  # noqa: E501
         :type notes: str
@@ -183,6 +193,7 @@ class ConfigPutConfigRequest(object):
     def sim_version(self):
         """Gets the sim_version of this ConfigPutConfigRequest.  # noqa: E501
 
+        The sim version which the config conforms to.  # noqa: E501
 
         :return: The sim_version of this ConfigPutConfigRequest.  # noqa: E501
         :rtype: str
@@ -193,6 +204,7 @@ class ConfigPutConfigRequest(object):
     def sim_version(self, sim_version):
         """Sets the sim_version of this ConfigPutConfigRequest.
 
+        The sim version which the config conforms to.  # noqa: E501
 
         :param sim_version: The sim_version of this ConfigPutConfigRequest.  # noqa: E501
         :type sim_version: str

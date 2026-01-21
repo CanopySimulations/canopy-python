@@ -36,7 +36,7 @@ class GetTenantWorksheetLabelDefinitionsQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'label_definitions': 'GetTenantWorksheetLabelDefinitionsQueryResultLabelDefinitions'
+        'label_definitions': 'CollatedLabelDefinitionsWorksheet'
     }
 
     attribute_map = {
@@ -60,7 +60,7 @@ class GetTenantWorksheetLabelDefinitionsQueryResult(object):
 
 
         :return: The label_definitions of this GetTenantWorksheetLabelDefinitionsQueryResult.  # noqa: E501
-        :rtype: GetTenantWorksheetLabelDefinitionsQueryResultLabelDefinitions
+        :rtype: CollatedLabelDefinitionsWorksheet
         """
         return self._label_definitions
 
@@ -70,10 +70,8 @@ class GetTenantWorksheetLabelDefinitionsQueryResult(object):
 
 
         :param label_definitions: The label_definitions of this GetTenantWorksheetLabelDefinitionsQueryResult.  # noqa: E501
-        :type label_definitions: GetTenantWorksheetLabelDefinitionsQueryResultLabelDefinitions
+        :type label_definitions: CollatedLabelDefinitionsWorksheet
         """
-        if self.local_vars_configuration.client_side_validation and label_definitions is None:  # noqa: E501
-            raise ValueError("Invalid value for `label_definitions`, must not be `None`")  # noqa: E501
 
         self._label_definitions = label_definitions
 

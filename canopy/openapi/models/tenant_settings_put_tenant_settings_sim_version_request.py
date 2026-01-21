@@ -58,6 +58,7 @@ class TenantSettingsPutTenantSettingsSimVersionRequest(object):
     def sim_version(self):
         """Gets the sim_version of this TenantSettingsPutTenantSettingsSimVersionRequest.  # noqa: E501
 
+        The default sim version for the tenant.  # noqa: E501
 
         :return: The sim_version of this TenantSettingsPutTenantSettingsSimVersionRequest.  # noqa: E501
         :rtype: str
@@ -68,6 +69,7 @@ class TenantSettingsPutTenantSettingsSimVersionRequest(object):
     def sim_version(self, sim_version):
         """Sets the sim_version of this TenantSettingsPutTenantSettingsSimVersionRequest.
 
+        The default sim version for the tenant.  # noqa: E501
 
         :param sim_version: The sim_version of this TenantSettingsPutTenantSettingsSimVersionRequest.  # noqa: E501
         :type sim_version: str

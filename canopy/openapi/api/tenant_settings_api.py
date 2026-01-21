@@ -37,7 +37,7 @@ class TenantSettingsApi(object):
         self.api_client = api_client
 
     def tenant_settings_get_admin_tenant_settings(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_admin_tenant_settings  # noqa: E501
+        """Gets the administrative tenant settings. These are only available to Canopy personnel.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,7 +45,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_admin_tenant_settings(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -66,7 +66,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_get_admin_tenant_settings_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenant_settings_get_admin_tenant_settings_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_admin_tenant_settings  # noqa: E501
+        """Gets the administrative tenant settings. These are only available to Canopy personnel.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -74,7 +74,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_admin_tenant_settings_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -172,7 +172,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_channel_import_mappings(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_channel_import_mappings  # noqa: E501
+        """Gets the tenant channel import mappings, which specify how to map channels when importing telemetry.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -180,7 +180,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_channel_import_mappings(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -201,7 +201,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_get_tenant_channel_import_mappings_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenant_settings_get_tenant_channel_import_mappings_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_channel_import_mappings  # noqa: E501
+        """Gets the tenant channel import mappings, which specify how to map channels when importing telemetry.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -209,7 +209,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_channel_import_mappings_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -307,7 +307,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_channel_whitelists(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_channel_whitelists  # noqa: E501
+        """Gets the channel whitelists for the specified tenant.  The tenant channel whitelist specifies which channels are always whitelisted  when using that tenant's encrypted components.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -315,7 +315,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_channel_whitelists(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -336,7 +336,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_get_tenant_channel_whitelists_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenant_settings_get_tenant_channel_whitelists_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_channel_whitelists  # noqa: E501
+        """Gets the channel whitelists for the specified tenant.  The tenant channel whitelist specifies which channels are always whitelisted  when using that tenant's encrypted components.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -344,7 +344,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_channel_whitelists_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -442,7 +442,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_default_custom_property_names(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_default_custom_property_names  # noqa: E501
+        """Gets the default custom property names for the specified tenant.  The default custom property names will be shown by default when using the  specified config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -450,9 +450,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_default_custom_property_names(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param target_type:
+        :param target_type: The target (config type, study) for which to fetch the custom properies (optional).
         :type target_type: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -473,7 +473,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_get_tenant_default_custom_property_names_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenant_settings_get_tenant_default_custom_property_names_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_default_custom_property_names  # noqa: E501
+        """Gets the default custom property names for the specified tenant.  The default custom property names will be shown by default when using the  specified config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -481,9 +481,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_default_custom_property_names_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param target_type:
+        :param target_type: The target (config type, study) for which to fetch the custom properies (optional).
         :type target_type: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -584,7 +584,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_settings_sim_version(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_settings_sim_version  # noqa: E501
+        """Gets the tenant sim version. This is the default sim version for the tenant, unless  overridden in an API call.  If no sim version is specified, then the platform default sim version is used.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -592,7 +592,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_settings_sim_version(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -613,7 +613,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_get_tenant_settings_sim_version_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenant_settings_get_tenant_settings_sim_version_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_settings_sim_version  # noqa: E501
+        """Gets the tenant sim version. This is the default sim version for the tenant, unless  overridden in an API call.  If no sim version is specified, then the platform default sim version is used.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -621,7 +621,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_settings_sim_version_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -719,7 +719,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_get_tenant_worksheet_label_definitions(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_worksheet_label_definitions  # noqa: E501
+        """Gets the tenant's worksheet label definitions. These specify what worksheet labels to show for all  users in the tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -727,7 +727,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_worksheet_label_definitions(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -748,7 +748,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_get_tenant_worksheet_label_definitions_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenant_settings_get_tenant_worksheet_label_definitions_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenant_settings_get_tenant_worksheet_label_definitions  # noqa: E501
+        """Gets the tenant's worksheet label definitions. These specify what worksheet labels to show for all  users in the tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -756,7 +756,7 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_get_tenant_worksheet_label_definitions_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -854,7 +854,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_put_admin_tenant_settings(self, tenant_id, tenant_settings_put_admin_tenant_settings_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_admin_tenant_settings  # noqa: E501
+        """Updates the administrative tenant settings.  The provided ETag ensures that the settings have not been updated since they were last retrieved.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -862,9 +862,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_admin_tenant_settings(tenant_id, tenant_settings_put_admin_tenant_settings_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_admin_tenant_settings_request: (required)
+        :param tenant_settings_put_admin_tenant_settings_request: The updated admin tenant settings and ETag. (required)
         :type tenant_settings_put_admin_tenant_settings_request: TenantSettingsPutAdminTenantSettingsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -885,7 +885,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_put_admin_tenant_settings_with_http_info(tenant_id, tenant_settings_put_admin_tenant_settings_request, **kwargs)  # noqa: E501
 
     def tenant_settings_put_admin_tenant_settings_with_http_info(self, tenant_id, tenant_settings_put_admin_tenant_settings_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_admin_tenant_settings  # noqa: E501
+        """Updates the administrative tenant settings.  The provided ETag ensures that the settings have not been updated since they were last retrieved.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -893,9 +893,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_admin_tenant_settings_with_http_info(tenant_id, tenant_settings_put_admin_tenant_settings_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_admin_tenant_settings_request: (required)
+        :param tenant_settings_put_admin_tenant_settings_request: The updated admin tenant settings and ETag. (required)
         :type tenant_settings_put_admin_tenant_settings_request: TenantSettingsPutAdminTenantSettingsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1007,7 +1007,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_put_tenant_channel_import_mappings(self, tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_channel_import_mappings  # noqa: E501
+        """Updates the tenant channel import mappings, which specify how to map channels when importing telemetry.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1015,9 +1015,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_channel_import_mappings(tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_channel_import_mappings_request: (required)
+        :param tenant_settings_put_tenant_channel_import_mappings_request: The new channel import mapping data. (required)
         :type tenant_settings_put_tenant_channel_import_mappings_request: TenantSettingsPutTenantChannelImportMappingsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1038,7 +1038,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_put_tenant_channel_import_mappings_with_http_info(tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, **kwargs)  # noqa: E501
 
     def tenant_settings_put_tenant_channel_import_mappings_with_http_info(self, tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_channel_import_mappings  # noqa: E501
+        """Updates the tenant channel import mappings, which specify how to map channels when importing telemetry.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1046,9 +1046,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_channel_import_mappings_with_http_info(tenant_id, tenant_settings_put_tenant_channel_import_mappings_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_channel_import_mappings_request: (required)
+        :param tenant_settings_put_tenant_channel_import_mappings_request: The new channel import mapping data. (required)
         :type tenant_settings_put_tenant_channel_import_mappings_request: TenantSettingsPutTenantChannelImportMappingsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1154,7 +1154,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_put_tenant_channel_whitelists(self, tenant_id, tenant_settings_put_tenant_channel_whitelists_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_channel_whitelists  # noqa: E501
+        """Update the whitelist of channels for the specified tenant.  The tenant channel whitelist specifies which channels are always whitelisted  when using that tenant's encrypted components.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1162,9 +1162,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_channel_whitelists(tenant_id, tenant_settings_put_tenant_channel_whitelists_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_channel_whitelists_request: (required)
+        :param tenant_settings_put_tenant_channel_whitelists_request: The updated whitelist data. (required)
         :type tenant_settings_put_tenant_channel_whitelists_request: TenantSettingsPutTenantChannelWhitelistsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1185,7 +1185,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_put_tenant_channel_whitelists_with_http_info(tenant_id, tenant_settings_put_tenant_channel_whitelists_request, **kwargs)  # noqa: E501
 
     def tenant_settings_put_tenant_channel_whitelists_with_http_info(self, tenant_id, tenant_settings_put_tenant_channel_whitelists_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_channel_whitelists  # noqa: E501
+        """Update the whitelist of channels for the specified tenant.  The tenant channel whitelist specifies which channels are always whitelisted  when using that tenant's encrypted components.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1193,9 +1193,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_channel_whitelists_with_http_info(tenant_id, tenant_settings_put_tenant_channel_whitelists_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_channel_whitelists_request: (required)
+        :param tenant_settings_put_tenant_channel_whitelists_request: The updated whitelist data. (required)
         :type tenant_settings_put_tenant_channel_whitelists_request: TenantSettingsPutTenantChannelWhitelistsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1301,7 +1301,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_put_tenant_default_custom_property_names(self, tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_default_custom_property_names  # noqa: E501
+        """Updates the default custom property names for the specified tenant.  The default custom property names will be shown by default when using the  specified config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1309,9 +1309,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_default_custom_property_names(tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_default_custom_property_names_request: (required)
+        :param tenant_settings_put_tenant_default_custom_property_names_request: The updated default custom property data. (required)
         :type tenant_settings_put_tenant_default_custom_property_names_request: TenantSettingsPutTenantDefaultCustomPropertyNamesRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1332,7 +1332,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_put_tenant_default_custom_property_names_with_http_info(tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, **kwargs)  # noqa: E501
 
     def tenant_settings_put_tenant_default_custom_property_names_with_http_info(self, tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_default_custom_property_names  # noqa: E501
+        """Updates the default custom property names for the specified tenant.  The default custom property names will be shown by default when using the  specified config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1340,9 +1340,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_default_custom_property_names_with_http_info(tenant_id, tenant_settings_put_tenant_default_custom_property_names_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_default_custom_property_names_request: (required)
+        :param tenant_settings_put_tenant_default_custom_property_names_request: The updated default custom property data. (required)
         :type tenant_settings_put_tenant_default_custom_property_names_request: TenantSettingsPutTenantDefaultCustomPropertyNamesRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1448,7 +1448,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_put_tenant_settings_sim_version(self, tenant_id, tenant_settings_put_tenant_settings_sim_version_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_settings_sim_version  # noqa: E501
+        """Updates the tenant sim version. This is the default sim version for the tenant, unless  overridden in an API call.  If no sim version is specified, then the platform default sim version is used.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1456,9 +1456,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_settings_sim_version(tenant_id, tenant_settings_put_tenant_settings_sim_version_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_settings_sim_version_request: (required)
+        :param tenant_settings_put_tenant_settings_sim_version_request: The new default sim version data. (required)
         :type tenant_settings_put_tenant_settings_sim_version_request: TenantSettingsPutTenantSettingsSimVersionRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1479,7 +1479,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_put_tenant_settings_sim_version_with_http_info(tenant_id, tenant_settings_put_tenant_settings_sim_version_request, **kwargs)  # noqa: E501
 
     def tenant_settings_put_tenant_settings_sim_version_with_http_info(self, tenant_id, tenant_settings_put_tenant_settings_sim_version_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_settings_sim_version  # noqa: E501
+        """Updates the tenant sim version. This is the default sim version for the tenant, unless  overridden in an API call.  If no sim version is specified, then the platform default sim version is used.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1487,9 +1487,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_settings_sim_version_with_http_info(tenant_id, tenant_settings_put_tenant_settings_sim_version_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_settings_sim_version_request: (required)
+        :param tenant_settings_put_tenant_settings_sim_version_request: The new default sim version data. (required)
         :type tenant_settings_put_tenant_settings_sim_version_request: TenantSettingsPutTenantSettingsSimVersionRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1595,7 +1595,7 @@ class TenantSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenant_settings_put_tenant_worksheet_label_definitions(self, tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_worksheet_label_definitions  # noqa: E501
+        """Updates the tenant's worksheet label definitions. These specify what worksheet labels to show for all  users in the tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1603,9 +1603,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_worksheet_label_definitions(tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_worksheet_label_definitions_request: (required)
+        :param tenant_settings_put_tenant_worksheet_label_definitions_request: The updated label definitions. (required)
         :type tenant_settings_put_tenant_worksheet_label_definitions_request: TenantSettingsPutTenantWorksheetLabelDefinitionsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1626,7 +1626,7 @@ class TenantSettingsApi(object):
         return self.tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, **kwargs)  # noqa: E501
 
     def tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(self, tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, **kwargs):  # noqa: E501
-        """tenant_settings_put_tenant_worksheet_label_definitions  # noqa: E501
+        """Updates the tenant's worksheet label definitions. These specify what worksheet labels to show for all  users in the tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1634,9 +1634,9 @@ class TenantSettingsApi(object):
         >>> thread = api.tenant_settings_put_tenant_worksheet_label_definitions_with_http_info(tenant_id, tenant_settings_put_tenant_worksheet_label_definitions_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
-        :param tenant_settings_put_tenant_worksheet_label_definitions_request: (required)
+        :param tenant_settings_put_tenant_worksheet_label_definitions_request: The updated label definitions. (required)
         :type tenant_settings_put_tenant_worksheet_label_definitions_request: TenantSettingsPutTenantWorksheetLabelDefinitionsRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

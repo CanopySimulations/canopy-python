@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**pool_get_pool_status**](PoolApi.md#pool_get_pool_status) | **GET** /pools/{tenantId} | 
-[**pool_get_pools**](PoolApi.md#pool_get_pools) | **GET** /pools | 
-[**pool_get_test_auto_scale_formula**](PoolApi.md#pool_get_test_auto_scale_formula) | **GET** /pools/{tenantId}/autoscale/test | 
+[**pool_get_pool_status**](PoolApi.md#pool_get_pool_status) | **GET** /pools/{tenantId} | Gets the status of a pool.
+[**pool_get_pools**](PoolApi.md#pool_get_pools) | **GET** /pools | Gets the status of all pools.
+[**pool_get_test_auto_scale_formula**](PoolApi.md#pool_get_test_auto_scale_formula) | **GET** /pools/{tenantId}/autoscale/test | Tests an auto-scale formula on a specific pool without applying it.
 
 
 # **pool_get_pool_status**
 > GetPoolStatusQueryResult pool_get_pool_status(tenant_id, pool_type=pool_type)
 
-
+Gets the status of a pool.
 
 ### Example
 
@@ -44,10 +44,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.PoolApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-pool_type = 'pool_type_example' # str |  (optional)
+    tenant_id = 'tenant_id_example' # str | The tenant ID.
+pool_type = 'pool_type_example' # str | The type of pool. This can be one of `primary`, `secondary`, `heavy`. (optional)
 
     try:
+        # Gets the status of a pool.
         api_response = api_instance.pool_get_pool_status(tenant_id, pool_type=pool_type)
         pprint(api_response)
     except ApiException as e:
@@ -58,8 +59,8 @@ pool_type = 'pool_type_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **pool_type** | **str**|  | [optional] 
+ **tenant_id** | **str**| The tenant ID. | 
+ **pool_type** | **str**| The type of pool. This can be one of &#x60;primary&#x60;, &#x60;secondary&#x60;, &#x60;heavy&#x60;. | [optional] 
 
 ### Return type
 
@@ -77,14 +78,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pool_get_pools**
 > GetPoolsQueryResult pool_get_pools()
 
-
+Gets the status of all pools.
 
 ### Example
 
@@ -118,6 +119,7 @@ with canopy.openapi.ApiClient(configuration) as api_client:
     api_instance = canopy.openapi.PoolApi(api_client)
     
     try:
+        # Gets the status of all pools.
         api_response = api_instance.pool_get_pools()
         pprint(api_response)
     except ApiException as e:
@@ -143,14 +145,14 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pool_get_test_auto_scale_formula**
 > TestAutoScaleFormulaQueryResult pool_get_test_auto_scale_formula(tenant_id, pool_id=pool_id, formula=formula)
 
-
+Tests an auto-scale formula on a specific pool without applying it.
 
 ### Example
 
@@ -182,11 +184,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.PoolApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-pool_id = 'pool_id_example' # str |  (optional)
-formula = 'formula_example' # str |  (optional)
+    tenant_id = 'tenant_id_example' # str | The tenant ID.
+pool_id = 'pool_id_example' # str | The pool ID. (optional)
+formula = 'formula_example' # str | The formula to test. (optional)
 
     try:
+        # Tests an auto-scale formula on a specific pool without applying it.
         api_response = api_instance.pool_get_test_auto_scale_formula(tenant_id, pool_id=pool_id, formula=formula)
         pprint(api_response)
     except ApiException as e:
@@ -197,9 +200,9 @@ formula = 'formula_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **pool_id** | **str**|  | [optional] 
- **formula** | **str**|  | [optional] 
+ **tenant_id** | **str**| The tenant ID. | 
+ **pool_id** | **str**| The pool ID. | [optional] 
+ **formula** | **str**| The formula to test. | [optional] 
 
 ### Return type
 
@@ -217,7 +220,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

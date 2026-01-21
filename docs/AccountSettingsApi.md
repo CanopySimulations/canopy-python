@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**account_settings_get**](AccountSettingsApi.md#account_settings_get) | **GET** /account-settings/{tenantId}/{userId} | 
-[**account_settings_put**](AccountSettingsApi.md#account_settings_put) | **PUT** /account-settings/{tenantId}/{userId} | 
+[**account_settings_get**](AccountSettingsApi.md#account_settings_get) | **GET** /account-settings/{tenantId}/{userId} | Gets the account settings for the specified user.  This contains information such as their username, their email, and whether their email address  has been confirmed.
+[**account_settings_put**](AccountSettingsApi.md#account_settings_put) | **PUT** /account-settings/{tenantId}/{userId} | Updates the account settings for the specified user.
 
 
 # **account_settings_get**
 > GetAccountSettingsResult account_settings_get(tenant_id, user_id)
 
-
+Gets the account settings for the specified user.  This contains information such as their username, their email, and whether their email address  has been confirmed.
 
 ### Example
 
@@ -43,10 +43,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.AccountSettingsApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-user_id = 'user_id_example' # str | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID of the user.
+user_id = 'user_id_example' # str | The user ID of the user.
 
     try:
+        # Gets the account settings for the specified user.  This contains information such as their username, their email, and whether their email address  has been confirmed.
         api_response = api_instance.account_settings_get(tenant_id, user_id)
         pprint(api_response)
     except ApiException as e:
@@ -57,8 +58,8 @@ user_id = 'user_id_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **user_id** | **str**|  | 
+ **tenant_id** | **str**| The tenant ID of the user. | 
+ **user_id** | **str**| The user ID of the user. | 
 
 ### Return type
 
@@ -76,14 +77,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **account_settings_put**
 > account_settings_put(tenant_id, user_id, account_settings_put_request)
 
-
+Updates the account settings for the specified user.
 
 ### Example
 
@@ -115,11 +116,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.AccountSettingsApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-user_id = 'user_id_example' # str | 
-account_settings_put_request = canopy.openapi.AccountSettingsPutRequest() # AccountSettingsPutRequest | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID of the user.
+user_id = 'user_id_example' # str | The user ID of the user.
+account_settings_put_request = canopy.openapi.AccountSettingsPutRequest() # AccountSettingsPutRequest | The updated account settings.  Only `NewUsername` and `NewEmail` are required, and they are only updated if they differ from the current username and email.
 
     try:
+        # Updates the account settings for the specified user.
         api_instance.account_settings_put(tenant_id, user_id, account_settings_put_request)
     except ApiException as e:
         print("Exception when calling AccountSettingsApi->account_settings_put: %s\n" % e)
@@ -129,9 +131,9 @@ account_settings_put_request = canopy.openapi.AccountSettingsPutRequest() # Acco
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**|  | 
- **user_id** | **str**|  | 
- **account_settings_put_request** | [**AccountSettingsPutRequest**](AccountSettingsPutRequest.md)|  | 
+ **tenant_id** | **str**| The tenant ID of the user. | 
+ **user_id** | **str**| The user ID of the user. | 
+ **account_settings_put_request** | [**AccountSettingsPutRequest**](AccountSettingsPutRequest.md)| The updated account settings.  Only &#x60;NewUsername&#x60; and &#x60;NewEmail&#x60; are required, and they are only updated if they differ from the current username and email. | 
 
 ### Return type
 
@@ -149,7 +151,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

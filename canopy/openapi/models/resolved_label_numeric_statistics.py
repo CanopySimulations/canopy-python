@@ -58,9 +58,12 @@ class ResolvedLabelNumericStatistics(object):
         self._mean = None
         self.discriminator = None
 
-        self.minimum = minimum
-        self.maximum = maximum
-        self.mean = mean
+        if minimum is not None:
+            self.minimum = minimum
+        if maximum is not None:
+            self.maximum = maximum
+        if mean is not None:
+            self.mean = mean
 
     @property
     def minimum(self):
@@ -80,8 +83,6 @@ class ResolvedLabelNumericStatistics(object):
         :param minimum: The minimum of this ResolvedLabelNumericStatistics.  # noqa: E501
         :type minimum: float
         """
-        if self.local_vars_configuration.client_side_validation and minimum is None:  # noqa: E501
-            raise ValueError("Invalid value for `minimum`, must not be `None`")  # noqa: E501
 
         self._minimum = minimum
 
@@ -103,8 +104,6 @@ class ResolvedLabelNumericStatistics(object):
         :param maximum: The maximum of this ResolvedLabelNumericStatistics.  # noqa: E501
         :type maximum: float
         """
-        if self.local_vars_configuration.client_side_validation and maximum is None:  # noqa: E501
-            raise ValueError("Invalid value for `maximum`, must not be `None`")  # noqa: E501
 
         self._maximum = maximum
 
@@ -126,8 +125,6 @@ class ResolvedLabelNumericStatistics(object):
         :param mean: The mean of this ResolvedLabelNumericStatistics.  # noqa: E501
         :type mean: float
         """
-        if self.local_vars_configuration.client_side_validation and mean is None:  # noqa: E501
-            raise ValueError("Invalid value for `mean`, must not be `None`")  # noqa: E501
 
         self._mean = mean
 

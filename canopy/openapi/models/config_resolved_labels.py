@@ -80,8 +80,6 @@ class ConfigResolvedLabels(object):
         :param reference: The reference of this ConfigResolvedLabels.  # noqa: E501
         :type reference: ConfigResolvedLabelsReference
         """
-        if self.local_vars_configuration.client_side_validation and reference is None:  # noqa: E501
-            raise ValueError("Invalid value for `reference`, must not be `None`")  # noqa: E501
 
         self._reference = reference
 
@@ -103,8 +101,6 @@ class ConfigResolvedLabels(object):
         :param hashes: The hashes of this ConfigResolvedLabels.  # noqa: E501
         :type hashes: list[ConfigHash]
         """
-        if self.local_vars_configuration.client_side_validation and hashes is None:  # noqa: E501
-            raise ValueError("Invalid value for `hashes`, must not be `None`")  # noqa: E501
 
         self._hashes = hashes
 
@@ -126,8 +122,6 @@ class ConfigResolvedLabels(object):
         :param resolved_labels: The resolved_labels of this ConfigResolvedLabels.  # noqa: E501
         :type resolved_labels: list[ResolvedLabel]
         """
-        if self.local_vars_configuration.client_side_validation and resolved_labels is None:  # noqa: E501
-            raise ValueError("Invalid value for `resolved_labels`, must not be `None`")  # noqa: E501
 
         self._resolved_labels = resolved_labels
 

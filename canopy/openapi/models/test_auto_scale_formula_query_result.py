@@ -72,8 +72,6 @@ class TestAutoScaleFormulaQueryResult(object):
         :param auto_scale_run: The auto_scale_run of this TestAutoScaleFormulaQueryResult.  # noqa: E501
         :type auto_scale_run: TestAutoScaleFormulaQueryResultAutoScaleRun
         """
-        if self.local_vars_configuration.client_side_validation and auto_scale_run is None:  # noqa: E501
-            raise ValueError("Invalid value for `auto_scale_run`, must not be `None`")  # noqa: E501
 
         self._auto_scale_run = auto_scale_run
 

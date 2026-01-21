@@ -55,7 +55,8 @@ class SimulationColumnLabelDefinitions(object):
         self._labels = None
         self.discriminator = None
 
-        self.sim_type = sim_type
+        if sim_type is not None:
+            self.sim_type = sim_type
         self.labels = labels
 
     @property
@@ -76,8 +77,6 @@ class SimulationColumnLabelDefinitions(object):
         :param sim_type: The sim_type of this SimulationColumnLabelDefinitions.  # noqa: E501
         :type sim_type: str
         """
-        if self.local_vars_configuration.client_side_validation and sim_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_type`, must not be `None`")  # noqa: E501
 
         self._sim_type = sim_type
 
@@ -99,8 +98,6 @@ class SimulationColumnLabelDefinitions(object):
         :param labels: The labels of this SimulationColumnLabelDefinitions.  # noqa: E501
         :type labels: list[LabelDefinition]
         """
-        if self.local_vars_configuration.client_side_validation and labels is None:  # noqa: E501
-            raise ValueError("Invalid value for `labels`, must not be `None`")  # noqa: E501
 
         self._labels = labels
 

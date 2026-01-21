@@ -76,8 +76,6 @@ class AdminTenantSettingsPoolSettings(object):
         :param pool_id: The pool_id of this AdminTenantSettingsPoolSettings.  # noqa: E501
         :type pool_id: object
         """
-        if self.local_vars_configuration.client_side_validation and pool_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `pool_id`, must not be `None`")  # noqa: E501
 
         self._pool_id = pool_id
 
@@ -99,8 +97,6 @@ class AdminTenantSettingsPoolSettings(object):
         :param auto_scale_formula: The auto_scale_formula of this AdminTenantSettingsPoolSettings.  # noqa: E501
         :type auto_scale_formula: str
         """
-        if self.local_vars_configuration.client_side_validation and auto_scale_formula is None:  # noqa: E501
-            raise ValueError("Invalid value for `auto_scale_formula`, must not be `None`")  # noqa: E501
 
         self._auto_scale_formula = auto_scale_formula
 

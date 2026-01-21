@@ -58,6 +58,7 @@ class SimVersionPostSimVersionRequest(object):
     def sim_version(self):
         """Gets the sim_version of this SimVersionPostSimVersionRequest.  # noqa: E501
 
+        The version.  # noqa: E501
 
         :return: The sim_version of this SimVersionPostSimVersionRequest.  # noqa: E501
         :rtype: str
@@ -68,6 +69,7 @@ class SimVersionPostSimVersionRequest(object):
     def sim_version(self, sim_version):
         """Sets the sim_version of this SimVersionPostSimVersionRequest.
 
+        The version.  # noqa: E501
 
         :param sim_version: The sim_version of this SimVersionPostSimVersionRequest.  # noqa: E501
         :type sim_version: str

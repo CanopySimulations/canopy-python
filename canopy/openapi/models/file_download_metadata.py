@@ -76,8 +76,6 @@ class FileDownloadMetadata(object):
         :param name: The name of this FileDownloadMetadata.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -99,8 +97,6 @@ class FileDownloadMetadata(object):
         :param url: The url of this FileDownloadMetadata.  # noqa: E501
         :type url: str
         """
-        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
-            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 

@@ -1,5 +1,6 @@
 # UpdatedUserSettingsSettings
 
+The updated user settings.
 
 ## Properties
 Name | Type | Description | Notes

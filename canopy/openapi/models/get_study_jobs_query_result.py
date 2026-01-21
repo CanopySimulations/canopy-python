@@ -83,6 +83,7 @@ class GetStudyJobsQueryResult(object):
     def group_results(self):
         """Gets the group_results of this GetStudyJobsQueryResult.  # noqa: E501
 
+        The list of custom property groups (which groups are available for the  filtered study jobs, and how many study jobs are in each group).  # noqa: E501
 
         :return: The group_results of this GetStudyJobsQueryResult.  # noqa: E501
         :rtype: list[DocumentCustomPropertyGroup]
@@ -93,6 +94,7 @@ class GetStudyJobsQueryResult(object):
     def group_results(self, group_results):
         """Sets the group_results of this GetStudyJobsQueryResult.
 
+        The list of custom property groups (which groups are available for the  filtered study jobs, and how many study jobs are in each group).  # noqa: E501
 
         :param group_results: The group_results of this GetStudyJobsQueryResult.  # noqa: E501
         :type group_results: list[DocumentCustomPropertyGroup]

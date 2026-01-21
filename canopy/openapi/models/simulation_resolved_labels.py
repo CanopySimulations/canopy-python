@@ -55,7 +55,8 @@ class SimulationResolvedLabels(object):
         self._resolved_labels = None
         self.discriminator = None
 
-        self.sim_type = sim_type
+        if sim_type is not None:
+            self.sim_type = sim_type
         self.resolved_labels = resolved_labels
 
     @property
@@ -76,8 +77,6 @@ class SimulationResolvedLabels(object):
         :param sim_type: The sim_type of this SimulationResolvedLabels.  # noqa: E501
         :type sim_type: str
         """
-        if self.local_vars_configuration.client_side_validation and sim_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_type`, must not be `None`")  # noqa: E501
 
         self._sim_type = sim_type
 
@@ -99,8 +98,6 @@ class SimulationResolvedLabels(object):
         :param resolved_labels: The resolved_labels of this SimulationResolvedLabels.  # noqa: E501
         :type resolved_labels: list[ResolvedLabel]
         """
-        if self.local_vars_configuration.client_side_validation and resolved_labels is None:  # noqa: E501
-            raise ValueError("Invalid value for `resolved_labels`, must not be `None`")  # noqa: E501
 
         self._resolved_labels = resolved_labels
 

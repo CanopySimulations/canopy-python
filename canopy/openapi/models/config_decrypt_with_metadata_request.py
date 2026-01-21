@@ -63,6 +63,7 @@ class ConfigDecryptWithMetadataRequest(object):
     def data(self):
         """Gets the data of this ConfigDecryptWithMetadataRequest.  # noqa: E501
 
+        The data to be decrypted.  # noqa: E501
 
         :return: The data of this ConfigDecryptWithMetadataRequest.  # noqa: E501
         :rtype: object
@@ -73,6 +74,7 @@ class ConfigDecryptWithMetadataRequest(object):
     def data(self, data):
         """Sets the data of this ConfigDecryptWithMetadataRequest.
 
+        The data to be decrypted.  # noqa: E501
 
         :param data: The data of this ConfigDecryptWithMetadataRequest.  # noqa: E501
         :type data: object
@@ -84,6 +86,7 @@ class ConfigDecryptWithMetadataRequest(object):
     def decrypt_recursively(self):
         """Gets the decrypt_recursively of this ConfigDecryptWithMetadataRequest.  # noqa: E501
 
+        A value indicating whether to decrypt the data recursively.  # noqa: E501
 
         :return: The decrypt_recursively of this ConfigDecryptWithMetadataRequest.  # noqa: E501
         :rtype: bool
@@ -94,6 +97,7 @@ class ConfigDecryptWithMetadataRequest(object):
     def decrypt_recursively(self, decrypt_recursively):
         """Sets the decrypt_recursively of this ConfigDecryptWithMetadataRequest.
 
+        A value indicating whether to decrypt the data recursively.  # noqa: E501
 
         :param decrypt_recursively: The decrypt_recursively of this ConfigDecryptWithMetadataRequest.  # noqa: E501
         :type decrypt_recursively: bool

@@ -76,8 +76,6 @@ class LabelDefinition(object):
         :param source: The source of this LabelDefinition.  # noqa: E501
         :type source: str
         """
-        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
-            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
 
         self._source = source
 
@@ -99,8 +97,6 @@ class LabelDefinition(object):
         :param name: The name of this LabelDefinition.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 

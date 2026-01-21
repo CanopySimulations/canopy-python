@@ -63,13 +63,16 @@ class SupportSessionsRequestMetadata(object):
 
         self.database_id = database_id
         self.tenant_id = tenant_id
-        self.query_time_milliseconds = query_time_milliseconds
-        self.time_to_query_start_milliseconds = time_to_query_start_milliseconds
+        if query_time_milliseconds is not None:
+            self.query_time_milliseconds = query_time_milliseconds
+        if time_to_query_start_milliseconds is not None:
+            self.time_to_query_start_milliseconds = time_to_query_start_milliseconds
 
     @property
     def database_id(self):
         """Gets the database_id of this SupportSessionsRequestMetadata.  # noqa: E501
 
+        The database ID for the query.  # noqa: E501
 
         :return: The database_id of this SupportSessionsRequestMetadata.  # noqa: E501
         :rtype: str
@@ -80,12 +83,11 @@ class SupportSessionsRequestMetadata(object):
     def database_id(self, database_id):
         """Sets the database_id of this SupportSessionsRequestMetadata.
 
+        The database ID for the query.  # noqa: E501
 
         :param database_id: The database_id of this SupportSessionsRequestMetadata.  # noqa: E501
         :type database_id: str
         """
-        if self.local_vars_configuration.client_side_validation and database_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `database_id`, must not be `None`")  # noqa: E501
 
         self._database_id = database_id
 
@@ -93,6 +95,7 @@ class SupportSessionsRequestMetadata(object):
     def tenant_id(self):
         """Gets the tenant_id of this SupportSessionsRequestMetadata.  # noqa: E501
 
+        The tenant ID.  # noqa: E501
 
         :return: The tenant_id of this SupportSessionsRequestMetadata.  # noqa: E501
         :rtype: object
@@ -103,12 +106,11 @@ class SupportSessionsRequestMetadata(object):
     def tenant_id(self, tenant_id):
         """Sets the tenant_id of this SupportSessionsRequestMetadata.
 
+        The tenant ID.  # noqa: E501
 
         :param tenant_id: The tenant_id of this SupportSessionsRequestMetadata.  # noqa: E501
         :type tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
 
         self._tenant_id = tenant_id
 
@@ -116,6 +118,7 @@ class SupportSessionsRequestMetadata(object):
     def query_time_milliseconds(self):
         """Gets the query_time_milliseconds of this SupportSessionsRequestMetadata.  # noqa: E501
 
+        The time the query took to execute.  # noqa: E501
 
         :return: The query_time_milliseconds of this SupportSessionsRequestMetadata.  # noqa: E501
         :rtype: float
@@ -126,12 +129,11 @@ class SupportSessionsRequestMetadata(object):
     def query_time_milliseconds(self, query_time_milliseconds):
         """Sets the query_time_milliseconds of this SupportSessionsRequestMetadata.
 
+        The time the query took to execute.  # noqa: E501
 
         :param query_time_milliseconds: The query_time_milliseconds of this SupportSessionsRequestMetadata.  # noqa: E501
         :type query_time_milliseconds: float
         """
-        if self.local_vars_configuration.client_side_validation and query_time_milliseconds is None:  # noqa: E501
-            raise ValueError("Invalid value for `query_time_milliseconds`, must not be `None`")  # noqa: E501
 
         self._query_time_milliseconds = query_time_milliseconds
 
@@ -139,6 +141,7 @@ class SupportSessionsRequestMetadata(object):
     def time_to_query_start_milliseconds(self):
         """Gets the time_to_query_start_milliseconds of this SupportSessionsRequestMetadata.  # noqa: E501
 
+        The time the query took to start.  # noqa: E501
 
         :return: The time_to_query_start_milliseconds of this SupportSessionsRequestMetadata.  # noqa: E501
         :rtype: float
@@ -149,12 +152,11 @@ class SupportSessionsRequestMetadata(object):
     def time_to_query_start_milliseconds(self, time_to_query_start_milliseconds):
         """Sets the time_to_query_start_milliseconds of this SupportSessionsRequestMetadata.
 
+        The time the query took to start.  # noqa: E501
 
         :param time_to_query_start_milliseconds: The time_to_query_start_milliseconds of this SupportSessionsRequestMetadata.  # noqa: E501
         :type time_to_query_start_milliseconds: float
         """
-        if self.local_vars_configuration.client_side_validation and time_to_query_start_milliseconds is None:  # noqa: E501
-            raise ValueError("Invalid value for `time_to_query_start_milliseconds`, must not be `None`")  # noqa: E501
 
         self._time_to_query_start_milliseconds = time_to_query_start_milliseconds
 

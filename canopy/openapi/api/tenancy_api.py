@@ -37,7 +37,7 @@ class TenancyApi(object):
         self.api_client = api_client
 
     def tenancy_delete_tenant(self, tenant_id, **kwargs):  # noqa: E501
-        """tenancy_delete_tenant  # noqa: E501
+        """Deletes the specified tenant. This is irreversible.  This will delete the tenant's document database, then all their blob storage containers,  and finally it will remove the tenant from the authentication database.  The data will not be recoverable.  This method can only be called once all the tenant's users have been deleted.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,7 +45,7 @@ class TenancyApi(object):
         >>> thread = api.tenancy_delete_tenant(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -66,7 +66,7 @@ class TenancyApi(object):
         return self.tenancy_delete_tenant_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenancy_delete_tenant_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenancy_delete_tenant  # noqa: E501
+        """Deletes the specified tenant. This is irreversible.  This will delete the tenant's document database, then all their blob storage containers,  and finally it will remove the tenant from the authentication database.  The data will not be recoverable.  This method can only be called once all the tenant's users have been deleted.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -74,7 +74,7 @@ class TenancyApi(object):
         >>> thread = api.tenancy_delete_tenant_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -166,7 +166,7 @@ class TenancyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenancy_get_tenant(self, tenant_id, **kwargs):  # noqa: E501
-        """tenancy_get_tenant  # noqa: E501
+        """Gets metadata about the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -174,7 +174,7 @@ class TenancyApi(object):
         >>> thread = api.tenancy_get_tenant(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -195,7 +195,7 @@ class TenancyApi(object):
         return self.tenancy_get_tenant_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenancy_get_tenant_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenancy_get_tenant  # noqa: E501
+        """Gets metadata about the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -203,7 +203,7 @@ class TenancyApi(object):
         >>> thread = api.tenancy_get_tenant_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -301,7 +301,7 @@ class TenancyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenancy_get_tenant_users(self, tenant_id, **kwargs):  # noqa: E501
-        """tenancy_get_tenant_users  # noqa: E501
+        """Gets the list of users for the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -309,7 +309,7 @@ class TenancyApi(object):
         >>> thread = api.tenancy_get_tenant_users(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -330,7 +330,7 @@ class TenancyApi(object):
         return self.tenancy_get_tenant_users_with_http_info(tenant_id, **kwargs)  # noqa: E501
 
     def tenancy_get_tenant_users_with_http_info(self, tenant_id, **kwargs):  # noqa: E501
-        """tenancy_get_tenant_users  # noqa: E501
+        """Gets the list of users for the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -338,7 +338,7 @@ class TenancyApi(object):
         >>> thread = api.tenancy_get_tenant_users_with_http_info(tenant_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID. (required)
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -436,7 +436,7 @@ class TenancyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenancy_get_tenants(self, **kwargs):  # noqa: E501
-        """tenancy_get_tenants  # noqa: E501
+        """Gets metadata about all tenants.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -463,7 +463,7 @@ class TenancyApi(object):
         return self.tenancy_get_tenants_with_http_info(**kwargs)  # noqa: E501
 
     def tenancy_get_tenants_with_http_info(self, **kwargs):  # noqa: E501
-        """tenancy_get_tenants  # noqa: E501
+        """Gets metadata about all tenants.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -561,7 +561,7 @@ class TenancyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenancy_post_tenant(self, **kwargs):  # noqa: E501
-        """tenancy_post_tenant  # noqa: E501
+        """Creates a new tenant in the specified region, including a new database if necessary.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -569,7 +569,7 @@ class TenancyApi(object):
         >>> thread = api.tenancy_post_tenant(async_req=True)
         >>> result = thread.get()
 
-        :param tenancy_post_tenant_request:
+        :param tenancy_post_tenant_request: A data structure containing the name, short name, region, and database ID of the new tenant.  The region and database ID are optional.  If the region isn't supplied it will default to North Europe, otherwise `east-us` is the only valid option.  If the database ID isn't specified it will default to the tenant ID.  If a database with the specified ID doesn't exist in the specified region, it will be created.
         :type tenancy_post_tenant_request: TenancyPostTenantRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -590,7 +590,7 @@ class TenancyApi(object):
         return self.tenancy_post_tenant_with_http_info(**kwargs)  # noqa: E501
 
     def tenancy_post_tenant_with_http_info(self, **kwargs):  # noqa: E501
-        """tenancy_post_tenant  # noqa: E501
+        """Creates a new tenant in the specified region, including a new database if necessary.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -598,7 +598,7 @@ class TenancyApi(object):
         >>> thread = api.tenancy_post_tenant_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param tenancy_post_tenant_request:
+        :param tenancy_post_tenant_request: A data structure containing the name, short name, region, and database ID of the new tenant.  The region and database ID are optional.  If the region isn't supplied it will default to North Europe, otherwise `east-us` is the only valid option.  If the database ID isn't specified it will default to the tenant ID.  If a database with the specified ID doesn't exist in the specified region, it will be created.
         :type tenancy_post_tenant_request: TenancyPostTenantRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -695,7 +695,7 @@ class TenancyApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def tenancy_put_tenant(self, tenant_id, tenancy_put_tenant_request, **kwargs):  # noqa: E501
-        """tenancy_put_tenant  # noqa: E501
+        """Updates the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -703,9 +703,9 @@ class TenancyApi(object):
         >>> thread = api.tenancy_put_tenant(tenant_id, tenancy_put_tenant_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID to update. (required)
         :type tenant_id: str
-        :param tenancy_put_tenant_request: (required)
+        :param tenancy_put_tenant_request: A data structure optionally containing the tenant name, short name, database ID and a flag indicating whether the tenant is enabled.  Only supplied values will be updated. (required)
         :type tenancy_put_tenant_request: TenancyPutTenantRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -726,7 +726,7 @@ class TenancyApi(object):
         return self.tenancy_put_tenant_with_http_info(tenant_id, tenancy_put_tenant_request, **kwargs)  # noqa: E501
 
     def tenancy_put_tenant_with_http_info(self, tenant_id, tenancy_put_tenant_request, **kwargs):  # noqa: E501
-        """tenancy_put_tenant  # noqa: E501
+        """Updates the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -734,9 +734,9 @@ class TenancyApi(object):
         >>> thread = api.tenancy_put_tenant_with_http_info(tenant_id, tenancy_put_tenant_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID to update. (required)
         :type tenant_id: str
-        :param tenancy_put_tenant_request: (required)
+        :param tenancy_put_tenant_request: A data structure optionally containing the tenant name, short name, database ID and a flag indicating whether the tenant is enabled.  Only supplied values will be updated. (required)
         :type tenancy_put_tenant_request: TenancyPutTenantRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

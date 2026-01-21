@@ -37,7 +37,7 @@ class SimVersionApi(object):
         self.api_client = api_client
 
     def sim_version_get_document(self, sim_version, document_path, **kwargs):  # noqa: E501
-        """sim_version_get_document  # noqa: E501
+        """Gets a specific document associated with the specified sim version and tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,11 +45,11 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_document(sim_version, document_path, async_req=True)
         >>> result = thread.get()
 
-        :param sim_version: (required)
+        :param sim_version: The sim version. (required)
         :type sim_version: str
-        :param document_path: (required)
+        :param document_path: The path to the document. (required)
         :type document_path: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -70,7 +70,7 @@ class SimVersionApi(object):
         return self.sim_version_get_document_with_http_info(sim_version, document_path, **kwargs)  # noqa: E501
 
     def sim_version_get_document_with_http_info(self, sim_version, document_path, **kwargs):  # noqa: E501
-        """sim_version_get_document  # noqa: E501
+        """Gets a specific document associated with the specified sim version and tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -78,11 +78,11 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_document_with_http_info(sim_version, document_path, async_req=True)
         >>> result = thread.get()
 
-        :param sim_version: (required)
+        :param sim_version: The sim version. (required)
         :type sim_version: str
-        :param document_path: (required)
+        :param document_path: The path to the document. (required)
         :type document_path: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -189,7 +189,7 @@ class SimVersionApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_get_documents(self, sim_version, **kwargs):  # noqa: E501
-        """sim_version_get_documents  # noqa: E501
+        """Gets the list of documents associated with the specified sim version and tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -197,9 +197,9 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_documents(sim_version, async_req=True)
         >>> result = thread.get()
 
-        :param sim_version: (required)
+        :param sim_version: The sim version. (required)
         :type sim_version: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -220,7 +220,7 @@ class SimVersionApi(object):
         return self.sim_version_get_documents_with_http_info(sim_version, **kwargs)  # noqa: E501
 
     def sim_version_get_documents_with_http_info(self, sim_version, **kwargs):  # noqa: E501
-        """sim_version_get_documents  # noqa: E501
+        """Gets the list of documents associated with the specified sim version and tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -228,9 +228,9 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_documents_with_http_info(sim_version, async_req=True)
         >>> result = thread.get()
 
-        :param sim_version: (required)
+        :param sim_version: The sim version. (required)
         :type sim_version: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -331,7 +331,7 @@ class SimVersionApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_get_downloads(self, sim_version, **kwargs):  # noqa: E501
-        """sim_version_get_downloads  # noqa: E501
+        """Gets the downloads for the specified sim version and tenant.  Downloads could include DiL models, or SimLauncherLocal.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -339,9 +339,9 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_downloads(sim_version, async_req=True)
         >>> result = thread.get()
 
-        :param sim_version: (required)
+        :param sim_version: The sim version. (required)
         :type sim_version: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -362,7 +362,7 @@ class SimVersionApi(object):
         return self.sim_version_get_downloads_with_http_info(sim_version, **kwargs)  # noqa: E501
 
     def sim_version_get_downloads_with_http_info(self, sim_version, **kwargs):  # noqa: E501
-        """sim_version_get_downloads  # noqa: E501
+        """Gets the downloads for the specified sim version and tenant.  Downloads could include DiL models, or SimLauncherLocal.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -370,9 +370,9 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_downloads_with_http_info(sim_version, async_req=True)
         >>> result = thread.get()
 
-        :param sim_version: (required)
+        :param sim_version: The sim version. (required)
         :type sim_version: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -473,7 +473,7 @@ class SimVersionApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_get_sim_version(self, **kwargs):  # noqa: E501
-        """sim_version_get_sim_version  # noqa: E501
+        """Gets the sim version for a specific tenant.  This will be the global sim version if the tenant doesn't have a specific sim version set, otherwise it will be the tenant specific sim version.  Note that user sim versions are implemented purely as a front-end feature, so this method will always return the tenant sim version.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -481,7 +481,7 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_sim_version(async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -502,7 +502,7 @@ class SimVersionApi(object):
         return self.sim_version_get_sim_version_with_http_info(**kwargs)  # noqa: E501
 
     def sim_version_get_sim_version_with_http_info(self, **kwargs):  # noqa: E501
-        """sim_version_get_sim_version  # noqa: E501
+        """Gets the sim version for a specific tenant.  This will be the global sim version if the tenant doesn't have a specific sim version set, otherwise it will be the tenant specific sim version.  Note that user sim versions are implemented purely as a front-end feature, so this method will always return the tenant sim version.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -510,7 +510,7 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_sim_version_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -605,7 +605,7 @@ class SimVersionApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_get_wiki_document(self, wiki_version, document_path, **kwargs):  # noqa: E501
-        """sim_version_get_wiki_document  # noqa: E501
+        """Gets a document from the wiki associated with the specified sim version and tenant.  Note that the wiki used to contain all our documentation, but now only contains sim  version descriptions. The documentation has been moved to the new support platform.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -613,11 +613,11 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_wiki_document(wiki_version, document_path, async_req=True)
         >>> result = thread.get()
 
-        :param wiki_version: (required)
+        :param wiki_version: The sim version of the wiki. (required)
         :type wiki_version: str
-        :param document_path: (required)
+        :param document_path: The path to the document. (required)
         :type document_path: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -638,7 +638,7 @@ class SimVersionApi(object):
         return self.sim_version_get_wiki_document_with_http_info(wiki_version, document_path, **kwargs)  # noqa: E501
 
     def sim_version_get_wiki_document_with_http_info(self, wiki_version, document_path, **kwargs):  # noqa: E501
-        """sim_version_get_wiki_document  # noqa: E501
+        """Gets a document from the wiki associated with the specified sim version and tenant.  Note that the wiki used to contain all our documentation, but now only contains sim  version descriptions. The documentation has been moved to the new support platform.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -646,11 +646,11 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_get_wiki_document_with_http_info(wiki_version, document_path, async_req=True)
         >>> result = thread.get()
 
-        :param wiki_version: (required)
+        :param wiki_version: The sim version of the wiki. (required)
         :type wiki_version: str
-        :param document_path: (required)
+        :param document_path: The path to the document. (required)
         :type document_path: str
-        :param tenant_id:
+        :param tenant_id: The tenant ID.
         :type tenant_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -757,7 +757,7 @@ class SimVersionApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def sim_version_post_sim_version(self, sim_version_post_sim_version_request, **kwargs):  # noqa: E501
-        """sim_version_post_sim_version  # noqa: E501
+        """Updates the global sim version for the platform.  This is the default sim version which will be used if a user hasn't got a specific tenant or user sim version set.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -765,7 +765,7 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_post_sim_version(sim_version_post_sim_version_request, async_req=True)
         >>> result = thread.get()
 
-        :param sim_version_post_sim_version_request: (required)
+        :param sim_version_post_sim_version_request: A data structure containing the new sim version. (required)
         :type sim_version_post_sim_version_request: SimVersionPostSimVersionRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -786,7 +786,7 @@ class SimVersionApi(object):
         return self.sim_version_post_sim_version_with_http_info(sim_version_post_sim_version_request, **kwargs)  # noqa: E501
 
     def sim_version_post_sim_version_with_http_info(self, sim_version_post_sim_version_request, **kwargs):  # noqa: E501
-        """sim_version_post_sim_version  # noqa: E501
+        """Updates the global sim version for the platform.  This is the default sim version which will be used if a user hasn't got a specific tenant or user sim version set.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -794,7 +794,7 @@ class SimVersionApi(object):
         >>> thread = api.sim_version_post_sim_version_with_http_info(sim_version_post_sim_version_request, async_req=True)
         >>> result = thread.get()
 
-        :param sim_version_post_sim_version_request: (required)
+        :param sim_version_post_sim_version_request: A data structure containing the new sim version. (required)
         :type sim_version_post_sim_version_request: SimVersionPostSimVersionRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

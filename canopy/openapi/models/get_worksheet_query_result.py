@@ -37,7 +37,7 @@ class GetWorksheetQueryResult(object):
     """
     openapi_types = {
         'worksheet': 'GetWorksheetQueryResultWorksheet',
-        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
+        'user_information': 'GetWorksheetQueryResultUserInformation'
     }
 
     attribute_map = {
@@ -76,8 +76,6 @@ class GetWorksheetQueryResult(object):
         :param worksheet: The worksheet of this GetWorksheetQueryResult.  # noqa: E501
         :type worksheet: GetWorksheetQueryResultWorksheet
         """
-        if self.local_vars_configuration.client_side_validation and worksheet is None:  # noqa: E501
-            raise ValueError("Invalid value for `worksheet`, must not be `None`")  # noqa: E501
 
         self._worksheet = worksheet
 
@@ -87,7 +85,7 @@ class GetWorksheetQueryResult(object):
 
 
         :return: The user_information of this GetWorksheetQueryResult.  # noqa: E501
-        :rtype: GetAllSupportSessionsQueryResultUserInformation
+        :rtype: GetWorksheetQueryResultUserInformation
         """
         return self._user_information
 
@@ -97,10 +95,8 @@ class GetWorksheetQueryResult(object):
 
 
         :param user_information: The user_information of this GetWorksheetQueryResult.  # noqa: E501
-        :type user_information: GetAllSupportSessionsQueryResultUserInformation
+        :type user_information: GetWorksheetQueryResultUserInformation
         """
-        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 

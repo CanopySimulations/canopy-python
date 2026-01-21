@@ -66,6 +66,7 @@ class GetAllSupportSessionsQueryResult(object):
     def documents(self):
         """Gets the documents of this GetAllSupportSessionsQueryResult.  # noqa: E501
 
+        The list of documents containing open support sessions.  # noqa: E501
 
         :return: The documents of this GetAllSupportSessionsQueryResult.  # noqa: E501
         :rtype: list[CanopyDocument]
@@ -76,12 +77,11 @@ class GetAllSupportSessionsQueryResult(object):
     def documents(self, documents):
         """Sets the documents of this GetAllSupportSessionsQueryResult.
 
+        The list of documents containing open support sessions.  # noqa: E501
 
         :param documents: The documents of this GetAllSupportSessionsQueryResult.  # noqa: E501
         :type documents: list[CanopyDocument]
         """
-        if self.local_vars_configuration.client_side_validation and documents is None:  # noqa: E501
-            raise ValueError("Invalid value for `documents`, must not be `None`")  # noqa: E501
 
         self._documents = documents
 
@@ -103,8 +103,6 @@ class GetAllSupportSessionsQueryResult(object):
         :param user_information: The user_information of this GetAllSupportSessionsQueryResult.  # noqa: E501
         :type user_information: GetAllSupportSessionsQueryResultUserInformation
         """
-        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 
@@ -112,6 +110,7 @@ class GetAllSupportSessionsQueryResult(object):
     def query_metadata(self):
         """Gets the query_metadata of this GetAllSupportSessionsQueryResult.  # noqa: E501
 
+        Metadata about the query, such as how long each query took to run.  # noqa: E501
 
         :return: The query_metadata of this GetAllSupportSessionsQueryResult.  # noqa: E501
         :rtype: list[SupportSessionsRequestMetadata]
@@ -122,12 +121,11 @@ class GetAllSupportSessionsQueryResult(object):
     def query_metadata(self, query_metadata):
         """Sets the query_metadata of this GetAllSupportSessionsQueryResult.
 
+        Metadata about the query, such as how long each query took to run.  # noqa: E501
 
         :param query_metadata: The query_metadata of this GetAllSupportSessionsQueryResult.  # noqa: E501
         :type query_metadata: list[SupportSessionsRequestMetadata]
         """
-        if self.local_vars_configuration.client_side_validation and query_metadata is None:  # noqa: E501
-            raise ValueError("Invalid value for `query_metadata`, must not be `None`")  # noqa: E501
 
         self._query_metadata = query_metadata
 

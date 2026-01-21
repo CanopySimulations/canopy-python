@@ -62,6 +62,7 @@ class DocumentCustomPropertyData(object):
     def name(self):
         """Gets the name of this DocumentCustomPropertyData.  # noqa: E501
 
+        The name of the custom property.  # noqa: E501
 
         :return: The name of this DocumentCustomPropertyData.  # noqa: E501
         :rtype: str
@@ -72,6 +73,7 @@ class DocumentCustomPropertyData(object):
     def name(self, name):
         """Sets the name of this DocumentCustomPropertyData.
 
+        The name of the custom property.  # noqa: E501
 
         :param name: The name of this DocumentCustomPropertyData.  # noqa: E501
         :type name: str
@@ -83,6 +85,7 @@ class DocumentCustomPropertyData(object):
     def value(self):
         """Gets the value of this DocumentCustomPropertyData.  # noqa: E501
 
+        The value of the custom property.  # noqa: E501
 
         :return: The value of this DocumentCustomPropertyData.  # noqa: E501
         :rtype: str
@@ -93,6 +96,7 @@ class DocumentCustomPropertyData(object):
     def value(self, value):
         """Sets the value of this DocumentCustomPropertyData.
 
+        The value of the custom property.  # noqa: E501
 
         :param value: The value of this DocumentCustomPropertyData.  # noqa: E501
         :type value: str

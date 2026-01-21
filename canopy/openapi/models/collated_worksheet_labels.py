@@ -80,8 +80,6 @@ class CollatedWorksheetLabels(object):
         :param label_definitions: The label_definitions of this CollatedWorksheetLabels.  # noqa: E501
         :type label_definitions: CollatedWorksheetLabelsLabelDefinitions
         """
-        if self.local_vars_configuration.client_side_validation and label_definitions is None:  # noqa: E501
-            raise ValueError("Invalid value for `label_definitions`, must not be `None`")  # noqa: E501
 
         self._label_definitions = label_definitions
 
@@ -103,8 +101,6 @@ class CollatedWorksheetLabels(object):
         :param configs: The configs of this CollatedWorksheetLabels.  # noqa: E501
         :type configs: list[ConfigResolvedLabels]
         """
-        if self.local_vars_configuration.client_side_validation and configs is None:  # noqa: E501
-            raise ValueError("Invalid value for `configs`, must not be `None`")  # noqa: E501
 
         self._configs = configs
 
@@ -126,8 +122,6 @@ class CollatedWorksheetLabels(object):
         :param studies: The studies of this CollatedWorksheetLabels.  # noqa: E501
         :type studies: list[StudyResolvedLabels]
         """
-        if self.local_vars_configuration.client_side_validation and studies is None:  # noqa: E501
-            raise ValueError("Invalid value for `studies`, must not be `None`")  # noqa: E501
 
         self._studies = studies
 

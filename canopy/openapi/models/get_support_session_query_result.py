@@ -36,8 +36,8 @@ class GetSupportSessionQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'session': 'CanopyDocumentSupportSession',
-        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
+        'session': 'GetSupportSessionQueryResultSession',
+        'user_information': 'GetStudyQueryResultUserInformation'
     }
 
     attribute_map = {
@@ -64,7 +64,7 @@ class GetSupportSessionQueryResult(object):
 
 
         :return: The session of this GetSupportSessionQueryResult.  # noqa: E501
-        :rtype: CanopyDocumentSupportSession
+        :rtype: GetSupportSessionQueryResultSession
         """
         return self._session
 
@@ -74,7 +74,7 @@ class GetSupportSessionQueryResult(object):
 
 
         :param session: The session of this GetSupportSessionQueryResult.  # noqa: E501
-        :type session: CanopyDocumentSupportSession
+        :type session: GetSupportSessionQueryResultSession
         """
 
         self._session = session
@@ -85,7 +85,7 @@ class GetSupportSessionQueryResult(object):
 
 
         :return: The user_information of this GetSupportSessionQueryResult.  # noqa: E501
-        :rtype: GetAllSupportSessionsQueryResultUserInformation
+        :rtype: GetStudyQueryResultUserInformation
         """
         return self._user_information
 
@@ -95,10 +95,8 @@ class GetSupportSessionQueryResult(object):
 
 
         :param user_information: The user_information of this GetSupportSessionQueryResult.  # noqa: E501
-        :type user_information: GetAllSupportSessionsQueryResultUserInformation
+        :type user_information: GetStudyQueryResultUserInformation
         """
-        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 

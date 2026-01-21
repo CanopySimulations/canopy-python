@@ -59,7 +59,8 @@ class SimTypeInputTelemetryChannel(object):
         self.discriminator = None
 
         self.name = name
-        self.is_required = is_required
+        if is_required is not None:
+            self.is_required = is_required
         self.evaluation_definition = evaluation_definition
 
     @property
@@ -80,8 +81,6 @@ class SimTypeInputTelemetryChannel(object):
         :param name: The name of this SimTypeInputTelemetryChannel.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -103,8 +102,6 @@ class SimTypeInputTelemetryChannel(object):
         :param is_required: The is_required of this SimTypeInputTelemetryChannel.  # noqa: E501
         :type is_required: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_required is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_required`, must not be `None`")  # noqa: E501
 
         self._is_required = is_required
 

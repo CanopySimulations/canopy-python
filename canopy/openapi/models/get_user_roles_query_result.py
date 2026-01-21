@@ -72,8 +72,6 @@ class GetUserRolesQueryResult(object):
         :param roles: The roles of this GetUserRolesQueryResult.  # noqa: E501
         :type roles: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and roles is None:  # noqa: E501
-            raise ValueError("Invalid value for `roles`, must not be `None`")  # noqa: E501
 
         self._roles = roles
 

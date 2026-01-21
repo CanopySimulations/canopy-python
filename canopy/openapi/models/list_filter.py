@@ -76,19 +76,15 @@ class ListFilter(object):
         self._include_if_has_parent_worksheet = None
         self.discriminator = None
 
-        if items_per_page is not None:
-            self.items_per_page = items_per_page
+        self.items_per_page = items_per_page
         self.continuation_token = continuation_token
         self.order_by_custom_property = order_by_custom_property
         self.order_by_property = order_by_property
-        if order_by_descending is not None:
-            self.order_by_descending = order_by_descending
+        self.order_by_descending = order_by_descending
         self.filter_name = filter_name
         self.query = query
-        if include_if_delete_requested is not None:
-            self.include_if_delete_requested = include_if_delete_requested
-        if include_if_has_parent_worksheet is not None:
-            self.include_if_has_parent_worksheet = include_if_has_parent_worksheet
+        self.include_if_delete_requested = include_if_delete_requested
+        self.include_if_has_parent_worksheet = include_if_has_parent_worksheet
 
     @property
     def items_per_page(self):

@@ -76,8 +76,6 @@ class StudyResolvedLabels(object):
         :param reference: The reference of this StudyResolvedLabels.  # noqa: E501
         :type reference: StudyResolvedLabelsReference
         """
-        if self.local_vars_configuration.client_side_validation and reference is None:  # noqa: E501
-            raise ValueError("Invalid value for `reference`, must not be `None`")  # noqa: E501
 
         self._reference = reference
 
@@ -99,8 +97,6 @@ class StudyResolvedLabels(object):
         :param simulation_labels: The simulation_labels of this StudyResolvedLabels.  # noqa: E501
         :type simulation_labels: list[SimulationResolvedLabels]
         """
-        if self.local_vars_configuration.client_side_validation and simulation_labels is None:  # noqa: E501
-            raise ValueError("Invalid value for `simulation_labels`, must not be `None`")  # noqa: E501
 
         self._simulation_labels = simulation_labels
 

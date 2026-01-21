@@ -83,6 +83,7 @@ class UserSettingsPutUserSettingsRequest(object):
     def e_tag(self):
         """Gets the e_tag of this UserSettingsPutUserSettingsRequest.  # noqa: E501
 
+        The ETag received when requesting the user settings.  # noqa: E501
 
         :return: The e_tag of this UserSettingsPutUserSettingsRequest.  # noqa: E501
         :rtype: str
@@ -93,6 +94,7 @@ class UserSettingsPutUserSettingsRequest(object):
     def e_tag(self, e_tag):
         """Sets the e_tag of this UserSettingsPutUserSettingsRequest.
 
+        The ETag received when requesting the user settings.  # noqa: E501
 
         :param e_tag: The e_tag of this UserSettingsPutUserSettingsRequest.  # noqa: E501
         :type e_tag: str

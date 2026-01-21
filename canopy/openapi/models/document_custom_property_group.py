@@ -76,8 +76,6 @@ class DocumentCustomPropertyGroup(object):
         :param name: The name of this DocumentCustomPropertyGroup.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -99,8 +97,6 @@ class DocumentCustomPropertyGroup(object):
         :param groups: The groups of this DocumentCustomPropertyGroup.  # noqa: E501
         :type groups: list[DocumentGroupResult]
         """
-        if self.local_vars_configuration.client_side_validation and groups is None:  # noqa: E501
-            raise ValueError("Invalid value for `groups`, must not be `None`")  # noqa: E501
 
         self._groups = groups
 

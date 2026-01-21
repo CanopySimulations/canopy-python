@@ -37,7 +37,7 @@ class EndToEndTestInboxApi(object):
         self.api_client = api_client
 
     def end_to_end_test_inbox_get_latest_message_and_clear_mailbox(self, mailbox_name, **kwargs):  # noqa: E501
-        """end_to_end_test_inbox_get_latest_message_and_clear_mailbox  # noqa: E501
+        """Returns the latest message and clears the inbox.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,7 +45,7 @@ class EndToEndTestInboxApi(object):
         >>> thread = api.end_to_end_test_inbox_get_latest_message_and_clear_mailbox(mailbox_name, async_req=True)
         >>> result = thread.get()
 
-        :param mailbox_name: (required)
+        :param mailbox_name: The name of the mailbox, which is the portion of the email address before the @ symbol. (required)
         :type mailbox_name: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -66,7 +66,7 @@ class EndToEndTestInboxApi(object):
         return self.end_to_end_test_inbox_get_latest_message_and_clear_mailbox_with_http_info(mailbox_name, **kwargs)  # noqa: E501
 
     def end_to_end_test_inbox_get_latest_message_and_clear_mailbox_with_http_info(self, mailbox_name, **kwargs):  # noqa: E501
-        """end_to_end_test_inbox_get_latest_message_and_clear_mailbox  # noqa: E501
+        """Returns the latest message and clears the inbox.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -74,7 +74,7 @@ class EndToEndTestInboxApi(object):
         >>> thread = api.end_to_end_test_inbox_get_latest_message_and_clear_mailbox_with_http_info(mailbox_name, async_req=True)
         >>> result = thread.get()
 
-        :param mailbox_name: (required)
+        :param mailbox_name: The name of the mailbox, which is the portion of the email address before the @ symbol. (required)
         :type mailbox_name: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -144,7 +144,7 @@ class EndToEndTestInboxApi(object):
 
         body_params = None
         # Authentication setting
-        auth_settings = ['Bearer']  # noqa: E501
+        auth_settings = []  # noqa: E501
 
         response_types_map = {}
 

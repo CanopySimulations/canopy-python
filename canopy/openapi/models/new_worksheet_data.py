@@ -70,6 +70,7 @@ class NewWorksheetData(object):
     def name(self):
         """Gets the name of this NewWorksheetData.  # noqa: E501
 
+        The name of the new worksheet.  # noqa: E501
 
         :return: The name of this NewWorksheetData.  # noqa: E501
         :rtype: str
@@ -80,6 +81,7 @@ class NewWorksheetData(object):
     def name(self, name):
         """Sets the name of this NewWorksheetData.
 
+        The name of the new worksheet.  # noqa: E501
 
         :param name: The name of this NewWorksheetData.  # noqa: E501
         :type name: str
@@ -91,6 +93,7 @@ class NewWorksheetData(object):
     def properties(self):
         """Gets the properties of this NewWorksheetData.  # noqa: E501
 
+        The custom properties of the new worksheet.  # noqa: E501
 
         :return: The properties of this NewWorksheetData.  # noqa: E501
         :rtype: list[DocumentCustomPropertyData]
@@ -101,6 +104,7 @@ class NewWorksheetData(object):
     def properties(self, properties):
         """Sets the properties of this NewWorksheetData.
 
+        The custom properties of the new worksheet.  # noqa: E501
 
         :param properties: The properties of this NewWorksheetData.  # noqa: E501
         :type properties: list[DocumentCustomPropertyData]
@@ -133,6 +137,7 @@ class NewWorksheetData(object):
     def notes(self):
         """Gets the notes of this NewWorksheetData.  # noqa: E501
 
+        The notes for the new worksheet.  # noqa: E501
 
         :return: The notes of this NewWorksheetData.  # noqa: E501
         :rtype: str
@@ -143,6 +148,7 @@ class NewWorksheetData(object):
     def notes(self, notes):
         """Sets the notes of this NewWorksheetData.
 
+        The notes for the new worksheet.  # noqa: E501
 
         :param notes: The notes of this NewWorksheetData.  # noqa: E501
         :type notes: str

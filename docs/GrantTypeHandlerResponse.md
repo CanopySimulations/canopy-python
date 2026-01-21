@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **roles** | **str** |  | [optional] 
 **tenant_id** | **str** |  | [optional] 
 **token_type** | **str** |  | [optional] 
+**two_factor_enabled** | **bool** |  | [optional] 
 **user_id** | **str** |  | [optional] 
 **username** | **str** |  | [optional] 
 

@@ -58,6 +58,7 @@ class BatchCreateConfigsResult(object):
     def config_ids(self):
         """Gets the config_ids of this BatchCreateConfigsResult.  # noqa: E501
 
+        The IDs of the created configs.  # noqa: E501
 
         :return: The config_ids of this BatchCreateConfigsResult.  # noqa: E501
         :rtype: list[str]
@@ -68,12 +69,11 @@ class BatchCreateConfigsResult(object):
     def config_ids(self, config_ids):
         """Sets the config_ids of this BatchCreateConfigsResult.
 
+        The IDs of the created configs.  # noqa: E501
 
         :param config_ids: The config_ids of this BatchCreateConfigsResult.  # noqa: E501
         :type config_ids: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and config_ids is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_ids`, must not be `None`")  # noqa: E501
 
         self._config_ids = config_ids
 

@@ -38,7 +38,7 @@ class GetConfigsQueryResult(object):
     openapi_types = {
         'query_results': 'GetConfigsQueryResultQueryResults',
         'group_results': 'list[DocumentCustomPropertyGroup]',
-        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
+        'user_information': 'GetConfigVersionsQueryResultUserInformation'
     }
 
     attribute_map = {
@@ -87,6 +87,7 @@ class GetConfigsQueryResult(object):
     def group_results(self):
         """Gets the group_results of this GetConfigsQueryResult.  # noqa: E501
 
+        The list of custom property groups (which groups are available for the  filtered configs, and how many configs are in each group).  # noqa: E501
 
         :return: The group_results of this GetConfigsQueryResult.  # noqa: E501
         :rtype: list[DocumentCustomPropertyGroup]
@@ -97,6 +98,7 @@ class GetConfigsQueryResult(object):
     def group_results(self, group_results):
         """Sets the group_results of this GetConfigsQueryResult.
 
+        The list of custom property groups (which groups are available for the  filtered configs, and how many configs are in each group).  # noqa: E501
 
         :param group_results: The group_results of this GetConfigsQueryResult.  # noqa: E501
         :type group_results: list[DocumentCustomPropertyGroup]
@@ -110,7 +112,7 @@ class GetConfigsQueryResult(object):
 
 
         :return: The user_information of this GetConfigsQueryResult.  # noqa: E501
-        :rtype: GetAllSupportSessionsQueryResultUserInformation
+        :rtype: GetConfigVersionsQueryResultUserInformation
         """
         return self._user_information
 
@@ -120,10 +122,8 @@ class GetConfigsQueryResult(object):
 
 
         :param user_information: The user_information of this GetConfigsQueryResult.  # noqa: E501
-        :type user_information: GetAllSupportSessionsQueryResultUserInformation
+        :type user_information: GetConfigVersionsQueryResultUserInformation
         """
-        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 

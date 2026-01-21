@@ -66,6 +66,7 @@ class DataToEncrypt(object):
     def data(self):
         """Gets the data of this DataToEncrypt.  # noqa: E501
 
+        The data to be encrypted.  # noqa: E501
 
         :return: The data of this DataToEncrypt.  # noqa: E501
         :rtype: object
@@ -76,6 +77,7 @@ class DataToEncrypt(object):
     def data(self, data):
         """Sets the data of this DataToEncrypt.
 
+        The data to be encrypted.  # noqa: E501
 
         :param data: The data of this DataToEncrypt.  # noqa: E501
         :type data: object
@@ -87,6 +89,7 @@ class DataToEncrypt(object):
     def description(self):
         """Gets the description of this DataToEncrypt.  # noqa: E501
 
+        The description of the data being encrypted. This will be visible alongside the encrypted data.  # noqa: E501
 
         :return: The description of this DataToEncrypt.  # noqa: E501
         :rtype: str
@@ -97,6 +100,7 @@ class DataToEncrypt(object):
     def description(self, description):
         """Sets the description of this DataToEncrypt.
 
+        The description of the data being encrypted. This will be visible alongside the encrypted data.  # noqa: E501
 
         :param description: The description of this DataToEncrypt.  # noqa: E501
         :type description: str
@@ -108,6 +112,7 @@ class DataToEncrypt(object):
     def channel_whitelist(self):
         """Gets the channel_whitelist of this DataToEncrypt.  # noqa: E501
 
+        The channel whitelist associated with the data being encrypted. The whitelist will be visible alongside the encrypted data, but will be protected from being modified by the encrypted metadata.  # noqa: E501
 
         :return: The channel_whitelist of this DataToEncrypt.  # noqa: E501
         :rtype: list[str]
@@ -118,6 +123,7 @@ class DataToEncrypt(object):
     def channel_whitelist(self, channel_whitelist):
         """Sets the channel_whitelist of this DataToEncrypt.
 
+        The channel whitelist associated with the data being encrypted. The whitelist will be visible alongside the encrypted data, but will be protected from being modified by the encrypted metadata.  # noqa: E501
 
         :param channel_whitelist: The channel_whitelist of this DataToEncrypt.  # noqa: E501
         :type channel_whitelist: list[str]

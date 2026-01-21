@@ -36,53 +36,32 @@ class AvailabilityResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'database': 'bool',
         'api': 'bool',
+        'database': 'bool',
         'additional_tests': 'AvailabilityResultAdditionalTests'
     }
 
     attribute_map = {
-        'database': 'database',
         'api': 'api',
+        'database': 'database',
         'additional_tests': 'additionalTests'
     }
 
-    def __init__(self, database=None, api=None, additional_tests=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, api=None, database=None, additional_tests=None, local_vars_configuration=None):  # noqa: E501
         """AvailabilityResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._database = None
         self._api = None
+        self._database = None
         self._additional_tests = None
         self.discriminator = None
 
-        self.database = database
         if api is not None:
             self.api = api
+        self.database = database
         self.additional_tests = additional_tests
-
-    @property
-    def database(self):
-        """Gets the database of this AvailabilityResult.  # noqa: E501
-
-
-        :return: The database of this AvailabilityResult.  # noqa: E501
-        :rtype: bool
-        """
-        return self._database
-
-    @database.setter
-    def database(self, database):
-        """Sets the database of this AvailabilityResult.
-
-
-        :param database: The database of this AvailabilityResult.  # noqa: E501
-        :type database: bool
-        """
-
-        self._database = database
 
     @property
     def api(self):
@@ -104,6 +83,27 @@ class AvailabilityResult(object):
         """
 
         self._api = api
+
+    @property
+    def database(self):
+        """Gets the database of this AvailabilityResult.  # noqa: E501
+
+
+        :return: The database of this AvailabilityResult.  # noqa: E501
+        :rtype: bool
+        """
+        return self._database
+
+    @database.setter
+    def database(self, database):
+        """Sets the database of this AvailabilityResult.
+
+
+        :param database: The database of this AvailabilityResult.  # noqa: E501
+        :type database: bool
+        """
+
+        self._database = database
 
     @property
     def additional_tests(self):

@@ -37,31 +37,31 @@ class WorksheetConfig(object):
     """
     openapi_types = {
         'config_type': 'object',
-        'reference': 'WorksheetConfigReference',
-        'inherit_reference': 'bool'
+        'inherit_reference': 'bool',
+        'reference': 'ConfigResolvedLabelsReference'
     }
 
     attribute_map = {
         'config_type': 'configType',
-        'reference': 'reference',
-        'inherit_reference': 'inheritReference'
+        'inherit_reference': 'inheritReference',
+        'reference': 'reference'
     }
 
-    def __init__(self, config_type=None, reference=None, inherit_reference=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, config_type=None, inherit_reference=None, reference=None, local_vars_configuration=None):  # noqa: E501
         """WorksheetConfig - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._config_type = None
-        self._reference = None
         self._inherit_reference = None
+        self._reference = None
         self.discriminator = None
 
         self.config_type = config_type
-        self.reference = reference
         if inherit_reference is not None:
             self.inherit_reference = inherit_reference
+        self.reference = reference
 
     @property
     def config_type(self):
@@ -81,31 +81,8 @@ class WorksheetConfig(object):
         :param config_type: The config_type of this WorksheetConfig.  # noqa: E501
         :type config_type: object
         """
-        if self.local_vars_configuration.client_side_validation and config_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_type`, must not be `None`")  # noqa: E501
 
         self._config_type = config_type
-
-    @property
-    def reference(self):
-        """Gets the reference of this WorksheetConfig.  # noqa: E501
-
-
-        :return: The reference of this WorksheetConfig.  # noqa: E501
-        :rtype: WorksheetConfigReference
-        """
-        return self._reference
-
-    @reference.setter
-    def reference(self, reference):
-        """Sets the reference of this WorksheetConfig.
-
-
-        :param reference: The reference of this WorksheetConfig.  # noqa: E501
-        :type reference: WorksheetConfigReference
-        """
-
-        self._reference = reference
 
     @property
     def inherit_reference(self):
@@ -127,6 +104,27 @@ class WorksheetConfig(object):
         """
 
         self._inherit_reference = inherit_reference
+
+    @property
+    def reference(self):
+        """Gets the reference of this WorksheetConfig.  # noqa: E501
+
+
+        :return: The reference of this WorksheetConfig.  # noqa: E501
+        :rtype: ConfigResolvedLabelsReference
+        """
+        return self._reference
+
+    @reference.setter
+    def reference(self, reference):
+        """Sets the reference of this WorksheetConfig.
+
+
+        :param reference: The reference of this WorksheetConfig.  # noqa: E501
+        :type reference: ConfigResolvedLabelsReference
+        """
+
+        self._reference = reference
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

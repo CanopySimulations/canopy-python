@@ -80,8 +80,6 @@ class StudyResolvedReference(object):
         :param reference: The reference of this StudyResolvedReference.  # noqa: E501
         :type reference: StudyResolvedLabelsReference
         """
-        if self.local_vars_configuration.client_side_validation and reference is None:  # noqa: E501
-            raise ValueError("Invalid value for `reference`, must not be `None`")  # noqa: E501
 
         self._reference = reference
 

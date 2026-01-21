@@ -76,8 +76,6 @@ class SimTypeInputTelemetryChannelEvaluationDefinition(object):
         :param prefix: The prefix of this SimTypeInputTelemetryChannelEvaluationDefinition.  # noqa: E501
         :type prefix: str
         """
-        if self.local_vars_configuration.client_side_validation and prefix is None:  # noqa: E501
-            raise ValueError("Invalid value for `prefix`, must not be `None`")  # noqa: E501
 
         self._prefix = prefix
 
@@ -99,8 +97,6 @@ class SimTypeInputTelemetryChannelEvaluationDefinition(object):
         :param additions: The additions of this SimTypeInputTelemetryChannelEvaluationDefinition.  # noqa: E501
         :type additions: list[SimTypeInputTelemetryEvaluatedChannelSuffix]
         """
-        if self.local_vars_configuration.client_side_validation and additions is None:  # noqa: E501
-            raise ValueError("Invalid value for `additions`, must not be `None`")  # noqa: E501
 
         self._additions = additions
 

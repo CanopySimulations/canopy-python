@@ -39,17 +39,21 @@ class GetAccountSettingsResult(object):
         'username': 'object',
         'email': 'object',
         'is_enabled': 'bool',
-        'is_email_confirmed': 'bool'
+        'is_email_confirmed': 'bool',
+        'is_two_factor_enabled': 'bool',
+        'is_micro_canopy': 'bool'
     }
 
     attribute_map = {
         'username': 'username',
         'email': 'email',
         'is_enabled': 'isEnabled',
-        'is_email_confirmed': 'isEmailConfirmed'
+        'is_email_confirmed': 'isEmailConfirmed',
+        'is_two_factor_enabled': 'isTwoFactorEnabled',
+        'is_micro_canopy': 'isMicroCanopy'
     }
 
-    def __init__(self, username=None, email=None, is_enabled=None, is_email_confirmed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, username=None, email=None, is_enabled=None, is_email_confirmed=None, is_two_factor_enabled=None, is_micro_canopy=None, local_vars_configuration=None):  # noqa: E501
         """GetAccountSettingsResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -59,12 +63,20 @@ class GetAccountSettingsResult(object):
         self._email = None
         self._is_enabled = None
         self._is_email_confirmed = None
+        self._is_two_factor_enabled = None
+        self._is_micro_canopy = None
         self.discriminator = None
 
         self.username = username
         self.email = email
-        self.is_enabled = is_enabled
-        self.is_email_confirmed = is_email_confirmed
+        if is_enabled is not None:
+            self.is_enabled = is_enabled
+        if is_email_confirmed is not None:
+            self.is_email_confirmed = is_email_confirmed
+        if is_two_factor_enabled is not None:
+            self.is_two_factor_enabled = is_two_factor_enabled
+        if is_micro_canopy is not None:
+            self.is_micro_canopy = is_micro_canopy
 
     @property
     def username(self):
@@ -84,8 +96,6 @@ class GetAccountSettingsResult(object):
         :param username: The username of this GetAccountSettingsResult.  # noqa: E501
         :type username: object
         """
-        if self.local_vars_configuration.client_side_validation and username is None:  # noqa: E501
-            raise ValueError("Invalid value for `username`, must not be `None`")  # noqa: E501
 
         self._username = username
 
@@ -107,8 +117,6 @@ class GetAccountSettingsResult(object):
         :param email: The email of this GetAccountSettingsResult.  # noqa: E501
         :type email: object
         """
-        if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
-            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 
@@ -130,8 +138,6 @@ class GetAccountSettingsResult(object):
         :param is_enabled: The is_enabled of this GetAccountSettingsResult.  # noqa: E501
         :type is_enabled: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_enabled is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_enabled`, must not be `None`")  # noqa: E501
 
         self._is_enabled = is_enabled
 
@@ -153,10 +159,50 @@ class GetAccountSettingsResult(object):
         :param is_email_confirmed: The is_email_confirmed of this GetAccountSettingsResult.  # noqa: E501
         :type is_email_confirmed: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_email_confirmed is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_email_confirmed`, must not be `None`")  # noqa: E501
 
         self._is_email_confirmed = is_email_confirmed
+
+    @property
+    def is_two_factor_enabled(self):
+        """Gets the is_two_factor_enabled of this GetAccountSettingsResult.  # noqa: E501
+
+
+        :return: The is_two_factor_enabled of this GetAccountSettingsResult.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_two_factor_enabled
+
+    @is_two_factor_enabled.setter
+    def is_two_factor_enabled(self, is_two_factor_enabled):
+        """Sets the is_two_factor_enabled of this GetAccountSettingsResult.
+
+
+        :param is_two_factor_enabled: The is_two_factor_enabled of this GetAccountSettingsResult.  # noqa: E501
+        :type is_two_factor_enabled: bool
+        """
+
+        self._is_two_factor_enabled = is_two_factor_enabled
+
+    @property
+    def is_micro_canopy(self):
+        """Gets the is_micro_canopy of this GetAccountSettingsResult.  # noqa: E501
+
+
+        :return: The is_micro_canopy of this GetAccountSettingsResult.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_micro_canopy
+
+    @is_micro_canopy.setter
+    def is_micro_canopy(self, is_micro_canopy):
+        """Sets the is_micro_canopy of this GetAccountSettingsResult.
+
+
+        :param is_micro_canopy: The is_micro_canopy of this GetAccountSettingsResult.  # noqa: E501
+        :type is_micro_canopy: bool
+        """
+
+        self._is_micro_canopy = is_micro_canopy
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -72,8 +72,6 @@ class GetTenantUsersQueryResult(object):
         :param users: The users of this GetTenantUsersQueryResult.  # noqa: E501
         :type users: list[GetTenantUsersQueryResultUserItem]
         """
-        if self.local_vars_configuration.client_side_validation and users is None:  # noqa: E501
-            raise ValueError("Invalid value for `users`, must not be `None`")  # noqa: E501
 
         self._users = users
 

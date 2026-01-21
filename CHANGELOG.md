@@ -1,3 +1,13 @@
+# 8.57 Release
+## New Features
+ - The OpenAPI client and docs have been regenerated with the latest generator, adding and updating many API operations and models.
+ - Added Deployments and Encryption APIs (including endpoints for deployments, deployments/features, subscription-levels, and encryption/decrypt).
+ - Added config component-paths endpoint (config_get_config_sub_paths) to list unique component paths for configs.
+ - Improved method descriptions and response summaries across AccountSettings, Availability, Config, Membership, Pool, SimVersion and many other APIs.
+
+## Breaking Changes
+ - The regenerated client may include changes to generated method signatures and model types. Review client usage and API calls for any required updates.
+
 # 8.38 Release
 ## New Features
  - You can now pass a `default_timeout` parameter when creating a `Session` to adjust the default timeout.

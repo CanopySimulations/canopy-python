@@ -85,13 +85,20 @@ class GetPoolStatusQueryResult(object):
         self.pool_id = pool_id
         self.pool_state = pool_state
         self.allocation_state = allocation_state
-        self.current_dedicated = current_dedicated
-        self.target_dedicated = target_dedicated
-        self.current_low_priority = current_low_priority
-        self.target_low_priority = target_low_priority
-        self.maximum_tasks_per_node = maximum_tasks_per_node
-        self.schedulable_compute_nodes = schedulable_compute_nodes
-        self.running_tasks = running_tasks
+        if current_dedicated is not None:
+            self.current_dedicated = current_dedicated
+        if target_dedicated is not None:
+            self.target_dedicated = target_dedicated
+        if current_low_priority is not None:
+            self.current_low_priority = current_low_priority
+        if target_low_priority is not None:
+            self.target_low_priority = target_low_priority
+        if maximum_tasks_per_node is not None:
+            self.maximum_tasks_per_node = maximum_tasks_per_node
+        if schedulable_compute_nodes is not None:
+            self.schedulable_compute_nodes = schedulable_compute_nodes
+        if running_tasks is not None:
+            self.running_tasks = running_tasks
         self.compute_nodes = compute_nodes
 
     @property
@@ -112,8 +119,6 @@ class GetPoolStatusQueryResult(object):
         :param pool_id: The pool_id of this GetPoolStatusQueryResult.  # noqa: E501
         :type pool_id: object
         """
-        if self.local_vars_configuration.client_side_validation and pool_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `pool_id`, must not be `None`")  # noqa: E501
 
         self._pool_id = pool_id
 
@@ -177,8 +182,6 @@ class GetPoolStatusQueryResult(object):
         :param current_dedicated: The current_dedicated of this GetPoolStatusQueryResult.  # noqa: E501
         :type current_dedicated: int
         """
-        if self.local_vars_configuration.client_side_validation and current_dedicated is None:  # noqa: E501
-            raise ValueError("Invalid value for `current_dedicated`, must not be `None`")  # noqa: E501
 
         self._current_dedicated = current_dedicated
 
@@ -200,8 +203,6 @@ class GetPoolStatusQueryResult(object):
         :param target_dedicated: The target_dedicated of this GetPoolStatusQueryResult.  # noqa: E501
         :type target_dedicated: int
         """
-        if self.local_vars_configuration.client_side_validation and target_dedicated is None:  # noqa: E501
-            raise ValueError("Invalid value for `target_dedicated`, must not be `None`")  # noqa: E501
 
         self._target_dedicated = target_dedicated
 
@@ -223,8 +224,6 @@ class GetPoolStatusQueryResult(object):
         :param current_low_priority: The current_low_priority of this GetPoolStatusQueryResult.  # noqa: E501
         :type current_low_priority: int
         """
-        if self.local_vars_configuration.client_side_validation and current_low_priority is None:  # noqa: E501
-            raise ValueError("Invalid value for `current_low_priority`, must not be `None`")  # noqa: E501
 
         self._current_low_priority = current_low_priority
 
@@ -246,8 +245,6 @@ class GetPoolStatusQueryResult(object):
         :param target_low_priority: The target_low_priority of this GetPoolStatusQueryResult.  # noqa: E501
         :type target_low_priority: int
         """
-        if self.local_vars_configuration.client_side_validation and target_low_priority is None:  # noqa: E501
-            raise ValueError("Invalid value for `target_low_priority`, must not be `None`")  # noqa: E501
 
         self._target_low_priority = target_low_priority
 
@@ -269,8 +266,6 @@ class GetPoolStatusQueryResult(object):
         :param maximum_tasks_per_node: The maximum_tasks_per_node of this GetPoolStatusQueryResult.  # noqa: E501
         :type maximum_tasks_per_node: int
         """
-        if self.local_vars_configuration.client_side_validation and maximum_tasks_per_node is None:  # noqa: E501
-            raise ValueError("Invalid value for `maximum_tasks_per_node`, must not be `None`")  # noqa: E501
 
         self._maximum_tasks_per_node = maximum_tasks_per_node
 
@@ -292,8 +287,6 @@ class GetPoolStatusQueryResult(object):
         :param schedulable_compute_nodes: The schedulable_compute_nodes of this GetPoolStatusQueryResult.  # noqa: E501
         :type schedulable_compute_nodes: int
         """
-        if self.local_vars_configuration.client_side_validation and schedulable_compute_nodes is None:  # noqa: E501
-            raise ValueError("Invalid value for `schedulable_compute_nodes`, must not be `None`")  # noqa: E501
 
         self._schedulable_compute_nodes = schedulable_compute_nodes
 
@@ -315,8 +308,6 @@ class GetPoolStatusQueryResult(object):
         :param running_tasks: The running_tasks of this GetPoolStatusQueryResult.  # noqa: E501
         :type running_tasks: int
         """
-        if self.local_vars_configuration.client_side_validation and running_tasks is None:  # noqa: E501
-            raise ValueError("Invalid value for `running_tasks`, must not be `None`")  # noqa: E501
 
         self._running_tasks = running_tasks
 
@@ -338,8 +329,6 @@ class GetPoolStatusQueryResult(object):
         :param compute_nodes: The compute_nodes of this GetPoolStatusQueryResult.  # noqa: E501
         :type compute_nodes: list[ComputeNodeResult]
         """
-        if self.local_vars_configuration.client_side_validation and compute_nodes is None:  # noqa: E501
-            raise ValueError("Invalid value for `compute_nodes`, must not be `None`")  # noqa: E501
 
         self._compute_nodes = compute_nodes
 

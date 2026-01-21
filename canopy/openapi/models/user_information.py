@@ -80,8 +80,6 @@ class UserInformation(object):
         :param user_id: The user_id of this UserInformation.  # noqa: E501
         :type user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -103,8 +101,6 @@ class UserInformation(object):
         :param username: The username of this UserInformation.  # noqa: E501
         :type username: object
         """
-        if self.local_vars_configuration.client_side_validation and username is None:  # noqa: E501
-            raise ValueError("Invalid value for `username`, must not be `None`")  # noqa: E501
 
         self._username = username
 
@@ -126,8 +122,6 @@ class UserInformation(object):
         :param email: The email of this UserInformation.  # noqa: E501
         :type email: object
         """
-        if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
-            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 

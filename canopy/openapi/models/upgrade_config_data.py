@@ -66,6 +66,7 @@ class UpgradeConfigData(object):
     def config_type(self):
         """Gets the config_type of this UpgradeConfigData.  # noqa: E501
 
+        The type of the config document.  # noqa: E501
 
         :return: The config_type of this UpgradeConfigData.  # noqa: E501
         :rtype: object
@@ -76,6 +77,7 @@ class UpgradeConfigData(object):
     def config_type(self, config_type):
         """Sets the config_type of this UpgradeConfigData.
 
+        The type of the config document.  # noqa: E501
 
         :param config_type: The config_type of this UpgradeConfigData.  # noqa: E501
         :type config_type: object
@@ -87,6 +89,7 @@ class UpgradeConfigData(object):
     def config(self):
         """Gets the config of this UpgradeConfigData.  # noqa: E501
 
+        The config data.  # noqa: E501
 
         :return: The config of this UpgradeConfigData.  # noqa: E501
         :rtype: object
@@ -97,6 +100,7 @@ class UpgradeConfigData(object):
     def config(self, config):
         """Sets the config of this UpgradeConfigData.
 
+        The config data.  # noqa: E501
 
         :param config: The config of this UpgradeConfigData.  # noqa: E501
         :type config: object
@@ -108,6 +112,7 @@ class UpgradeConfigData(object):
     def sim_version(self):
         """Gets the sim_version of this UpgradeConfigData.  # noqa: E501
 
+        The version of the simulation to upgrade to.  # noqa: E501
 
         :return: The sim_version of this UpgradeConfigData.  # noqa: E501
         :rtype: str
@@ -118,6 +123,7 @@ class UpgradeConfigData(object):
     def sim_version(self, sim_version):
         """Sets the sim_version of this UpgradeConfigData.
 
+        The version of the simulation to upgrade to.  # noqa: E501
 
         :param sim_version: The sim_version of this UpgradeConfigData.  # noqa: E501
         :type sim_version: str

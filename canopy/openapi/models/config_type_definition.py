@@ -76,8 +76,6 @@ class ConfigTypeDefinition(object):
         :param config_type: The config_type of this ConfigTypeDefinition.  # noqa: E501
         :type config_type: object
         """
-        if self.local_vars_configuration.client_side_validation and config_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_type`, must not be `None`")  # noqa: E501
 
         self._config_type = config_type
 

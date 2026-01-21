@@ -37,7 +37,7 @@ class MembershipApi(object):
         self.api_client = api_client
 
     def membership_delete_refresh_tokens(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_delete_refresh_tokens  # noqa: E501
+        """Clears all refresh tokens for the specified user. This forces all clients to re-authenticate.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,9 +45,9 @@ class MembershipApi(object):
         >>> thread = api.membership_delete_refresh_tokens(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -68,7 +68,7 @@ class MembershipApi(object):
         return self.membership_delete_refresh_tokens_with_http_info(tenant_id, user_id, **kwargs)  # noqa: E501
 
     def membership_delete_refresh_tokens_with_http_info(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_delete_refresh_tokens  # noqa: E501
+        """Clears all refresh tokens for the specified user. This forces all clients to re-authenticate.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -76,9 +76,9 @@ class MembershipApi(object):
         >>> thread = api.membership_delete_refresh_tokens_with_http_info(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -154,7 +154,7 @@ class MembershipApi(object):
 
         body_params = None
         # Authentication setting
-        auth_settings = ['Bearer']  # noqa: E501
+        auth_settings = []  # noqa: E501
 
         response_types_map = {}
 
@@ -176,7 +176,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_get_password_reset_token_validity(self, user_id, token, **kwargs):  # noqa: E501
-        """membership_get_password_reset_token_validity  # noqa: E501
+        """Checks the validity of a password reset token.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -184,9 +184,9 @@ class MembershipApi(object):
         >>> thread = api.membership_get_password_reset_token_validity(user_id, token, async_req=True)
         >>> result = thread.get()
 
-        :param user_id: (required)
+        :param user_id: The user ID the token was generated for. (required)
         :type user_id: str
-        :param token: (required)
+        :param token: The password reset token. (required)
         :type token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -207,7 +207,7 @@ class MembershipApi(object):
         return self.membership_get_password_reset_token_validity_with_http_info(user_id, token, **kwargs)  # noqa: E501
 
     def membership_get_password_reset_token_validity_with_http_info(self, user_id, token, **kwargs):  # noqa: E501
-        """membership_get_password_reset_token_validity  # noqa: E501
+        """Checks the validity of a password reset token.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -215,9 +215,9 @@ class MembershipApi(object):
         >>> thread = api.membership_get_password_reset_token_validity_with_http_info(user_id, token, async_req=True)
         >>> result = thread.get()
 
-        :param user_id: (required)
+        :param user_id: The user ID the token was generated for. (required)
         :type user_id: str
-        :param token: (required)
+        :param token: The password reset token. (required)
         :type token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -314,153 +314,8 @@ class MembershipApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def membership_get_upvoty_token(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_get_upvoty_token  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.membership_get_upvoty_token(tenant_id, user_id, async_req=True)
-        >>> result = thread.get()
-
-        :param tenant_id: (required)
-        :type tenant_id: str
-        :param user_id: (required)
-        :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetUpvotyTokenQueryResult
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.membership_get_upvoty_token_with_http_info(tenant_id, user_id, **kwargs)  # noqa: E501
-
-    def membership_get_upvoty_token_with_http_info(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_get_upvoty_token  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.membership_get_upvoty_token_with_http_info(tenant_id, user_id, async_req=True)
-        >>> result = thread.get()
-
-        :param tenant_id: (required)
-        :type tenant_id: str
-        :param user_id: (required)
-        :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetUpvotyTokenQueryResult, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'tenant_id',
-            'user_id'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method membership_get_upvoty_token" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'tenant_id' is set
-        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
-            raise ApiValueError("Missing the required parameter `tenant_id` when calling `membership_get_upvoty_token`")  # noqa: E501
-        # verify the required parameter 'user_id' is set
-        if self.api_client.client_side_validation and local_var_params.get('user_id') is None:  # noqa: E501
-            raise ApiValueError("Missing the required parameter `user_id` when calling `membership_get_upvoty_token`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'tenant_id' in local_var_params:
-            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
-        if 'user_id' in local_var_params:
-            path_params['userId'] = local_var_params['user_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = dict(local_var_params.get('_headers', {}))
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['Bearer']  # noqa: E501
-
-        response_types_map = {
-            200: "GetUpvotyTokenQueryResult",
-        }
-
-        return self.api_client.call_api(
-            '/membership/upvoty-token/{tenantId}/{userId}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
     def membership_get_user_roles(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_get_user_roles  # noqa: E501
+        """Gets the specified user's roles.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -468,9 +323,9 @@ class MembershipApi(object):
         >>> thread = api.membership_get_user_roles(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -491,7 +346,7 @@ class MembershipApi(object):
         return self.membership_get_user_roles_with_http_info(tenant_id, user_id, **kwargs)  # noqa: E501
 
     def membership_get_user_roles_with_http_info(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_get_user_roles  # noqa: E501
+        """Gets the specified user's roles.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -499,9 +354,9 @@ class MembershipApi(object):
         >>> thread = api.membership_get_user_roles_with_http_info(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -605,7 +460,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_get_zendesk_token(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_get_zendesk_token  # noqa: E501
+        """Gets the specified user's Zendesk token. This is used to provide SSO with Zendesk.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -613,9 +468,9 @@ class MembershipApi(object):
         >>> thread = api.membership_get_zendesk_token(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -636,7 +491,7 @@ class MembershipApi(object):
         return self.membership_get_zendesk_token_with_http_info(tenant_id, user_id, **kwargs)  # noqa: E501
 
     def membership_get_zendesk_token_with_http_info(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_get_zendesk_token  # noqa: E501
+        """Gets the specified user's Zendesk token. This is used to provide SSO with Zendesk.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -644,9 +499,9 @@ class MembershipApi(object):
         >>> thread = api.membership_get_zendesk_token_with_http_info(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -750,7 +605,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_post_email_confirmation(self, membership_post_email_confirmation_request, **kwargs):  # noqa: E501
-        """membership_post_email_confirmation  # noqa: E501
+        """Posts an email address confirmation. If successful, the user's email address will have been confirmed.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -758,7 +613,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_email_confirmation(membership_post_email_confirmation_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_email_confirmation_request: (required)
+        :param membership_post_email_confirmation_request: A data structure containing the email confirmation token which was sent to the user's email address. (required)
         :type membership_post_email_confirmation_request: MembershipPostEmailConfirmationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -779,7 +634,7 @@ class MembershipApi(object):
         return self.membership_post_email_confirmation_with_http_info(membership_post_email_confirmation_request, **kwargs)  # noqa: E501
 
     def membership_post_email_confirmation_with_http_info(self, membership_post_email_confirmation_request, **kwargs):  # noqa: E501
-        """membership_post_email_confirmation  # noqa: E501
+        """Posts an email address confirmation. If successful, the user's email address will have been confirmed.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -787,7 +642,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_email_confirmation_with_http_info(membership_post_email_confirmation_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_email_confirmation_request: (required)
+        :param membership_post_email_confirmation_request: A data structure containing the email confirmation token which was sent to the user's email address. (required)
         :type membership_post_email_confirmation_request: MembershipPostEmailConfirmationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -887,7 +742,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_post_email_confirmation_request(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_post_email_confirmation_request  # noqa: E501
+        """Request an email address confirmation for a user. This sends an email to the user which they can use to confirm their email address.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -895,9 +750,9 @@ class MembershipApi(object):
         >>> thread = api.membership_post_email_confirmation_request(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -918,7 +773,7 @@ class MembershipApi(object):
         return self.membership_post_email_confirmation_request_with_http_info(tenant_id, user_id, **kwargs)  # noqa: E501
 
     def membership_post_email_confirmation_request_with_http_info(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """membership_post_email_confirmation_request  # noqa: E501
+        """Request an email address confirmation for a user. This sends an email to the user which they can use to confirm their email address.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -926,9 +781,9 @@ class MembershipApi(object):
         >>> thread = api.membership_post_email_confirmation_request_with_http_info(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1026,7 +881,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_post_identified_user(self, membership_post_identified_user_request, **kwargs):  # noqa: E501
-        """membership_post_identified_user  # noqa: E501
+        """This API endpoint is no longer used.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1034,7 +889,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_identified_user(membership_post_identified_user_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_identified_user_request: (required)
+        :param membership_post_identified_user_request: Information about the identified user. (required)
         :type membership_post_identified_user_request: MembershipPostIdentifiedUserRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1055,7 +910,7 @@ class MembershipApi(object):
         return self.membership_post_identified_user_with_http_info(membership_post_identified_user_request, **kwargs)  # noqa: E501
 
     def membership_post_identified_user_with_http_info(self, membership_post_identified_user_request, **kwargs):  # noqa: E501
-        """membership_post_identified_user  # noqa: E501
+        """This API endpoint is no longer used.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1063,7 +918,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_identified_user_with_http_info(membership_post_identified_user_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_identified_user_request: (required)
+        :param membership_post_identified_user_request: Information about the identified user. (required)
         :type membership_post_identified_user_request: MembershipPostIdentifiedUserRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1163,7 +1018,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_post_initialize(self, **kwargs):  # noqa: E501
-        """membership_post_initialize  # noqa: E501
+        """This method performs some initialization tasks on a new instance of the platform,  and does nothing on existing instances.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1190,7 +1045,7 @@ class MembershipApi(object):
         return self.membership_post_initialize_with_http_info(**kwargs)  # noqa: E501
 
     def membership_post_initialize_with_http_info(self, **kwargs):  # noqa: E501
-        """membership_post_initialize  # noqa: E501
+        """This method performs some initialization tasks on a new instance of the platform,  and does nothing on existing instances.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1282,7 +1137,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_post_password_reset_confirmation(self, membership_post_password_reset_confirmation_request, **kwargs):  # noqa: E501
-        """membership_post_password_reset_confirmation  # noqa: E501
+        """Confirms a password reset for a user.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1290,7 +1145,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_password_reset_confirmation(membership_post_password_reset_confirmation_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_password_reset_confirmation_request: (required)
+        :param membership_post_password_reset_confirmation_request: The password reset confirmation data, consisting of the user ID, then new password, and the security token from the password reset email. (required)
         :type membership_post_password_reset_confirmation_request: MembershipPostPasswordResetConfirmationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1311,7 +1166,7 @@ class MembershipApi(object):
         return self.membership_post_password_reset_confirmation_with_http_info(membership_post_password_reset_confirmation_request, **kwargs)  # noqa: E501
 
     def membership_post_password_reset_confirmation_with_http_info(self, membership_post_password_reset_confirmation_request, **kwargs):  # noqa: E501
-        """membership_post_password_reset_confirmation  # noqa: E501
+        """Confirms a password reset for a user.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1319,7 +1174,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_password_reset_confirmation_with_http_info(membership_post_password_reset_confirmation_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_password_reset_confirmation_request: (required)
+        :param membership_post_password_reset_confirmation_request: The password reset confirmation data, consisting of the user ID, then new password, and the security token from the password reset email. (required)
         :type membership_post_password_reset_confirmation_request: MembershipPostPasswordResetConfirmationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1419,7 +1274,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_post_password_reset_request(self, membership_post_password_reset_request_request, **kwargs):  # noqa: E501
-        """membership_post_password_reset_request  # noqa: E501
+        """Requests a password reset for a user.  If the user exists they will be send a password reset email containing a link they can click on  to reset their password.  If the user does not exist, nothing happens.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1427,7 +1282,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_password_reset_request(membership_post_password_reset_request_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_password_reset_request_request: (required)
+        :param membership_post_password_reset_request_request: A data structure containing the tenant short name, and either the username or the email address of the user. (required)
         :type membership_post_password_reset_request_request: MembershipPostPasswordResetRequestRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1448,7 +1303,7 @@ class MembershipApi(object):
         return self.membership_post_password_reset_request_with_http_info(membership_post_password_reset_request_request, **kwargs)  # noqa: E501
 
     def membership_post_password_reset_request_with_http_info(self, membership_post_password_reset_request_request, **kwargs):  # noqa: E501
-        """membership_post_password_reset_request  # noqa: E501
+        """Requests a password reset for a user.  If the user exists they will be send a password reset email containing a link they can click on  to reset their password.  If the user does not exist, nothing happens.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1456,7 +1311,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_password_reset_request_with_http_info(membership_post_password_reset_request_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_password_reset_request_request: (required)
+        :param membership_post_password_reset_request_request: A data structure containing the tenant short name, and either the username or the email address of the user. (required)
         :type membership_post_password_reset_request_request: MembershipPostPasswordResetRequestRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1556,7 +1411,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_post_registration(self, membership_post_registration_request, **kwargs):  # noqa: E501
-        """membership_post_registration  # noqa: E501
+        """Registers a new user on the platform.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1564,7 +1419,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_registration(membership_post_registration_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_registration_request: (required)
+        :param membership_post_registration_request: Required information about the new user. (required)
         :type membership_post_registration_request: MembershipPostRegistrationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1585,7 +1440,7 @@ class MembershipApi(object):
         return self.membership_post_registration_with_http_info(membership_post_registration_request, **kwargs)  # noqa: E501
 
     def membership_post_registration_with_http_info(self, membership_post_registration_request, **kwargs):  # noqa: E501
-        """membership_post_registration  # noqa: E501
+        """Registers a new user on the platform.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1593,7 +1448,7 @@ class MembershipApi(object):
         >>> thread = api.membership_post_registration_with_http_info(membership_post_registration_request, async_req=True)
         >>> result = thread.get()
 
-        :param membership_post_registration_request: (required)
+        :param membership_post_registration_request: Required information about the new user. (required)
         :type membership_post_registration_request: MembershipPostRegistrationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1693,7 +1548,7 @@ class MembershipApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def membership_put_user_role(self, tenant_id, user_id, membership_put_user_role_request, **kwargs):  # noqa: E501
-        """membership_put_user_role  # noqa: E501
+        """Adds or removes a user role from the specified user.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1701,11 +1556,11 @@ class MembershipApi(object):
         >>> thread = api.membership_put_user_role(tenant_id, user_id, membership_put_user_role_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
-        :param membership_put_user_role_request: (required)
+        :param membership_put_user_role_request: The role and whether or not it is enabled. (required)
         :type membership_put_user_role_request: MembershipPutUserRoleRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1726,7 +1581,7 @@ class MembershipApi(object):
         return self.membership_put_user_role_with_http_info(tenant_id, user_id, membership_put_user_role_request, **kwargs)  # noqa: E501
 
     def membership_put_user_role_with_http_info(self, tenant_id, user_id, membership_put_user_role_request, **kwargs):  # noqa: E501
-        """membership_put_user_role  # noqa: E501
+        """Adds or removes a user role from the specified user.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1734,11 +1589,11 @@ class MembershipApi(object):
         >>> thread = api.membership_put_user_role_with_http_info(tenant_id, user_id, membership_put_user_role_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
-        :param membership_put_user_role_request: (required)
+        :param membership_put_user_role_request: The role and whether or not it is enabled. (required)
         :type membership_put_user_role_request: MembershipPutUserRoleRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

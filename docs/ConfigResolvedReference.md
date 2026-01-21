@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reference** | [**ConfigResolvedLabelsReference**](ConfigResolvedLabelsReference.md) |  | 
+**reference** | [**ConfigResolvedLabelsReference**](ConfigResolvedLabelsReference.md) |  | [optional] 
 **data** | [**ConfigResolvedReferenceData**](ConfigResolvedReferenceData.md) |  | [optional] 
 **error** | **str** |  | [optional] 
 

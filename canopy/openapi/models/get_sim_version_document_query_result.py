@@ -72,8 +72,6 @@ class GetSimVersionDocumentQueryResult(object):
         :param document: The document of this GetSimVersionDocumentQueryResult.  # noqa: E501
         :type document: GetSimVersionDocumentQueryResultDocument
         """
-        if self.local_vars_configuration.client_side_validation and document is None:  # noqa: E501
-            raise ValueError("Invalid value for `document`, must not be `None`")  # noqa: E501
 
         self._document = document
 

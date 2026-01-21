@@ -80,8 +80,6 @@ class DocumentNameResult(object):
         :param name: The name of this DocumentNameResult.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 

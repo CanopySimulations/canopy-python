@@ -55,13 +55,16 @@ class GetTenantBillableStoredSimulationCountQueryResult(object):
         self._succeeded_storage_credits = None
         self.discriminator = None
 
-        self.succeeded_simulations = succeeded_simulations
-        self.succeeded_storage_credits = succeeded_storage_credits
+        if succeeded_simulations is not None:
+            self.succeeded_simulations = succeeded_simulations
+        if succeeded_storage_credits is not None:
+            self.succeeded_storage_credits = succeeded_storage_credits
 
     @property
     def succeeded_simulations(self):
         """Gets the succeeded_simulations of this GetTenantBillableStoredSimulationCountQueryResult.  # noqa: E501
 
+        The number of successful simulations that have been stored for the tenant.  # noqa: E501
 
         :return: The succeeded_simulations of this GetTenantBillableStoredSimulationCountQueryResult.  # noqa: E501
         :rtype: int
@@ -72,12 +75,11 @@ class GetTenantBillableStoredSimulationCountQueryResult(object):
     def succeeded_simulations(self, succeeded_simulations):
         """Sets the succeeded_simulations of this GetTenantBillableStoredSimulationCountQueryResult.
 
+        The number of successful simulations that have been stored for the tenant.  # noqa: E501
 
         :param succeeded_simulations: The succeeded_simulations of this GetTenantBillableStoredSimulationCountQueryResult.  # noqa: E501
         :type succeeded_simulations: int
         """
-        if self.local_vars_configuration.client_side_validation and succeeded_simulations is None:  # noqa: E501
-            raise ValueError("Invalid value for `succeeded_simulations`, must not be `None`")  # noqa: E501
 
         self._succeeded_simulations = succeeded_simulations
 
@@ -85,6 +87,7 @@ class GetTenantBillableStoredSimulationCountQueryResult(object):
     def succeeded_storage_credits(self):
         """Gets the succeeded_storage_credits of this GetTenantBillableStoredSimulationCountQueryResult.  # noqa: E501
 
+        The number of storage credits used by the successful simulations.  # noqa: E501
 
         :return: The succeeded_storage_credits of this GetTenantBillableStoredSimulationCountQueryResult.  # noqa: E501
         :rtype: int
@@ -95,12 +98,11 @@ class GetTenantBillableStoredSimulationCountQueryResult(object):
     def succeeded_storage_credits(self, succeeded_storage_credits):
         """Sets the succeeded_storage_credits of this GetTenantBillableStoredSimulationCountQueryResult.
 
+        The number of storage credits used by the successful simulations.  # noqa: E501
 
         :param succeeded_storage_credits: The succeeded_storage_credits of this GetTenantBillableStoredSimulationCountQueryResult.  # noqa: E501
         :type succeeded_storage_credits: int
         """
-        if self.local_vars_configuration.client_side_validation and succeeded_storage_credits is None:  # noqa: E501
-            raise ValueError("Invalid value for `succeeded_storage_credits`, must not be `None`")  # noqa: E501
 
         self._succeeded_storage_credits = succeeded_storage_credits
 

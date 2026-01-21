@@ -37,7 +37,7 @@ class ListFilterApi(object):
         self.api_client = api_client
 
     def list_filter_upgrade_list_filter(self, **kwargs):  # noqa: E501
-        """list_filter_upgrade_list_filter  # noqa: E501
+        """Upgrades a list filter from the old format to the new format.  This is used to upgrade list filters that were created before the new format,  supporting more complex queries, was introduced.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,7 +45,7 @@ class ListFilterApi(object):
         >>> thread = api.list_filter_upgrade_list_filter(async_req=True)
         >>> result = thread.get()
 
-        :param filter:
+        :param filter: The serialized JSON representation of an old-style filter.
         :type filter: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -66,7 +66,7 @@ class ListFilterApi(object):
         return self.list_filter_upgrade_list_filter_with_http_info(**kwargs)  # noqa: E501
 
     def list_filter_upgrade_list_filter_with_http_info(self, **kwargs):  # noqa: E501
-        """list_filter_upgrade_list_filter  # noqa: E501
+        """Upgrades a list filter from the old format to the new format.  This is used to upgrade list filters that were created before the new format,  supporting more complex queries, was introduced.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -74,7 +74,7 @@ class ListFilterApi(object):
         >>> thread = api.list_filter_upgrade_list_filter_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param filter:
+        :param filter: The serialized JSON representation of an old-style filter.
         :type filter: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

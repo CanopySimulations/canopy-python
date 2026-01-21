@@ -60,12 +60,14 @@ class GetStudiesQueryResultQueryResults(object):
 
         self.documents = documents
         self.continuation_token = continuation_token
-        self.has_more_results = has_more_results
+        if has_more_results is not None:
+            self.has_more_results = has_more_results
 
     @property
     def documents(self):
         """Gets the documents of this GetStudiesQueryResultQueryResults.  # noqa: E501
 
+        The list of documents.  # noqa: E501
 
         :return: The documents of this GetStudiesQueryResultQueryResults.  # noqa: E501
         :rtype: list[CanopyDocument]
@@ -76,12 +78,11 @@ class GetStudiesQueryResultQueryResults(object):
     def documents(self, documents):
         """Sets the documents of this GetStudiesQueryResultQueryResults.
 
+        The list of documents.  # noqa: E501
 
         :param documents: The documents of this GetStudiesQueryResultQueryResults.  # noqa: E501
         :type documents: list[CanopyDocument]
         """
-        if self.local_vars_configuration.client_side_validation and documents is None:  # noqa: E501
-            raise ValueError("Invalid value for `documents`, must not be `None`")  # noqa: E501
 
         self._documents = documents
 
@@ -89,6 +90,7 @@ class GetStudiesQueryResultQueryResults(object):
     def continuation_token(self):
         """Gets the continuation_token of this GetStudiesQueryResultQueryResults.  # noqa: E501
 
+        The continuation token to use to get more results.  # noqa: E501
 
         :return: The continuation_token of this GetStudiesQueryResultQueryResults.  # noqa: E501
         :rtype: str
@@ -99,6 +101,7 @@ class GetStudiesQueryResultQueryResults(object):
     def continuation_token(self, continuation_token):
         """Sets the continuation_token of this GetStudiesQueryResultQueryResults.
 
+        The continuation token to use to get more results.  # noqa: E501
 
         :param continuation_token: The continuation_token of this GetStudiesQueryResultQueryResults.  # noqa: E501
         :type continuation_token: str
@@ -110,6 +113,7 @@ class GetStudiesQueryResultQueryResults(object):
     def has_more_results(self):
         """Gets the has_more_results of this GetStudiesQueryResultQueryResults.  # noqa: E501
 
+        Whether there are more results available.  # noqa: E501
 
         :return: The has_more_results of this GetStudiesQueryResultQueryResults.  # noqa: E501
         :rtype: bool
@@ -120,12 +124,11 @@ class GetStudiesQueryResultQueryResults(object):
     def has_more_results(self, has_more_results):
         """Sets the has_more_results of this GetStudiesQueryResultQueryResults.
 
+        Whether there are more results available.  # noqa: E501
 
         :param has_more_results: The has_more_results of this GetStudiesQueryResultQueryResults.  # noqa: E501
         :type has_more_results: bool
         """
-        if self.local_vars_configuration.client_side_validation and has_more_results is None:  # noqa: E501
-            raise ValueError("Invalid value for `has_more_results`, must not be `None`")  # noqa: E501
 
         self._has_more_results = has_more_results
 

@@ -37,7 +37,7 @@ class GetConfigVersionsQueryResult(object):
     """
     openapi_types = {
         'versions': 'list[VersionedDocumentMetadata]',
-        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
+        'user_information': 'GetConfigVersionsQueryResultUserInformation'
     }
 
     attribute_map = {
@@ -62,6 +62,7 @@ class GetConfigVersionsQueryResult(object):
     def versions(self):
         """Gets the versions of this GetConfigVersionsQueryResult.  # noqa: E501
 
+        The list of available versions.  # noqa: E501
 
         :return: The versions of this GetConfigVersionsQueryResult.  # noqa: E501
         :rtype: list[VersionedDocumentMetadata]
@@ -72,12 +73,11 @@ class GetConfigVersionsQueryResult(object):
     def versions(self, versions):
         """Sets the versions of this GetConfigVersionsQueryResult.
 
+        The list of available versions.  # noqa: E501
 
         :param versions: The versions of this GetConfigVersionsQueryResult.  # noqa: E501
         :type versions: list[VersionedDocumentMetadata]
         """
-        if self.local_vars_configuration.client_side_validation and versions is None:  # noqa: E501
-            raise ValueError("Invalid value for `versions`, must not be `None`")  # noqa: E501
 
         self._versions = versions
 
@@ -87,7 +87,7 @@ class GetConfigVersionsQueryResult(object):
 
 
         :return: The user_information of this GetConfigVersionsQueryResult.  # noqa: E501
-        :rtype: GetAllSupportSessionsQueryResultUserInformation
+        :rtype: GetConfigVersionsQueryResultUserInformation
         """
         return self._user_information
 
@@ -97,10 +97,8 @@ class GetConfigVersionsQueryResult(object):
 
 
         :param user_information: The user_information of this GetConfigVersionsQueryResult.  # noqa: E501
-        :type user_information: GetAllSupportSessionsQueryResultUserInformation
+        :type user_information: GetConfigVersionsQueryResultUserInformation
         """
-        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
 

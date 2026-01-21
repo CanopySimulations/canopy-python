@@ -36,11 +36,11 @@ class GetStudyJobQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'study_job': 'GetConfigQueryResultConfig',
+        'study_job': 'GetStudyJobQueryResultStudyJob',
         'study_job_input': 'object',
         'converted_sim_version': 'object',
         'sim_types': 'list[str]',
-        'access_information': 'GetStudyJobMetadataQueryResultAccessInformation'
+        'access_information': 'GetStudyJobQueryResultAccessInformation'
     }
 
     attribute_map = {
@@ -76,7 +76,7 @@ class GetStudyJobQueryResult(object):
 
 
         :return: The study_job of this GetStudyJobQueryResult.  # noqa: E501
-        :rtype: GetConfigQueryResultConfig
+        :rtype: GetStudyJobQueryResultStudyJob
         """
         return self._study_job
 
@@ -86,10 +86,8 @@ class GetStudyJobQueryResult(object):
 
 
         :param study_job: The study_job of this GetStudyJobQueryResult.  # noqa: E501
-        :type study_job: GetConfigQueryResultConfig
+        :type study_job: GetStudyJobQueryResultStudyJob
         """
-        if self.local_vars_configuration.client_side_validation and study_job is None:  # noqa: E501
-            raise ValueError("Invalid value for `study_job`, must not be `None`")  # noqa: E501
 
         self._study_job = study_job
 
@@ -97,6 +95,7 @@ class GetStudyJobQueryResult(object):
     def study_job_input(self):
         """Gets the study_job_input of this GetStudyJobQueryResult.  # noqa: E501
 
+        The JSON input to the study job, also referred to as the job definition.  This will be null for post processor jobs and failed validation jobs.  # noqa: E501
 
         :return: The study_job_input of this GetStudyJobQueryResult.  # noqa: E501
         :rtype: object
@@ -107,6 +106,7 @@ class GetStudyJobQueryResult(object):
     def study_job_input(self, study_job_input):
         """Sets the study_job_input of this GetStudyJobQueryResult.
 
+        The JSON input to the study job, also referred to as the job definition.  This will be null for post processor jobs and failed validation jobs.  # noqa: E501
 
         :param study_job_input: The study_job_input of this GetStudyJobQueryResult.  # noqa: E501
         :type study_job_input: object
@@ -118,6 +118,7 @@ class GetStudyJobQueryResult(object):
     def converted_sim_version(self):
         """Gets the converted_sim_version of this GetStudyJobQueryResult.  # noqa: E501
 
+        The sim version which the study definition was converted to.  # noqa: E501
 
         :return: The converted_sim_version of this GetStudyJobQueryResult.  # noqa: E501
         :rtype: object
@@ -128,6 +129,7 @@ class GetStudyJobQueryResult(object):
     def converted_sim_version(self, converted_sim_version):
         """Sets the converted_sim_version of this GetStudyJobQueryResult.
 
+        The sim version which the study definition was converted to.  # noqa: E501
 
         :param converted_sim_version: The converted_sim_version of this GetStudyJobQueryResult.  # noqa: E501
         :type converted_sim_version: object
@@ -139,6 +141,7 @@ class GetStudyJobQueryResult(object):
     def sim_types(self):
         """Gets the sim_types of this GetStudyJobQueryResult.  # noqa: E501
 
+        The sim types detected in this study job.  # noqa: E501
 
         :return: The sim_types of this GetStudyJobQueryResult.  # noqa: E501
         :rtype: list[str]
@@ -149,6 +152,7 @@ class GetStudyJobQueryResult(object):
     def sim_types(self, sim_types):
         """Sets the sim_types of this GetStudyJobQueryResult.
 
+        The sim types detected in this study job.  # noqa: E501
 
         :param sim_types: The sim_types of this GetStudyJobQueryResult.  # noqa: E501
         :type sim_types: list[str]
@@ -162,7 +166,7 @@ class GetStudyJobQueryResult(object):
 
 
         :return: The access_information of this GetStudyJobQueryResult.  # noqa: E501
-        :rtype: GetStudyJobMetadataQueryResultAccessInformation
+        :rtype: GetStudyJobQueryResultAccessInformation
         """
         return self._access_information
 
@@ -172,10 +176,8 @@ class GetStudyJobQueryResult(object):
 
 
         :param access_information: The access_information of this GetStudyJobQueryResult.  # noqa: E501
-        :type access_information: GetStudyJobMetadataQueryResultAccessInformation
+        :type access_information: GetStudyJobQueryResultAccessInformation
         """
-        if self.local_vars_configuration.client_side_validation and access_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `access_information`, must not be `None`")  # noqa: E501
 
         self._access_information = access_information
 

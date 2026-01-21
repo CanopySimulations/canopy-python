@@ -68,10 +68,14 @@ class GetPoolsItem(object):
         self.discriminator = None
 
         self.pool_id = pool_id
-        self.current_dedicated = current_dedicated
-        self.target_dedicated = target_dedicated
-        self.current_low_priority = current_low_priority
-        self.target_low_priority = target_low_priority
+        if current_dedicated is not None:
+            self.current_dedicated = current_dedicated
+        if target_dedicated is not None:
+            self.target_dedicated = target_dedicated
+        if current_low_priority is not None:
+            self.current_low_priority = current_low_priority
+        if target_low_priority is not None:
+            self.target_low_priority = target_low_priority
         self.intervals = intervals
 
     @property
@@ -92,8 +96,6 @@ class GetPoolsItem(object):
         :param pool_id: The pool_id of this GetPoolsItem.  # noqa: E501
         :type pool_id: object
         """
-        if self.local_vars_configuration.client_side_validation and pool_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `pool_id`, must not be `None`")  # noqa: E501
 
         self._pool_id = pool_id
 
@@ -115,8 +117,6 @@ class GetPoolsItem(object):
         :param current_dedicated: The current_dedicated of this GetPoolsItem.  # noqa: E501
         :type current_dedicated: int
         """
-        if self.local_vars_configuration.client_side_validation and current_dedicated is None:  # noqa: E501
-            raise ValueError("Invalid value for `current_dedicated`, must not be `None`")  # noqa: E501
 
         self._current_dedicated = current_dedicated
 
@@ -138,8 +138,6 @@ class GetPoolsItem(object):
         :param target_dedicated: The target_dedicated of this GetPoolsItem.  # noqa: E501
         :type target_dedicated: int
         """
-        if self.local_vars_configuration.client_side_validation and target_dedicated is None:  # noqa: E501
-            raise ValueError("Invalid value for `target_dedicated`, must not be `None`")  # noqa: E501
 
         self._target_dedicated = target_dedicated
 
@@ -161,8 +159,6 @@ class GetPoolsItem(object):
         :param current_low_priority: The current_low_priority of this GetPoolsItem.  # noqa: E501
         :type current_low_priority: int
         """
-        if self.local_vars_configuration.client_side_validation and current_low_priority is None:  # noqa: E501
-            raise ValueError("Invalid value for `current_low_priority`, must not be `None`")  # noqa: E501
 
         self._current_low_priority = current_low_priority
 
@@ -184,8 +180,6 @@ class GetPoolsItem(object):
         :param target_low_priority: The target_low_priority of this GetPoolsItem.  # noqa: E501
         :type target_low_priority: int
         """
-        if self.local_vars_configuration.client_side_validation and target_low_priority is None:  # noqa: E501
-            raise ValueError("Invalid value for `target_low_priority`, must not be `None`")  # noqa: E501
 
         self._target_low_priority = target_low_priority
 
@@ -207,8 +201,6 @@ class GetPoolsItem(object):
         :param intervals: The intervals of this GetPoolsItem.  # noqa: E501
         :type intervals: list[GetPoolsItemInterval]
         """
-        if self.local_vars_configuration.client_side_validation and intervals is None:  # noqa: E501
-            raise ValueError("Invalid value for `intervals`, must not be `None`")  # noqa: E501
 
         self._intervals = intervals
 

@@ -76,8 +76,6 @@ class SimTypeDefinitionInputTelemetryChannels(object):
         :param valid_source_sim_types: The valid_source_sim_types of this SimTypeDefinitionInputTelemetryChannels.  # noqa: E501
         :type valid_source_sim_types: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and valid_source_sim_types is None:  # noqa: E501
-            raise ValueError("Invalid value for `valid_source_sim_types`, must not be `None`")  # noqa: E501
 
         self._valid_source_sim_types = valid_source_sim_types
 
@@ -99,8 +97,6 @@ class SimTypeDefinitionInputTelemetryChannels(object):
         :param channels: The channels of this SimTypeDefinitionInputTelemetryChannels.  # noqa: E501
         :type channels: list[SimTypeInputTelemetryChannel]
         """
-        if self.local_vars_configuration.client_side_validation and channels is None:  # noqa: E501
-            raise ValueError("Invalid value for `channels`, must not be `None`")  # noqa: E501
 
         self._channels = channels
 

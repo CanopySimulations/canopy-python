@@ -66,6 +66,7 @@ class GetStudyQueryResultAccessInformation(object):
     def url(self):
         """Gets the url of this GetStudyQueryResultAccessInformation.  # noqa: E501
 
+        The URL of the folder in blob storage containing the blobs.  # noqa: E501
 
         :return: The url of this GetStudyQueryResultAccessInformation.  # noqa: E501
         :rtype: str
@@ -76,12 +77,11 @@ class GetStudyQueryResultAccessInformation(object):
     def url(self, url):
         """Sets the url of this GetStudyQueryResultAccessInformation.
 
+        The URL of the folder in blob storage containing the blobs.  # noqa: E501
 
         :param url: The url of this GetStudyQueryResultAccessInformation.  # noqa: E501
         :type url: str
         """
-        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
-            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 
@@ -89,6 +89,7 @@ class GetStudyQueryResultAccessInformation(object):
     def access_signature(self):
         """Gets the access_signature of this GetStudyQueryResultAccessInformation.  # noqa: E501
 
+        The access signature for accessing the blob storage URL.  # noqa: E501
 
         :return: The access_signature of this GetStudyQueryResultAccessInformation.  # noqa: E501
         :rtype: str
@@ -99,12 +100,11 @@ class GetStudyQueryResultAccessInformation(object):
     def access_signature(self, access_signature):
         """Sets the access_signature of this GetStudyQueryResultAccessInformation.
 
+        The access signature for accessing the blob storage URL.  # noqa: E501
 
         :param access_signature: The access_signature of this GetStudyQueryResultAccessInformation.  # noqa: E501
         :type access_signature: str
         """
-        if self.local_vars_configuration.client_side_validation and access_signature is None:  # noqa: E501
-            raise ValueError("Invalid value for `access_signature`, must not be `None`")  # noqa: E501
 
         self._access_signature = access_signature
 
@@ -112,6 +112,7 @@ class GetStudyQueryResultAccessInformation(object):
     def jobs(self):
         """Gets the jobs of this GetStudyQueryResultAccessInformation.  # noqa: E501
 
+        The list of URLs and access signatures for accessing the results for the study jobs.  The list of job access information is at most the size of the number of shards, and jobs  beyond that can get their access information at the job index modulo the number of shards.  Each job's actual results will be in located located in a sub folder with the same name  as the job index.  # noqa: E501
 
         :return: The jobs of this GetStudyQueryResultAccessInformation.  # noqa: E501
         :rtype: list[BlobAccessInformation]
@@ -122,12 +123,11 @@ class GetStudyQueryResultAccessInformation(object):
     def jobs(self, jobs):
         """Sets the jobs of this GetStudyQueryResultAccessInformation.
 
+        The list of URLs and access signatures for accessing the results for the study jobs.  The list of job access information is at most the size of the number of shards, and jobs  beyond that can get their access information at the job index modulo the number of shards.  Each job's actual results will be in located located in a sub folder with the same name  as the job index.  # noqa: E501
 
         :param jobs: The jobs of this GetStudyQueryResultAccessInformation.  # noqa: E501
         :type jobs: list[BlobAccessInformation]
         """
-        if self.local_vars_configuration.client_side_validation and jobs is None:  # noqa: E501
-            raise ValueError("Invalid value for `jobs`, must not be `None`")  # noqa: E501
 
         self._jobs = jobs
 

@@ -57,7 +57,8 @@ class StudyDocument(object):
         'definition': 'object',
         'shard_dispatched_job_counts': 'list[int]',
         'shard_dispatched_compute_credits': 'list[float]',
-        'shard_dispatched_storage_credits': 'list[float]'
+        'shard_dispatched_storage_credits': 'list[float]',
+        'results_studies': 'list[TenantIdStudyId]'
     }
 
     attribute_map = {
@@ -82,10 +83,11 @@ class StudyDocument(object):
         'definition': 'definition',
         'shard_dispatched_job_counts': 'shardDispatchedJobCounts',
         'shard_dispatched_compute_credits': 'shardDispatchedComputeCredits',
-        'shard_dispatched_storage_credits': 'shardDispatchedStorageCredits'
+        'shard_dispatched_storage_credits': 'shardDispatchedStorageCredits',
+        'results_studies': 'resultsStudies'
     }
 
-    def __init__(self, error_messages=None, job_count=None, dispatched_job_count=None, completed_job_count=None, succeeded_job_count=None, dispatched_compute_credits=None, completed_compute_credits=None, succeeded_compute_credits=None, dispatched_storage_credits=None, completed_storage_credits=None, succeeded_storage_credits=None, succeeded_simulation_count=None, seed=None, is_transient=None, execution_time_seconds=None, study_type=None, study_state=None, sources=None, definition=None, shard_dispatched_job_counts=None, shard_dispatched_compute_credits=None, shard_dispatched_storage_credits=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, error_messages=None, job_count=None, dispatched_job_count=None, completed_job_count=None, succeeded_job_count=None, dispatched_compute_credits=None, completed_compute_credits=None, succeeded_compute_credits=None, dispatched_storage_credits=None, completed_storage_credits=None, succeeded_storage_credits=None, succeeded_simulation_count=None, seed=None, is_transient=None, execution_time_seconds=None, study_type=None, study_state=None, sources=None, definition=None, shard_dispatched_job_counts=None, shard_dispatched_compute_credits=None, shard_dispatched_storage_credits=None, results_studies=None, local_vars_configuration=None):  # noqa: E501
         """StudyDocument - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -113,35 +115,42 @@ class StudyDocument(object):
         self._shard_dispatched_job_counts = None
         self._shard_dispatched_compute_credits = None
         self._shard_dispatched_storage_credits = None
+        self._results_studies = None
         self.discriminator = None
 
         self.error_messages = error_messages
-        self.job_count = job_count
-        self.dispatched_job_count = dispatched_job_count
-        self.completed_job_count = completed_job_count
-        self.succeeded_job_count = succeeded_job_count
-        if dispatched_compute_credits is not None:
-            self.dispatched_compute_credits = dispatched_compute_credits
-        if completed_compute_credits is not None:
-            self.completed_compute_credits = completed_compute_credits
-        self.succeeded_compute_credits = succeeded_compute_credits
-        if dispatched_storage_credits is not None:
-            self.dispatched_storage_credits = dispatched_storage_credits
-        if completed_storage_credits is not None:
-            self.completed_storage_credits = completed_storage_credits
-        self.succeeded_storage_credits = succeeded_storage_credits
-        if succeeded_simulation_count is not None:
-            self.succeeded_simulation_count = succeeded_simulation_count
-        self.seed = seed
-        self.is_transient = is_transient
-        self.execution_time_seconds = execution_time_seconds
-        self.study_type = study_type
+        if job_count is not None:
+            self.job_count = job_count
+        if dispatched_job_count is not None:
+            self.dispatched_job_count = dispatched_job_count
+        if completed_job_count is not None:
+            self.completed_job_count = completed_job_count
+        if succeeded_job_count is not None:
+            self.succeeded_job_count = succeeded_job_count
+        self.dispatched_compute_credits = dispatched_compute_credits
+        self.completed_compute_credits = completed_compute_credits
+        if succeeded_compute_credits is not None:
+            self.succeeded_compute_credits = succeeded_compute_credits
+        self.dispatched_storage_credits = dispatched_storage_credits
+        self.completed_storage_credits = completed_storage_credits
+        if succeeded_storage_credits is not None:
+            self.succeeded_storage_credits = succeeded_storage_credits
+        self.succeeded_simulation_count = succeeded_simulation_count
+        if seed is not None:
+            self.seed = seed
+        if is_transient is not None:
+            self.is_transient = is_transient
+        if execution_time_seconds is not None:
+            self.execution_time_seconds = execution_time_seconds
+        if study_type is not None:
+            self.study_type = study_type
         self.study_state = study_state
         self.sources = sources
         self.definition = definition
         self.shard_dispatched_job_counts = shard_dispatched_job_counts
         self.shard_dispatched_compute_credits = shard_dispatched_compute_credits
         self.shard_dispatched_storage_credits = shard_dispatched_storage_credits
+        self.results_studies = results_studies
 
     @property
     def error_messages(self):
@@ -161,8 +170,6 @@ class StudyDocument(object):
         :param error_messages: The error_messages of this StudyDocument.  # noqa: E501
         :type error_messages: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and error_messages is None:  # noqa: E501
-            raise ValueError("Invalid value for `error_messages`, must not be `None`")  # noqa: E501
 
         self._error_messages = error_messages
 
@@ -184,8 +191,6 @@ class StudyDocument(object):
         :param job_count: The job_count of this StudyDocument.  # noqa: E501
         :type job_count: int
         """
-        if self.local_vars_configuration.client_side_validation and job_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `job_count`, must not be `None`")  # noqa: E501
 
         self._job_count = job_count
 
@@ -207,8 +212,6 @@ class StudyDocument(object):
         :param dispatched_job_count: The dispatched_job_count of this StudyDocument.  # noqa: E501
         :type dispatched_job_count: int
         """
-        if self.local_vars_configuration.client_side_validation and dispatched_job_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `dispatched_job_count`, must not be `None`")  # noqa: E501
 
         self._dispatched_job_count = dispatched_job_count
 
@@ -230,8 +233,6 @@ class StudyDocument(object):
         :param completed_job_count: The completed_job_count of this StudyDocument.  # noqa: E501
         :type completed_job_count: int
         """
-        if self.local_vars_configuration.client_side_validation and completed_job_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `completed_job_count`, must not be `None`")  # noqa: E501
 
         self._completed_job_count = completed_job_count
 
@@ -253,8 +254,6 @@ class StudyDocument(object):
         :param succeeded_job_count: The succeeded_job_count of this StudyDocument.  # noqa: E501
         :type succeeded_job_count: int
         """
-        if self.local_vars_configuration.client_side_validation and succeeded_job_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `succeeded_job_count`, must not be `None`")  # noqa: E501
 
         self._succeeded_job_count = succeeded_job_count
 
@@ -318,8 +317,6 @@ class StudyDocument(object):
         :param succeeded_compute_credits: The succeeded_compute_credits of this StudyDocument.  # noqa: E501
         :type succeeded_compute_credits: float
         """
-        if self.local_vars_configuration.client_side_validation and succeeded_compute_credits is None:  # noqa: E501
-            raise ValueError("Invalid value for `succeeded_compute_credits`, must not be `None`")  # noqa: E501
 
         self._succeeded_compute_credits = succeeded_compute_credits
 
@@ -383,8 +380,6 @@ class StudyDocument(object):
         :param succeeded_storage_credits: The succeeded_storage_credits of this StudyDocument.  # noqa: E501
         :type succeeded_storage_credits: float
         """
-        if self.local_vars_configuration.client_side_validation and succeeded_storage_credits is None:  # noqa: E501
-            raise ValueError("Invalid value for `succeeded_storage_credits`, must not be `None`")  # noqa: E501
 
         self._succeeded_storage_credits = succeeded_storage_credits
 
@@ -427,8 +422,6 @@ class StudyDocument(object):
         :param seed: The seed of this StudyDocument.  # noqa: E501
         :type seed: int
         """
-        if self.local_vars_configuration.client_side_validation and seed is None:  # noqa: E501
-            raise ValueError("Invalid value for `seed`, must not be `None`")  # noqa: E501
 
         self._seed = seed
 
@@ -450,8 +443,6 @@ class StudyDocument(object):
         :param is_transient: The is_transient of this StudyDocument.  # noqa: E501
         :type is_transient: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_transient is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_transient`, must not be `None`")  # noqa: E501
 
         self._is_transient = is_transient
 
@@ -473,8 +464,6 @@ class StudyDocument(object):
         :param execution_time_seconds: The execution_time_seconds of this StudyDocument.  # noqa: E501
         :type execution_time_seconds: float
         """
-        if self.local_vars_configuration.client_side_validation and execution_time_seconds is None:  # noqa: E501
-            raise ValueError("Invalid value for `execution_time_seconds`, must not be `None`")  # noqa: E501
 
         self._execution_time_seconds = execution_time_seconds
 
@@ -496,8 +485,6 @@ class StudyDocument(object):
         :param study_type: The study_type of this StudyDocument.  # noqa: E501
         :type study_type: str
         """
-        if self.local_vars_configuration.client_side_validation and study_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `study_type`, must not be `None`")  # noqa: E501
 
         self._study_type = study_type
 
@@ -540,8 +527,6 @@ class StudyDocument(object):
         :param sources: The sources of this StudyDocument.  # noqa: E501
         :type sources: list[StudyDocumentStudyDocumentDataSource]
         """
-        if self.local_vars_configuration.client_side_validation and sources is None:  # noqa: E501
-            raise ValueError("Invalid value for `sources`, must not be `None`")  # noqa: E501
 
         self._sources = sources
 
@@ -628,6 +613,27 @@ class StudyDocument(object):
         """
 
         self._shard_dispatched_storage_credits = shard_dispatched_storage_credits
+
+    @property
+    def results_studies(self):
+        """Gets the results_studies of this StudyDocument.  # noqa: E501
+
+
+        :return: The results_studies of this StudyDocument.  # noqa: E501
+        :rtype: list[TenantIdStudyId]
+        """
+        return self._results_studies
+
+    @results_studies.setter
+    def results_studies(self, results_studies):
+        """Sets the results_studies of this StudyDocument.
+
+
+        :param results_studies: The results_studies of this StudyDocument.  # noqa: E501
+        :type results_studies: list[TenantIdStudyId]
+        """
+
+        self._results_studies = results_studies
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

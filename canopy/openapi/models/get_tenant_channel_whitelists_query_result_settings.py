@@ -72,8 +72,6 @@ class GetTenantChannelWhitelistsQueryResultSettings(object):
         :param additive_channel_whitelist: The additive_channel_whitelist of this GetTenantChannelWhitelistsQueryResultSettings.  # noqa: E501
         :type additive_channel_whitelist: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and additive_channel_whitelist is None:  # noqa: E501
-            raise ValueError("Invalid value for `additive_channel_whitelist`, must not be `None`")  # noqa: E501
 
         self._additive_channel_whitelist = additive_channel_whitelist
 

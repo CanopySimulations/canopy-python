@@ -80,8 +80,6 @@ class WorksheetRow(object):
         :param name: The name of this WorksheetRow.  # noqa: E501
         :type name: object
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -103,8 +101,6 @@ class WorksheetRow(object):
         :param configs: The configs of this WorksheetRow.  # noqa: E501
         :type configs: list[WorksheetConfig]
         """
-        if self.local_vars_configuration.client_side_validation and configs is None:  # noqa: E501
-            raise ValueError("Invalid value for `configs`, must not be `None`")  # noqa: E501
 
         self._configs = configs
 
@@ -126,8 +122,6 @@ class WorksheetRow(object):
         :param study: The study of this WorksheetRow.  # noqa: E501
         :type study: WorksheetRowStudy
         """
-        if self.local_vars_configuration.client_side_validation and study is None:  # noqa: E501
-            raise ValueError("Invalid value for `study`, must not be `None`")  # noqa: E501
 
         self._study = study
 

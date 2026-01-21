@@ -33,9 +33,8 @@ class PoolState(object):
     """
     ACTIVE = "active"
     DELETING = "deleting"
-    UPGRADING = "upgrading"
 
-    allowable_values = [ACTIVE, DELETING, UPGRADING]  # noqa: E501
+    allowable_values = [ACTIVE, DELETING]  # noqa: E501
 
     """
     Attributes:

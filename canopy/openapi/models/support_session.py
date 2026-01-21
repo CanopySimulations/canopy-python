@@ -64,8 +64,10 @@ class SupportSession(object):
         self._responses = None
         self.discriminator = None
 
-        self.is_open = is_open
-        self.modified_date = modified_date
+        if is_open is not None:
+            self.is_open = is_open
+        if modified_date is not None:
+            self.modified_date = modified_date
         self.modified_tenant_id = modified_tenant_id
         self.modified_user_id = modified_user_id
         self.responses = responses
@@ -88,8 +90,6 @@ class SupportSession(object):
         :param is_open: The is_open of this SupportSession.  # noqa: E501
         :type is_open: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_open is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_open`, must not be `None`")  # noqa: E501
 
         self._is_open = is_open
 
@@ -111,8 +111,6 @@ class SupportSession(object):
         :param modified_date: The modified_date of this SupportSession.  # noqa: E501
         :type modified_date: datetime
         """
-        if self.local_vars_configuration.client_side_validation and modified_date is None:  # noqa: E501
-            raise ValueError("Invalid value for `modified_date`, must not be `None`")  # noqa: E501
 
         self._modified_date = modified_date
 
@@ -134,8 +132,6 @@ class SupportSession(object):
         :param modified_tenant_id: The modified_tenant_id of this SupportSession.  # noqa: E501
         :type modified_tenant_id: object
         """
-        if self.local_vars_configuration.client_side_validation and modified_tenant_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `modified_tenant_id`, must not be `None`")  # noqa: E501
 
         self._modified_tenant_id = modified_tenant_id
 
@@ -157,8 +153,6 @@ class SupportSession(object):
         :param modified_user_id: The modified_user_id of this SupportSession.  # noqa: E501
         :type modified_user_id: object
         """
-        if self.local_vars_configuration.client_side_validation and modified_user_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `modified_user_id`, must not be `None`")  # noqa: E501
 
         self._modified_user_id = modified_user_id
 

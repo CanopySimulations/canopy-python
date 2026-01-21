@@ -74,10 +74,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with canopy.openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = canopy.openapi.AccountSettingsApi(api_client)
-    tenant_id = 'tenant_id_example' # str | 
-user_id = 'user_id_example' # str | 
+    tenant_id = 'tenant_id_example' # str | The tenant ID of the user.
+user_id = 'user_id_example' # str | The user ID of the user.
 
     try:
+        # Gets the account settings for the specified user.  This contains information such as their username, their email, and whether their email address  has been confirmed.
         api_response = api_instance.account_settings_get(tenant_id, user_id)
         pprint(api_response)
     except ApiException as e:
@@ -91,121 +92,150 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountSettingsApi* | [**account_settings_get**](docs/AccountSettingsApi.md#account_settings_get) | **GET** /account-settings/{tenantId}/{userId} | 
-*AccountSettingsApi* | [**account_settings_put**](docs/AccountSettingsApi.md#account_settings_put) | **PUT** /account-settings/{tenantId}/{userId} | 
-*AvailabilityApi* | [**availability_get**](docs/AvailabilityApi.md#availability_get) | **GET** /availability | 
-*AvailabilityApi* | [**availability_head**](docs/AvailabilityApi.md#availability_head) | **HEAD** /availability | 
-*ConfigApi* | [**config_decrypt**](docs/ConfigApi.md#config_decrypt) | **POST** /configs/decrypt | 
-*ConfigApi* | [**config_decrypt_with_metadata**](docs/ConfigApi.md#config_decrypt_with_metadata) | **POST** /configs/decryptWithMetadata | 
-*ConfigApi* | [**config_delete_config**](docs/ConfigApi.md#config_delete_config) | **DELETE** /configs/{tenantId}/{configId} | 
-*ConfigApi* | [**config_delete_config_deprecated**](docs/ConfigApi.md#config_delete_config_deprecated) | **DELETE** /configs/{tenantId}/{userId}/{configId} | 
-*ConfigApi* | [**config_encrypt**](docs/ConfigApi.md#config_encrypt) | **POST** /configs/encrypt | 
-*ConfigApi* | [**config_encrypt_with_metadata**](docs/ConfigApi.md#config_encrypt_with_metadata) | **POST** /configs/encryptWithMetadata | 
-*ConfigApi* | [**config_get_config**](docs/ConfigApi.md#config_get_config) | **GET** /configs/{tenantId}/{configId} | 
-*ConfigApi* | [**config_get_config_deprecated**](docs/ConfigApi.md#config_get_config_deprecated) | **GET** /configs/{tenantId}/{userId}/{configId} | 
-*ConfigApi* | [**config_get_config_names**](docs/ConfigApi.md#config_get_config_names) | **GET** /configs/{tenantId}/names | 
-*ConfigApi* | [**config_get_config_versions**](docs/ConfigApi.md#config_get_config_versions) | **GET** /configs/{tenantId}/{configId}/versions | 
-*ConfigApi* | [**config_get_config_versions_deprecated**](docs/ConfigApi.md#config_get_config_versions_deprecated) | **GET** /configs/{tenantId}/{userId}/{configId}/versions | 
-*ConfigApi* | [**config_get_config_without_user_id_deprecated**](docs/ConfigApi.md#config_get_config_without_user_id_deprecated) | **GET** /configs/{tenantId}/auto/{configId} | 
-*ConfigApi* | [**config_get_configs**](docs/ConfigApi.md#config_get_configs) | **GET** /configs/{tenantId} | 
-*ConfigApi* | [**config_post_config**](docs/ConfigApi.md#config_post_config) | **POST** /configs/{tenantId} | 
-*ConfigApi* | [**config_post_config_deprecated**](docs/ConfigApi.md#config_post_config_deprecated) | **POST** /configs/{tenantId}/{userId} | 
-*ConfigApi* | [**config_post_configs**](docs/ConfigApi.md#config_post_configs) | **POST** /configs/{tenantId}/batch | 
-*ConfigApi* | [**config_post_configs_deprecated**](docs/ConfigApi.md#config_post_configs_deprecated) | **POST** /configs/{tenantId}/{userId}/batch | 
-*ConfigApi* | [**config_put_config**](docs/ConfigApi.md#config_put_config) | **PUT** /configs/{tenantId}/{configId} | 
-*ConfigApi* | [**config_put_config_deprecated**](docs/ConfigApi.md#config_put_config_deprecated) | **PUT** /configs/{tenantId}/{userId}/{configId} | 
-*ConfigApi* | [**config_put_config_owner**](docs/ConfigApi.md#config_put_config_owner) | **PUT** /configs/{tenantId}/{configId}/owner | 
-*ConfigApi* | [**config_upgrade_config**](docs/ConfigApi.md#config_upgrade_config) | **POST** /configs/upgrade/{tenantId}/{targetSimVersion} | 
-*ConfigApi* | [**config_upgrade_config_deprecated**](docs/ConfigApi.md#config_upgrade_config_deprecated) | **POST** /configs/upgrade/{targetSimVersion} | 
-*EndToEndTestInboxApi* | [**end_to_end_test_inbox_get_latest_message_and_clear_mailbox**](docs/EndToEndTestInboxApi.md#end_to_end_test_inbox_get_latest_message_and_clear_mailbox) | **GET** /test-mailboxes/{mailboxName} | 
-*ListFilterApi* | [**list_filter_upgrade_list_filter**](docs/ListFilterApi.md#list_filter_upgrade_list_filter) | **GET** /list-filters/upgrade | 
-*MembershipApi* | [**membership_delete_refresh_tokens**](docs/MembershipApi.md#membership_delete_refresh_tokens) | **DELETE** /membership/refresh-tokens/{tenantId}/{userId} | 
-*MembershipApi* | [**membership_get_password_reset_token_validity**](docs/MembershipApi.md#membership_get_password_reset_token_validity) | **GET** /membership/password-reset-tokens/{userId} | 
-*MembershipApi* | [**membership_get_upvoty_token**](docs/MembershipApi.md#membership_get_upvoty_token) | **GET** /membership/upvoty-token/{tenantId}/{userId} | 
-*MembershipApi* | [**membership_get_user_roles**](docs/MembershipApi.md#membership_get_user_roles) | **GET** /membership/roles/{tenantId}/{userId} | 
-*MembershipApi* | [**membership_get_zendesk_token**](docs/MembershipApi.md#membership_get_zendesk_token) | **GET** /membership/zendesk-token/{tenantId}/{userId} | 
-*MembershipApi* | [**membership_post_email_confirmation**](docs/MembershipApi.md#membership_post_email_confirmation) | **POST** /membership/email-confirmations | 
-*MembershipApi* | [**membership_post_email_confirmation_request**](docs/MembershipApi.md#membership_post_email_confirmation_request) | **POST** /membership/email-confirmation-requests/{tenantId}/{userId} | 
-*MembershipApi* | [**membership_post_identified_user**](docs/MembershipApi.md#membership_post_identified_user) | **POST** /membership/identified-users | 
-*MembershipApi* | [**membership_post_initialize**](docs/MembershipApi.md#membership_post_initialize) | **POST** /membership/initialize | 
-*MembershipApi* | [**membership_post_password_reset_confirmation**](docs/MembershipApi.md#membership_post_password_reset_confirmation) | **POST** /membership/password-reset-confirmations | 
-*MembershipApi* | [**membership_post_password_reset_request**](docs/MembershipApi.md#membership_post_password_reset_request) | **POST** /membership/password-reset-requests | 
-*MembershipApi* | [**membership_post_registration**](docs/MembershipApi.md#membership_post_registration) | **POST** /membership/registrations | 
-*MembershipApi* | [**membership_put_user_role**](docs/MembershipApi.md#membership_put_user_role) | **PUT** /membership/roles/{tenantId}/{userId} | 
-*PoolApi* | [**pool_get_pool_status**](docs/PoolApi.md#pool_get_pool_status) | **GET** /pools/{tenantId} | 
-*PoolApi* | [**pool_get_pools**](docs/PoolApi.md#pool_get_pools) | **GET** /pools | 
-*PoolApi* | [**pool_get_test_auto_scale_formula**](docs/PoolApi.md#pool_get_test_auto_scale_formula) | **GET** /pools/{tenantId}/autoscale/test | 
-*SimVersionApi* | [**sim_version_get_document**](docs/SimVersionApi.md#sim_version_get_document) | **GET** /sim-versions/{simVersion}/documents/{documentPath} | 
-*SimVersionApi* | [**sim_version_get_documents**](docs/SimVersionApi.md#sim_version_get_documents) | **GET** /sim-versions/{simVersion}/documents | 
-*SimVersionApi* | [**sim_version_get_downloads**](docs/SimVersionApi.md#sim_version_get_downloads) | **GET** /sim-versions/{simVersion}/downloads | 
-*SimVersionApi* | [**sim_version_get_sim_version**](docs/SimVersionApi.md#sim_version_get_sim_version) | **GET** /sim-versions/current | 
-*SimVersionApi* | [**sim_version_get_wiki_document**](docs/SimVersionApi.md#sim_version_get_wiki_document) | **GET** /sim-versions/{wikiVersion}/wiki/{documentPath} | 
-*SimVersionApi* | [**sim_version_post_sim_version**](docs/SimVersionApi.md#sim_version_post_sim_version) | **POST** /sim-versions/current | 
-*StudyApi* | [**study_delete_study**](docs/StudyApi.md#study_delete_study) | **DELETE** /studies/{tenantId}/{studyId} | 
+*AccountSettingsApi* | [**account_settings_get**](docs/AccountSettingsApi.md#account_settings_get) | **GET** /account-settings/{tenantId}/{userId} | Gets the account settings for the specified user.  This contains information such as their username, their email, and whether their email address  has been confirmed.
+*AccountSettingsApi* | [**account_settings_put**](docs/AccountSettingsApi.md#account_settings_put) | **PUT** /account-settings/{tenantId}/{userId} | Updates the account settings for the specified user.
+*AvailabilityApi* | [**availability_get**](docs/AvailabilityApi.md#availability_get) | **GET** /availability | Tests the availability of the API.
+*AvailabilityApi* | [**availability_head**](docs/AvailabilityApi.md#availability_head) | **HEAD** /availability | This method performs a simple &#x60;ping&#x60; test of the API, where the API responding is  considered a successful test.
+*ConfigApi* | [**config_decrypt**](docs/ConfigApi.md#config_decrypt) | **POST** /configs/decrypt | Decrypts the provided data.
+*ConfigApi* | [**config_decrypt_with_metadata**](docs/ConfigApi.md#config_decrypt_with_metadata) | **POST** /configs/decryptWithMetadata | Decrypts the provided data.
+*ConfigApi* | [**config_delete_config**](docs/ConfigApi.md#config_delete_config) | **DELETE** /configs/{tenantId}/{configId} | Deletes an existing config.
+*ConfigApi* | [**config_delete_config_deprecated**](docs/ConfigApi.md#config_delete_config_deprecated) | **DELETE** /configs/{tenantId}/{userId}/{configId} | Deletes an existing config for the specified tenant and user.
+*ConfigApi* | [**config_encrypt**](docs/ConfigApi.md#config_encrypt) | **POST** /configs/encrypt | Encrypts the provided data.
+*ConfigApi* | [**config_encrypt_with_metadata**](docs/ConfigApi.md#config_encrypt_with_metadata) | **POST** /configs/encryptWithMetadata | Encrypted the provided data using the optional description and channel whitelist.
+*ConfigApi* | [**config_get_config**](docs/ConfigApi.md#config_get_config) | **GET** /configs/{tenantId}/{configId} | Gets an existing config.
+*ConfigApi* | [**config_get_config_deprecated**](docs/ConfigApi.md#config_get_config_deprecated) | **GET** /configs/{tenantId}/{userId}/{configId} | Gets an existing config for the specified tenant and user.
+*ConfigApi* | [**config_get_config_names**](docs/ConfigApi.md#config_get_config_names) | **GET** /configs/{tenantId}/names | This method returns a list of config names for the specified config type,  optionally along with the most recent config ID and user ID of each config name.  It also returns the names of the default configs which are part of the specified sim version.
+*ConfigApi* | [**config_get_config_sub_paths**](docs/ConfigApi.md#config_get_config_sub_paths) | **GET** /configs/{tenantId}/component-paths | Gets all the unique component paths for the specified tenant and config type.
+*ConfigApi* | [**config_get_config_versions**](docs/ConfigApi.md#config_get_config_versions) | **GET** /configs/{tenantId}/{configId}/versions | Gets the version history of an existing config. Note that we do not keep a complete version history, so  the returned list of versions may not be exhaustive.
+*ConfigApi* | [**config_get_config_versions_deprecated**](docs/ConfigApi.md#config_get_config_versions_deprecated) | **GET** /configs/{tenantId}/{userId}/{configId}/versions | Gets the versions of an existing config for the specified tenant and user.
+*ConfigApi* | [**config_get_config_without_user_id_deprecated**](docs/ConfigApi.md#config_get_config_without_user_id_deprecated) | **GET** /configs/{tenantId}/auto/{configId} | Gets an existing config for the specified tenant without specifying a user ID.
+*ConfigApi* | [**config_get_configs**](docs/ConfigApi.md#config_get_configs) | **GET** /configs/{tenantId} | Given the provided filter information, this method returns:  - a list of configs (metadata only)  - a list of custom property groups  ResultType can be used to specify which of the above lists to return.                The list of configs may contain a continuation token of more results are available. The continuation token  can be passed into a subsequent query as part of the filter to retrieve the next page of results.                The list of custom property groups is not guaranteed to be complete. It is a best effort.
+*ConfigApi* | [**config_post_config**](docs/ConfigApi.md#config_post_config) | **POST** /configs/{tenantId} | Creates a new config for the specified tenant.
+*ConfigApi* | [**config_post_config_deprecated**](docs/ConfigApi.md#config_post_config_deprecated) | **POST** /configs/{tenantId}/{userId} | Creates a new config for the specified tenant and user.
+*ConfigApi* | [**config_post_configs**](docs/ConfigApi.md#config_post_configs) | **POST** /configs/{tenantId}/batch | Creates multiple new configs for the specified tenant.
+*ConfigApi* | [**config_post_configs_deprecated**](docs/ConfigApi.md#config_post_configs_deprecated) | **POST** /configs/{tenantId}/{userId}/batch | Creates multiple new configs for the specified tenant and user.
+*ConfigApi* | [**config_put_config**](docs/ConfigApi.md#config_put_config) | **PUT** /configs/{tenantId}/{configId} | Updates an existing config for the specified tenant.
+*ConfigApi* | [**config_put_config_deprecated**](docs/ConfigApi.md#config_put_config_deprecated) | **PUT** /configs/{tenantId}/{userId}/{configId} | Updates an existing config for the specified tenant and user.
+*ConfigApi* | [**config_put_config_owner**](docs/ConfigApi.md#config_put_config_owner) | **PUT** /configs/{tenantId}/{configId}/owner | Updates the owner of an existing config.
+*ConfigApi* | [**config_upgrade_config**](docs/ConfigApi.md#config_upgrade_config) | **POST** /configs/upgrade/{tenantId}/{targetSimVersion} | Upgrades the config data to the specified target simulation version.
+*ConfigApi* | [**config_upgrade_config_deprecated**](docs/ConfigApi.md#config_upgrade_config_deprecated) | **POST** /configs/upgrade/{targetSimVersion} | Upgrades the config data to the specified target simulation version.
+*DeploymentsApi* | [**deployments_create_deployment**](docs/DeploymentsApi.md#deployments_create_deployment) | **POST** /deployments | Creates a new deployment.
+*DeploymentsApi* | [**deployments_get_account_features**](docs/DeploymentsApi.md#deployments_get_account_features) | **GET** /deployments/features | Gets a list of all account features.
+*DeploymentsApi* | [**deployments_get_deployment**](docs/DeploymentsApi.md#deployments_get_deployment) | **GET** /deployments/{deploymentId} | Gets metadata about the specified deployment.
+*DeploymentsApi* | [**deployments_get_deployments**](docs/DeploymentsApi.md#deployments_get_deployments) | **GET** /deployments | Gets a list of all deployments.
+*DeploymentsApi* | [**deployments_get_invoice_bot_deployments**](docs/DeploymentsApi.md#deployments_get_invoice_bot_deployments) | **GET** /deployments/invoicebot | Gets a list of deployments for invoice bot processing.
+*DeploymentsApi* | [**deployments_get_subscription_level**](docs/DeploymentsApi.md#deployments_get_subscription_level) | **GET** /deployments/subscription-levels/{subscriptionLevelId} | Gets metadata about the specified subscription level.
+*DeploymentsApi* | [**deployments_get_subscription_levels**](docs/DeploymentsApi.md#deployments_get_subscription_levels) | **GET** /deployments/subscription-levels | Gets a list of all subscription levels.
+*DeploymentsApi* | [**deployments_post_deployment_note**](docs/DeploymentsApi.md#deployments_post_deployment_note) | **POST** /deployments/{deploymentId}/notes | Adds a note to the specified deployment.
+*DeploymentsApi* | [**deployments_update_deployment**](docs/DeploymentsApi.md#deployments_update_deployment) | **PUT** /deployments/{deploymentId} | Updates the specified deployment.
+*DeploymentsApi* | [**deployments_update_invoice_bot_deployment**](docs/DeploymentsApi.md#deployments_update_invoice_bot_deployment) | **PATCH** /deployments/{deploymentId}/invoicebot | Updates invoice bot fields for the specified deployment.
+*EncryptionApi* | [**encryption_decrypt**](docs/EncryptionApi.md#encryption_decrypt) | **POST** /encryption/decrypt | Decrypts the specified data.
+*EncryptionApi* | [**encryption_delete_config_permission**](docs/EncryptionApi.md#encryption_delete_config_permission) | **DELETE** /encryption/config-permissions/{tenantId}/{encryptingTenantShortName}/{decryptingTenantShortName} | Deletes an encryption key permission for the specified tenant.  Config permissions represent which encryption keys are allowed to be used by which tenants to re-encrypt any encrypted configs you provide.
+*EncryptionApi* | [**encryption_delete_key_permission**](docs/EncryptionApi.md#encryption_delete_key_permission) | **DELETE** /encryption/key-permissions/{tenantId}/{encryptingTenantShortName} | Deletes an encryption key permission for the specified tenant.  Key permissions represent which tenants are allowed to use your tenant&#39;s encryption key.
+*EncryptionApi* | [**encryption_encrypt**](docs/EncryptionApi.md#encryption_encrypt) | **POST** /encryption/encrypt | Encrypts the specified data.
+*EncryptionApi* | [**encryption_get_config_permissions**](docs/EncryptionApi.md#encryption_get_config_permissions) | **GET** /encryption/config-permissions/{tenantId} | Get the list of encryption config permissions for the specified tenant.  Config permissions represent which encryption keys are allowed to be used by which tenants to re-encrypt any encrypted configs you provide.
+*EncryptionApi* | [**encryption_get_key_permissions**](docs/EncryptionApi.md#encryption_get_key_permissions) | **GET** /encryption/key-permissions/{tenantId} | Get the list of encryption key permissions for the specified tenant.  Key permissions represent which tenants are allowed to use your tenant&#39;s encryption key.
+*EncryptionApi* | [**encryption_put_config_permission**](docs/EncryptionApi.md#encryption_put_config_permission) | **PUT** /encryption/config-permissions/{tenantId}/{encryptingTenantShortName}/{decryptingTenantShortName} | Adds or replaces an encryption config permission for the specified tenant.  Config permissions represent which encryption keys are allowed to be used by which tenants to re-encrypt any encrypted configs you provide.
+*EncryptionApi* | [**encryption_put_key_permission**](docs/EncryptionApi.md#encryption_put_key_permission) | **PUT** /encryption/key-permissions/{tenantId}/{encryptingTenantShortName} | Adds or replaces an encryption key permission for the specified tenant.  Key permissions represent which tenants are allowed to use your tenant&#39;s encryption key.
+*EncryptionApi* | [**encryption_query**](docs/EncryptionApi.md#encryption_query) | **POST** /encryption/query/{tenantId} | Queries the supplied data to determine what encryption keys can be used to re-encrypt it.  Internally, the API will find all encrypted components in the car (including recursively encrypted ones) and note the tenant IDs which encrypted them.   - For each of those encrypting tenant IDs it will search their permission lists to find any decrypting tenant IDs who have been granted permission by the encrypting tenant for their keys to be used by the config owner tenant.   - For each decrypting tenant ID it will also search their permission list to ensure permission has also been granted by the decrypting tenant for their key to be used by the config owner.
+*EncryptionApi* | [**encryption_re_encrypt**](docs/EncryptionApi.md#encryption_re_encrypt) | **POST** /encryption/re-encrypt/{tenantId} | Re-encrypts the specified data.  The data structure will be searched for encrypted nodes, and any found will be re-encrypted  using the encryption key for the tenant / sim version combination specified in the request body.  If either the decrypting tenant doesn&#39;t exist, or if the tenant ID parameter does not have the required permissions to use that encryption key,  then the method will fail as a bad request.
+*EndToEndTestInboxApi* | [**end_to_end_test_inbox_get_latest_message_and_clear_mailbox**](docs/EndToEndTestInboxApi.md#end_to_end_test_inbox_get_latest_message_and_clear_mailbox) | **GET** /test-mailboxes/{mailboxName} | Returns the latest message and clears the inbox.
+*ListFilterApi* | [**list_filter_upgrade_list_filter**](docs/ListFilterApi.md#list_filter_upgrade_list_filter) | **GET** /list-filters/upgrade | Upgrades a list filter from the old format to the new format.  This is used to upgrade list filters that were created before the new format,  supporting more complex queries, was introduced.
+*MembershipApi* | [**membership_delete_refresh_tokens**](docs/MembershipApi.md#membership_delete_refresh_tokens) | **DELETE** /membership/refresh-tokens/{tenantId}/{userId} | Clears all refresh tokens for the specified user. This forces all clients to re-authenticate.
+*MembershipApi* | [**membership_get_password_reset_token_validity**](docs/MembershipApi.md#membership_get_password_reset_token_validity) | **GET** /membership/password-reset-tokens/{userId} | Checks the validity of a password reset token.
+*MembershipApi* | [**membership_get_user_roles**](docs/MembershipApi.md#membership_get_user_roles) | **GET** /membership/roles/{tenantId}/{userId} | Gets the specified user&#39;s roles.
+*MembershipApi* | [**membership_get_zendesk_token**](docs/MembershipApi.md#membership_get_zendesk_token) | **GET** /membership/zendesk-token/{tenantId}/{userId} | Gets the specified user&#39;s Zendesk token. This is used to provide SSO with Zendesk.
+*MembershipApi* | [**membership_post_email_confirmation**](docs/MembershipApi.md#membership_post_email_confirmation) | **POST** /membership/email-confirmations | Posts an email address confirmation. If successful, the user&#39;s email address will have been confirmed.
+*MembershipApi* | [**membership_post_email_confirmation_request**](docs/MembershipApi.md#membership_post_email_confirmation_request) | **POST** /membership/email-confirmation-requests/{tenantId}/{userId} | Request an email address confirmation for a user. This sends an email to the user which they can use to confirm their email address.
+*MembershipApi* | [**membership_post_identified_user**](docs/MembershipApi.md#membership_post_identified_user) | **POST** /membership/identified-users | This API endpoint is no longer used.
+*MembershipApi* | [**membership_post_initialize**](docs/MembershipApi.md#membership_post_initialize) | **POST** /membership/initialize | This method performs some initialization tasks on a new instance of the platform,  and does nothing on existing instances.
+*MembershipApi* | [**membership_post_password_reset_confirmation**](docs/MembershipApi.md#membership_post_password_reset_confirmation) | **POST** /membership/password-reset-confirmations | Confirms a password reset for a user.
+*MembershipApi* | [**membership_post_password_reset_request**](docs/MembershipApi.md#membership_post_password_reset_request) | **POST** /membership/password-reset-requests | Requests a password reset for a user.  If the user exists they will be send a password reset email containing a link they can click on  to reset their password.  If the user does not exist, nothing happens.
+*MembershipApi* | [**membership_post_registration**](docs/MembershipApi.md#membership_post_registration) | **POST** /membership/registrations | Registers a new user on the platform.
+*MembershipApi* | [**membership_put_user_role**](docs/MembershipApi.md#membership_put_user_role) | **PUT** /membership/roles/{tenantId}/{userId} | Adds or removes a user role from the specified user.
+*MultiFactorAuthenticationApi* | [**multi_factor_authentication_get_multi_factor_authentication_code**](docs/MultiFactorAuthenticationApi.md#multi_factor_authentication_get_multi_factor_authentication_code) | **GET** /mfa/{tenantId}/{userId} | 
+*MultiFactorAuthenticationApi* | [**multi_factor_authentication_post_multi_factor_authentication**](docs/MultiFactorAuthenticationApi.md#multi_factor_authentication_post_multi_factor_authentication) | **POST** /mfa/{tenantId}/{userId} | 
+*PoolApi* | [**pool_get_pool_status**](docs/PoolApi.md#pool_get_pool_status) | **GET** /pools/{tenantId} | Gets the status of a pool.
+*PoolApi* | [**pool_get_pools**](docs/PoolApi.md#pool_get_pools) | **GET** /pools | Gets the status of all pools.
+*PoolApi* | [**pool_get_test_auto_scale_formula**](docs/PoolApi.md#pool_get_test_auto_scale_formula) | **GET** /pools/{tenantId}/autoscale/test | Tests an auto-scale formula on a specific pool without applying it.
+*SimVersionApi* | [**sim_version_get_document**](docs/SimVersionApi.md#sim_version_get_document) | **GET** /sim-versions/{simVersion}/documents/{documentPath} | Gets a specific document associated with the specified sim version and tenant.
+*SimVersionApi* | [**sim_version_get_documents**](docs/SimVersionApi.md#sim_version_get_documents) | **GET** /sim-versions/{simVersion}/documents | Gets the list of documents associated with the specified sim version and tenant.
+*SimVersionApi* | [**sim_version_get_downloads**](docs/SimVersionApi.md#sim_version_get_downloads) | **GET** /sim-versions/{simVersion}/downloads | Gets the downloads for the specified sim version and tenant.  Downloads could include DiL models, or SimLauncherLocal.
+*SimVersionApi* | [**sim_version_get_sim_version**](docs/SimVersionApi.md#sim_version_get_sim_version) | **GET** /sim-versions/current | Gets the sim version for a specific tenant.  This will be the global sim version if the tenant doesn&#39;t have a specific sim version set, otherwise it will be the tenant specific sim version.  Note that user sim versions are implemented purely as a front-end feature, so this method will always return the tenant sim version.
+*SimVersionApi* | [**sim_version_get_wiki_document**](docs/SimVersionApi.md#sim_version_get_wiki_document) | **GET** /sim-versions/{wikiVersion}/wiki/{documentPath} | Gets a document from the wiki associated with the specified sim version and tenant.  Note that the wiki used to contain all our documentation, but now only contains sim  version descriptions. The documentation has been moved to the new support platform.
+*SimVersionApi* | [**sim_version_post_sim_version**](docs/SimVersionApi.md#sim_version_post_sim_version) | **POST** /sim-versions/current | Updates the global sim version for the platform.  This is the default sim version which will be used if a user hasn&#39;t got a specific tenant or user sim version set.
+*StudyApi* | [**study_delete_study**](docs/StudyApi.md#study_delete_study) | **DELETE** /studies/{tenantId}/{studyId} | Deletes a study. If the study is in progress it will be aborted, although this may not  immediately free up the nodes.
 *StudyApi* | [**study_delete_study_deprecated**](docs/StudyApi.md#study_delete_study_deprecated) | **DELETE** /studies/{tenantId}/{userId}/{studyId} | 
-*StudyApi* | [**study_get_all_tenants_study_statistics**](docs/StudyApi.md#study_get_all_tenants_study_statistics) | **GET** /studies/statistics | 
-*StudyApi* | [**study_get_sim_type**](docs/StudyApi.md#study_get_sim_type) | **GET** /studies/types/sims/{simType} | 
-*StudyApi* | [**study_get_studies**](docs/StudyApi.md#study_get_studies) | **GET** /studies/{tenantId} | 
-*StudyApi* | [**study_get_study**](docs/StudyApi.md#study_get_study) | **GET** /studies/{tenantId}/{studyId} | 
+*StudyApi* | [**study_get_all_tenants_study_statistics**](docs/StudyApi.md#study_get_all_tenants_study_statistics) | **GET** /studies/statistics | Returns study statistics for all tenants.
+*StudyApi* | [**study_get_job_full_download**](docs/StudyApi.md#study_get_job_full_download) | **GET** /studies/{tenantId}/{studyId}/jobs/{jobId}/download/full | Downloads complete job data as a ZIP file.  This includes all inputs and results for a specific job.
+*StudyApi* | [**study_get_job_vector_download**](docs/StudyApi.md#study_get_job_vector_download) | **GET** /studies/{tenantId}/{studyId}/jobs/{jobId}/download/vector/{simType} | Downloads job vector results for a specific simulation type as CSV.  This provides time-series data for the specified sim type.
+*StudyApi* | [**study_get_sim_type**](docs/StudyApi.md#study_get_sim_type) | **GET** /studies/types/sims/{simType} | Gets information about a specific sim type for a tenant.  This returns a subset of the data from the GetStudyTypes method.
+*StudyApi* | [**study_get_studies**](docs/StudyApi.md#study_get_studies) | **GET** /studies/{tenantId} | Gets the list of studies for a tenant. The results will be paged.
+*StudyApi* | [**study_get_study**](docs/StudyApi.md#study_get_study) | **GET** /studies/{tenantId}/{studyId} | Gets the specified study data. Note that this does not return the study results,  but it returns the access signatures necessary to download the results.  It also returns mapping from relevant tenant and user IDs to their names.
 *StudyApi* | [**study_get_study_deprecated**](docs/StudyApi.md#study_get_study_deprecated) | **GET** /studies/{tenantId}/{userId}/{studyId} | 
-*StudyApi* | [**study_get_study_download**](docs/StudyApi.md#study_get_study_download) | **GET** /studies/{tenantId}/{studyId}/download | 
+*StudyApi* | [**study_get_study_download**](docs/StudyApi.md#study_get_study_download) | **GET** /studies/{tenantId}/{studyId}/download | Downloads a ZIP file containing the requested study data.  It primarily exists for use by web browsers, which can&#39;t provide the authentication  headers and so must pass in an access signature instead.  If you are using this API method outside of the web browser, there is probably a better way  to download the required data.  Note: For the fastest and most reliable way to download studies, look in the documentation  for \&quot;Download Tokens\&quot;.  This method, while more convenient than Download Tokens, can be unreliable for large studies  as any connection issues can result in a truncated download.  The URL containing the required access signature can be obtained using the GetStudyDownloadUrlAsync (&#x60;download-url&#x60;) method.  When downloading study results programmatically it is faster and more efficient to read the required data directly  from blob storage.
 *StudyApi* | [**study_get_study_download_deprecated**](docs/StudyApi.md#study_get_study_download_deprecated) | **GET** /studies/{tenantId}/{userId}/{studyId}/download | 
-*StudyApi* | [**study_get_study_download_url**](docs/StudyApi.md#study_get_study_download_url) | **GET** /studies/{tenantId}/{studyId}/download-url | 
+*StudyApi* | [**study_get_study_download_url**](docs/StudyApi.md#study_get_study_download_url) | **GET** /studies/{tenantId}/{studyId}/download-url | Gets the access signature and expiry to enable the browser to download a study.  This works around the fact that browsers can&#39;t provide authentication headers when downloading.
 *StudyApi* | [**study_get_study_download_url_deprecated**](docs/StudyApi.md#study_get_study_download_url_deprecated) | **GET** /studies/{tenantId}/{userId}/{studyId}/download-url | 
-*StudyApi* | [**study_get_study_job**](docs/StudyApi.md#study_get_study_job) | **GET** /studies/{tenantId}/{studyId}/jobs/{jobId} | 
+*StudyApi* | [**study_get_study_full_download**](docs/StudyApi.md#study_get_study_full_download) | **GET** /studies/{tenantId}/{studyId}/download/full | Downloads the complete study including all jobs and results as a ZIP file.  This is the recommended endpoint for downloading everything in a study.
+*StudyApi* | [**study_get_study_job**](docs/StudyApi.md#study_get_study_job) | **GET** /studies/{tenantId}/{studyId}/jobs/{jobId} | Gets a study job, including the inputs and a mapping of relevant tenant and user IDs to their names.
+*StudyApi* | [**study_get_study_job_count**](docs/StudyApi.md#study_get_study_job_count) | **POST** /studies/{tenantId}/jobs-count | Gets the Variations Count for a study without scheduling it.
 *StudyApi* | [**study_get_study_job_deprecated**](docs/StudyApi.md#study_get_study_job_deprecated) | **GET** /studies/{tenantId}/{userId}/{studyId}/jobs/{jobId} | 
-*StudyApi* | [**study_get_study_job_download**](docs/StudyApi.md#study_get_study_job_download) | **GET** /studies/{tenantId}/{studyId}/jobs/{jobId}/download | 
+*StudyApi* | [**study_get_study_job_download**](docs/StudyApi.md#study_get_study_job_download) | **GET** /studies/{tenantId}/{studyId}/jobs/{jobId}/download | Downloads a ZIP file containing the requested study data.  This method primarily exists for use by web browsers, which can&#39;t provide the authentication  headers and so must pass in an access signature instead.  If you are using this API method outside of the web browser, there is probably a better way  to download the required data.  Note: For the fastest and most reliable way to download studies, look in the documentation  for \&quot;Download Tokens\&quot;.  This method, while more convenient than Download Tokens, can be unreliable for large studies  as any connection issues can result in a truncated download.  The URL containing the required access signature can be obtained using the GetStudyDownloadUrlAsync (&#x60;download-url&#x60;) method.  When downloading study results programmatically it is faster and more efficient to read the required data directly  from blob storage.
 *StudyApi* | [**study_get_study_job_download_deprecated**](docs/StudyApi.md#study_get_study_job_download_deprecated) | **GET** /studies/{tenantId}/{userId}/{studyId}/jobs/{jobId}/download | 
-*StudyApi* | [**study_get_study_job_metadata**](docs/StudyApi.md#study_get_study_job_metadata) | **GET** /studies/{tenantId}/{studyId}/jobs/{jobId}/metadata | 
+*StudyApi* | [**study_get_study_job_metadata**](docs/StudyApi.md#study_get_study_job_metadata) | **GET** /studies/{tenantId}/{studyId}/jobs/{jobId}/metadata | Gets the metadata for a study job, which excludes certain information  such as the job inputs to keep the data smaller.
 *StudyApi* | [**study_get_study_job_metadata_deprecated**](docs/StudyApi.md#study_get_study_job_metadata_deprecated) | **GET** /studies/{tenantId}/{userId}/{studyId}/jobs/{jobId}/metadata | 
-*StudyApi* | [**study_get_study_jobs**](docs/StudyApi.md#study_get_study_jobs) | **GET** /studies/{tenantId}/{studyId}/jobs | 
+*StudyApi* | [**study_get_study_jobs**](docs/StudyApi.md#study_get_study_jobs) | **GET** /studies/{tenantId}/{studyId}/jobs | Gets the list of study jobs for a study. The results may be paged.
 *StudyApi* | [**study_get_study_jobs_deprecated**](docs/StudyApi.md#study_get_study_jobs_deprecated) | **GET** /studies/{tenantId}/{userId}/{studyId}/jobs | 
-*StudyApi* | [**study_get_study_metadata**](docs/StudyApi.md#study_get_study_metadata) | **GET** /studies/{tenantId}/{studyId}/metadata | 
+*StudyApi* | [**study_get_study_merged_scalar_download**](docs/StudyApi.md#study_get_study_merged_scalar_download) | **GET** /studies/{tenantId}/{studyId}/download/scalar/merged | Downloads merged scalar results as a single CSV file.  This contains all scalar results merged into one file by the post-processor.
+*StudyApi* | [**study_get_study_metadata**](docs/StudyApi.md#study_get_study_metadata) | **GET** /studies/{tenantId}/{studyId}/metadata | Gets the metadata for a study, which excludes certain information  such as the study definition to keep the data smaller.
 *StudyApi* | [**study_get_study_metadata_deprecated**](docs/StudyApi.md#study_get_study_metadata_deprecated) | **GET** /studies/{tenantId}/{userId}/{studyId}/metadata | 
 *StudyApi* | [**study_get_study_metadata_without_user_id_deprecated**](docs/StudyApi.md#study_get_study_metadata_without_user_id_deprecated) | **GET** /studies/{tenantId}/auto/{studyId}/metadata | 
-*StudyApi* | [**study_get_study_type**](docs/StudyApi.md#study_get_study_type) | **GET** /studies/types/{studyType} | 
-*StudyApi* | [**study_get_study_types**](docs/StudyApi.md#study_get_study_types) | **GET** /studies/types | 
+*StudyApi* | [**study_get_study_scalar_download**](docs/StudyApi.md#study_get_study_scalar_download) | **GET** /studies/{tenantId}/{studyId}/download/scalar | Downloads study scalar results as a ZIP file containing individual job results.  Use /download/scalar/merged for a single merged CSV file.
+*StudyApi* | [**study_get_study_type**](docs/StudyApi.md#study_get_study_type) | **GET** /studies/types/{studyType} | Gets a study type definition for a tenant.
+*StudyApi* | [**study_get_study_types**](docs/StudyApi.md#study_get_study_types) | **GET** /studies/types | Gets the study type information for a specific tenant.  This method also returns information about the simulations and config types  which are indirectly available to the tenant through their set of  study types.
 *StudyApi* | [**study_get_study_without_user_id_deprecated**](docs/StudyApi.md#study_get_study_without_user_id_deprecated) | **GET** /studies/{tenantId}/auto/{studyId} | 
-*StudyApi* | [**study_get_tenant_access_information**](docs/StudyApi.md#study_get_tenant_access_information) | **GET** /studies/{tenantId}/access | 
-*StudyApi* | [**study_get_tenant_billable_stored_simulation_count**](docs/StudyApi.md#study_get_tenant_billable_stored_simulation_count) | **GET** /studies/statistics/stored/{tenantId} | 
-*StudyApi* | [**study_get_tenant_study_statistics**](docs/StudyApi.md#study_get_tenant_study_statistics) | **GET** /studies/statistics/{tenantId} | 
-*StudyApi* | [**study_merge_study**](docs/StudyApi.md#study_merge_study) | **PATCH** /studies/{tenantId}/{studyId}/merge | 
+*StudyApi* | [**study_get_tenant_access_information**](docs/StudyApi.md#study_get_tenant_access_information) | **GET** /studies/{tenantId}/access | Gets the URL and shared access signature for a tenant&#39;s primary blob storage container.
+*StudyApi* | [**study_get_tenant_billable_stored_simulation_count**](docs/StudyApi.md#study_get_tenant_billable_stored_simulation_count) | **GET** /studies/statistics/stored/{tenantId} | Gets the number of billable stored simulations for a tenant.
+*StudyApi* | [**study_get_tenant_study_statistics**](docs/StudyApi.md#study_get_tenant_study_statistics) | **GET** /studies/statistics/{tenantId} | Returns the study statistics for a tenant.
+*StudyApi* | [**study_merge_study**](docs/StudyApi.md#study_merge_study) | **PATCH** /studies/{tenantId}/{studyId}/merge | Merges a study baseline definition into the main study document.  This is used by Canopy personnel only.
 *StudyApi* | [**study_merge_study_deprecated**](docs/StudyApi.md#study_merge_study_deprecated) | **PATCH** /studies/{tenantId}/{userId}/{studyId}/merge | 
-*StudyApi* | [**study_post_study**](docs/StudyApi.md#study_post_study) | **POST** /studies/{tenantId} | 
+*StudyApi* | [**study_post_study**](docs/StudyApi.md#study_post_study) | **POST** /studies/{tenantId} | Creates a new study which will be scheduled to run on the platform.  The study will not be complete when this method returns, but you can  use the returned Study ID to poll the status of the study.
 *StudyApi* | [**study_post_study_deprecated**](docs/StudyApi.md#study_post_study_deprecated) | **POST** /studies/{tenantId}/{userId} | 
-*StudyApi* | [**study_put_study**](docs/StudyApi.md#study_put_study) | **PUT** /studies/{tenantId}/{studyId} | 
+*StudyApi* | [**study_put_study**](docs/StudyApi.md#study_put_study) | **PUT** /studies/{tenantId}/{studyId} | Updates a previously created study.  This can be used to rename a study, or to add custom properties or notes.  If any data isn&#39;t provided then it will be removed from the study.
 *StudyApi* | [**study_put_study_deprecated**](docs/StudyApi.md#study_put_study_deprecated) | **PUT** /studies/{tenantId}/{userId}/{studyId} | 
-*StudyApi* | [**study_put_study_owner**](docs/StudyApi.md#study_put_study_owner) | **PUT** /studies/{tenantId}/{studyId}/owner | 
-*SupportSessionApi* | [**support_session_get_all_support_sessions**](docs/SupportSessionApi.md#support_session_get_all_support_sessions) | **GET** /support-sessions/all | 
-*SupportSessionApi* | [**support_session_get_support_session**](docs/SupportSessionApi.md#support_session_get_support_session) | **GET** /support-sessions/{tenantId}/{documentId} | 
+*StudyApi* | [**study_put_study_owner**](docs/StudyApi.md#study_put_study_owner) | **PUT** /studies/{tenantId}/{studyId}/owner | Changes the owner of a study. This can be called while the study is still in progress.
+*StudyApi* | [**study_put_study_priority**](docs/StudyApi.md#study_put_study_priority) | **PUT** /studies/{tenantId}/{studyId}/priority | Set the highest priority for a running study.
+*SupportSessionApi* | [**support_session_get_all_support_sessions**](docs/SupportSessionApi.md#support_session_get_all_support_sessions) | **GET** /support-sessions/all | Returns all the open support sessions on the platform.
+*SupportSessionApi* | [**support_session_get_support_session**](docs/SupportSessionApi.md#support_session_get_support_session) | **GET** /support-sessions/{tenantId}/{documentId} | Gets the support session for the specified document (config, study or worksheet).
 *SupportSessionApi* | [**support_session_get_support_session_deprecated**](docs/SupportSessionApi.md#support_session_get_support_session_deprecated) | **GET** /support-sessions/{tenantId}/{userId}/{documentId} | 
-*SupportSessionApi* | [**support_session_put_support_session**](docs/SupportSessionApi.md#support_session_put_support_session) | **PUT** /support-sessions/{tenantId}/{documentId} | 
+*SupportSessionApi* | [**support_session_put_support_session**](docs/SupportSessionApi.md#support_session_put_support_session) | **PUT** /support-sessions/{tenantId}/{documentId} | Updates the support session for the specified document (config, study or worksheet).  Note that messages are now handled by Zendesk, and this method is now only used to  open or close a support session.
 *SupportSessionApi* | [**support_session_put_support_session_deprecated**](docs/SupportSessionApi.md#support_session_put_support_session_deprecated) | **PUT** /support-sessions/{tenantId}/{userId}/{documentId} | 
-*TenancyApi* | [**tenancy_delete_tenant**](docs/TenancyApi.md#tenancy_delete_tenant) | **DELETE** /tenants/{tenantId} | 
-*TenancyApi* | [**tenancy_get_tenant**](docs/TenancyApi.md#tenancy_get_tenant) | **GET** /tenants/{tenantId} | 
-*TenancyApi* | [**tenancy_get_tenant_users**](docs/TenancyApi.md#tenancy_get_tenant_users) | **GET** /tenants/{tenantId}/users | 
-*TenancyApi* | [**tenancy_get_tenants**](docs/TenancyApi.md#tenancy_get_tenants) | **GET** /tenants | 
-*TenancyApi* | [**tenancy_post_tenant**](docs/TenancyApi.md#tenancy_post_tenant) | **POST** /tenants | 
-*TenancyApi* | [**tenancy_put_tenant**](docs/TenancyApi.md#tenancy_put_tenant) | **PUT** /tenants/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_get_admin_tenant_settings**](docs/TenantSettingsApi.md#tenant_settings_get_admin_tenant_settings) | **GET** /tenant-settings/admin/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_get_tenant_channel_import_mappings**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_channel_import_mappings) | **GET** /tenant-settings/channel-import-mappings/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_get_tenant_channel_whitelists**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_channel_whitelists) | **GET** /tenant-settings/channel-whitelists/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_get_tenant_default_custom_property_names**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_default_custom_property_names) | **GET** /tenant-settings/default-custom-property-names/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_get_tenant_settings_sim_version**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_settings_sim_version) | **GET** /tenant-settings/sim-version/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_get_tenant_worksheet_label_definitions**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_worksheet_label_definitions) | **GET** /tenant-settings/worksheet-label-definitions/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_put_admin_tenant_settings**](docs/TenantSettingsApi.md#tenant_settings_put_admin_tenant_settings) | **PUT** /tenant-settings/admin/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_put_tenant_channel_import_mappings**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_channel_import_mappings) | **PUT** /tenant-settings/channel-import-mappings/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_put_tenant_channel_whitelists**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_channel_whitelists) | **PUT** /tenant-settings/channel-whitelists/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_put_tenant_default_custom_property_names**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_default_custom_property_names) | **PUT** /tenant-settings/default-custom-property-names/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_put_tenant_settings_sim_version**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_settings_sim_version) | **PUT** /tenant-settings/sim-version/{tenantId} | 
-*TenantSettingsApi* | [**tenant_settings_put_tenant_worksheet_label_definitions**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_worksheet_label_definitions) | **PUT** /tenant-settings/worksheet-label-definitions/{tenantId} | 
-*TokenApi* | [**token_post_token**](docs/TokenApi.md#token_post_token) | **POST** /token | 
-*UserSettingsApi* | [**user_settings_get_user_settings**](docs/UserSettingsApi.md#user_settings_get_user_settings) | **GET** /user-settings/{tenantId}/{userId} | 
-*UserSettingsApi* | [**user_settings_put_user_settings**](docs/UserSettingsApi.md#user_settings_put_user_settings) | **PUT** /user-settings/{tenantId}/{userId} | 
-*WorksheetApi* | [**worksheet_get_worksheet**](docs/WorksheetApi.md#worksheet_get_worksheet) | **GET** /worksheets/{tenantId}/{worksheetId} | 
-*WorksheetApi* | [**worksheet_post_duplicate_configs**](docs/WorksheetApi.md#worksheet_post_duplicate_configs) | **POST** /worksheets/{tenantId}/{worksheetId}/duplicate | 
-*WorksheetApi* | [**worksheet_post_worksheet**](docs/WorksheetApi.md#worksheet_post_worksheet) | **POST** /worksheets/{tenantId} | 
-*WorksheetApi* | [**worksheet_put_worksheet**](docs/WorksheetApi.md#worksheet_put_worksheet) | **PUT** /worksheets/{tenantId}/{worksheetId} | 
+*TenancyApi* | [**tenancy_delete_tenant**](docs/TenancyApi.md#tenancy_delete_tenant) | **DELETE** /tenants/{tenantId} | Deletes the specified tenant. This is irreversible.  This will delete the tenant&#39;s document database, then all their blob storage containers,  and finally it will remove the tenant from the authentication database.  The data will not be recoverable.  This method can only be called once all the tenant&#39;s users have been deleted.
+*TenancyApi* | [**tenancy_get_tenant**](docs/TenancyApi.md#tenancy_get_tenant) | **GET** /tenants/{tenantId} | Gets metadata about the specified tenant.
+*TenancyApi* | [**tenancy_get_tenant_users**](docs/TenancyApi.md#tenancy_get_tenant_users) | **GET** /tenants/{tenantId}/users | Gets the list of users for the specified tenant.
+*TenancyApi* | [**tenancy_get_tenants**](docs/TenancyApi.md#tenancy_get_tenants) | **GET** /tenants | Gets metadata about all tenants.
+*TenancyApi* | [**tenancy_post_tenant**](docs/TenancyApi.md#tenancy_post_tenant) | **POST** /tenants | Creates a new tenant in the specified region, including a new database if necessary.
+*TenancyApi* | [**tenancy_put_tenant**](docs/TenancyApi.md#tenancy_put_tenant) | **PUT** /tenants/{tenantId} | Updates the specified tenant.
+*TenantSettingsApi* | [**tenant_settings_get_admin_tenant_settings**](docs/TenantSettingsApi.md#tenant_settings_get_admin_tenant_settings) | **GET** /tenant-settings/admin/{tenantId} | Gets the administrative tenant settings. These are only available to Canopy personnel.
+*TenantSettingsApi* | [**tenant_settings_get_tenant_channel_import_mappings**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_channel_import_mappings) | **GET** /tenant-settings/channel-import-mappings/{tenantId} | Gets the tenant channel import mappings, which specify how to map channels when importing telemetry.
+*TenantSettingsApi* | [**tenant_settings_get_tenant_channel_whitelists**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_channel_whitelists) | **GET** /tenant-settings/channel-whitelists/{tenantId} | Gets the channel whitelists for the specified tenant.  The tenant channel whitelist specifies which channels are always whitelisted  when using that tenant&#39;s encrypted components.
+*TenantSettingsApi* | [**tenant_settings_get_tenant_default_custom_property_names**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_default_custom_property_names) | **GET** /tenant-settings/default-custom-property-names/{tenantId} | Gets the default custom property names for the specified tenant.  The default custom property names will be shown by default when using the  specified config.
+*TenantSettingsApi* | [**tenant_settings_get_tenant_settings_sim_version**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_settings_sim_version) | **GET** /tenant-settings/sim-version/{tenantId} | Gets the tenant sim version. This is the default sim version for the tenant, unless  overridden in an API call.  If no sim version is specified, then the platform default sim version is used.
+*TenantSettingsApi* | [**tenant_settings_get_tenant_worksheet_label_definitions**](docs/TenantSettingsApi.md#tenant_settings_get_tenant_worksheet_label_definitions) | **GET** /tenant-settings/worksheet-label-definitions/{tenantId} | Gets the tenant&#39;s worksheet label definitions. These specify what worksheet labels to show for all  users in the tenant.
+*TenantSettingsApi* | [**tenant_settings_put_admin_tenant_settings**](docs/TenantSettingsApi.md#tenant_settings_put_admin_tenant_settings) | **PUT** /tenant-settings/admin/{tenantId} | Updates the administrative tenant settings.  The provided ETag ensures that the settings have not been updated since they were last retrieved.
+*TenantSettingsApi* | [**tenant_settings_put_tenant_channel_import_mappings**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_channel_import_mappings) | **PUT** /tenant-settings/channel-import-mappings/{tenantId} | Updates the tenant channel import mappings, which specify how to map channels when importing telemetry.
+*TenantSettingsApi* | [**tenant_settings_put_tenant_channel_whitelists**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_channel_whitelists) | **PUT** /tenant-settings/channel-whitelists/{tenantId} | Update the whitelist of channels for the specified tenant.  The tenant channel whitelist specifies which channels are always whitelisted  when using that tenant&#39;s encrypted components.
+*TenantSettingsApi* | [**tenant_settings_put_tenant_default_custom_property_names**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_default_custom_property_names) | **PUT** /tenant-settings/default-custom-property-names/{tenantId} | Updates the default custom property names for the specified tenant.  The default custom property names will be shown by default when using the  specified config.
+*TenantSettingsApi* | [**tenant_settings_put_tenant_settings_sim_version**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_settings_sim_version) | **PUT** /tenant-settings/sim-version/{tenantId} | Updates the tenant sim version. This is the default sim version for the tenant, unless  overridden in an API call.  If no sim version is specified, then the platform default sim version is used.
+*TenantSettingsApi* | [**tenant_settings_put_tenant_worksheet_label_definitions**](docs/TenantSettingsApi.md#tenant_settings_put_tenant_worksheet_label_definitions) | **PUT** /tenant-settings/worksheet-label-definitions/{tenantId} | Updates the tenant&#39;s worksheet label definitions. These specify what worksheet labels to show for all  users in the tenant.
+*TokenApi* | [**token_post_token**](docs/TokenApi.md#token_post_token) | **POST** /token | Gets a token for the specified user.
+*UserSettingsApi* | [**user_settings_get_user_settings**](docs/UserSettingsApi.md#user_settings_get_user_settings) | **GET** /user-settings/{tenantId}/{userId} | Gets the specified user settings.
+*UserSettingsApi* | [**user_settings_put_user_settings**](docs/UserSettingsApi.md#user_settings_put_user_settings) | **PUT** /user-settings/{tenantId}/{userId} | Updates the specified user settings.
+*WorksheetApi* | [**worksheet_get_worksheet**](docs/WorksheetApi.md#worksheet_get_worksheet) | **GET** /worksheets/{tenantId}/{worksheetId} | Gets a worksheet, including all resolved references and labels.
+*WorksheetApi* | [**worksheet_post_duplicate_configs**](docs/WorksheetApi.md#worksheet_post_duplicate_configs) | **POST** /worksheets/{tenantId}/{worksheetId}/duplicate | Duplicates the specified set of configs from the (optional) source worksheet to the target worksheet.
+*WorksheetApi* | [**worksheet_post_worksheet**](docs/WorksheetApi.md#worksheet_post_worksheet) | **POST** /worksheets/{tenantId} | Creates a new worksheet.
+*WorksheetApi* | [**worksheet_put_worksheet**](docs/WorksheetApi.md#worksheet_put_worksheet) | **PUT** /worksheets/{tenantId}/{worksheetId} | Updates a worksheet.
 
 
 ## Documentation For Models
@@ -213,7 +243,6 @@ Class | Method | HTTP request | Description
  - [AccountSettingsPutRequest](docs/AccountSettingsPutRequest.md)
  - [AdditionalTests](docs/AdditionalTests.md)
  - [AdminTenantSettings](docs/AdminTenantSettings.md)
- - [AdminTenantSettingsBuilder](docs/AdminTenantSettingsBuilder.md)
  - [AdminTenantSettingsPoolSettings](docs/AdminTenantSettingsPoolSettings.md)
  - [AllocationState](docs/AllocationState.md)
  - [AutoScaleRun](docs/AutoScaleRun.md)
@@ -239,6 +268,7 @@ Class | Method | HTTP request | Description
  - [ConfigEncryptWithMetadataRequest](docs/ConfigEncryptWithMetadataRequest.md)
  - [ConfigHash](docs/ConfigHash.md)
  - [ConfigOwnerData](docs/ConfigOwnerData.md)
+ - [ConfigPermissionData](docs/ConfigPermissionData.md)
  - [ConfigPostConfigRequest](docs/ConfigPostConfigRequest.md)
  - [ConfigPostConfigsRequest](docs/ConfigPostConfigsRequest.md)
  - [ConfigPutConfigOwnerRequest](docs/ConfigPutConfigOwnerRequest.md)
@@ -254,11 +284,19 @@ Class | Method | HTTP request | Description
  - [ConfigTypeMetadata](docs/ConfigTypeMetadata.md)
  - [ConfigTypeState](docs/ConfigTypeState.md)
  - [ConfigUpgradeConfigDeprecatedRequest](docs/ConfigUpgradeConfigDeprecatedRequest.md)
+ - [CreateDeploymentData](docs/CreateDeploymentData.md)
  - [DataToDecrypt](docs/DataToDecrypt.md)
  - [DataToEncrypt](docs/DataToEncrypt.md)
+ - [DataToReEncrypt](docs/DataToReEncrypt.md)
  - [DefaultConfigId](docs/DefaultConfigId.md)
  - [DefaultConfigReference](docs/DefaultConfigReference.md)
  - [DefaultCustomPropertyNames](docs/DefaultCustomPropertyNames.md)
+ - [DeploymentNoteData](docs/DeploymentNoteData.md)
+ - [DeploymentNoteResponse](docs/DeploymentNoteResponse.md)
+ - [DeploymentsCreateDeploymentRequest](docs/DeploymentsCreateDeploymentRequest.md)
+ - [DeploymentsPostDeploymentNoteRequest](docs/DeploymentsPostDeploymentNoteRequest.md)
+ - [DeploymentsUpdateDeploymentRequest](docs/DeploymentsUpdateDeploymentRequest.md)
+ - [DeploymentsUpdateInvoiceBotDeploymentRequest](docs/DeploymentsUpdateInvoiceBotDeploymentRequest.md)
  - [DocumentCustomPropertyData](docs/DocumentCustomPropertyData.md)
  - [DocumentCustomPropertyGroup](docs/DocumentCustomPropertyGroup.md)
  - [DocumentGroupResult](docs/DocumentGroupResult.md)
@@ -269,7 +307,16 @@ Class | Method | HTTP request | Description
  - [DuplicateConfigsData](docs/DuplicateConfigsData.md)
  - [DuplicateConfigsResult](docs/DuplicateConfigsResult.md)
  - [EmailConfirmationData](docs/EmailConfirmationData.md)
+ - [EncryptionConfigPermission](docs/EncryptionConfigPermission.md)
+ - [EncryptionKeyPermission](docs/EncryptionKeyPermission.md)
+ - [EncryptionPutConfigPermissionRequest](docs/EncryptionPutConfigPermissionRequest.md)
+ - [EncryptionPutKeyPermissionRequest](docs/EncryptionPutKeyPermissionRequest.md)
+ - [EncryptionQueryData](docs/EncryptionQueryData.md)
+ - [EncryptionQueryRequest](docs/EncryptionQueryRequest.md)
+ - [EncryptionReEncryptRequest](docs/EncryptionReEncryptRequest.md)
  - [FileDownloadMetadata](docs/FileDownloadMetadata.md)
+ - [GenerateMfaSetupCodeResult](docs/GenerateMfaSetupCodeResult.md)
+ - [GetAccountFeaturesQueryResult](docs/GetAccountFeaturesQueryResult.md)
  - [GetAccountSettingsResult](docs/GetAccountSettingsResult.md)
  - [GetAdminTenantSettingsQueryResult](docs/GetAdminTenantSettingsQueryResult.md)
  - [GetAdminTenantSettingsQueryResultSettings](docs/GetAdminTenantSettingsQueryResultSettings.md)
@@ -277,17 +324,32 @@ Class | Method | HTTP request | Description
  - [GetAllSupportSessionsQueryResultUserInformation](docs/GetAllSupportSessionsQueryResultUserInformation.md)
  - [GetAllTenantsStudyStatisticsQueryResult](docs/GetAllTenantsStudyStatisticsQueryResult.md)
  - [GetConfigNamesQueryResult](docs/GetConfigNamesQueryResult.md)
+ - [GetConfigPermissionsQueryResult](docs/GetConfigPermissionsQueryResult.md)
  - [GetConfigQueryResult](docs/GetConfigQueryResult.md)
  - [GetConfigQueryResultConfig](docs/GetConfigQueryResultConfig.md)
+ - [GetConfigQueryResultUserInformation](docs/GetConfigQueryResultUserInformation.md)
+ - [GetConfigSubPathsQueryResult](docs/GetConfigSubPathsQueryResult.md)
  - [GetConfigVersionsQueryResult](docs/GetConfigVersionsQueryResult.md)
+ - [GetConfigVersionsQueryResultUserInformation](docs/GetConfigVersionsQueryResultUserInformation.md)
  - [GetConfigsQueryResult](docs/GetConfigsQueryResult.md)
  - [GetConfigsQueryResultQueryResults](docs/GetConfigsQueryResultQueryResults.md)
  - [GetDecryptedDataQueryResult](docs/GetDecryptedDataQueryResult.md)
+ - [GetDeploymentQueryResult](docs/GetDeploymentQueryResult.md)
+ - [GetDeploymentQueryResultDeployment](docs/GetDeploymentQueryResultDeployment.md)
+ - [GetDeploymentQueryResultDeploymentDTO](docs/GetDeploymentQueryResultDeploymentDTO.md)
+ - [GetDeploymentQueryResultNoteItem](docs/GetDeploymentQueryResultNoteItem.md)
+ - [GetDeploymentQueryResultTenantItem](docs/GetDeploymentQueryResultTenantItem.md)
+ - [GetDeploymentsQueryResult](docs/GetDeploymentsQueryResult.md)
+ - [GetDeploymentsQueryResultDeploymentItem](docs/GetDeploymentsQueryResultDeploymentItem.md)
  - [GetEncryptedDataQueryResult](docs/GetEncryptedDataQueryResult.md)
+ - [GetInvoiceBotDeploymentsQueryResult](docs/GetInvoiceBotDeploymentsQueryResult.md)
+ - [GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem](docs/GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.md)
+ - [GetKeyPermissionsQueryResult](docs/GetKeyPermissionsQueryResult.md)
  - [GetPoolStatusQueryResult](docs/GetPoolStatusQueryResult.md)
  - [GetPoolsItem](docs/GetPoolsItem.md)
  - [GetPoolsItemInterval](docs/GetPoolsItemInterval.md)
  - [GetPoolsQueryResult](docs/GetPoolsQueryResult.md)
+ - [GetReEncryptedDataQueryResult](docs/GetReEncryptedDataQueryResult.md)
  - [GetSimVersionDocumentQueryResult](docs/GetSimVersionDocumentQueryResult.md)
  - [GetSimVersionDocumentQueryResultDocument](docs/GetSimVersionDocumentQueryResultDocument.md)
  - [GetSimVersionDocumentsQueryResult](docs/GetSimVersionDocumentsQueryResult.md)
@@ -295,15 +357,25 @@ Class | Method | HTTP request | Description
  - [GetStudiesQueryResult](docs/GetStudiesQueryResult.md)
  - [GetStudiesQueryResultQueryResults](docs/GetStudiesQueryResultQueryResults.md)
  - [GetStudyDownloadUrlQueryResult](docs/GetStudyDownloadUrlQueryResult.md)
+ - [GetStudyJobCountResult](docs/GetStudyJobCountResult.md)
  - [GetStudyJobMetadataQueryResult](docs/GetStudyJobMetadataQueryResult.md)
  - [GetStudyJobMetadataQueryResultAccessInformation](docs/GetStudyJobMetadataQueryResultAccessInformation.md)
+ - [GetStudyJobMetadataQueryResultStudyJob](docs/GetStudyJobMetadataQueryResultStudyJob.md)
  - [GetStudyJobQueryResult](docs/GetStudyJobQueryResult.md)
+ - [GetStudyJobQueryResultAccessInformation](docs/GetStudyJobQueryResultAccessInformation.md)
+ - [GetStudyJobQueryResultStudyJob](docs/GetStudyJobQueryResultStudyJob.md)
  - [GetStudyJobsQueryResult](docs/GetStudyJobsQueryResult.md)
  - [GetStudyJobsQueryResultQueryResults](docs/GetStudyJobsQueryResultQueryResults.md)
  - [GetStudyQueryResult](docs/GetStudyQueryResult.md)
  - [GetStudyQueryResultAccessInformation](docs/GetStudyQueryResultAccessInformation.md)
+ - [GetStudyQueryResultStudy](docs/GetStudyQueryResultStudy.md)
+ - [GetStudyQueryResultUserInformation](docs/GetStudyQueryResultUserInformation.md)
  - [GetStudyTypesQueryResult](docs/GetStudyTypesQueryResult.md)
+ - [GetSubscriptionLevelQueryResult](docs/GetSubscriptionLevelQueryResult.md)
+ - [GetSubscriptionLevelsQueryResult](docs/GetSubscriptionLevelsQueryResult.md)
+ - [GetSubscriptionLevelsQueryResultSubscriptionLevelItem](docs/GetSubscriptionLevelsQueryResultSubscriptionLevelItem.md)
  - [GetSupportSessionQueryResult](docs/GetSupportSessionQueryResult.md)
+ - [GetSupportSessionQueryResultSession](docs/GetSupportSessionQueryResultSession.md)
  - [GetTenantAccessInformationQueryResult](docs/GetTenantAccessInformationQueryResult.md)
  - [GetTenantBillableStoredSimulationCountQueryResult](docs/GetTenantBillableStoredSimulationCountQueryResult.md)
  - [GetTenantChannelImportMappingsQueryResult](docs/GetTenantChannelImportMappingsQueryResult.md)
@@ -317,15 +389,15 @@ Class | Method | HTTP request | Description
  - [GetTenantUsersQueryResult](docs/GetTenantUsersQueryResult.md)
  - [GetTenantUsersQueryResultUserItem](docs/GetTenantUsersQueryResultUserItem.md)
  - [GetTenantWorksheetLabelDefinitionsQueryResult](docs/GetTenantWorksheetLabelDefinitionsQueryResult.md)
- - [GetTenantWorksheetLabelDefinitionsQueryResultLabelDefinitions](docs/GetTenantWorksheetLabelDefinitionsQueryResultLabelDefinitions.md)
  - [GetTenantsQueryResult](docs/GetTenantsQueryResult.md)
  - [GetTenantsQueryResultTenantItem](docs/GetTenantsQueryResultTenantItem.md)
- - [GetUpvotyTokenQueryResult](docs/GetUpvotyTokenQueryResult.md)
  - [GetUserRolesQueryResult](docs/GetUserRolesQueryResult.md)
  - [GetUserSettingsQueryResult](docs/GetUserSettingsQueryResult.md)
  - [GetUserSettingsQueryResultSettings](docs/GetUserSettingsQueryResultSettings.md)
  - [GetWikiDocumentQueryResult](docs/GetWikiDocumentQueryResult.md)
+ - [GetWikiDocumentQueryResultDocument](docs/GetWikiDocumentQueryResultDocument.md)
  - [GetWorksheetQueryResult](docs/GetWorksheetQueryResult.md)
+ - [GetWorksheetQueryResultUserInformation](docs/GetWorksheetQueryResultUserInformation.md)
  - [GetWorksheetQueryResultWorksheet](docs/GetWorksheetQueryResultWorksheet.md)
  - [GetZendeskTokenQueryResult](docs/GetZendeskTokenQueryResult.md)
  - [GrantTypeHandlerResponse](docs/GrantTypeHandlerResponse.md)
@@ -335,6 +407,7 @@ Class | Method | HTTP request | Description
  - [IPreviousDefinitionStudyTypeDefinition](docs/IPreviousDefinitionStudyTypeDefinition.md)
  - [IPreviousDefinitionStudyTypeDefinitionDefinition](docs/IPreviousDefinitionStudyTypeDefinitionDefinition.md)
  - [IdentifiedUserData](docs/IdentifiedUserData.md)
+ - [KeyPermissionData](docs/KeyPermissionData.md)
  - [LabelDefinition](docs/LabelDefinition.md)
  - [LabelDefinitions](docs/LabelDefinitions.md)
  - [ListFilter](docs/ListFilter.md)
@@ -347,6 +420,7 @@ Class | Method | HTTP request | Description
  - [MembershipPostPasswordResetRequestRequest](docs/MembershipPostPasswordResetRequestRequest.md)
  - [MembershipPostRegistrationRequest](docs/MembershipPostRegistrationRequest.md)
  - [MembershipPutUserRoleRequest](docs/MembershipPutUserRoleRequest.md)
+ - [MultiFactorAuthenticationPostMultiFactorAuthenticationRequest](docs/MultiFactorAuthenticationPostMultiFactorAuthenticationRequest.md)
  - [NameValuePair](docs/NameValuePair.md)
  - [NewBatchConfigData](docs/NewBatchConfigData.md)
  - [NewConfigData](docs/NewConfigData.md)
@@ -363,6 +437,8 @@ Class | Method | HTTP request | Description
  - [PoolState](docs/PoolState.md)
  - [PoolType](docs/PoolType.md)
  - [PostStudyResult](docs/PostStudyResult.md)
+ - [QueryEncryptedDataQueryResult](docs/QueryEncryptedDataQueryResult.md)
+ - [QueryEncryptedDataTenantResult](docs/QueryEncryptedDataTenantResult.md)
  - [RegistrationData](docs/RegistrationData.md)
  - [ResolvedLabel](docs/ResolvedLabel.md)
  - [ResolvedLabelNumericStatistics](docs/ResolvedLabelNumericStatistics.md)
@@ -408,6 +484,7 @@ Class | Method | HTTP request | Description
  - [TenantChannelWhitelists](docs/TenantChannelWhitelists.md)
  - [TenantConfigReference](docs/TenantConfigReference.md)
  - [TenantDefaultCustomPropertyNames](docs/TenantDefaultCustomPropertyNames.md)
+ - [TenantIdStudyId](docs/TenantIdStudyId.md)
  - [TenantInformation](docs/TenantInformation.md)
  - [TenantSettingsPutAdminTenantSettingsRequest](docs/TenantSettingsPutAdminTenantSettingsRequest.md)
  - [TenantSettingsPutTenantChannelImportMappingsRequest](docs/TenantSettingsPutTenantChannelImportMappingsRequest.md)
@@ -420,11 +497,14 @@ Class | Method | HTTP request | Description
  - [TestAutoScaleFormulaQueryResultAutoScaleRun](docs/TestAutoScaleFormulaQueryResultAutoScaleRun.md)
  - [TextDocument](docs/TextDocument.md)
  - [TextDocumentOptionalContent](docs/TextDocumentOptionalContent.md)
+ - [UpdateDeploymentData](docs/UpdateDeploymentData.md)
+ - [UpdateInvoiceBotDeploymentData](docs/UpdateInvoiceBotDeploymentData.md)
  - [UpdatedAccountSettings](docs/UpdatedAccountSettings.md)
  - [UpdatedAdminTenantSettings](docs/UpdatedAdminTenantSettings.md)
  - [UpdatedAdminTenantSettingsSettings](docs/UpdatedAdminTenantSettingsSettings.md)
  - [UpdatedChannelImportMappings](docs/UpdatedChannelImportMappings.md)
  - [UpdatedConfigData](docs/UpdatedConfigData.md)
+ - [UpdatedMfaEnabled](docs/UpdatedMfaEnabled.md)
  - [UpdatedStudyData](docs/UpdatedStudyData.md)
  - [UpdatedTenantChannelWhitelists](docs/UpdatedTenantChannelWhitelists.md)
  - [UpdatedTenantData](docs/UpdatedTenantData.md)
@@ -433,18 +513,18 @@ Class | Method | HTTP request | Description
  - [UpdatedUserSettings](docs/UpdatedUserSettings.md)
  - [UpdatedUserSettingsSettings](docs/UpdatedUserSettingsSettings.md)
  - [UpdatedWorksheetData](docs/UpdatedWorksheetData.md)
+ - [UpdatedWorksheetDataOutline](docs/UpdatedWorksheetDataOutline.md)
  - [UpdatedWorksheetLabelDefinitions](docs/UpdatedWorksheetLabelDefinitions.md)
+ - [UpdatedWorksheetLabelDefinitionsLabelDefinitions](docs/UpdatedWorksheetLabelDefinitionsLabelDefinitions.md)
  - [UpgradeConfigData](docs/UpgradeConfigData.md)
  - [UpgradeConfigQueryResult](docs/UpgradeConfigQueryResult.md)
  - [UserInformation](docs/UserInformation.md)
  - [UserRoleData](docs/UserRoleData.md)
  - [UserSettings](docs/UserSettings.md)
- - [UserSettingsBuilder](docs/UserSettingsBuilder.md)
  - [UserSettingsPutUserSettingsRequest](docs/UserSettingsPutUserSettingsRequest.md)
  - [VersionedDocumentMetadata](docs/VersionedDocumentMetadata.md)
  - [Worksheet](docs/Worksheet.md)
  - [WorksheetConfig](docs/WorksheetConfig.md)
- - [WorksheetConfigReference](docs/WorksheetConfigReference.md)
  - [WorksheetOutline](docs/WorksheetOutline.md)
  - [WorksheetPostDuplicateConfigsRequest](docs/WorksheetPostDuplicateConfigsRequest.md)
  - [WorksheetPostWorksheetRequest](docs/WorksheetPostWorksheetRequest.md)
@@ -454,7 +534,6 @@ Class | Method | HTTP request | Description
  - [WorksheetRow](docs/WorksheetRow.md)
  - [WorksheetRowStudy](docs/WorksheetRowStudy.md)
  - [WorksheetStudy](docs/WorksheetStudy.md)
- - [WorksheetStudyReference](docs/WorksheetStudyReference.md)
 
 
 ## Documentation For Authorization
@@ -464,8 +543,13 @@ Class | Method | HTTP request | Description
 
 - **Type**: OAuth
 - **Flow**: password
-- **Authorization URL**: 
-- **Scopes**: N/A
+- **Authorization URL**: https://identity.canopysimulations.com/connect/authorize
+- **Scopes**: 
+ - **canopy_api**: Canopy API access
+ - **openid**: Open Id
+ - **profile**: User Profile
+ - **IdentityServerApi**: Canopy Identity access
+ - **offline_access**: Offline Access
 
 
 ## Author

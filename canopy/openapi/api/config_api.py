@@ -37,15 +37,16 @@ class ConfigApi(object):
         self.api_client = api_client
 
     def config_decrypt(self, body, **kwargs):  # noqa: E501
-        """config_decrypt  # noqa: E501
+        """Decrypts the provided data.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /encryption/decrypt endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_decrypt(body, async_req=True)
         >>> result = thread.get()
 
-        :param body: (required)
+        :param body: A JSON structure containing the data to decrypt. (required)
         :type body: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -66,15 +67,16 @@ class ConfigApi(object):
         return self.config_decrypt_with_http_info(body, **kwargs)  # noqa: E501
 
     def config_decrypt_with_http_info(self, body, **kwargs):  # noqa: E501
-        """config_decrypt  # noqa: E501
+        """Decrypts the provided data.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /encryption/decrypt endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_decrypt_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param body: (required)
+        :param body: A JSON structure containing the data to decrypt. (required)
         :type body: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -177,15 +179,16 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_decrypt_with_metadata(self, config_decrypt_with_metadata_request, **kwargs):  # noqa: E501
-        """config_decrypt_with_metadata  # noqa: E501
+        """Decrypts the provided data.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /encryption/decrypt endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_decrypt_with_metadata(config_decrypt_with_metadata_request, async_req=True)
         >>> result = thread.get()
 
-        :param config_decrypt_with_metadata_request: (required)
+        :param config_decrypt_with_metadata_request: A structure containing the data to decrypt and a parameter indicating whether the data  should be decrypted recursively. Decrypting recursively means that if the decrypted data  contains further encrypted data, that data will also be decrypted until all data is decrypted. (required)
         :type config_decrypt_with_metadata_request: ConfigDecryptWithMetadataRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -206,15 +209,16 @@ class ConfigApi(object):
         return self.config_decrypt_with_metadata_with_http_info(config_decrypt_with_metadata_request, **kwargs)  # noqa: E501
 
     def config_decrypt_with_metadata_with_http_info(self, config_decrypt_with_metadata_request, **kwargs):  # noqa: E501
-        """config_decrypt_with_metadata  # noqa: E501
+        """Decrypts the provided data.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /encryption/decrypt endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_decrypt_with_metadata_with_http_info(config_decrypt_with_metadata_request, async_req=True)
         >>> result = thread.get()
 
-        :param config_decrypt_with_metadata_request: (required)
+        :param config_decrypt_with_metadata_request: A structure containing the data to decrypt and a parameter indicating whether the data  should be decrypted recursively. Decrypting recursively means that if the decrypted data  contains further encrypted data, that data will also be decrypted until all data is decrypted. (required)
         :type config_decrypt_with_metadata_request: ConfigDecryptWithMetadataRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -320,7 +324,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_delete_config(self, tenant_id, config_id, **kwargs):  # noqa: E501
-        """config_delete_config  # noqa: E501
+        """Deletes an existing config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -328,13 +332,13 @@ class ConfigApi(object):
         >>> thread = api.config_delete_config(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to delete. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to delete the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param undelete:
+        :param undelete: A flag indicating whether to undelete the config instead of deleting it.
         :type undelete: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -355,7 +359,7 @@ class ConfigApi(object):
         return self.config_delete_config_with_http_info(tenant_id, config_id, **kwargs)  # noqa: E501
 
     def config_delete_config_with_http_info(self, tenant_id, config_id, **kwargs):  # noqa: E501
-        """config_delete_config  # noqa: E501
+        """Deletes an existing config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -363,13 +367,13 @@ class ConfigApi(object):
         >>> thread = api.config_delete_config_with_http_info(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to delete. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to delete the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param undelete:
+        :param undelete: A flag indicating whether to undelete the config instead of deleting it.
         :type undelete: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -473,23 +477,24 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_delete_config_deprecated(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
-        """config_delete_config_deprecated  # noqa: E501
+        """Deletes an existing config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.DeleteConfigAsync(System.String,System.String,System.String,System.Boolean).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_delete_config_deprecated(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user that the config belongs to. (required)
         :type user_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to delete. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to delete the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param undelete:
+        :param undelete: A flag indicating whether to undelete the config instead of deleting it.
         :type undelete: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -510,23 +515,24 @@ class ConfigApi(object):
         return self.config_delete_config_deprecated_with_http_info(tenant_id, user_id, config_id, **kwargs)  # noqa: E501
 
     def config_delete_config_deprecated_with_http_info(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
-        """config_delete_config_deprecated  # noqa: E501
+        """Deletes an existing config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.DeleteConfigAsync(System.String,System.String,System.String,System.Boolean).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_delete_config_deprecated_with_http_info(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user that the config belongs to. (required)
         :type user_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to delete. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to delete the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param undelete:
+        :param undelete: A flag indicating whether to undelete the config instead of deleting it.
         :type undelete: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -636,17 +642,18 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_encrypt(self, body, **kwargs):  # noqa: E501
-        """config_encrypt  # noqa: E501
+        """Encrypts the provided data.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /encryption/encrypt endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_encrypt(body, async_req=True)
         >>> result = thread.get()
 
-        :param body: (required)
+        :param body: The data to encrypt. (required)
         :type body: object
-        :param description:
+        :param description: An optional description of the encrypted data.
         :type description: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -667,17 +674,18 @@ class ConfigApi(object):
         return self.config_encrypt_with_http_info(body, **kwargs)  # noqa: E501
 
     def config_encrypt_with_http_info(self, body, **kwargs):  # noqa: E501
-        """config_encrypt  # noqa: E501
+        """Encrypts the provided data.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /encryption/encrypt endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_encrypt_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param body: (required)
+        :param body: The data to encrypt. (required)
         :type body: object
-        :param description:
+        :param description: An optional description of the encrypted data.
         :type description: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -783,15 +791,16 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_encrypt_with_metadata(self, config_encrypt_with_metadata_request, **kwargs):  # noqa: E501
-        """config_encrypt_with_metadata  # noqa: E501
+        """Encrypted the provided data using the optional description and channel whitelist.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /encryption/encrypt endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_encrypt_with_metadata(config_encrypt_with_metadata_request, async_req=True)
         >>> result = thread.get()
 
-        :param config_encrypt_with_metadata_request: (required)
+        :param config_encrypt_with_metadata_request: A structure containing the data to encrypt, the optional description, and the optional channel whitelist. (required)
         :type config_encrypt_with_metadata_request: ConfigEncryptWithMetadataRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -812,15 +821,16 @@ class ConfigApi(object):
         return self.config_encrypt_with_metadata_with_http_info(config_encrypt_with_metadata_request, **kwargs)  # noqa: E501
 
     def config_encrypt_with_metadata_with_http_info(self, config_encrypt_with_metadata_request, **kwargs):  # noqa: E501
-        """config_encrypt_with_metadata  # noqa: E501
+        """Encrypted the provided data using the optional description and channel whitelist.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /encryption/encrypt endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_encrypt_with_metadata_with_http_info(config_encrypt_with_metadata_request, async_req=True)
         >>> result = thread.get()
 
-        :param config_encrypt_with_metadata_request: (required)
+        :param config_encrypt_with_metadata_request: A structure containing the data to encrypt, the optional description, and the optional channel whitelist. (required)
         :type config_encrypt_with_metadata_request: ConfigEncryptWithMetadataRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -926,7 +936,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config(self, tenant_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config  # noqa: E501
+        """Gets an existing config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -934,15 +944,15 @@ class ConfigApi(object):
         >>> thread = api.config_get_config(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param sim_version:
+        :param sim_version: An optional simulation version to get the config for. This defaults to the current tenant sim version.
         :type sim_version: str
-        :param config_version:
+        :param config_version: An optional config version to get the config for. The list of config versions can be found using M:Canopy.Api.Controllers.Simulations.ConfigController.GetConfigVersionsAsync(System.String,System.String,System.String).
         :type config_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -963,7 +973,7 @@ class ConfigApi(object):
         return self.config_get_config_with_http_info(tenant_id, config_id, **kwargs)  # noqa: E501
 
     def config_get_config_with_http_info(self, tenant_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config  # noqa: E501
+        """Gets an existing config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -971,15 +981,15 @@ class ConfigApi(object):
         >>> thread = api.config_get_config_with_http_info(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param sim_version:
+        :param sim_version: An optional simulation version to get the config for. This defaults to the current tenant sim version.
         :type sim_version: str
-        :param config_version:
+        :param config_version: An optional config version to get the config for. The list of config versions can be found using M:Canopy.Api.Controllers.Simulations.ConfigController.GetConfigVersionsAsync(System.String,System.String,System.String).
         :type config_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1092,25 +1102,26 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config_deprecated(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config_deprecated  # noqa: E501
+        """Gets an existing config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.GetConfigAsync(System.String,System.String,System.String,System.String,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_get_config_deprecated(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user that the config belongs to. (required)
         :type user_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param sim_version:
+        :param sim_version: An optional simulation version to get the config for.
         :type sim_version: str
-        :param config_version:
+        :param config_version: An optional configuration version to get the config for.
         :type config_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1131,25 +1142,26 @@ class ConfigApi(object):
         return self.config_get_config_deprecated_with_http_info(tenant_id, user_id, config_id, **kwargs)  # noqa: E501
 
     def config_get_config_deprecated_with_http_info(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config_deprecated  # noqa: E501
+        """Gets an existing config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.GetConfigAsync(System.String,System.String,System.String,System.String,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_get_config_deprecated_with_http_info(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user that the config belongs to. (required)
         :type user_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param sim_version:
+        :param sim_version: An optional simulation version to get the config for.
         :type sim_version: str
-        :param config_version:
+        :param config_version: An optional configuration version to get the config for.
         :type config_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1268,7 +1280,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config_names(self, tenant_id, config_type, **kwargs):  # noqa: E501
-        """config_get_config_names  # noqa: E501
+        """This method returns a list of config names for the specified config type,  optionally along with the most recent config ID and user ID of each config name.  It also returns the names of the default configs which are part of the specified sim version.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1276,15 +1288,15 @@ class ConfigApi(object):
         >>> thread = api.config_get_config_names(tenant_id, config_type, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to get config names for. (required)
         :type tenant_id: str
-        :param config_type: (required)
+        :param config_type: The type of config to get names for. (required)
         :type config_type: str
-        :param result_type:
+        :param result_type: The type of result to return. This can be one of the following:  - `name`: names only  - `nameAndId`: names and config IDs  - `matchedNameAndId`: distinct names and config IDs (when multiple configs have the same name, only the most recent config ID is returned)  - `nameAndIdAndOwner`: name and config IDs and owner user IDs  - `matchedNameAndIdAndOwner`: name and config IDs and owner user IDs, distinct by name and user ID (when multiple configs have the same name and user ID, only the most recent config ID is returned).
         :type result_type: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to retrieve.
         :type sub_tree_path: str
-        :param sim_version:
+        :param sim_version: An optional simulation version to retrieve default config names for (the current tenant sim version is used if not supplied).
         :type sim_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1305,7 +1317,7 @@ class ConfigApi(object):
         return self.config_get_config_names_with_http_info(tenant_id, config_type, **kwargs)  # noqa: E501
 
     def config_get_config_names_with_http_info(self, tenant_id, config_type, **kwargs):  # noqa: E501
-        """config_get_config_names  # noqa: E501
+        """This method returns a list of config names for the specified config type,  optionally along with the most recent config ID and user ID of each config name.  It also returns the names of the default configs which are part of the specified sim version.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1313,15 +1325,15 @@ class ConfigApi(object):
         >>> thread = api.config_get_config_names_with_http_info(tenant_id, config_type, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to get config names for. (required)
         :type tenant_id: str
-        :param config_type: (required)
+        :param config_type: The type of config to get names for. (required)
         :type config_type: str
-        :param result_type:
+        :param result_type: The type of result to return. This can be one of the following:  - `name`: names only  - `nameAndId`: names and config IDs  - `matchedNameAndId`: distinct names and config IDs (when multiple configs have the same name, only the most recent config ID is returned)  - `nameAndIdAndOwner`: name and config IDs and owner user IDs  - `matchedNameAndIdAndOwner`: name and config IDs and owner user IDs, distinct by name and user ID (when multiple configs have the same name and user ID, only the most recent config ID is returned).
         :type result_type: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to retrieve.
         :type sub_tree_path: str
-        :param sim_version:
+        :param sim_version: An optional simulation version to retrieve default config names for (the current tenant sim version is used if not supplied).
         :type sim_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1433,8 +1445,153 @@ class ConfigApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
+    def config_get_config_sub_paths(self, tenant_id, config_type, **kwargs):  # noqa: E501
+        """Gets all the unique component paths for the specified tenant and config type.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.config_get_config_sub_paths(tenant_id, config_type, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The ID of the tenant to get component paths for. (required)
+        :type tenant_id: str
+        :param config_type: The type of config to get component paths for. (required)
+        :type config_type: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetConfigSubPathsQueryResult
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.config_get_config_sub_paths_with_http_info(tenant_id, config_type, **kwargs)  # noqa: E501
+
+    def config_get_config_sub_paths_with_http_info(self, tenant_id, config_type, **kwargs):  # noqa: E501
+        """Gets all the unique component paths for the specified tenant and config type.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.config_get_config_sub_paths_with_http_info(tenant_id, config_type, async_req=True)
+        >>> result = thread.get()
+
+        :param tenant_id: The ID of the tenant to get component paths for. (required)
+        :type tenant_id: str
+        :param config_type: The type of config to get component paths for. (required)
+        :type config_type: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetConfigSubPathsQueryResult, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'tenant_id',
+            'config_type'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method config_get_config_sub_paths" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'tenant_id' is set
+        if self.api_client.client_side_validation and local_var_params.get('tenant_id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `tenant_id` when calling `config_get_config_sub_paths`")  # noqa: E501
+        # verify the required parameter 'config_type' is set
+        if self.api_client.client_side_validation and local_var_params.get('config_type') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `config_type` when calling `config_get_config_sub_paths`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'tenant_id' in local_var_params:
+            path_params['tenantId'] = local_var_params['tenant_id']  # noqa: E501
+
+        query_params = []
+        if local_var_params.get('config_type') is not None:  # noqa: E501
+            query_params.append(('configType', local_var_params['config_type']))  # noqa: E501
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {
+            200: "GetConfigSubPathsQueryResult",
+        }
+
+        return self.api_client.call_api(
+            '/configs/{tenantId}/component-paths', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def config_get_config_versions(self, tenant_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config_versions  # noqa: E501
+        """Gets the version history of an existing config. Note that we do not keep a complete version history, so  the returned list of versions may not be exhaustive.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1442,11 +1599,11 @@ class ConfigApi(object):
         >>> thread = api.config_get_config_versions(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get the versions of. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the versions of the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1467,7 +1624,7 @@ class ConfigApi(object):
         return self.config_get_config_versions_with_http_info(tenant_id, config_id, **kwargs)  # noqa: E501
 
     def config_get_config_versions_with_http_info(self, tenant_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config_versions  # noqa: E501
+        """Gets the version history of an existing config. Note that we do not keep a complete version history, so  the returned list of versions may not be exhaustive.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1475,11 +1632,11 @@ class ConfigApi(object):
         >>> thread = api.config_get_config_versions_with_http_info(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get the versions of. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the versions of the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1586,21 +1743,22 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config_versions_deprecated(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config_versions_deprecated  # noqa: E501
+        """Gets the versions of an existing config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.GetConfigVersionsAsync(System.String,System.String,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_get_config_versions_deprecated(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user that the config belongs to. (required)
         :type user_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get the versions of. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the versions of the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1621,21 +1779,22 @@ class ConfigApi(object):
         return self.config_get_config_versions_deprecated_with_http_info(tenant_id, user_id, config_id, **kwargs)  # noqa: E501
 
     def config_get_config_versions_deprecated_with_http_info(self, tenant_id, user_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config_versions_deprecated  # noqa: E501
+        """Gets the versions of an existing config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.GetConfigVersionsAsync(System.String,System.String,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_get_config_versions_deprecated_with_http_info(tenant_id, user_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user that the config belongs to. (required)
         :type user_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get the versions of. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the versions of the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1748,23 +1907,24 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_config_without_user_id_deprecated(self, tenant_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config_without_user_id_deprecated  # noqa: E501
+        """Gets an existing config for the specified tenant without specifying a user ID.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter, or having it set to `auto`. See M:Canopy.Api.Controllers.Simulations.ConfigController.GetConfigAsync(System.String,System.String,System.String,System.String,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_get_config_without_user_id_deprecated(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param sim_version:
+        :param sim_version: An optional simulation version to get the config for.
         :type sim_version: str
-        :param config_version:
+        :param config_version: An optional configuration version to get the config for.
         :type config_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1785,23 +1945,24 @@ class ConfigApi(object):
         return self.config_get_config_without_user_id_deprecated_with_http_info(tenant_id, config_id, **kwargs)  # noqa: E501
 
     def config_get_config_without_user_id_deprecated_with_http_info(self, tenant_id, config_id, **kwargs):  # noqa: E501
-        """config_get_config_without_user_id_deprecated  # noqa: E501
+        """Gets an existing config for the specified tenant without specifying a user ID.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter, or having it set to `auto`. See M:Canopy.Api.Controllers.Simulations.ConfigController.GetConfigAsync(System.String,System.String,System.String,System.String,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_get_config_without_user_id_deprecated_with_http_info(tenant_id, config_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to get. (required)
         :type config_id: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to get the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
-        :param sim_version:
+        :param sim_version: An optional simulation version to get the config for.
         :type sim_version: str
-        :param config_version:
+        :param config_version: An optional configuration version to get the config for.
         :type config_version: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1914,7 +2075,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_get_configs(self, tenant_id, config_type, **kwargs):  # noqa: E501
-        """config_get_configs  # noqa: E501
+        """Given the provided filter information, this method returns:  - a list of configs (metadata only)  - a list of custom property groups  ResultType can be used to specify which of the above lists to return.                The list of configs may contain a continuation token of more results are available. The continuation token  can be passed into a subsequent query as part of the filter to retrieve the next page of results.                The list of custom property groups is not guaranteed to be complete. It is a best effort.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1922,15 +2083,15 @@ class ConfigApi(object):
         >>> thread = api.config_get_configs(tenant_id, config_type, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to get config data for. (required)
         :type tenant_id: str
-        :param config_type: (required)
+        :param config_type: The type of config to get. (required)
         :type config_type: str
-        :param filter:
+        :param filter: An optional filter to apply to the config data list.
         :type filter: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to retrieve.
         :type sub_tree_path: str
-        :param result_type:
+        :param result_type: An optional result type to return (`all` / `queryOnly` / `groupOnly`).
         :type result_type: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1951,7 +2112,7 @@ class ConfigApi(object):
         return self.config_get_configs_with_http_info(tenant_id, config_type, **kwargs)  # noqa: E501
 
     def config_get_configs_with_http_info(self, tenant_id, config_type, **kwargs):  # noqa: E501
-        """config_get_configs  # noqa: E501
+        """Given the provided filter information, this method returns:  - a list of configs (metadata only)  - a list of custom property groups  ResultType can be used to specify which of the above lists to return.                The list of configs may contain a continuation token of more results are available. The continuation token  can be passed into a subsequent query as part of the filter to retrieve the next page of results.                The list of custom property groups is not guaranteed to be complete. It is a best effort.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -1959,15 +2120,15 @@ class ConfigApi(object):
         >>> thread = api.config_get_configs_with_http_info(tenant_id, config_type, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to get config data for. (required)
         :type tenant_id: str
-        :param config_type: (required)
+        :param config_type: The type of config to get. (required)
         :type config_type: str
-        :param filter:
+        :param filter: An optional filter to apply to the config data list.
         :type filter: str
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to retrieve.
         :type sub_tree_path: str
-        :param result_type:
+        :param result_type: An optional result type to return (`all` / `queryOnly` / `groupOnly`).
         :type result_type: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2080,7 +2241,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_post_config(self, tenant_id, config_post_config_request, **kwargs):  # noqa: E501
-        """config_post_config  # noqa: E501
+        """Creates a new config for the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2088,11 +2249,11 @@ class ConfigApi(object):
         >>> thread = api.config_post_config(tenant_id, config_post_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to create the config for. (required)
         :type tenant_id: str
-        :param config_post_config_request: (required)
+        :param config_post_config_request: The data for the new config. (required)
         :type config_post_config_request: ConfigPostConfigRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to create the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2113,7 +2274,7 @@ class ConfigApi(object):
         return self.config_post_config_with_http_info(tenant_id, config_post_config_request, **kwargs)  # noqa: E501
 
     def config_post_config_with_http_info(self, tenant_id, config_post_config_request, **kwargs):  # noqa: E501
-        """config_post_config  # noqa: E501
+        """Creates a new config for the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2121,11 +2282,11 @@ class ConfigApi(object):
         >>> thread = api.config_post_config_with_http_info(tenant_id, config_post_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to create the config for. (required)
         :type tenant_id: str
-        :param config_post_config_request: (required)
+        :param config_post_config_request: The data for the new config. (required)
         :type config_post_config_request: ConfigPostConfigRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to create the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2240,21 +2401,22 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_post_config_deprecated(self, tenant_id, user_id, config_post_config_request, **kwargs):  # noqa: E501
-        """config_post_config_deprecated  # noqa: E501
+        """Creates a new config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.PostConfigAsync(System.String,Canopy.Api.Controllers.Simulations.NewConfigData,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_post_config_deprecated(tenant_id, user_id, config_post_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to create the config for. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user to create the config for. (required)
         :type user_id: str
-        :param config_post_config_request: (required)
+        :param config_post_config_request: The data for the new config. (required)
         :type config_post_config_request: ConfigPostConfigRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to create the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2275,21 +2437,22 @@ class ConfigApi(object):
         return self.config_post_config_deprecated_with_http_info(tenant_id, user_id, config_post_config_request, **kwargs)  # noqa: E501
 
     def config_post_config_deprecated_with_http_info(self, tenant_id, user_id, config_post_config_request, **kwargs):  # noqa: E501
-        """config_post_config_deprecated  # noqa: E501
+        """Creates a new config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.PostConfigAsync(System.String,Canopy.Api.Controllers.Simulations.NewConfigData,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_post_config_deprecated_with_http_info(tenant_id, user_id, config_post_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to create the config for. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user to create the config for. (required)
         :type user_id: str
-        :param config_post_config_request: (required)
+        :param config_post_config_request: The data for the new config. (required)
         :type config_post_config_request: ConfigPostConfigRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to create the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2410,7 +2573,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_post_configs(self, tenant_id, config_post_configs_request, **kwargs):  # noqa: E501
-        """config_post_configs  # noqa: E501
+        """Creates multiple new configs for the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2418,11 +2581,11 @@ class ConfigApi(object):
         >>> thread = api.config_post_configs(tenant_id, config_post_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to create the configs for. (required)
         :type tenant_id: str
-        :param config_post_configs_request: (required)
+        :param config_post_configs_request: The data for each new config. Note that you must provide the sim version for each individual config. (required)
         :type config_post_configs_request: ConfigPostConfigsRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to create the configs under.
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2443,7 +2606,7 @@ class ConfigApi(object):
         return self.config_post_configs_with_http_info(tenant_id, config_post_configs_request, **kwargs)  # noqa: E501
 
     def config_post_configs_with_http_info(self, tenant_id, config_post_configs_request, **kwargs):  # noqa: E501
-        """config_post_configs  # noqa: E501
+        """Creates multiple new configs for the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2451,11 +2614,11 @@ class ConfigApi(object):
         >>> thread = api.config_post_configs_with_http_info(tenant_id, config_post_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to create the configs for. (required)
         :type tenant_id: str
-        :param config_post_configs_request: (required)
+        :param config_post_configs_request: The data for each new config. Note that you must provide the sim version for each individual config. (required)
         :type config_post_configs_request: ConfigPostConfigsRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to create the configs under.
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2570,21 +2733,22 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_post_configs_deprecated(self, tenant_id, user_id, config_post_configs_request, **kwargs):  # noqa: E501
-        """config_post_configs_deprecated  # noqa: E501
+        """Creates multiple new configs for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.PostConfigsAsync(System.String,Canopy.Api.Controllers.Simulations.NewBatchConfigData,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_post_configs_deprecated(tenant_id, user_id, config_post_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to create the configs for. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user to create the configs for. (required)
         :type user_id: str
-        :param config_post_configs_request: (required)
+        :param config_post_configs_request: The data for the new configs. (required)
         :type config_post_configs_request: ConfigPostConfigsRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to create the configs under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2605,21 +2769,22 @@ class ConfigApi(object):
         return self.config_post_configs_deprecated_with_http_info(tenant_id, user_id, config_post_configs_request, **kwargs)  # noqa: E501
 
     def config_post_configs_deprecated_with_http_info(self, tenant_id, user_id, config_post_configs_request, **kwargs):  # noqa: E501
-        """config_post_configs_deprecated  # noqa: E501
+        """Creates multiple new configs for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.PostConfigsAsync(System.String,Canopy.Api.Controllers.Simulations.NewBatchConfigData,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_post_configs_deprecated_with_http_info(tenant_id, user_id, config_post_configs_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant to create the configs for. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user to create the configs for. (required)
         :type user_id: str
-        :param config_post_configs_request: (required)
+        :param config_post_configs_request: The data for the new configs. (required)
         :type config_post_configs_request: ConfigPostConfigsRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to create the configs under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2740,7 +2905,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_put_config(self, tenant_id, config_id, config_put_config_request, **kwargs):  # noqa: E501
-        """config_put_config  # noqa: E501
+        """Updates an existing config for the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2748,13 +2913,13 @@ class ConfigApi(object):
         >>> thread = api.config_put_config(tenant_id, config_id, config_put_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to update. (required)
         :type config_id: str
-        :param config_put_config_request: (required)
+        :param config_put_config_request: The updated data for the config. (required)
         :type config_put_config_request: ConfigPutConfigRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to update the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2775,7 +2940,7 @@ class ConfigApi(object):
         return self.config_put_config_with_http_info(tenant_id, config_id, config_put_config_request, **kwargs)  # noqa: E501
 
     def config_put_config_with_http_info(self, tenant_id, config_id, config_put_config_request, **kwargs):  # noqa: E501
-        """config_put_config  # noqa: E501
+        """Updates an existing config for the specified tenant.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2783,13 +2948,13 @@ class ConfigApi(object):
         >>> thread = api.config_put_config_with_http_info(tenant_id, config_id, config_put_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to update. (required)
         :type config_id: str
-        :param config_put_config_request: (required)
+        :param config_put_config_request: The updated data for the config. (required)
         :type config_put_config_request: ConfigPutConfigRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to update the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2904,23 +3069,24 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_put_config_deprecated(self, tenant_id, user_id, config_id, config_put_config_request, **kwargs):  # noqa: E501
-        """config_put_config_deprecated  # noqa: E501
+        """Updates an existing config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.PutConfigAsync(System.String,System.String,Canopy.Api.Controllers.Simulations.UpdatedConfigData,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_put_config_deprecated(tenant_id, user_id, config_id, config_put_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user that the config belongs to. (required)
         :type user_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to update. (required)
         :type config_id: str
-        :param config_put_config_request: (required)
+        :param config_put_config_request: The updated data for the config. (required)
         :type config_put_config_request: ConfigPutConfigRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to update the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2941,23 +3107,24 @@ class ConfigApi(object):
         return self.config_put_config_deprecated_with_http_info(tenant_id, user_id, config_id, config_put_config_request, **kwargs)  # noqa: E501
 
     def config_put_config_deprecated_with_http_info(self, tenant_id, user_id, config_id, config_put_config_request, **kwargs):  # noqa: E501
-        """config_put_config_deprecated  # noqa: E501
+        """Updates an existing config for the specified tenant and user.  # noqa: E501
 
+        This method is marked as deprecated. The replacement method does not require the `userId` parameter. See M:Canopy.Api.Controllers.Simulations.ConfigController.PutConfigAsync(System.String,System.String,Canopy.Api.Controllers.Simulations.UpdatedConfigData,System.String).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_put_config_deprecated_with_http_info(tenant_id, user_id, config_id, config_put_config_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The ID of the user that the config belongs to. (required)
         :type user_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to update. (required)
         :type config_id: str
-        :param config_put_config_request: (required)
+        :param config_put_config_request: The updated data for the config. (required)
         :type config_put_config_request: ConfigPutConfigRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path to update the config under (e.g. `tyres.front`).
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3078,7 +3245,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_put_config_owner(self, tenant_id, config_id, config_put_config_owner_request, **kwargs):  # noqa: E501
-        """config_put_config_owner  # noqa: E501
+        """Updates the owner of an existing config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3086,11 +3253,11 @@ class ConfigApi(object):
         >>> thread = api.config_put_config_owner(tenant_id, config_id, config_put_config_owner_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to update the owner of. (required)
         :type config_id: str
-        :param config_put_config_owner_request: (required)
+        :param config_put_config_owner_request: The updated owner data for the config. (required)
         :type config_put_config_owner_request: ConfigPutConfigOwnerRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3111,7 +3278,7 @@ class ConfigApi(object):
         return self.config_put_config_owner_with_http_info(tenant_id, config_id, config_put_config_owner_request, **kwargs)  # noqa: E501
 
     def config_put_config_owner_with_http_info(self, tenant_id, config_id, config_put_config_owner_request, **kwargs):  # noqa: E501
-        """config_put_config_owner  # noqa: E501
+        """Updates the owner of an existing config.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3119,11 +3286,11 @@ class ConfigApi(object):
         >>> thread = api.config_put_config_owner_with_http_info(tenant_id, config_id, config_put_config_owner_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The ID of the tenant that the config belongs to. (required)
         :type tenant_id: str
-        :param config_id: (required)
+        :param config_id: The ID of the config to update the owner of. (required)
         :type config_id: str
-        :param config_put_config_owner_request: (required)
+        :param config_put_config_owner_request: The updated owner data for the config. (required)
         :type config_put_config_owner_request: ConfigPutConfigOwnerRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3235,7 +3402,7 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_upgrade_config(self, tenant_id, target_sim_version, config_upgrade_config_deprecated_request, **kwargs):  # noqa: E501
-        """config_upgrade_config  # noqa: E501
+        """Upgrades the config data to the specified target simulation version.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3243,13 +3410,13 @@ class ConfigApi(object):
         >>> thread = api.config_upgrade_config(tenant_id, target_sim_version, config_upgrade_config_deprecated_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID whose schema will be used to upgrade the data. (required)
         :type tenant_id: str
-        :param target_sim_version: (required)
+        :param target_sim_version: The target simulation version to upgrade to. (required)
         :type target_sim_version: str
-        :param config_upgrade_config_deprecated_request: (required)
+        :param config_upgrade_config_deprecated_request: The config data to upgrade. (required)
         :type config_upgrade_config_deprecated_request: ConfigUpgradeConfigDeprecatedRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path, if the data is a sub-component of a config.
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3270,7 +3437,7 @@ class ConfigApi(object):
         return self.config_upgrade_config_with_http_info(tenant_id, target_sim_version, config_upgrade_config_deprecated_request, **kwargs)  # noqa: E501
 
     def config_upgrade_config_with_http_info(self, tenant_id, target_sim_version, config_upgrade_config_deprecated_request, **kwargs):  # noqa: E501
-        """config_upgrade_config  # noqa: E501
+        """Upgrades the config data to the specified target simulation version.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -3278,13 +3445,13 @@ class ConfigApi(object):
         >>> thread = api.config_upgrade_config_with_http_info(tenant_id, target_sim_version, config_upgrade_config_deprecated_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID whose schema will be used to upgrade the data. (required)
         :type tenant_id: str
-        :param target_sim_version: (required)
+        :param target_sim_version: The target simulation version to upgrade to. (required)
         :type target_sim_version: str
-        :param config_upgrade_config_deprecated_request: (required)
+        :param config_upgrade_config_deprecated_request: The config data to upgrade. (required)
         :type config_upgrade_config_deprecated_request: ConfigUpgradeConfigDeprecatedRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path, if the data is a sub-component of a config.
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3405,19 +3572,20 @@ class ConfigApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def config_upgrade_config_deprecated(self, target_sim_version, config_upgrade_config_deprecated_request, **kwargs):  # noqa: E501
-        """config_upgrade_config_deprecated  # noqa: E501
+        """Upgrades the config data to the specified target simulation version.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /simulations/config/upgrade endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_upgrade_config_deprecated(target_sim_version, config_upgrade_config_deprecated_request, async_req=True)
         >>> result = thread.get()
 
-        :param target_sim_version: (required)
+        :param target_sim_version: The target simulation version to upgrade to. (required)
         :type target_sim_version: str
-        :param config_upgrade_config_deprecated_request: (required)
+        :param config_upgrade_config_deprecated_request: The config data to upgrade. (required)
         :type config_upgrade_config_deprecated_request: ConfigUpgradeConfigDeprecatedRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path, if the data is a sub-component of a config.
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -3438,19 +3606,20 @@ class ConfigApi(object):
         return self.config_upgrade_config_deprecated_with_http_info(target_sim_version, config_upgrade_config_deprecated_request, **kwargs)  # noqa: E501
 
     def config_upgrade_config_deprecated_with_http_info(self, target_sim_version, config_upgrade_config_deprecated_request, **kwargs):  # noqa: E501
-        """config_upgrade_config_deprecated  # noqa: E501
+        """Upgrades the config data to the specified target simulation version.  # noqa: E501
 
+        This method is marked as obsolete and should be replaced with the /simulations/config/upgrade endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         >>> thread = api.config_upgrade_config_deprecated_with_http_info(target_sim_version, config_upgrade_config_deprecated_request, async_req=True)
         >>> result = thread.get()
 
-        :param target_sim_version: (required)
+        :param target_sim_version: The target simulation version to upgrade to. (required)
         :type target_sim_version: str
-        :param config_upgrade_config_deprecated_request: (required)
+        :param config_upgrade_config_deprecated_request: The config data to upgrade. (required)
         :type config_upgrade_config_deprecated_request: ConfigUpgradeConfigDeprecatedRequest
-        :param sub_tree_path:
+        :param sub_tree_path: An optional sub-tree path, if the data is a sub-component of a config.
         :type sub_tree_path: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

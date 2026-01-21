@@ -36,7 +36,7 @@ class GetWikiDocumentQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'document': 'GetSimVersionDocumentQueryResultDocument'
+        'document': 'GetWikiDocumentQueryResultDocument'
     }
 
     attribute_map = {
@@ -60,7 +60,7 @@ class GetWikiDocumentQueryResult(object):
 
 
         :return: The document of this GetWikiDocumentQueryResult.  # noqa: E501
-        :rtype: GetSimVersionDocumentQueryResultDocument
+        :rtype: GetWikiDocumentQueryResultDocument
         """
         return self._document
 
@@ -70,10 +70,8 @@ class GetWikiDocumentQueryResult(object):
 
 
         :param document: The document of this GetWikiDocumentQueryResult.  # noqa: E501
-        :type document: GetSimVersionDocumentQueryResultDocument
+        :type document: GetWikiDocumentQueryResultDocument
         """
-        if self.local_vars_configuration.client_side_validation and document is None:  # noqa: E501
-            raise ValueError("Invalid value for `document`, must not be `None`")  # noqa: E501
 
         self._document = document
 

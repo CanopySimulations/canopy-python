@@ -80,8 +80,6 @@ class GetSimVersionDocumentsQueryResult(object):
         :param sim_version: The sim_version of this GetSimVersionDocumentsQueryResult.  # noqa: E501
         :type sim_version: object
         """
-        if self.local_vars_configuration.client_side_validation and sim_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_version`, must not be `None`")  # noqa: E501
 
         self._sim_version = sim_version
 
@@ -103,8 +101,6 @@ class GetSimVersionDocumentsQueryResult(object):
         :param documents: The documents of this GetSimVersionDocumentsQueryResult.  # noqa: E501
         :type documents: list[TextDocumentOptionalContent]
         """
-        if self.local_vars_configuration.client_side_validation and documents is None:  # noqa: E501
-            raise ValueError("Invalid value for `documents`, must not be `None`")  # noqa: E501
 
         self._documents = documents
 
@@ -126,8 +122,6 @@ class GetSimVersionDocumentsQueryResult(object):
         :param units: The units of this GetSimVersionDocumentsQueryResult.  # noqa: E501
         :type units: dict(str, str)
         """
-        if self.local_vars_configuration.client_side_validation and units is None:  # noqa: E501
-            raise ValueError("Invalid value for `units`, must not be `None`")  # noqa: E501
 
         self._units = units
 

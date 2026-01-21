@@ -76,8 +76,6 @@ class ConfigColumnLabelDefinitions(object):
         :param config_type: The config_type of this ConfigColumnLabelDefinitions.  # noqa: E501
         :type config_type: object
         """
-        if self.local_vars_configuration.client_side_validation and config_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_type`, must not be `None`")  # noqa: E501
 
         self._config_type = config_type
 
@@ -99,8 +97,6 @@ class ConfigColumnLabelDefinitions(object):
         :param labels: The labels of this ConfigColumnLabelDefinitions.  # noqa: E501
         :type labels: list[LabelDefinition]
         """
-        if self.local_vars_configuration.client_side_validation and labels is None:  # noqa: E501
-            raise ValueError("Invalid value for `labels`, must not be `None`")  # noqa: E501
 
         self._labels = labels
 

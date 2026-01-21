@@ -82,15 +82,18 @@ class IPreviousDefinitionStudyTypeDefinitionDefinition(object):
         self._implicit_sim_types = None
         self.discriminator = None
 
-        self.study_type = study_type
+        if study_type is not None:
+            self.study_type = study_type
         self.name = name
         self.sim_types = sim_types
         self.inputs = inputs
         self.pool_type = pool_type
         self.build_pool_type = build_pool_type
         self.state = state
-        self.valid_for_transient = valid_for_transient
-        self.valid_for_inline = valid_for_inline
+        if valid_for_transient is not None:
+            self.valid_for_transient = valid_for_transient
+        if valid_for_inline is not None:
+            self.valid_for_inline = valid_for_inline
         self.previous_definitions = previous_definitions
         self.implicit_sim_types = implicit_sim_types
 
@@ -112,8 +115,6 @@ class IPreviousDefinitionStudyTypeDefinitionDefinition(object):
         :param study_type: The study_type of this IPreviousDefinitionStudyTypeDefinitionDefinition.  # noqa: E501
         :type study_type: str
         """
-        if self.local_vars_configuration.client_side_validation and study_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `study_type`, must not be `None`")  # noqa: E501
 
         self._study_type = study_type
 
@@ -135,8 +136,6 @@ class IPreviousDefinitionStudyTypeDefinitionDefinition(object):
         :param name: The name of this IPreviousDefinitionStudyTypeDefinitionDefinition.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -158,8 +157,6 @@ class IPreviousDefinitionStudyTypeDefinitionDefinition(object):
         :param sim_types: The sim_types of this IPreviousDefinitionStudyTypeDefinitionDefinition.  # noqa: E501
         :type sim_types: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and sim_types is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_types`, must not be `None`")  # noqa: E501
 
         self._sim_types = sim_types
 
@@ -181,8 +178,6 @@ class IPreviousDefinitionStudyTypeDefinitionDefinition(object):
         :param inputs: The inputs of this IPreviousDefinitionStudyTypeDefinitionDefinition.  # noqa: E501
         :type inputs: list[SimulationInput]
         """
-        if self.local_vars_configuration.client_side_validation and inputs is None:  # noqa: E501
-            raise ValueError("Invalid value for `inputs`, must not be `None`")  # noqa: E501
 
         self._inputs = inputs
 
@@ -267,8 +262,6 @@ class IPreviousDefinitionStudyTypeDefinitionDefinition(object):
         :param valid_for_transient: The valid_for_transient of this IPreviousDefinitionStudyTypeDefinitionDefinition.  # noqa: E501
         :type valid_for_transient: bool
         """
-        if self.local_vars_configuration.client_side_validation and valid_for_transient is None:  # noqa: E501
-            raise ValueError("Invalid value for `valid_for_transient`, must not be `None`")  # noqa: E501
 
         self._valid_for_transient = valid_for_transient
 
@@ -290,8 +283,6 @@ class IPreviousDefinitionStudyTypeDefinitionDefinition(object):
         :param valid_for_inline: The valid_for_inline of this IPreviousDefinitionStudyTypeDefinitionDefinition.  # noqa: E501
         :type valid_for_inline: bool
         """
-        if self.local_vars_configuration.client_side_validation and valid_for_inline is None:  # noqa: E501
-            raise ValueError("Invalid value for `valid_for_inline`, must not be `None`")  # noqa: E501
 
         self._valid_for_inline = valid_for_inline
 
@@ -313,8 +304,6 @@ class IPreviousDefinitionStudyTypeDefinitionDefinition(object):
         :param previous_definitions: The previous_definitions of this IPreviousDefinitionStudyTypeDefinitionDefinition.  # noqa: E501
         :type previous_definitions: list[IPreviousDefinitionStudyTypeDefinition]
         """
-        if self.local_vars_configuration.client_side_validation and previous_definitions is None:  # noqa: E501
-            raise ValueError("Invalid value for `previous_definitions`, must not be `None`")  # noqa: E501
 
         self._previous_definitions = previous_definitions
 

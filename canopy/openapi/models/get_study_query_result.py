@@ -36,11 +36,12 @@ class GetStudyQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'study': 'GetConfigQueryResultConfig',
+        'study': 'GetStudyQueryResultStudy',
         'converted_sim_version': 'object',
         'access_information': 'GetStudyQueryResultAccessInformation',
         'sim_types': 'list[str]',
-        'user_information': 'GetAllSupportSessionsQueryResultUserInformation'
+        'user_information': 'GetStudyQueryResultUserInformation',
+        'priority': 'object'
     }
 
     attribute_map = {
@@ -48,10 +49,11 @@ class GetStudyQueryResult(object):
         'converted_sim_version': 'convertedSimVersion',
         'access_information': 'accessInformation',
         'sim_types': 'simTypes',
-        'user_information': 'userInformation'
+        'user_information': 'userInformation',
+        'priority': 'priority'
     }
 
-    def __init__(self, study=None, converted_sim_version=None, access_information=None, sim_types=None, user_information=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, study=None, converted_sim_version=None, access_information=None, sim_types=None, user_information=None, priority=None, local_vars_configuration=None):  # noqa: E501
         """GetStudyQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,6 +64,7 @@ class GetStudyQueryResult(object):
         self._access_information = None
         self._sim_types = None
         self._user_information = None
+        self._priority = None
         self.discriminator = None
 
         self.study = study
@@ -69,6 +72,7 @@ class GetStudyQueryResult(object):
         self.access_information = access_information
         self.sim_types = sim_types
         self.user_information = user_information
+        self.priority = priority
 
     @property
     def study(self):
@@ -76,7 +80,7 @@ class GetStudyQueryResult(object):
 
 
         :return: The study of this GetStudyQueryResult.  # noqa: E501
-        :rtype: GetConfigQueryResultConfig
+        :rtype: GetStudyQueryResultStudy
         """
         return self._study
 
@@ -86,10 +90,8 @@ class GetStudyQueryResult(object):
 
 
         :param study: The study of this GetStudyQueryResult.  # noqa: E501
-        :type study: GetConfigQueryResultConfig
+        :type study: GetStudyQueryResultStudy
         """
-        if self.local_vars_configuration.client_side_validation and study is None:  # noqa: E501
-            raise ValueError("Invalid value for `study`, must not be `None`")  # noqa: E501
 
         self._study = study
 
@@ -97,6 +99,7 @@ class GetStudyQueryResult(object):
     def converted_sim_version(self):
         """Gets the converted_sim_version of this GetStudyQueryResult.  # noqa: E501
 
+        The sim version the study data was converted to.  # noqa: E501
 
         :return: The converted_sim_version of this GetStudyQueryResult.  # noqa: E501
         :rtype: object
@@ -107,12 +110,11 @@ class GetStudyQueryResult(object):
     def converted_sim_version(self, converted_sim_version):
         """Sets the converted_sim_version of this GetStudyQueryResult.
 
+        The sim version the study data was converted to.  # noqa: E501
 
         :param converted_sim_version: The converted_sim_version of this GetStudyQueryResult.  # noqa: E501
         :type converted_sim_version: object
         """
-        if self.local_vars_configuration.client_side_validation and converted_sim_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `converted_sim_version`, must not be `None`")  # noqa: E501
 
         self._converted_sim_version = converted_sim_version
 
@@ -134,8 +136,6 @@ class GetStudyQueryResult(object):
         :param access_information: The access_information of this GetStudyQueryResult.  # noqa: E501
         :type access_information: GetStudyQueryResultAccessInformation
         """
-        if self.local_vars_configuration.client_side_validation and access_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `access_information`, must not be `None`")  # noqa: E501
 
         self._access_information = access_information
 
@@ -143,6 +143,7 @@ class GetStudyQueryResult(object):
     def sim_types(self):
         """Gets the sim_types of this GetStudyQueryResult.  # noqa: E501
 
+        The sim types which were detected in the first succeeded study job.  # noqa: E501
 
         :return: The sim_types of this GetStudyQueryResult.  # noqa: E501
         :rtype: list[str]
@@ -153,6 +154,7 @@ class GetStudyQueryResult(object):
     def sim_types(self, sim_types):
         """Sets the sim_types of this GetStudyQueryResult.
 
+        The sim types which were detected in the first succeeded study job.  # noqa: E501
 
         :param sim_types: The sim_types of this GetStudyQueryResult.  # noqa: E501
         :type sim_types: list[str]
@@ -166,7 +168,7 @@ class GetStudyQueryResult(object):
 
 
         :return: The user_information of this GetStudyQueryResult.  # noqa: E501
-        :rtype: GetAllSupportSessionsQueryResultUserInformation
+        :rtype: GetStudyQueryResultUserInformation
         """
         return self._user_information
 
@@ -176,12 +178,33 @@ class GetStudyQueryResult(object):
 
 
         :param user_information: The user_information of this GetStudyQueryResult.  # noqa: E501
-        :type user_information: GetAllSupportSessionsQueryResultUserInformation
+        :type user_information: GetStudyQueryResultUserInformation
         """
-        if self.local_vars_configuration.client_side_validation and user_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `user_information`, must not be `None`")  # noqa: E501
 
         self._user_information = user_information
+
+    @property
+    def priority(self):
+        """Gets the priority of this GetStudyQueryResult.  # noqa: E501
+
+        The priority if the study is running. Otherwise null.  # noqa: E501
+
+        :return: The priority of this GetStudyQueryResult.  # noqa: E501
+        :rtype: object
+        """
+        return self._priority
+
+    @priority.setter
+    def priority(self, priority):
+        """Sets the priority of this GetStudyQueryResult.
+
+        The priority if the study is running. Otherwise null.  # noqa: E501
+
+        :param priority: The priority of this GetStudyQueryResult.  # noqa: E501
+        :type priority: object
+        """
+
+        self._priority = priority
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

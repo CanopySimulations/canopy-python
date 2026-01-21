@@ -76,8 +76,6 @@ class LabelDefinitions(object):
         :param config_label_definitions: The config_label_definitions of this LabelDefinitions.  # noqa: E501
         :type config_label_definitions: list[ConfigColumnLabelDefinitions]
         """
-        if self.local_vars_configuration.client_side_validation and config_label_definitions is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_label_definitions`, must not be `None`")  # noqa: E501
 
         self._config_label_definitions = config_label_definitions
 
@@ -99,8 +97,6 @@ class LabelDefinitions(object):
         :param simulation_label_definitions: The simulation_label_definitions of this LabelDefinitions.  # noqa: E501
         :type simulation_label_definitions: list[SimulationColumnLabelDefinitions]
         """
-        if self.local_vars_configuration.client_side_validation and simulation_label_definitions is None:  # noqa: E501
-            raise ValueError("Invalid value for `simulation_label_definitions`, must not be `None`")  # noqa: E501
 
         self._simulation_label_definitions = simulation_label_definitions
 

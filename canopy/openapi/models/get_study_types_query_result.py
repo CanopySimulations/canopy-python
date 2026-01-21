@@ -84,8 +84,6 @@ class GetStudyTypesQueryResult(object):
         :param study_types: The study_types of this GetStudyTypesQueryResult.  # noqa: E501
         :type study_types: list[StudyTypeDefinition]
         """
-        if self.local_vars_configuration.client_side_validation and study_types is None:  # noqa: E501
-            raise ValueError("Invalid value for `study_types`, must not be `None`")  # noqa: E501
 
         self._study_types = study_types
 
@@ -107,8 +105,6 @@ class GetStudyTypesQueryResult(object):
         :param sim_types: The sim_types of this GetStudyTypesQueryResult.  # noqa: E501
         :type sim_types: list[SimTypeDefinition]
         """
-        if self.local_vars_configuration.client_side_validation and sim_types is None:  # noqa: E501
-            raise ValueError("Invalid value for `sim_types`, must not be `None`")  # noqa: E501
 
         self._sim_types = sim_types
 
@@ -130,8 +126,6 @@ class GetStudyTypesQueryResult(object):
         :param config_types: The config_types of this GetStudyTypesQueryResult.  # noqa: E501
         :type config_types: list[ConfigTypeDefinition]
         """
-        if self.local_vars_configuration.client_side_validation and config_types is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_types`, must not be `None`")  # noqa: E501
 
         self._config_types = config_types
 
@@ -153,8 +147,6 @@ class GetStudyTypesQueryResult(object):
         :param config_type_metadata: The config_type_metadata of this GetStudyTypesQueryResult.  # noqa: E501
         :type config_type_metadata: list[ConfigTypeMetadata]
         """
-        if self.local_vars_configuration.client_side_validation and config_type_metadata is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_type_metadata`, must not be `None`")  # noqa: E501
 
         self._config_type_metadata = config_type_metadata
 

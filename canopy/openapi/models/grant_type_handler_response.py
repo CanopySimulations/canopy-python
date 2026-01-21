@@ -45,6 +45,7 @@ class GrantTypeHandlerResponse(object):
         'roles': 'str',
         'tenant_id': 'str',
         'token_type': 'str',
+        'two_factor_enabled': 'bool',
         'user_id': 'str',
         'username': 'str'
     }
@@ -59,11 +60,12 @@ class GrantTypeHandlerResponse(object):
         'roles': 'roles',
         'tenant_id': 'tenant_id',
         'token_type': 'token_type',
+        'two_factor_enabled': 'two_factor_enabled',
         'user_id': 'user_id',
         'username': 'username'
     }
 
-    def __init__(self, expires=None, issued=None, access_token=None, canopysimulationsclient_id=None, expires_in=None, refresh_token=None, roles=None, tenant_id=None, token_type=None, user_id=None, username=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, expires=None, issued=None, access_token=None, canopysimulationsclient_id=None, expires_in=None, refresh_token=None, roles=None, tenant_id=None, token_type=None, two_factor_enabled=None, user_id=None, username=None, local_vars_configuration=None):  # noqa: E501
         """GrantTypeHandlerResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -78,6 +80,7 @@ class GrantTypeHandlerResponse(object):
         self._roles = None
         self._tenant_id = None
         self._token_type = None
+        self._two_factor_enabled = None
         self._user_id = None
         self._username = None
         self.discriminator = None
@@ -92,6 +95,8 @@ class GrantTypeHandlerResponse(object):
         self.roles = roles
         self.tenant_id = tenant_id
         self.token_type = token_type
+        if two_factor_enabled is not None:
+            self.two_factor_enabled = two_factor_enabled
         self.user_id = user_id
         self.username = username
 
@@ -283,6 +288,27 @@ class GrantTypeHandlerResponse(object):
         """
 
         self._token_type = token_type
+
+    @property
+    def two_factor_enabled(self):
+        """Gets the two_factor_enabled of this GrantTypeHandlerResponse.  # noqa: E501
+
+
+        :return: The two_factor_enabled of this GrantTypeHandlerResponse.  # noqa: E501
+        :rtype: bool
+        """
+        return self._two_factor_enabled
+
+    @two_factor_enabled.setter
+    def two_factor_enabled(self, two_factor_enabled):
+        """Sets the two_factor_enabled of this GrantTypeHandlerResponse.
+
+
+        :param two_factor_enabled: The two_factor_enabled of this GrantTypeHandlerResponse.  # noqa: E501
+        :type two_factor_enabled: bool
+        """
+
+        self._two_factor_enabled = two_factor_enabled
 
     @property
     def user_id(self):

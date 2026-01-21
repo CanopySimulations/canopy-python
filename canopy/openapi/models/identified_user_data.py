@@ -36,57 +36,36 @@ class IdentifiedUserData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'is_update': 'bool',
         'tenant': 'str',
         'username': 'str',
-        'email': 'str'
+        'email': 'str',
+        'is_update': 'bool'
     }
 
     attribute_map = {
-        'is_update': 'isUpdate',
         'tenant': 'tenant',
         'username': 'username',
-        'email': 'email'
+        'email': 'email',
+        'is_update': 'isUpdate'
     }
 
-    def __init__(self, is_update=None, tenant=None, username=None, email=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, tenant=None, username=None, email=None, is_update=None, local_vars_configuration=None):  # noqa: E501
         """IdentifiedUserData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._is_update = None
         self._tenant = None
         self._username = None
         self._email = None
+        self._is_update = None
         self.discriminator = None
 
-        if is_update is not None:
-            self.is_update = is_update
         self.tenant = tenant
         self.username = username
         self.email = email
-
-    @property
-    def is_update(self):
-        """Gets the is_update of this IdentifiedUserData.  # noqa: E501
-
-
-        :return: The is_update of this IdentifiedUserData.  # noqa: E501
-        :rtype: bool
-        """
-        return self._is_update
-
-    @is_update.setter
-    def is_update(self, is_update):
-        """Sets the is_update of this IdentifiedUserData.
-
-
-        :param is_update: The is_update of this IdentifiedUserData.  # noqa: E501
-        :type is_update: bool
-        """
-
-        self._is_update = is_update
+        if is_update is not None:
+            self.is_update = is_update
 
     @property
     def tenant(self):
@@ -150,6 +129,27 @@ class IdentifiedUserData(object):
         """
 
         self._email = email
+
+    @property
+    def is_update(self):
+        """Gets the is_update of this IdentifiedUserData.  # noqa: E501
+
+
+        :return: The is_update of this IdentifiedUserData.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_update
+
+    @is_update.setter
+    def is_update(self, is_update):
+        """Sets the is_update of this IdentifiedUserData.
+
+
+        :param is_update: The is_update of this IdentifiedUserData.  # noqa: E501
+        :type is_update: bool
+        """
+
+        self._is_update = is_update
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

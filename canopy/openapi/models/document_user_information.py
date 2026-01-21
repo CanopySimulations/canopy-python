@@ -72,8 +72,6 @@ class DocumentUserInformation(object):
         :param tenants: The tenants of this DocumentUserInformation.  # noqa: E501
         :type tenants: list[TenantInformation]
         """
-        if self.local_vars_configuration.client_side_validation and tenants is None:  # noqa: E501
-            raise ValueError("Invalid value for `tenants`, must not be `None`")  # noqa: E501
 
         self._tenants = tenants
 

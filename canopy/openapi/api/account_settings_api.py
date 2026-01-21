@@ -37,7 +37,7 @@ class AccountSettingsApi(object):
         self.api_client = api_client
 
     def account_settings_get(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """account_settings_get  # noqa: E501
+        """Gets the account settings for the specified user.  This contains information such as their username, their email, and whether their email address  has been confirmed.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -45,9 +45,9 @@ class AccountSettingsApi(object):
         >>> thread = api.account_settings_get(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -68,7 +68,7 @@ class AccountSettingsApi(object):
         return self.account_settings_get_with_http_info(tenant_id, user_id, **kwargs)  # noqa: E501
 
     def account_settings_get_with_http_info(self, tenant_id, user_id, **kwargs):  # noqa: E501
-        """account_settings_get  # noqa: E501
+        """Gets the account settings for the specified user.  This contains information such as their username, their email, and whether their email address  has been confirmed.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -76,9 +76,9 @@ class AccountSettingsApi(object):
         >>> thread = api.account_settings_get_with_http_info(tenant_id, user_id, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -182,7 +182,7 @@ class AccountSettingsApi(object):
             _request_auth=local_var_params.get('_request_auth'))
 
     def account_settings_put(self, tenant_id, user_id, account_settings_put_request, **kwargs):  # noqa: E501
-        """account_settings_put  # noqa: E501
+        """Updates the account settings for the specified user.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -190,11 +190,11 @@ class AccountSettingsApi(object):
         >>> thread = api.account_settings_put(tenant_id, user_id, account_settings_put_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
-        :param account_settings_put_request: (required)
+        :param account_settings_put_request: The updated account settings.  Only `NewUsername` and `NewEmail` are required, and they are only updated if they differ from the current username and email. (required)
         :type account_settings_put_request: AccountSettingsPutRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -215,7 +215,7 @@ class AccountSettingsApi(object):
         return self.account_settings_put_with_http_info(tenant_id, user_id, account_settings_put_request, **kwargs)  # noqa: E501
 
     def account_settings_put_with_http_info(self, tenant_id, user_id, account_settings_put_request, **kwargs):  # noqa: E501
-        """account_settings_put  # noqa: E501
+        """Updates the account settings for the specified user.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -223,11 +223,11 @@ class AccountSettingsApi(object):
         >>> thread = api.account_settings_put_with_http_info(tenant_id, user_id, account_settings_put_request, async_req=True)
         >>> result = thread.get()
 
-        :param tenant_id: (required)
+        :param tenant_id: The tenant ID of the user. (required)
         :type tenant_id: str
-        :param user_id: (required)
+        :param user_id: The user ID of the user. (required)
         :type user_id: str
-        :param account_settings_put_request: (required)
+        :param account_settings_put_request: The updated account settings.  Only `NewUsername` and `NewEmail` are required, and they are only updated if they differ from the current username and email. (required)
         :type account_settings_put_request: AccountSettingsPutRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

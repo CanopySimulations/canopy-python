@@ -68,7 +68,8 @@ class StudyDocumentStudyDocumentDataSource(object):
         self.user_id = user_id
         self.config_id = config_id
         self.name = name
-        self.is_edited = is_edited
+        if is_edited is not None:
+            self.is_edited = is_edited
 
     @property
     def config_type(self):
@@ -88,8 +89,6 @@ class StudyDocumentStudyDocumentDataSource(object):
         :param config_type: The config_type of this StudyDocumentStudyDocumentDataSource.  # noqa: E501
         :type config_type: object
         """
-        if self.local_vars_configuration.client_side_validation and config_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `config_type`, must not be `None`")  # noqa: E501
 
         self._config_type = config_type
 
@@ -153,8 +152,6 @@ class StudyDocumentStudyDocumentDataSource(object):
         :param name: The name of this StudyDocumentStudyDocumentDataSource.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -176,8 +173,6 @@ class StudyDocumentStudyDocumentDataSource(object):
         :param is_edited: The is_edited of this StudyDocumentStudyDocumentDataSource.  # noqa: E501
         :type is_edited: bool
         """
-        if self.local_vars_configuration.client_side_validation and is_edited is None:  # noqa: E501
-            raise ValueError("Invalid value for `is_edited`, must not be `None`")  # noqa: E501
 
         self._is_edited = is_edited
 

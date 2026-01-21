@@ -70,6 +70,7 @@ class DuplicateConfigsData(object):
     def source_tenant_id(self):
         """Gets the source_tenant_id of this DuplicateConfigsData.  # noqa: E501
 
+        The ID of the source tenant.  # noqa: E501
 
         :return: The source_tenant_id of this DuplicateConfigsData.  # noqa: E501
         :rtype: object
@@ -80,6 +81,7 @@ class DuplicateConfigsData(object):
     def source_tenant_id(self, source_tenant_id):
         """Sets the source_tenant_id of this DuplicateConfigsData.
 
+        The ID of the source tenant.  # noqa: E501
 
         :param source_tenant_id: The source_tenant_id of this DuplicateConfigsData.  # noqa: E501
         :type source_tenant_id: object
@@ -91,6 +93,7 @@ class DuplicateConfigsData(object):
     def source_worksheet_id(self):
         """Gets the source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
 
+        The ID of the source worksheet.  # noqa: E501
 
         :return: The source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
         :rtype: object
@@ -101,6 +104,7 @@ class DuplicateConfigsData(object):
     def source_worksheet_id(self, source_worksheet_id):
         """Sets the source_worksheet_id of this DuplicateConfigsData.
 
+        The ID of the source worksheet.  # noqa: E501
 
         :param source_worksheet_id: The source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
         :type source_worksheet_id: object
@@ -112,6 +116,7 @@ class DuplicateConfigsData(object):
     def source_config_ids(self):
         """Gets the source_config_ids of this DuplicateConfigsData.  # noqa: E501
 
+        The IDs of the source configs.  # noqa: E501
 
         :return: The source_config_ids of this DuplicateConfigsData.  # noqa: E501
         :rtype: list[object]
@@ -122,6 +127,7 @@ class DuplicateConfigsData(object):
     def source_config_ids(self, source_config_ids):
         """Sets the source_config_ids of this DuplicateConfigsData.
 
+        The IDs of the source configs.  # noqa: E501
 
         :param source_config_ids: The source_config_ids of this DuplicateConfigsData.  # noqa: E501
         :type source_config_ids: list[object]
@@ -133,6 +139,7 @@ class DuplicateConfigsData(object):
     def source_default_config_ids(self):
         """Gets the source_default_config_ids of this DuplicateConfigsData.  # noqa: E501
 
+        The IDs of the source default configs.  # noqa: E501
 
         :return: The source_default_config_ids of this DuplicateConfigsData.  # noqa: E501
         :rtype: list[DefaultConfigId]
@@ -143,6 +150,7 @@ class DuplicateConfigsData(object):
     def source_default_config_ids(self, source_default_config_ids):
         """Sets the source_default_config_ids of this DuplicateConfigsData.
 
+        The IDs of the source default configs.  # noqa: E501
 
         :param source_default_config_ids: The source_default_config_ids of this DuplicateConfigsData.  # noqa: E501
         :type source_default_config_ids: list[DefaultConfigId]

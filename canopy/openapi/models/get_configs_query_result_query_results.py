@@ -60,7 +60,8 @@ class GetConfigsQueryResultQueryResults(object):
 
         self.documents = documents
         self.continuation_token = continuation_token
-        self.has_more_results = has_more_results
+        if has_more_results is not None:
+            self.has_more_results = has_more_results
 
     @property
     def documents(self):
@@ -80,8 +81,6 @@ class GetConfigsQueryResultQueryResults(object):
         :param documents: The documents of this GetConfigsQueryResultQueryResults.  # noqa: E501
         :type documents: list[CanopyDocument]
         """
-        if self.local_vars_configuration.client_side_validation and documents is None:  # noqa: E501
-            raise ValueError("Invalid value for `documents`, must not be `None`")  # noqa: E501
 
         self._documents = documents
 
@@ -124,8 +123,6 @@ class GetConfigsQueryResultQueryResults(object):
         :param has_more_results: The has_more_results of this GetConfigsQueryResultQueryResults.  # noqa: E501
         :type has_more_results: bool
         """
-        if self.local_vars_configuration.client_side_validation and has_more_results is None:  # noqa: E501
-            raise ValueError("Invalid value for `has_more_results`, must not be `None`")  # noqa: E501
 
         self._has_more_results = has_more_results
 

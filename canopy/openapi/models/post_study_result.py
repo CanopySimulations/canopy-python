@@ -58,6 +58,7 @@ class PostStudyResult(object):
     def study_id(self):
         """Gets the study_id of this PostStudyResult.  # noqa: E501
 
+        The ID of the study.  # noqa: E501
 
         :return: The study_id of this PostStudyResult.  # noqa: E501
         :rtype: object
@@ -68,12 +69,11 @@ class PostStudyResult(object):
     def study_id(self, study_id):
         """Sets the study_id of this PostStudyResult.
 
+        The ID of the study.  # noqa: E501
 
         :param study_id: The study_id of this PostStudyResult.  # noqa: E501
         :type study_id: object
         """
-        if self.local_vars_configuration.client_side_validation and study_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `study_id`, must not be `None`")  # noqa: E501
 
         self._study_id = study_id
 
