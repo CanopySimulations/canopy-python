@@ -152,7 +152,7 @@ class AvailabilityApi(object):
             ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {
             200: "AvailabilityResult",
@@ -274,7 +274,7 @@ class AvailabilityApi(object):
 
         body_params = None
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
