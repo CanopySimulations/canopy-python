@@ -58,7 +58,7 @@ jobs:
 
     - script: |
         pytest integration_tests
-      condition: and(succeeded(), eq(variables['isPullRequest'], 'False'))
+      condition: succeeded()
       displayName: 'pytest integration_tests'
       env:
         CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS: $(CanopyPythonIntegrationTestCredentials)

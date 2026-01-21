@@ -154,7 +154,7 @@ class MembershipApi(object):
 
         body_params = None
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
@@ -293,7 +293,7 @@ class MembershipApi(object):
 
         body_params = None
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
@@ -720,7 +720,7 @@ class MembershipApi(object):
                 header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
@@ -859,7 +859,7 @@ class MembershipApi(object):
 
         body_params = None
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
@@ -996,7 +996,7 @@ class MembershipApi(object):
                 header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
@@ -1115,7 +1115,7 @@ class MembershipApi(object):
 
         body_params = None
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
@@ -1252,7 +1252,7 @@ class MembershipApi(object):
                 header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
@@ -1389,7 +1389,7 @@ class MembershipApi(object):
                 header_params['Content-Type'] = content_types_list
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {}
 
