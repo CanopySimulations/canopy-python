@@ -585,6 +585,7 @@ class SimVersionApi(object):
 
         response_types_map = {
             200: "object",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -863,6 +864,10 @@ class SimVersionApi(object):
         body_params = None
         if 'sim_version_post_sim_version_request' in local_var_params:
             body_params = local_var_params['sim_version_post_sim_version_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(

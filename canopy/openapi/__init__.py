@@ -103,6 +103,7 @@ from canopy.openapi.models.deployments_create_deployment_request import Deployme
 from canopy.openapi.models.deployments_post_deployment_note_request import DeploymentsPostDeploymentNoteRequest
 from canopy.openapi.models.deployments_update_deployment_request import DeploymentsUpdateDeploymentRequest
 from canopy.openapi.models.deployments_update_invoice_bot_deployment_request import DeploymentsUpdateInvoiceBotDeploymentRequest
+from canopy.openapi.models.deployments_update_subscription_level_request import DeploymentsUpdateSubscriptionLevelRequest
 from canopy.openapi.models.document_custom_property_data import DocumentCustomPropertyData
 from canopy.openapi.models.document_custom_property_group import DocumentCustomPropertyGroup
 from canopy.openapi.models.document_group_result import DocumentGroupResult
@@ -243,6 +244,7 @@ from canopy.openapi.models.pool_settings import PoolSettings
 from canopy.openapi.models.pool_state import PoolState
 from canopy.openapi.models.pool_type import PoolType
 from canopy.openapi.models.post_study_result import PostStudyResult
+from canopy.openapi.models.problem_details import ProblemDetails
 from canopy.openapi.models.query_encrypted_data_query_result import QueryEncryptedDataQueryResult
 from canopy.openapi.models.query_encrypted_data_tenant_result import QueryEncryptedDataTenantResult
 from canopy.openapi.models.registration_data import RegistrationData
@@ -305,6 +307,7 @@ from canopy.openapi.models.text_document import TextDocument
 from canopy.openapi.models.text_document_optional_content import TextDocumentOptionalContent
 from canopy.openapi.models.update_deployment_data import UpdateDeploymentData
 from canopy.openapi.models.update_invoice_bot_deployment_data import UpdateInvoiceBotDeploymentData
+from canopy.openapi.models.update_subscription_level_data import UpdateSubscriptionLevelData
 from canopy.openapi.models.updated_account_settings import UpdatedAccountSettings
 from canopy.openapi.models.updated_admin_tenant_settings import UpdatedAdminTenantSettings
 from canopy.openapi.models.updated_admin_tenant_settings_settings import UpdatedAdminTenantSettingsSettings

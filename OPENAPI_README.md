@@ -129,6 +129,7 @@ Class | Method | HTTP request | Description
 *DeploymentsApi* | [**deployments_post_deployment_note**](docs/DeploymentsApi.md#deployments_post_deployment_note) | **POST** /deployments/{deploymentId}/notes | Adds a note to the specified deployment.
 *DeploymentsApi* | [**deployments_update_deployment**](docs/DeploymentsApi.md#deployments_update_deployment) | **PUT** /deployments/{deploymentId} | Updates the specified deployment.
 *DeploymentsApi* | [**deployments_update_invoice_bot_deployment**](docs/DeploymentsApi.md#deployments_update_invoice_bot_deployment) | **PATCH** /deployments/{deploymentId}/invoicebot | Updates invoice bot fields for the specified deployment.
+*DeploymentsApi* | [**deployments_update_subscription_level**](docs/DeploymentsApi.md#deployments_update_subscription_level) | **PUT** /deployments/subscription-levels/{id} | Updates the specified subscription level.
 *EncryptionApi* | [**encryption_decrypt**](docs/EncryptionApi.md#encryption_decrypt) | **POST** /encryption/decrypt | Decrypts the specified data.
 *EncryptionApi* | [**encryption_delete_config_permission**](docs/EncryptionApi.md#encryption_delete_config_permission) | **DELETE** /encryption/config-permissions/{tenantId}/{encryptingTenantShortName}/{decryptingTenantShortName} | Deletes an encryption key permission for the specified tenant.  Config permissions represent which encryption keys are allowed to be used by which tenants to re-encrypt any encrypted configs you provide.
 *EncryptionApi* | [**encryption_delete_key_permission**](docs/EncryptionApi.md#encryption_delete_key_permission) | **DELETE** /encryption/key-permissions/{tenantId}/{encryptingTenantShortName} | Deletes an encryption key permission for the specified tenant.  Key permissions represent which tenants are allowed to use your tenant&#39;s encryption key.
@@ -297,6 +298,7 @@ Class | Method | HTTP request | Description
  - [DeploymentsPostDeploymentNoteRequest](docs/DeploymentsPostDeploymentNoteRequest.md)
  - [DeploymentsUpdateDeploymentRequest](docs/DeploymentsUpdateDeploymentRequest.md)
  - [DeploymentsUpdateInvoiceBotDeploymentRequest](docs/DeploymentsUpdateInvoiceBotDeploymentRequest.md)
+ - [DeploymentsUpdateSubscriptionLevelRequest](docs/DeploymentsUpdateSubscriptionLevelRequest.md)
  - [DocumentCustomPropertyData](docs/DocumentCustomPropertyData.md)
  - [DocumentCustomPropertyGroup](docs/DocumentCustomPropertyGroup.md)
  - [DocumentGroupResult](docs/DocumentGroupResult.md)
@@ -437,6 +439,7 @@ Class | Method | HTTP request | Description
  - [PoolState](docs/PoolState.md)
  - [PoolType](docs/PoolType.md)
  - [PostStudyResult](docs/PostStudyResult.md)
+ - [ProblemDetails](docs/ProblemDetails.md)
  - [QueryEncryptedDataQueryResult](docs/QueryEncryptedDataQueryResult.md)
  - [QueryEncryptedDataTenantResult](docs/QueryEncryptedDataTenantResult.md)
  - [RegistrationData](docs/RegistrationData.md)
@@ -499,6 +502,7 @@ Class | Method | HTTP request | Description
  - [TextDocumentOptionalContent](docs/TextDocumentOptionalContent.md)
  - [UpdateDeploymentData](docs/UpdateDeploymentData.md)
  - [UpdateInvoiceBotDeploymentData](docs/UpdateInvoiceBotDeploymentData.md)
+ - [UpdateSubscriptionLevelData](docs/UpdateSubscriptionLevelData.md)
  - [UpdatedAccountSettings](docs/UpdatedAccountSettings.md)
  - [UpdatedAdminTenantSettings](docs/UpdatedAdminTenantSettings.md)
  - [UpdatedAdminTenantSettingsSettings](docs/UpdatedAdminTenantSettingsSettings.md)

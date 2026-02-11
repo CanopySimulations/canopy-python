@@ -143,6 +143,10 @@ class TenancyApi(object):
         local_var_files = {}
 
         body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # Authentication setting
         auth_settings = ['Bearer']  # noqa: E501
 
@@ -281,6 +285,7 @@ class TenancyApi(object):
 
         response_types_map = {
             200: "GetTenantQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -416,6 +421,7 @@ class TenancyApi(object):
 
         response_types_map = {
             200: "GetTenantUsersQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -664,6 +670,10 @@ class TenancyApi(object):
         body_params = None
         if 'tenancy_post_tenant_request' in local_var_params:
             body_params = local_var_params['tenancy_post_tenant_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -811,6 +821,10 @@ class TenancyApi(object):
         body_params = None
         if 'tenancy_put_tenant_request' in local_var_params:
             body_params = local_var_params['tenancy_put_tenant_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(

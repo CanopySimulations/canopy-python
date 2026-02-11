@@ -152,6 +152,7 @@ class TenantSettingsApi(object):
 
         response_types_map = {
             200: "GetAdminTenantSettingsQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -287,6 +288,7 @@ class TenantSettingsApi(object):
 
         response_types_map = {
             200: "GetTenantChannelImportMappingsQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -422,6 +424,7 @@ class TenantSettingsApi(object):
 
         response_types_map = {
             200: "GetTenantChannelWhitelistsQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -699,6 +702,7 @@ class TenantSettingsApi(object):
 
         response_types_map = {
             200: "GetTenantSettingsSimVersionQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -834,6 +838,7 @@ class TenantSettingsApi(object):
 
         response_types_map = {
             200: "GetTenantWorksheetLabelDefinitionsQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -879,7 +884,7 @@ class TenantSettingsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: str
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         return self.tenant_settings_put_admin_tenant_settings_with_http_info(tenant_id, tenant_settings_put_admin_tenant_settings_request, **kwargs)  # noqa: E501
@@ -918,7 +923,7 @@ class TenantSettingsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         local_var_params = locals()
@@ -985,9 +990,7 @@ class TenantSettingsApi(object):
         # Authentication setting
         auth_settings = ['Bearer']  # noqa: E501
 
-        response_types_map = {
-            200: "str",
-        }
+        response_types_map = {}
 
         return self.api_client.call_api(
             '/tenant-settings/admin/{tenantId}', 'PUT',
@@ -1123,6 +1126,10 @@ class TenantSettingsApi(object):
         body_params = None
         if 'tenant_settings_put_tenant_channel_import_mappings_request' in local_var_params:
             body_params = local_var_params['tenant_settings_put_tenant_channel_import_mappings_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -1270,6 +1277,10 @@ class TenantSettingsApi(object):
         body_params = None
         if 'tenant_settings_put_tenant_channel_whitelists_request' in local_var_params:
             body_params = local_var_params['tenant_settings_put_tenant_channel_whitelists_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -1417,6 +1428,10 @@ class TenantSettingsApi(object):
         body_params = None
         if 'tenant_settings_put_tenant_default_custom_property_names_request' in local_var_params:
             body_params = local_var_params['tenant_settings_put_tenant_default_custom_property_names_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -1564,6 +1579,10 @@ class TenantSettingsApi(object):
         body_params = None
         if 'tenant_settings_put_tenant_settings_sim_version_request' in local_var_params:
             body_params = local_var_params['tenant_settings_put_tenant_settings_sim_version_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -1711,6 +1730,10 @@ class TenantSettingsApi(object):
         body_params = None
         if 'tenant_settings_put_tenant_worksheet_label_definitions_request' in local_var_params:
             body_params = local_var_params['tenant_settings_put_tenant_worksheet_label_definitions_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(

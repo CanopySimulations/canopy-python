@@ -158,42 +158,22 @@ This needs to be tidied up, improved, and automated.
 Additional options can be found here: https://openapi-generator.tech/docs/generators/openapi/
  - e.g. enumUnknownDefaultCase could be useful if the remaining exposed enums change in future. 
 
-You can use the Dockerfile in this repository to create a docker image to generate the new API stubs:
+You can use the Dockerfile in this repository to create a docker image to generate the new API stubs.  
+By default it will use https://api.canopysimulations.com as the source of the swagger
+but you can pass a domain name to ./generate_client.sh like this:  
+./generate_client.sh "http://localhost:44300"  
+it will ask you to confirm the source of the swagger before running the generator
 
 ```sh
 docker image build -t canopy-python-gen:1 .
 docker container run -i -t --mount type=bind,src='<path>/<to>/canopy/canopy-python',dst=/canopy/repo canopy-python-gen:1 /bin/bash
+./generate_client.sh
 ```
 
-```sh
-java -jar openapi-generator-cli.jar generate -g python-legacy -i https://api.canopysimulations.com/swagger/v1/swagger.json -o ./gen --package-name "canopy.openapi"
-rm -r repo/canopy/openapi
-rm -r repo/docs
-cp -r gen/canopy/openapi repo/canopy
-cp -r gen/docs repo
-cp -r gen/README.md repo/OPENAPI_README.md
-```
-
-To regenerate the `asyncio` files execute:
-```sh
-rm -r gen
-java -jar openapi-generator-cli.jar generate -g python-legacy -i https://api.canopysimulations.com/swagger/v1/swagger.json -o ./gen --package-name "canopy.openapi" --library asyncio
-mv gen/canopy/openapi gen/canopy/openapi_asyncio
-rm -r gen/canopy/openapi_asyncio/api
-rm -r gen/canopy/openapi_asyncio/models
-rm gen/canopy/openapi_asyncio/configuration.py
-rm gen/canopy/openapi_asyncio/exceptions.py
-sed -i 's/from canopy\.openapi import rest/from canopy.openapi_asyncio import rest/g' gen/canopy/openapi_asyncio/api_client.py
-sed -i '/from canopy.*/d' gen/canopy/openapi_asyncio/__init__.py
-sed -i '/# import /d' gen/canopy/openapi_asyncio/__init__.py
-echo 'from canopy.openapi_asyncio.api_client import ApiClient' >> gen/canopy/openapi_asyncio/__init__.py
-cp -r gen/canopy/openapi_asyncio repo/canopy
-```
-
-Note: The `openapi/configuration.py` file will need to be manually modified to add the default API host URL.
-Note: The `openapi_asyncio/rest.py` file will need to be manually modified to support proxy servers after generation. 
-Note: The `openapi_asyncio/client_api.py` and `openapi/client_api.py` files will need to be manually modified to 
-support numpy array serialization after generation. 
+Note: The `openapi/configuration.py` file will need to be manually modified to add the default API host URL.  
+Note: The `openapi_asyncio/rest.py` file will need to be manually modified to support proxy servers after generation.  
+Note: The `openapi_asyncio/client_api.py` and `openapi/client_api.py` files will need to be manually modified to support numpy array serialization after generation.  
+Note: The `availability_api.py`, `membership_api.py` and `study_api.py` files will need reverting to specify 'Bearer' in AuthSettings  
 
 ## Documentation for OpenAPI Generated Client
 

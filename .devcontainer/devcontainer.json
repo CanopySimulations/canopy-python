@@ -2,11 +2,10 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/anaconda
 {
 	"name": "Anaconda (Python 3)",
-	"build": { 
+	"build": {
 		"context": "..",
 		"dockerfile": "Dockerfile"
 	},
-
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -14,26 +13,25 @@
 			]
 		}
 	},
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest"
+		}
+	},
 	"containerEnv": {
 		// For the following to work you need to have set he environment variable
 		// in windows and run:
 		// setx WSLENV "$($env:WSLENV):CANOPY_ADMIN_TOOLS_CONFIGURATION_URL"
 		"CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS": "${localEnv:CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS}"
 	}
-
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "python --version",
-
 	// Configure tool-specific properties.
 	// "customizations": {},
-
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }

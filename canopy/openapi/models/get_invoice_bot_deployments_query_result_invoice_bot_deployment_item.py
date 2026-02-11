@@ -51,7 +51,7 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
         'last_invoice_compute_credit': 'int',
         'near_storage_limit': 'bool',
         'enabled': 'bool',
-        'tenant_id': 'str',
+        'tenant_id': 'object',
         'credit_rollover': 'bool',
         'do_not_invoice': 'bool'
     }
@@ -449,7 +449,7 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
 
 
         :return: The tenant_id of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._tenant_id
 
@@ -459,7 +459,7 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
 
 
         :param tenant_id: The tenant_id of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.  # noqa: E501
-        :type tenant_id: str
+        :type tenant_id: object
         """
 
         self._tenant_id = tenant_id

@@ -726,6 +726,7 @@ class EncryptionApi(object):
 
         response_types_map = {
             200: "GetConfigPermissionsQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -861,6 +862,7 @@ class EncryptionApi(object):
 
         response_types_map = {
             200: "GetKeyPermissionsQueryResult",
+            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
