@@ -159,21 +159,77 @@ Additional options can be found here: https://openapi-generator.tech/docs/genera
  - e.g. enumUnknownDefaultCase could be useful if the remaining exposed enums change in future. 
 
 You can use the Dockerfile in this repository to create a docker image to generate the new API stubs.  
-By default it will use https://api.canopysimulations.com as the source of the swagger
-but you can pass a domain name to ./generate_client.sh like this:  
-./generate_client.sh "http://localhost:44300"  
-it will ask you to confirm the source of the swagger before running the generator
 
+You can open this project from VSCode running in windows or in a container, but keep this source in a windows share  
+(copying from a container into a WSL share is problematic and didn't work for me)
+
+This process defaults to using the production api as the source of the client.  If you wish to run against a local build there are extra steps to follow, [see below](#using-a-local-version-of-the-api-as-source)
+
+## step by step
+1. Create the docker image to host the java runtime
 ```sh
 docker image build -t canopy-python-gen:1 .
+```
+2. open a session in the new container and bind it to the source folder
+```sh
 docker container run -i -t --mount type=bind,src='<path>/<to>/canopy/canopy-python',dst=/canopy/repo canopy-python-gen:1 /bin/bash
+``` 
+if the source is in C:\users\username\source\Canopy-Python the command would be:
+```
+docker container run -i -t --mount type=bind,src='C:\users\username\source\Canopy-Python',dst=/canopy/repo canopy-python-gen:1 /bin/bash
+```
+3. run the script to generate the client and copy it into the source folder:
+```sh
 ./generate_client.sh
+```
+4. check that the url is correct and if so type y:
+```
+Generated URL:
+  https://api.canopysimulations.com/swagger/v1/swagger.json
+
+Proceed? (y/n):
 ```
 
 Note: The `openapi/configuration.py` file will need to be manually modified to add the default API host URL.  
 Note: The `openapi_asyncio/rest.py` file will need to be manually modified to support proxy servers after generation.  
 Note: The `openapi_asyncio/client_api.py` and `openapi/client_api.py` files will need to be manually modified to support numpy array serialization after generation.  
 Note: The `availability_api.py`, `membership_api.py` and `study_api.py` files will need reverting to specify 'Bearer' in AuthSettings  
+
+## Using a local version of the API as source
+I had difficulty connecting to the local version of the api when it was served under https.  While users can choose to ignore the risk when running in a browser that is not the case when connecting from the docker container.
+If found it was simpler to modify the API project to serve via http by making the following changes:
+1. edit .devcontainer/devcontainer.json and replace the forwarded ports:  
+```
+	"forwardPorts": [23911]
+```
+2. edit Canopy.Api.App/Properties/launchSettings.json:  
+```
+	"sslPort": 0  
+    applicationUrl: "http://localhost:23911",  
+```
+
+3. edit Canopy.Api.App/appsettings.json:  
+```
+  "WEBSITE_BASE_URL": "http://localhost:4200/",  
+  "API_BASE_URL": "http://localhost:23911/",
+```
+4. edit Canopy.Identity.App/appsettings.json:  
+```
+  "WEBSITE_BASE_URL": "http://localhost:4200/",  
+  "API_BASE_URL": "http://localhost:23911/",
+```
+5. edit docker-compose.yml
+```
+      - ASPNETCORE_URLS=http://localhost:23911
+```
+If you then build and deploy the api it shoud be accessible on http://localhost:23911/swagger/index.html
+
+To use that endpoint when generating the client:
+```
+./generate_client.sh http://host.docker.internal:23911
+```
+If you know an easier way to sidestep this issue, for example making the client generator ignore certificate errors, then please update this document!
+
 
 ## Documentation for OpenAPI Generated Client
 

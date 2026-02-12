@@ -40,7 +40,8 @@ class GetSubscriptionLevelQueryResult(object):
         'level': 'str',
         'default_nodes': 'int',
         'default_monthly_compute_credits': 'int',
-        'default_monthly_storage_credits': 'int'
+        'default_monthly_storage_credits': 'int',
+        'excess_compute_credit_cost': 'float'
     }
 
     attribute_map = {
@@ -48,10 +49,11 @@ class GetSubscriptionLevelQueryResult(object):
         'level': 'level',
         'default_nodes': 'defaultNodes',
         'default_monthly_compute_credits': 'defaultMonthlyComputeCredits',
-        'default_monthly_storage_credits': 'defaultMonthlyStorageCredits'
+        'default_monthly_storage_credits': 'defaultMonthlyStorageCredits',
+        'excess_compute_credit_cost': 'excessComputeCreditCost'
     }
 
-    def __init__(self, id=None, level=None, default_nodes=None, default_monthly_compute_credits=None, default_monthly_storage_credits=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, level=None, default_nodes=None, default_monthly_compute_credits=None, default_monthly_storage_credits=None, excess_compute_credit_cost=None, local_vars_configuration=None):  # noqa: E501
         """GetSubscriptionLevelQueryResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -62,6 +64,7 @@ class GetSubscriptionLevelQueryResult(object):
         self._default_nodes = None
         self._default_monthly_compute_credits = None
         self._default_monthly_storage_credits = None
+        self._excess_compute_credit_cost = None
         self.discriminator = None
 
         if id is not None:
@@ -73,6 +76,8 @@ class GetSubscriptionLevelQueryResult(object):
             self.default_monthly_compute_credits = default_monthly_compute_credits
         if default_monthly_storage_credits is not None:
             self.default_monthly_storage_credits = default_monthly_storage_credits
+        if excess_compute_credit_cost is not None:
+            self.excess_compute_credit_cost = excess_compute_credit_cost
 
     @property
     def id(self):
@@ -178,6 +183,27 @@ class GetSubscriptionLevelQueryResult(object):
         """
 
         self._default_monthly_storage_credits = default_monthly_storage_credits
+
+    @property
+    def excess_compute_credit_cost(self):
+        """Gets the excess_compute_credit_cost of this GetSubscriptionLevelQueryResult.  # noqa: E501
+
+
+        :return: The excess_compute_credit_cost of this GetSubscriptionLevelQueryResult.  # noqa: E501
+        :rtype: float
+        """
+        return self._excess_compute_credit_cost
+
+    @excess_compute_credit_cost.setter
+    def excess_compute_credit_cost(self, excess_compute_credit_cost):
+        """Sets the excess_compute_credit_cost of this GetSubscriptionLevelQueryResult.
+
+
+        :param excess_compute_credit_cost: The excess_compute_credit_cost of this GetSubscriptionLevelQueryResult.  # noqa: E501
+        :type excess_compute_credit_cost: float
+        """
+
+        self._excess_compute_credit_cost = excess_compute_credit_cost
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

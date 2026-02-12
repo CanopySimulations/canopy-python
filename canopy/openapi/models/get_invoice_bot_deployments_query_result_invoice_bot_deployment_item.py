@@ -43,7 +43,7 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
         'cut_off_date': 'date',
         'max_nodes': 'int',
         'compute_credit_limit': 'int',
-        'subscription_level': 'int',
+        'excess_compute_credit_cost': 'float',
         'effective_date': 'date',
         'original_effective_date': 'date',
         'storage_credit_limit': 'int',
@@ -64,7 +64,7 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
         'cut_off_date': 'cutOffDate',
         'max_nodes': 'maxNodes',
         'compute_credit_limit': 'computeCreditLimit',
-        'subscription_level': 'subscriptionLevel',
+        'excess_compute_credit_cost': 'excessComputeCreditCost',
         'effective_date': 'effectiveDate',
         'original_effective_date': 'originalEffectiveDate',
         'storage_credit_limit': 'storageCreditLimit',
@@ -77,7 +77,7 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
         'do_not_invoice': 'doNotInvoice'
     }
 
-    def __init__(self, id=None, name=None, commercially_active=None, renewal_date=None, cut_off_date=None, max_nodes=None, compute_credit_limit=None, subscription_level=None, effective_date=None, original_effective_date=None, storage_credit_limit=None, last_invoice_date=None, last_invoice_compute_credit=None, near_storage_limit=None, enabled=None, tenant_id=None, credit_rollover=None, do_not_invoice=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, commercially_active=None, renewal_date=None, cut_off_date=None, max_nodes=None, compute_credit_limit=None, excess_compute_credit_cost=None, effective_date=None, original_effective_date=None, storage_credit_limit=None, last_invoice_date=None, last_invoice_compute_credit=None, near_storage_limit=None, enabled=None, tenant_id=None, credit_rollover=None, do_not_invoice=None, local_vars_configuration=None):  # noqa: E501
         """GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -90,7 +90,7 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
         self._cut_off_date = None
         self._max_nodes = None
         self._compute_credit_limit = None
-        self._subscription_level = None
+        self._excess_compute_credit_cost = None
         self._effective_date = None
         self._original_effective_date = None
         self._storage_credit_limit = None
@@ -112,7 +112,8 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
         self.cut_off_date = cut_off_date
         self.max_nodes = max_nodes
         self.compute_credit_limit = compute_credit_limit
-        self.subscription_level = subscription_level
+        if excess_compute_credit_cost is not None:
+            self.excess_compute_credit_cost = excess_compute_credit_cost
         self.effective_date = effective_date
         self.original_effective_date = original_effective_date
         self.storage_credit_limit = storage_credit_limit
@@ -276,25 +277,25 @@ class GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem(object):
         self._compute_credit_limit = compute_credit_limit
 
     @property
-    def subscription_level(self):
-        """Gets the subscription_level of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.  # noqa: E501
+    def excess_compute_credit_cost(self):
+        """Gets the excess_compute_credit_cost of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.  # noqa: E501
 
 
-        :return: The subscription_level of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.  # noqa: E501
-        :rtype: int
+        :return: The excess_compute_credit_cost of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.  # noqa: E501
+        :rtype: float
         """
-        return self._subscription_level
+        return self._excess_compute_credit_cost
 
-    @subscription_level.setter
-    def subscription_level(self, subscription_level):
-        """Sets the subscription_level of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.
+    @excess_compute_credit_cost.setter
+    def excess_compute_credit_cost(self, excess_compute_credit_cost):
+        """Sets the excess_compute_credit_cost of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.
 
 
-        :param subscription_level: The subscription_level of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.  # noqa: E501
-        :type subscription_level: int
+        :param excess_compute_credit_cost: The excess_compute_credit_cost of this GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.  # noqa: E501
+        :type excess_compute_credit_cost: float
         """
 
-        self._subscription_level = subscription_level
+        self._excess_compute_credit_cost = excess_compute_credit_cost
 
     @property
     def effective_date(self):
