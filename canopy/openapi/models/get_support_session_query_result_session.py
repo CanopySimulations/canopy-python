@@ -38,8 +38,8 @@ class GetSupportSessionQueryResultSession(object):
     openapi_types = {
         'is_open': 'bool',
         'modified_date': 'datetime',
-        'modified_tenant_id': 'object',
-        'modified_user_id': 'object',
+        'modified_tenant_id': 'str',
+        'modified_user_id': 'str',
         'responses': 'list[SupportSessionResponse]'
     }
 
@@ -120,7 +120,7 @@ class GetSupportSessionQueryResultSession(object):
 
 
         :return: The modified_tenant_id of this GetSupportSessionQueryResultSession.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._modified_tenant_id
 
@@ -130,7 +130,7 @@ class GetSupportSessionQueryResultSession(object):
 
 
         :param modified_tenant_id: The modified_tenant_id of this GetSupportSessionQueryResultSession.  # noqa: E501
-        :type modified_tenant_id: object
+        :type modified_tenant_id: str
         """
 
         self._modified_tenant_id = modified_tenant_id
@@ -141,7 +141,7 @@ class GetSupportSessionQueryResultSession(object):
 
 
         :return: The modified_user_id of this GetSupportSessionQueryResultSession.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._modified_user_id
 
@@ -151,7 +151,7 @@ class GetSupportSessionQueryResultSession(object):
 
 
         :param modified_user_id: The modified_user_id of this GetSupportSessionQueryResultSession.  # noqa: E501
-        :type modified_user_id: object
+        :type modified_user_id: str
         """
 
         self._modified_user_id = modified_user_id

@@ -1,4 +1,4 @@
-# GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem
+# InvoiceBotDeploymentItem
 
 
 ## Properties
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **last_invoice_compute_credit** | **int** |  | [optional] 
 **near_storage_limit** | **bool** |  | [optional] 
 **enabled** | **bool** |  | [optional] 
-**tenant_id** | **object** |  | [optional] 
+**tenant_id** | **str** |  | [optional] 
 **credit_rollover** | **bool** |  | [optional] 
 **do_not_invoice** | **bool** |  | [optional] 
 

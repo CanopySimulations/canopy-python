@@ -5,7 +5,7 @@ Admin tenant settings.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sim_version** | **object** |  | [optional] 
+**sim_version** | **str** |  | [optional] 
 **pool_settings** | [**AdminTenantSettingsPoolSettings**](AdminTenantSettingsPoolSettings.md) |  | [optional] 
 **secondary_pool_settings** | [**AdminTenantSettingsPoolSettings**](AdminTenantSettingsPoolSettings.md) |  | [optional] 
 **heavy_pool_settings** | [**AdminTenantSettingsPoolSettings**](AdminTenantSettingsPoolSettings.md) |  | [optional] 

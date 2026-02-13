@@ -36,7 +36,7 @@ class GetDeploymentQueryResultTenantItem(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'object',
+        'id': 'str',
         'name': 'str',
         'short_name': 'str',
         'document_database_id': 'str'
@@ -72,7 +72,7 @@ class GetDeploymentQueryResultTenantItem(object):
 
 
         :return: The id of this GetDeploymentQueryResultTenantItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._id
 
@@ -82,7 +82,7 @@ class GetDeploymentQueryResultTenantItem(object):
 
 
         :param id: The id of this GetDeploymentQueryResultTenantItem.  # noqa: E501
-        :type id: object
+        :type id: str
         """
 
         self._id = id

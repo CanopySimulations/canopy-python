@@ -36,10 +36,10 @@ class EncryptionConfigPermission(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'encrypting_tenant_short_name': 'object',
-        'decrypting_tenant_short_name': 'object',
-        'minimum_sim_version': 'object',
-        'description': 'object'
+        'encrypting_tenant_short_name': 'str',
+        'decrypting_tenant_short_name': 'str',
+        'minimum_sim_version': 'str',
+        'description': 'str'
     }
 
     attribute_map = {
@@ -72,7 +72,7 @@ class EncryptionConfigPermission(object):
 
 
         :return: The encrypting_tenant_short_name of this EncryptionConfigPermission.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._encrypting_tenant_short_name
 
@@ -82,7 +82,7 @@ class EncryptionConfigPermission(object):
 
 
         :param encrypting_tenant_short_name: The encrypting_tenant_short_name of this EncryptionConfigPermission.  # noqa: E501
-        :type encrypting_tenant_short_name: object
+        :type encrypting_tenant_short_name: str
         """
 
         self._encrypting_tenant_short_name = encrypting_tenant_short_name
@@ -93,7 +93,7 @@ class EncryptionConfigPermission(object):
 
 
         :return: The decrypting_tenant_short_name of this EncryptionConfigPermission.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._decrypting_tenant_short_name
 
@@ -103,7 +103,7 @@ class EncryptionConfigPermission(object):
 
 
         :param decrypting_tenant_short_name: The decrypting_tenant_short_name of this EncryptionConfigPermission.  # noqa: E501
-        :type decrypting_tenant_short_name: object
+        :type decrypting_tenant_short_name: str
         """
 
         self._decrypting_tenant_short_name = decrypting_tenant_short_name
@@ -114,7 +114,7 @@ class EncryptionConfigPermission(object):
 
 
         :return: The minimum_sim_version of this EncryptionConfigPermission.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._minimum_sim_version
 
@@ -124,7 +124,7 @@ class EncryptionConfigPermission(object):
 
 
         :param minimum_sim_version: The minimum_sim_version of this EncryptionConfigPermission.  # noqa: E501
-        :type minimum_sim_version: object
+        :type minimum_sim_version: str
         """
 
         self._minimum_sim_version = minimum_sim_version
@@ -135,7 +135,7 @@ class EncryptionConfigPermission(object):
 
 
         :return: The description of this EncryptionConfigPermission.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._description
 
@@ -145,7 +145,7 @@ class EncryptionConfigPermission(object):
 
 
         :param description: The description of this EncryptionConfigPermission.  # noqa: E501
-        :type description: object
+        :type description: str
         """
 
         self._description = description

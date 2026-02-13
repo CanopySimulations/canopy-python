@@ -36,8 +36,8 @@ class GetAccountSettingsResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'username': 'object',
-        'email': 'object',
+        'username': 'str',
+        'email': 'str',
         'is_enabled': 'bool',
         'is_email_confirmed': 'bool',
         'is_two_factor_enabled': 'bool',
@@ -84,7 +84,7 @@ class GetAccountSettingsResult(object):
 
 
         :return: The username of this GetAccountSettingsResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._username
 
@@ -94,7 +94,7 @@ class GetAccountSettingsResult(object):
 
 
         :param username: The username of this GetAccountSettingsResult.  # noqa: E501
-        :type username: object
+        :type username: str
         """
 
         self._username = username
@@ -105,7 +105,7 @@ class GetAccountSettingsResult(object):
 
 
         :return: The email of this GetAccountSettingsResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._email
 
@@ -115,7 +115,7 @@ class GetAccountSettingsResult(object):
 
 
         :param email: The email of this GetAccountSettingsResult.  # noqa: E501
-        :type email: object
+        :type email: str
         """
 
         self._email = email

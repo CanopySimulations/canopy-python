@@ -4860,7 +4860,6 @@ class StudyApi(object):
 
         response_types_map = {
             200: "GetStudyTypesQueryResult",
-            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -5148,7 +5147,6 @@ class StudyApi(object):
 
         response_types_map = {
             200: "GetTenantAccessInformationQueryResult",
-            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -5284,7 +5282,6 @@ class StudyApi(object):
 
         response_types_map = {
             200: "GetTenantBillableStoredSimulationCountQueryResult",
-            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(

@@ -37,12 +37,12 @@ class GetStudyQueryResultStudy(object):
     """
     openapi_types = {
         'document_id': 'object',
-        'tenant_id': 'object',
-        'user_id': 'object',
+        'tenant_id': 'str',
+        'user_id': 'str',
         'name': 'str',
         'type': 'str',
         'sub_type': 'object',
-        'sim_version': 'object',
+        'sim_version': 'str',
         'creation_date': 'datetime',
         'modified_date': 'datetime',
         'properties': 'object',
@@ -145,7 +145,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :return: The tenant_id of this GetStudyQueryResultStudy.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._tenant_id
 
@@ -155,7 +155,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :param tenant_id: The tenant_id of this GetStudyQueryResultStudy.  # noqa: E501
-        :type tenant_id: object
+        :type tenant_id: str
         """
 
         self._tenant_id = tenant_id
@@ -166,7 +166,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :return: The user_id of this GetStudyQueryResultStudy.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -176,7 +176,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :param user_id: The user_id of this GetStudyQueryResultStudy.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id
@@ -250,7 +250,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :return: The sim_version of this GetStudyQueryResultStudy.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._sim_version
 
@@ -260,7 +260,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :param sim_version: The sim_version of this GetStudyQueryResultStudy.  # noqa: E501
-        :type sim_version: object
+        :type sim_version: str
         """
 
         self._sim_version = sim_version

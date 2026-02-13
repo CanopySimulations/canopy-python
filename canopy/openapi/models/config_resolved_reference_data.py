@@ -37,7 +37,7 @@ class ConfigResolvedReferenceData(object):
     """
     openapi_types = {
         'modified_date': 'datetime',
-        'user_id': 'object',
+        'user_id': 'str',
         'name': 'str',
         'config_type': 'object',
         'hashes': 'list[ConfigHash]',
@@ -102,7 +102,7 @@ class ConfigResolvedReferenceData(object):
 
 
         :return: The user_id of this ConfigResolvedReferenceData.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -112,7 +112,7 @@ class ConfigResolvedReferenceData(object):
 
 
         :param user_id: The user_id of this ConfigResolvedReferenceData.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id

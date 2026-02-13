@@ -6,12 +6,12 @@ The study job document.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **document_id** | **object** |  | [optional] 
-**tenant_id** | **object** |  | [optional] 
-**user_id** | **object** |  | [optional] 
+**tenant_id** | **str** |  | [optional] 
+**user_id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
 **sub_type** | **object** |  | [optional] 
-**sim_version** | **object** |  | [optional] 
+**sim_version** | **str** |  | [optional] 
 **creation_date** | **datetime** |  | [optional] 
 **modified_date** | **datetime** |  | [optional] 
 **properties** | **object** |  | [optional] 

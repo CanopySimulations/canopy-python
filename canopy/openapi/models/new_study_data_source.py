@@ -37,7 +37,7 @@ class NewStudyDataSource(object):
     """
     openapi_types = {
         'config_type': 'object',
-        'user_id': 'object',
+        'user_id': 'str',
         'config_id': 'str',
         'name': 'str',
         'is_edited': 'bool'
@@ -101,7 +101,7 @@ class NewStudyDataSource(object):
         The user ID associated with the data source.  # noqa: E501
 
         :return: The user_id of this NewStudyDataSource.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -112,7 +112,7 @@ class NewStudyDataSource(object):
         The user ID associated with the data source.  # noqa: E501
 
         :param user_id: The user_id of this NewStudyDataSource.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id

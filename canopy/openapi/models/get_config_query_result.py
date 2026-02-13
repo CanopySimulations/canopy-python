@@ -37,7 +37,7 @@ class GetConfigQueryResult(object):
     """
     openapi_types = {
         'config': 'GetConfigQueryResultConfig',
-        'converted_sim_version': 'object',
+        'converted_sim_version': 'str',
         'user_information': 'GetConfigQueryResultUserInformation'
     }
 
@@ -90,7 +90,7 @@ class GetConfigQueryResult(object):
         The sim version the config has been converted to.  The sim version within the `CanopyDocument` still represents the version  the config was saved as.  # noqa: E501
 
         :return: The converted_sim_version of this GetConfigQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._converted_sim_version
 
@@ -101,7 +101,7 @@ class GetConfigQueryResult(object):
         The sim version the config has been converted to.  The sim version within the `CanopyDocument` still represents the version  the config was saved as.  # noqa: E501
 
         :param converted_sim_version: The converted_sim_version of this GetConfigQueryResult.  # noqa: E501
-        :type converted_sim_version: object
+        :type converted_sim_version: str
         """
 
         self._converted_sim_version = converted_sim_version

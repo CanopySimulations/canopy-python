@@ -6,7 +6,7 @@ Metadata about each support session query.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **database_id** | **str** | The database ID for the query. | [optional] 
-**tenant_id** | **object** | The tenant ID. | [optional] 
+**tenant_id** | **str** | The tenant ID. | [optional] 
 **query_time_milliseconds** | **float** | The time the query took to execute. | [optional] 
 **time_to_query_start_milliseconds** | **float** | The time the query took to start. | [optional] 
 

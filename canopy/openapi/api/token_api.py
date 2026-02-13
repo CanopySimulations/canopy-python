@@ -201,7 +201,6 @@ class TokenApi(object):
 
         response_types_map = {
             200: "GrantTypeHandlerResponse",
-            400: "ProblemDetails",
         }
 
         return self.api_client.call_api(

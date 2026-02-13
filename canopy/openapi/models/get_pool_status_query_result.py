@@ -36,7 +36,7 @@ class GetPoolStatusQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'pool_id': 'object',
+        'pool_id': 'str',
         'pool_state': 'PoolState',
         'allocation_state': 'AllocationState',
         'current_dedicated': 'int',
@@ -107,7 +107,7 @@ class GetPoolStatusQueryResult(object):
 
 
         :return: The pool_id of this GetPoolStatusQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._pool_id
 
@@ -117,7 +117,7 @@ class GetPoolStatusQueryResult(object):
 
 
         :param pool_id: The pool_id of this GetPoolStatusQueryResult.  # noqa: E501
-        :type pool_id: object
+        :type pool_id: str
         """
 
         self._pool_id = pool_id

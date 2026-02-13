@@ -37,7 +37,7 @@ class ConfigHash(object):
     """
     openapi_types = {
         'hash': 'str',
-        'hash_sim_versions': 'list[object]'
+        'hash_sim_versions': 'list[str]'
     }
 
     attribute_map = {
@@ -85,7 +85,7 @@ class ConfigHash(object):
 
 
         :return: The hash_sim_versions of this ConfigHash.  # noqa: E501
-        :rtype: list[object]
+        :rtype: list[str]
         """
         return self._hash_sim_versions
 
@@ -95,7 +95,7 @@ class ConfigHash(object):
 
 
         :param hash_sim_versions: The hash_sim_versions of this ConfigHash.  # noqa: E501
-        :type hash_sim_versions: list[object]
+        :type hash_sim_versions: list[str]
         """
 
         self._hash_sim_versions = hash_sim_versions

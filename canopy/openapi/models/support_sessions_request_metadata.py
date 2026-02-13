@@ -37,7 +37,7 @@ class SupportSessionsRequestMetadata(object):
     """
     openapi_types = {
         'database_id': 'str',
-        'tenant_id': 'object',
+        'tenant_id': 'str',
         'query_time_milliseconds': 'float',
         'time_to_query_start_milliseconds': 'float'
     }
@@ -98,7 +98,7 @@ class SupportSessionsRequestMetadata(object):
         The tenant ID.  # noqa: E501
 
         :return: The tenant_id of this SupportSessionsRequestMetadata.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._tenant_id
 
@@ -109,7 +109,7 @@ class SupportSessionsRequestMetadata(object):
         The tenant ID.  # noqa: E501
 
         :param tenant_id: The tenant_id of this SupportSessionsRequestMetadata.  # noqa: E501
-        :type tenant_id: object
+        :type tenant_id: str
         """
 
         self._tenant_id = tenant_id

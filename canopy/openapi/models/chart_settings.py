@@ -39,7 +39,7 @@ class ChartSettings(object):
         'chart_type': 'object',
         'chart_id': 'str',
         'preferred_chart_id': 'str',
-        'preferred_chart_user_id': 'object'
+        'preferred_chart_user_id': 'str'
     }
 
     attribute_map = {
@@ -135,7 +135,7 @@ class ChartSettings(object):
 
 
         :return: The preferred_chart_user_id of this ChartSettings.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._preferred_chart_user_id
 
@@ -145,7 +145,7 @@ class ChartSettings(object):
 
 
         :param preferred_chart_user_id: The preferred_chart_user_id of this ChartSettings.  # noqa: E501
-        :type preferred_chart_user_id: object
+        :type preferred_chart_user_id: str
         """
 
         self._preferred_chart_user_id = preferred_chart_user_id

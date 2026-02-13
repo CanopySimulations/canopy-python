@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sim_version** | **object** |  | [optional] 
+**sim_version** | **str** |  | [optional] 
 **documents** | [**list[TextDocumentOptionalContent]**](TextDocumentOptionalContent.md) |  | [optional] 
 **units** | **dict(str, str)** |  | [optional] 
 

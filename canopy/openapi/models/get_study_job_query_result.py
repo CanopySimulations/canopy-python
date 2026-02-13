@@ -38,7 +38,7 @@ class GetStudyJobQueryResult(object):
     openapi_types = {
         'study_job': 'GetStudyJobQueryResultStudyJob',
         'study_job_input': 'object',
-        'converted_sim_version': 'object',
+        'converted_sim_version': 'str',
         'sim_types': 'list[str]',
         'access_information': 'GetStudyJobQueryResultAccessInformation'
     }
@@ -121,7 +121,7 @@ class GetStudyJobQueryResult(object):
         The sim version which the study definition was converted to.  # noqa: E501
 
         :return: The converted_sim_version of this GetStudyJobQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._converted_sim_version
 
@@ -132,7 +132,7 @@ class GetStudyJobQueryResult(object):
         The sim version which the study definition was converted to.  # noqa: E501
 
         :param converted_sim_version: The converted_sim_version of this GetStudyJobQueryResult.  # noqa: E501
-        :type converted_sim_version: object
+        :type converted_sim_version: str
         """
 
         self._converted_sim_version = converted_sim_version

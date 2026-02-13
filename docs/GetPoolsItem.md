@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pool_id** | **object** |  | [optional] 
+**pool_id** | **str** |  | [optional] 
 **current_dedicated** | **int** |  | [optional] 
 **target_dedicated** | **int** |  | [optional] 
 **current_low_priority** | **int** |  | [optional] 

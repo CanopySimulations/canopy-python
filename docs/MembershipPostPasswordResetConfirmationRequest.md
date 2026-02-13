@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **object** |  | [optional] 
+**user_id** | **str** |  | [optional] 
 **new_password** | **str** |  | [optional] 
 **token** | **str** |  | [optional] 
 

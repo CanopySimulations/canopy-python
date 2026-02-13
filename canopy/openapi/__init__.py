@@ -150,7 +150,6 @@ from canopy.openapi.models.get_deployments_query_result import GetDeploymentsQue
 from canopy.openapi.models.get_deployments_query_result_deployment_item import GetDeploymentsQueryResultDeploymentItem
 from canopy.openapi.models.get_encrypted_data_query_result import GetEncryptedDataQueryResult
 from canopy.openapi.models.get_invoice_bot_deployments_query_result import GetInvoiceBotDeploymentsQueryResult
-from canopy.openapi.models.get_invoice_bot_deployments_query_result_invoice_bot_deployment_item import GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem
 from canopy.openapi.models.get_key_permissions_query_result import GetKeyPermissionsQueryResult
 from canopy.openapi.models.get_pool_status_query_result import GetPoolStatusQueryResult
 from canopy.openapi.models.get_pools_item import GetPoolsItem
@@ -214,6 +213,7 @@ from canopy.openapi.models.i_previous_definition_sim_type_definition_definition 
 from canopy.openapi.models.i_previous_definition_study_type_definition import IPreviousDefinitionStudyTypeDefinition
 from canopy.openapi.models.i_previous_definition_study_type_definition_definition import IPreviousDefinitionStudyTypeDefinitionDefinition
 from canopy.openapi.models.identified_user_data import IdentifiedUserData
+from canopy.openapi.models.invoice_bot_deployment_item import InvoiceBotDeploymentItem
 from canopy.openapi.models.key_permission_data import KeyPermissionData
 from canopy.openapi.models.label_definition import LabelDefinition
 from canopy.openapi.models.label_definitions import LabelDefinitions
@@ -244,7 +244,6 @@ from canopy.openapi.models.pool_settings import PoolSettings
 from canopy.openapi.models.pool_state import PoolState
 from canopy.openapi.models.pool_type import PoolType
 from canopy.openapi.models.post_study_result import PostStudyResult
-from canopy.openapi.models.problem_details import ProblemDetails
 from canopy.openapi.models.query_encrypted_data_query_result import QueryEncryptedDataQueryResult
 from canopy.openapi.models.query_encrypted_data_tenant_result import QueryEncryptedDataTenantResult
 from canopy.openapi.models.registration_data import RegistrationData

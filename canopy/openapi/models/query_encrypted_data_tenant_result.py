@@ -36,8 +36,8 @@ class QueryEncryptedDataTenantResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'tenant_short_name': 'object',
-        'tenant_name': 'object'
+        'tenant_short_name': 'str',
+        'tenant_name': 'str'
     }
 
     attribute_map = {
@@ -64,7 +64,7 @@ class QueryEncryptedDataTenantResult(object):
 
 
         :return: The tenant_short_name of this QueryEncryptedDataTenantResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._tenant_short_name
 
@@ -74,7 +74,7 @@ class QueryEncryptedDataTenantResult(object):
 
 
         :param tenant_short_name: The tenant_short_name of this QueryEncryptedDataTenantResult.  # noqa: E501
-        :type tenant_short_name: object
+        :type tenant_short_name: str
         """
 
         self._tenant_short_name = tenant_short_name
@@ -85,7 +85,7 @@ class QueryEncryptedDataTenantResult(object):
 
 
         :return: The tenant_name of this QueryEncryptedDataTenantResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._tenant_name
 
@@ -95,7 +95,7 @@ class QueryEncryptedDataTenantResult(object):
 
 
         :param tenant_name: The tenant_name of this QueryEncryptedDataTenantResult.  # noqa: E501
-        :type tenant_name: object
+        :type tenant_name: str
         """
 
         self._tenant_name = tenant_name

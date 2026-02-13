@@ -159,8 +159,7 @@ class DeploymentsApi(object):
         auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {
-            201: "int",
-            400: "ProblemDetails",
+            200: "int",
         }
 
         return self.api_client.call_api(
@@ -421,7 +420,6 @@ class DeploymentsApi(object):
 
         response_types_map = {
             200: "GetDeploymentQueryResult",
-            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -807,7 +805,6 @@ class DeploymentsApi(object):
 
         response_types_map = {
             200: "GetSubscriptionLevelQueryResult",
-            404: "ProblemDetails",
         }
 
         return self.api_client.call_api(
@@ -1216,10 +1213,6 @@ class DeploymentsApi(object):
         body_params = None
         if 'deployments_update_deployment_request' in local_var_params:
             body_params = local_var_params['deployments_update_deployment_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
-
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -1364,10 +1357,6 @@ class DeploymentsApi(object):
         body_params = None
         if 'deployments_update_invoice_bot_deployment_request' in local_var_params:
             body_params = local_var_params['deployments_update_invoice_bot_deployment_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
-
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -1515,10 +1504,6 @@ class DeploymentsApi(object):
         body_params = None
         if 'deployments_update_subscription_level_request' in local_var_params:
             body_params = local_var_params['deployments_update_subscription_level_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
-
         # HTTP header `Content-Type`
         content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(

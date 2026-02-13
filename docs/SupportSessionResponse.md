@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tenant_id** | **object** |  | [optional] 
-**user_id** | **object** |  | [optional] 
+**tenant_id** | **str** |  | [optional] 
+**user_id** | **str** |  | [optional] 
 **creation_date** | **datetime** |  | [optional] 
 **message** | **str** |  | [optional] 
 

@@ -36,9 +36,9 @@ class EncryptionKeyPermission(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'encrypting_tenant_short_name': 'object',
-        'minimum_sim_version': 'object',
-        'description': 'object'
+        'encrypting_tenant_short_name': 'str',
+        'minimum_sim_version': 'str',
+        'description': 'str'
     }
 
     attribute_map = {
@@ -68,7 +68,7 @@ class EncryptionKeyPermission(object):
 
 
         :return: The encrypting_tenant_short_name of this EncryptionKeyPermission.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._encrypting_tenant_short_name
 
@@ -78,7 +78,7 @@ class EncryptionKeyPermission(object):
 
 
         :param encrypting_tenant_short_name: The encrypting_tenant_short_name of this EncryptionKeyPermission.  # noqa: E501
-        :type encrypting_tenant_short_name: object
+        :type encrypting_tenant_short_name: str
         """
 
         self._encrypting_tenant_short_name = encrypting_tenant_short_name
@@ -89,7 +89,7 @@ class EncryptionKeyPermission(object):
 
 
         :return: The minimum_sim_version of this EncryptionKeyPermission.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._minimum_sim_version
 
@@ -99,7 +99,7 @@ class EncryptionKeyPermission(object):
 
 
         :param minimum_sim_version: The minimum_sim_version of this EncryptionKeyPermission.  # noqa: E501
-        :type minimum_sim_version: object
+        :type minimum_sim_version: str
         """
 
         self._minimum_sim_version = minimum_sim_version
@@ -110,7 +110,7 @@ class EncryptionKeyPermission(object):
 
 
         :return: The description of this EncryptionKeyPermission.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._description
 
@@ -120,7 +120,7 @@ class EncryptionKeyPermission(object):
 
 
         :param description: The description of this EncryptionKeyPermission.  # noqa: E501
-        :type description: object
+        :type description: str
         """
 
         self._description = description

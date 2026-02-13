@@ -36,7 +36,7 @@ class GetSimVersionDownloadsQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'sim_version': 'object',
+        'sim_version': 'str',
         'downloads': 'list[FileDownloadMetadata]'
     }
 
@@ -64,7 +64,7 @@ class GetSimVersionDownloadsQueryResult(object):
 
 
         :return: The sim_version of this GetSimVersionDownloadsQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._sim_version
 
@@ -74,7 +74,7 @@ class GetSimVersionDownloadsQueryResult(object):
 
 
         :param sim_version: The sim_version of this GetSimVersionDownloadsQueryResult.  # noqa: E501
-        :type sim_version: object
+        :type sim_version: str
         """
 
         self._sim_version = sim_version

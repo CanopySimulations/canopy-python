@@ -37,11 +37,11 @@ class GetStudyQueryResult(object):
     """
     openapi_types = {
         'study': 'GetStudyQueryResultStudy',
-        'converted_sim_version': 'object',
+        'converted_sim_version': 'str',
         'access_information': 'GetStudyQueryResultAccessInformation',
         'sim_types': 'list[str]',
         'user_information': 'GetStudyQueryResultUserInformation',
-        'priority': 'object'
+        'priority': 'str'
     }
 
     attribute_map = {
@@ -102,7 +102,7 @@ class GetStudyQueryResult(object):
         The sim version the study data was converted to.  # noqa: E501
 
         :return: The converted_sim_version of this GetStudyQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._converted_sim_version
 
@@ -113,7 +113,7 @@ class GetStudyQueryResult(object):
         The sim version the study data was converted to.  # noqa: E501
 
         :param converted_sim_version: The converted_sim_version of this GetStudyQueryResult.  # noqa: E501
-        :type converted_sim_version: object
+        :type converted_sim_version: str
         """
 
         self._converted_sim_version = converted_sim_version
@@ -190,7 +190,7 @@ class GetStudyQueryResult(object):
         The priority if the study is running. Otherwise null.  # noqa: E501
 
         :return: The priority of this GetStudyQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._priority
 
@@ -201,7 +201,7 @@ class GetStudyQueryResult(object):
         The priority if the study is running. Otherwise null.  # noqa: E501
 
         :param priority: The priority of this GetStudyQueryResult.  # noqa: E501
-        :type priority: object
+        :type priority: str
         """
 
         self._priority = priority

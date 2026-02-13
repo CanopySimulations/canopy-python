@@ -36,7 +36,7 @@ class UpdatedAdminTenantSettingsSettings(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'sim_version': 'object',
+        'sim_version': 'str',
         'pool_settings': 'AdminTenantSettingsPoolSettings',
         'secondary_pool_settings': 'AdminTenantSettingsPoolSettings',
         'heavy_pool_settings': 'AdminTenantSettingsPoolSettings',
@@ -84,7 +84,7 @@ class UpdatedAdminTenantSettingsSettings(object):
 
 
         :return: The sim_version of this UpdatedAdminTenantSettingsSettings.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._sim_version
 
@@ -94,7 +94,7 @@ class UpdatedAdminTenantSettingsSettings(object):
 
 
         :param sim_version: The sim_version of this UpdatedAdminTenantSettingsSettings.  # noqa: E501
-        :type sim_version: object
+        :type sim_version: str
         """
 
         self._sim_version = sim_version

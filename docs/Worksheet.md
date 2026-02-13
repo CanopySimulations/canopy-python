@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tenant_id** | **object** |  | [optional] 
-**user_id** | **object** |  | [optional] 
+**tenant_id** | **str** |  | [optional] 
+**user_id** | **str** |  | [optional] 
 **worksheet_id** | **object** |  | [optional] 
 **name** | **str** |  | [optional] 
 **outline** | [**WorksheetOutline**](WorksheetOutline.md) |  | [optional] 

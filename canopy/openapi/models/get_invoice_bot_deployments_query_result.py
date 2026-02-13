@@ -36,7 +36,7 @@ class GetInvoiceBotDeploymentsQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'deployments': 'list[GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem]'
+        'deployments': 'list[InvoiceBotDeploymentItem]'
     }
 
     attribute_map = {
@@ -60,7 +60,7 @@ class GetInvoiceBotDeploymentsQueryResult(object):
 
 
         :return: The deployments of this GetInvoiceBotDeploymentsQueryResult.  # noqa: E501
-        :rtype: list[GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem]
+        :rtype: list[InvoiceBotDeploymentItem]
         """
         return self._deployments
 
@@ -70,7 +70,7 @@ class GetInvoiceBotDeploymentsQueryResult(object):
 
 
         :param deployments: The deployments of this GetInvoiceBotDeploymentsQueryResult.  # noqa: E501
-        :type deployments: list[GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem]
+        :type deployments: list[InvoiceBotDeploymentItem]
         """
 
         self._deployments = deployments
