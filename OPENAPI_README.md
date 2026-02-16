@@ -26,14 +26,14 @@ Then import the package:
 import canopy.openapi
 ```
 
-### Setuptools
+### Install from source
 
-Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
+Install from source using pip:
 
 ```sh
-python setup.py install --user
+pip install .
 ```
-(or `sudo python setup.py install` to install the package for all users)
+(or `sudo pip install .` to install the package for all users)
 
 Then import the package:
 ```python

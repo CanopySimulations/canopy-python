@@ -24,14 +24,15 @@ You may need to run `pip` with root permission: `sudo pip install canopy`.
 
 From a Jupyter Notebook you can run `!pip install canopy`.
 
-### Setuptools
+### Install from source
 
-Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
+Install from source using pip:
 
 ```sh
-python setup.py install --user
+pip install .
 ```
-(or `sudo python setup.py install` to install the package for all users)
+
+You may need to run `pip` with root permission: `sudo pip install .`
 
 ### Running Tests
 
