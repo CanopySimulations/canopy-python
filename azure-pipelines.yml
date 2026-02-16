@@ -80,7 +80,7 @@ jobs:
       displayName: 'Install dependencies'
 
     - script: |
-        sed -i -e "s/version = \"0\.1\.1\"/version = \"$BUILDVERSION\"/" pyproject.toml
+        sed -i -e "s/version = \"[0-9.]*\"/version = \"$BUILDVERSION\"/" pyproject.toml
         cat pyproject.toml
       displayName: 'Update version'
 
