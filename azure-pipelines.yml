@@ -76,15 +76,16 @@ jobs:
     - script: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install build
       displayName: 'Install dependencies'
 
     - script: |
-        sed -i -e "s/VERSION = \"0\.1\"/VERSION = \"$BUILDVERSION\"/" setup.py
-        cat setup.py
+        sed -i -e "s/version = \"[0-9.]*\"/version = \"$BUILDVERSION\"/" pyproject.toml
+        cat pyproject.toml
       displayName: 'Update version'
 
     - script: |
-        python setup.py sdist
+        python -m build
       displayName: 'Artifact creation'
 
     - script: |
