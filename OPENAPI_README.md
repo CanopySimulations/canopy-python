@@ -546,7 +546,7 @@ Class | Method | HTTP request | Description
 
 - **Type**: OAuth
 - **Flow**: password
-- **Authorization URL**: https://localhost:5001/connect/authorize
+- **Authorization URL**: https://identity.canopysimulations.com/connect/authorize
 - **Scopes**: 
  - **canopy_api**: Canopy API access
  - **openid**: Open Id
