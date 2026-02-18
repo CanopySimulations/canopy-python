@@ -38,7 +38,7 @@ class DocumentNameResult(object):
     openapi_types = {
         'name': 'str',
         'config_id': 'object',
-        'user_id': 'object'
+        'user_id': 'str'
     }
 
     attribute_map = {
@@ -110,7 +110,7 @@ class DocumentNameResult(object):
 
 
         :return: The user_id of this DocumentNameResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -120,7 +120,7 @@ class DocumentNameResult(object):
 
 
         :param user_id: The user_id of this DocumentNameResult.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id

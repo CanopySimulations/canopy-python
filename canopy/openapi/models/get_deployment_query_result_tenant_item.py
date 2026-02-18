@@ -61,8 +61,7 @@ class GetDeploymentQueryResultTenantItem(object):
         self._document_database_id = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
+        self.id = id
         self.name = name
         self.short_name = short_name
         self.document_database_id = document_database_id

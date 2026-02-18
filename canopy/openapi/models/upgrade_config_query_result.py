@@ -37,7 +37,7 @@ class UpgradeConfigQueryResult(object):
     """
     openapi_types = {
         'config': 'object',
-        'converted_sim_version': 'object'
+        'converted_sim_version': 'str'
     }
 
     attribute_map = {
@@ -88,7 +88,7 @@ class UpgradeConfigQueryResult(object):
         The sim version the config now conforms to.  # noqa: E501
 
         :return: The converted_sim_version of this UpgradeConfigQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._converted_sim_version
 
@@ -99,7 +99,7 @@ class UpgradeConfigQueryResult(object):
         The sim version the config now conforms to.  # noqa: E501
 
         :param converted_sim_version: The converted_sim_version of this UpgradeConfigQueryResult.  # noqa: E501
-        :type converted_sim_version: object
+        :type converted_sim_version: str
         """
 
         self._converted_sim_version = converted_sim_version

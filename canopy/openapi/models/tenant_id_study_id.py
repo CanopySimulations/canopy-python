@@ -36,7 +36,7 @@ class TenantIdStudyId(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'tenant_id': 'object',
+        'tenant_id': 'str',
         'study_id': 'object'
     }
 
@@ -64,7 +64,7 @@ class TenantIdStudyId(object):
 
 
         :return: The tenant_id of this TenantIdStudyId.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._tenant_id
 
@@ -74,7 +74,7 @@ class TenantIdStudyId(object):
 
 
         :param tenant_id: The tenant_id of this TenantIdStudyId.  # noqa: E501
-        :type tenant_id: object
+        :type tenant_id: str
         """
 
         self._tenant_id = tenant_id

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pool_id** | **object** |  | [optional] 
+**pool_id** | **str** |  | [optional] 
 **pool_state** | [**PoolState**](PoolState.md) |  | [optional] 
 **allocation_state** | [**AllocationState**](AllocationState.md) |  | [optional] 
 **current_dedicated** | **int** |  | [optional] 

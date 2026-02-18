@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sim_version_get_sim_version**
-> object sim_version_get_sim_version(tenant_id=tenant_id)
+> str sim_version_get_sim_version(tenant_id=tenant_id)
 
 Gets the sim version for a specific tenant.  This will be the global sim version if the tenant doesn't have a specific sim version set, otherwise it will be the tenant specific sim version.  Note that user sim versions are implemented purely as a front-end feature, so this method will always return the tenant sim version.
 
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+**str**
 
 ### Authorization
 

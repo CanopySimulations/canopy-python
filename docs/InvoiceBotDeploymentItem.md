@@ -1,4 +1,4 @@
-# GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem
+# InvoiceBotDeploymentItem
 
 
 ## Properties
@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **cut_off_date** | **date** |  | [optional] 
 **max_nodes** | **int** |  | [optional] 
 **compute_credit_limit** | **int** |  | [optional] 
-**subscription_level** | **int** |  | [optional] 
+**excess_compute_credit_cost** | **float** |  | [optional] 
 **effective_date** | **date** |  | [optional] 
 **original_effective_date** | **date** |  | [optional] 
 **storage_credit_limit** | **int** |  | [optional] 

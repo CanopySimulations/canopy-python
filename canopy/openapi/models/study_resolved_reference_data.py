@@ -38,12 +38,12 @@ class StudyResolvedReferenceData(object):
     openapi_types = {
         'creation_date': 'datetime',
         'modified_date': 'datetime',
-        'user_id': 'object',
+        'user_id': 'str',
         'name': 'str',
         'study_document': 'StudyResolvedReferenceDataStudyDocument',
         'input_hashes': 'list[StudyInputHashes]',
         'sim_types': 'list[str]',
-        'sim_version': 'object',
+        'sim_version': 'str',
         'is_support_session_open': 'bool'
     }
 
@@ -136,7 +136,7 @@ class StudyResolvedReferenceData(object):
 
 
         :return: The user_id of this StudyResolvedReferenceData.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -146,7 +146,7 @@ class StudyResolvedReferenceData(object):
 
 
         :param user_id: The user_id of this StudyResolvedReferenceData.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id
@@ -241,7 +241,7 @@ class StudyResolvedReferenceData(object):
 
 
         :return: The sim_version of this StudyResolvedReferenceData.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._sim_version
 
@@ -251,7 +251,7 @@ class StudyResolvedReferenceData(object):
 
 
         :param sim_version: The sim_version of this StudyResolvedReferenceData.  # noqa: E501
-        :type sim_version: object
+        :type sim_version: str
         """
 
         self._sim_version = sim_version

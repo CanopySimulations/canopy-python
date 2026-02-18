@@ -26,14 +26,14 @@ Then import the package:
 import canopy.openapi
 ```
 
-### Setuptools
+### Install from source
 
-Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
+Install from source using pip:
 
 ```sh
-python setup.py install --user
+pip install .
 ```
-(or `sudo python setup.py install` to install the package for all users)
+(or `sudo pip install .` to install the package for all users)
 
 Then import the package:
 ```python
@@ -129,6 +129,7 @@ Class | Method | HTTP request | Description
 *DeploymentsApi* | [**deployments_post_deployment_note**](docs/DeploymentsApi.md#deployments_post_deployment_note) | **POST** /deployments/{deploymentId}/notes | Adds a note to the specified deployment.
 *DeploymentsApi* | [**deployments_update_deployment**](docs/DeploymentsApi.md#deployments_update_deployment) | **PUT** /deployments/{deploymentId} | Updates the specified deployment.
 *DeploymentsApi* | [**deployments_update_invoice_bot_deployment**](docs/DeploymentsApi.md#deployments_update_invoice_bot_deployment) | **PATCH** /deployments/{deploymentId}/invoicebot | Updates invoice bot fields for the specified deployment.
+*DeploymentsApi* | [**deployments_update_subscription_level**](docs/DeploymentsApi.md#deployments_update_subscription_level) | **PUT** /deployments/subscription-levels/{id} | Updates the specified subscription level.
 *EncryptionApi* | [**encryption_decrypt**](docs/EncryptionApi.md#encryption_decrypt) | **POST** /encryption/decrypt | Decrypts the specified data.
 *EncryptionApi* | [**encryption_delete_config_permission**](docs/EncryptionApi.md#encryption_delete_config_permission) | **DELETE** /encryption/config-permissions/{tenantId}/{encryptingTenantShortName}/{decryptingTenantShortName} | Deletes an encryption key permission for the specified tenant.  Config permissions represent which encryption keys are allowed to be used by which tenants to re-encrypt any encrypted configs you provide.
 *EncryptionApi* | [**encryption_delete_key_permission**](docs/EncryptionApi.md#encryption_delete_key_permission) | **DELETE** /encryption/key-permissions/{tenantId}/{encryptingTenantShortName} | Deletes an encryption key permission for the specified tenant.  Key permissions represent which tenants are allowed to use your tenant&#39;s encryption key.
@@ -297,6 +298,7 @@ Class | Method | HTTP request | Description
  - [DeploymentsPostDeploymentNoteRequest](docs/DeploymentsPostDeploymentNoteRequest.md)
  - [DeploymentsUpdateDeploymentRequest](docs/DeploymentsUpdateDeploymentRequest.md)
  - [DeploymentsUpdateInvoiceBotDeploymentRequest](docs/DeploymentsUpdateInvoiceBotDeploymentRequest.md)
+ - [DeploymentsUpdateSubscriptionLevelRequest](docs/DeploymentsUpdateSubscriptionLevelRequest.md)
  - [DocumentCustomPropertyData](docs/DocumentCustomPropertyData.md)
  - [DocumentCustomPropertyGroup](docs/DocumentCustomPropertyGroup.md)
  - [DocumentGroupResult](docs/DocumentGroupResult.md)
@@ -343,7 +345,6 @@ Class | Method | HTTP request | Description
  - [GetDeploymentsQueryResultDeploymentItem](docs/GetDeploymentsQueryResultDeploymentItem.md)
  - [GetEncryptedDataQueryResult](docs/GetEncryptedDataQueryResult.md)
  - [GetInvoiceBotDeploymentsQueryResult](docs/GetInvoiceBotDeploymentsQueryResult.md)
- - [GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem](docs/GetInvoiceBotDeploymentsQueryResultInvoiceBotDeploymentItem.md)
  - [GetKeyPermissionsQueryResult](docs/GetKeyPermissionsQueryResult.md)
  - [GetPoolStatusQueryResult](docs/GetPoolStatusQueryResult.md)
  - [GetPoolsItem](docs/GetPoolsItem.md)
@@ -407,6 +408,7 @@ Class | Method | HTTP request | Description
  - [IPreviousDefinitionStudyTypeDefinition](docs/IPreviousDefinitionStudyTypeDefinition.md)
  - [IPreviousDefinitionStudyTypeDefinitionDefinition](docs/IPreviousDefinitionStudyTypeDefinitionDefinition.md)
  - [IdentifiedUserData](docs/IdentifiedUserData.md)
+ - [InvoiceBotDeploymentItem](docs/InvoiceBotDeploymentItem.md)
  - [KeyPermissionData](docs/KeyPermissionData.md)
  - [LabelDefinition](docs/LabelDefinition.md)
  - [LabelDefinitions](docs/LabelDefinitions.md)
@@ -499,6 +501,7 @@ Class | Method | HTTP request | Description
  - [TextDocumentOptionalContent](docs/TextDocumentOptionalContent.md)
  - [UpdateDeploymentData](docs/UpdateDeploymentData.md)
  - [UpdateInvoiceBotDeploymentData](docs/UpdateInvoiceBotDeploymentData.md)
+ - [UpdateSubscriptionLevelData](docs/UpdateSubscriptionLevelData.md)
  - [UpdatedAccountSettings](docs/UpdatedAccountSettings.md)
  - [UpdatedAdminTenantSettings](docs/UpdatedAdminTenantSettings.md)
  - [UpdatedAdminTenantSettingsSettings](docs/UpdatedAdminTenantSettingsSettings.md)

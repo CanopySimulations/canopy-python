@@ -36,8 +36,8 @@ class SupportSessionResponse(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'tenant_id': 'object',
-        'user_id': 'object',
+        'tenant_id': 'str',
+        'user_id': 'str',
         'creation_date': 'datetime',
         'message': 'str'
     }
@@ -73,7 +73,7 @@ class SupportSessionResponse(object):
 
 
         :return: The tenant_id of this SupportSessionResponse.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._tenant_id
 
@@ -83,7 +83,7 @@ class SupportSessionResponse(object):
 
 
         :param tenant_id: The tenant_id of this SupportSessionResponse.  # noqa: E501
-        :type tenant_id: object
+        :type tenant_id: str
         """
 
         self._tenant_id = tenant_id
@@ -94,7 +94,7 @@ class SupportSessionResponse(object):
 
 
         :return: The user_id of this SupportSessionResponse.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -104,7 +104,7 @@ class SupportSessionResponse(object):
 
 
         :param user_id: The user_id of this SupportSessionResponse.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id

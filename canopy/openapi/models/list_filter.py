@@ -38,7 +38,7 @@ class ListFilter(object):
     openapi_types = {
         'items_per_page': 'int',
         'continuation_token': 'str',
-        'order_by_custom_property': 'object',
+        'order_by_custom_property': 'str',
         'order_by_property': 'OrderByProperty',
         'order_by_descending': 'bool',
         'filter_name': 'str',
@@ -134,7 +134,7 @@ class ListFilter(object):
 
 
         :return: The order_by_custom_property of this ListFilter.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._order_by_custom_property
 
@@ -144,7 +144,7 @@ class ListFilter(object):
 
 
         :param order_by_custom_property: The order_by_custom_property of this ListFilter.  # noqa: E501
-        :type order_by_custom_property: object
+        :type order_by_custom_property: str
         """
 
         self._order_by_custom_property = order_by_custom_property

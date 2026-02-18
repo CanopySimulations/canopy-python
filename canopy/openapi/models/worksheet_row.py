@@ -36,7 +36,7 @@ class WorksheetRow(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'name': 'object',
+        'name': 'str',
         'configs': 'list[WorksheetConfig]',
         'study': 'WorksheetRowStudy'
     }
@@ -68,7 +68,7 @@ class WorksheetRow(object):
 
 
         :return: The name of this WorksheetRow.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._name
 
@@ -78,7 +78,7 @@ class WorksheetRow(object):
 
 
         :param name: The name of this WorksheetRow.  # noqa: E501
-        :type name: object
+        :type name: str
         """
 
         self._name = name

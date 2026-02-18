@@ -1386,3 +1386,150 @@ class DeploymentsApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
+
+    def deployments_update_subscription_level(self, id, deployments_update_subscription_level_request, **kwargs):  # noqa: E501
+        """Updates the specified subscription level.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.deployments_update_subscription_level(id, deployments_update_subscription_level_request, async_req=True)
+        >>> result = thread.get()
+
+        :param id: The subscription level ID. (required)
+        :type id: int
+        :param deployments_update_subscription_level_request: A data structure containing the subscription level data to update. (required)
+        :type deployments_update_subscription_level_request: DeploymentsUpdateSubscriptionLevelRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.deployments_update_subscription_level_with_http_info(id, deployments_update_subscription_level_request, **kwargs)  # noqa: E501
+
+    def deployments_update_subscription_level_with_http_info(self, id, deployments_update_subscription_level_request, **kwargs):  # noqa: E501
+        """Updates the specified subscription level.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.deployments_update_subscription_level_with_http_info(id, deployments_update_subscription_level_request, async_req=True)
+        >>> result = thread.get()
+
+        :param id: The subscription level ID. (required)
+        :type id: int
+        :param deployments_update_subscription_level_request: A data structure containing the subscription level data to update. (required)
+        :type deployments_update_subscription_level_request: DeploymentsUpdateSubscriptionLevelRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'id',
+            'deployments_update_subscription_level_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method deployments_update_subscription_level" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `deployments_update_subscription_level`")  # noqa: E501
+        # verify the required parameter 'deployments_update_subscription_level_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('deployments_update_subscription_level_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `deployments_update_subscription_level_request` when calling `deployments_update_subscription_level`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'deployments_update_subscription_level_request' in local_var_params:
+            body_params = local_var_params['deployments_update_subscription_level_request']
+        # HTTP header `Content-Type`
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        response_types_map = {}
+
+        return self.api_client.call_api(
+            '/deployments/subscription-levels/{id}', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))

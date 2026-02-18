@@ -496,7 +496,7 @@ class SimVersionApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: object
+        :rtype: str
         """
         kwargs['_return_http_data_only'] = True
         return self.sim_version_get_sim_version_with_http_info(**kwargs)  # noqa: E501
@@ -533,7 +533,7 @@ class SimVersionApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -584,7 +584,7 @@ class SimVersionApi(object):
         auth_settings = ['Bearer']  # noqa: E501
 
         response_types_map = {
-            200: "object",
+            200: "str",
         }
 
         return self.api_client.call_api(

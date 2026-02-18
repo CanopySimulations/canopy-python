@@ -115,7 +115,8 @@ class GetDeploymentQueryResultDeployment(object):
         self.cut_off_date = cut_off_date
         self.max_nodes = max_nodes
         self.compute_credit_limit = compute_credit_limit
-        self.subscription_level = subscription_level
+        if subscription_level is not None:
+            self.subscription_level = subscription_level
         self.effective_date = effective_date
         self.original_effective_date = original_effective_date
         self.storage_credit_limit = storage_credit_limit

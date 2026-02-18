@@ -36,11 +36,11 @@ class GetTenantQueryResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'name': 'object',
-        'short_name': 'object',
+        'name': 'str',
+        'short_name': 'str',
         'creation_date': 'datetime',
         'is_enabled': 'bool',
-        'database_id': 'object',
+        'database_id': 'str',
         'deployment_id': 'int'
     }
 
@@ -82,7 +82,7 @@ class GetTenantQueryResult(object):
 
 
         :return: The name of this GetTenantQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._name
 
@@ -92,7 +92,7 @@ class GetTenantQueryResult(object):
 
 
         :param name: The name of this GetTenantQueryResult.  # noqa: E501
-        :type name: object
+        :type name: str
         """
 
         self._name = name
@@ -103,7 +103,7 @@ class GetTenantQueryResult(object):
 
 
         :return: The short_name of this GetTenantQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._short_name
 
@@ -113,7 +113,7 @@ class GetTenantQueryResult(object):
 
 
         :param short_name: The short_name of this GetTenantQueryResult.  # noqa: E501
-        :type short_name: object
+        :type short_name: str
         """
 
         self._short_name = short_name
@@ -166,7 +166,7 @@ class GetTenantQueryResult(object):
 
 
         :return: The database_id of this GetTenantQueryResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._database_id
 
@@ -176,7 +176,7 @@ class GetTenantQueryResult(object):
 
 
         :param database_id: The database_id of this GetTenantQueryResult.  # noqa: E501
-        :type database_id: object
+        :type database_id: str
         """
 
         self._database_id = database_id

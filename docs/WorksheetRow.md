@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **object** |  | [optional] 
+**name** | **str** |  | [optional] 
 **configs** | [**list[WorksheetConfig]**](WorksheetConfig.md) |  | [optional] 
 **study** | [**WorksheetRowStudy**](WorksheetRowStudy.md) |  | [optional] 
 

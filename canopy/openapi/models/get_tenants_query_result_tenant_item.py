@@ -36,13 +36,13 @@ class GetTenantsQueryResultTenantItem(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'tenant_id': 'object',
-        'name': 'object',
-        'short_name': 'object',
+        'tenant_id': 'str',
+        'name': 'str',
+        'short_name': 'str',
         'creation_date': 'datetime',
         'is_enabled': 'bool',
-        'database_id': 'object',
-        'region': 'object'
+        'database_id': 'str',
+        'region': 'str'
     }
 
     attribute_map = {
@@ -86,7 +86,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The tenant_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._tenant_id
 
@@ -96,7 +96,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param tenant_id: The tenant_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type tenant_id: object
+        :type tenant_id: str
         """
 
         self._tenant_id = tenant_id
@@ -107,7 +107,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The name of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._name
 
@@ -117,7 +117,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param name: The name of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type name: object
+        :type name: str
         """
 
         self._name = name
@@ -128,7 +128,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The short_name of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._short_name
 
@@ -138,7 +138,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param short_name: The short_name of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type short_name: object
+        :type short_name: str
         """
 
         self._short_name = short_name
@@ -191,7 +191,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The database_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._database_id
 
@@ -201,7 +201,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param database_id: The database_id of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type database_id: object
+        :type database_id: str
         """
 
         self._database_id = database_id
@@ -212,7 +212,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :return: The region of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._region
 
@@ -222,7 +222,7 @@ class GetTenantsQueryResultTenantItem(object):
 
 
         :param region: The region of this GetTenantsQueryResultTenantItem.  # noqa: E501
-        :type region: object
+        :type region: str
         """
 
         self._region = region

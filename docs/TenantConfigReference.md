@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tenant_id** | **object** |  | [optional] 
+**tenant_id** | **str** |  | [optional] 
 **target_id** | **object** |  | [optional] 
 **job_index** | **int** |  | [optional] 
 

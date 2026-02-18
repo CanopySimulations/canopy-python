@@ -36,7 +36,7 @@ class MembershipPostPasswordResetConfirmationRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'user_id': 'object',
+        'user_id': 'str',
         'new_password': 'str',
         'token': 'str'
     }
@@ -68,7 +68,7 @@ class MembershipPostPasswordResetConfirmationRequest(object):
 
 
         :return: The user_id of this MembershipPostPasswordResetConfirmationRequest.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -78,7 +78,7 @@ class MembershipPostPasswordResetConfirmationRequest(object):
 
 
         :param user_id: The user_id of this MembershipPostPasswordResetConfirmationRequest.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id

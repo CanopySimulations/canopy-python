@@ -36,9 +36,9 @@ class UserInformation(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'user_id': 'object',
-        'username': 'object',
-        'email': 'object'
+        'user_id': 'str',
+        'username': 'str',
+        'email': 'str'
     }
 
     attribute_map = {
@@ -68,7 +68,7 @@ class UserInformation(object):
 
 
         :return: The user_id of this UserInformation.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -78,7 +78,7 @@ class UserInformation(object):
 
 
         :param user_id: The user_id of this UserInformation.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id
@@ -89,7 +89,7 @@ class UserInformation(object):
 
 
         :return: The username of this UserInformation.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._username
 
@@ -99,7 +99,7 @@ class UserInformation(object):
 
 
         :param username: The username of this UserInformation.  # noqa: E501
-        :type username: object
+        :type username: str
         """
 
         self._username = username
@@ -110,7 +110,7 @@ class UserInformation(object):
 
 
         :return: The email of this UserInformation.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._email
 
@@ -120,7 +120,7 @@ class UserInformation(object):
 
 
         :param email: The email of this UserInformation.  # noqa: E501
-        :type email: object
+        :type email: str
         """
 
         self._email = email

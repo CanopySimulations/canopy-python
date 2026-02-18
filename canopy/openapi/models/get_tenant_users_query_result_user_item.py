@@ -36,9 +36,9 @@ class GetTenantUsersQueryResultUserItem(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'user_id': 'object',
-        'username': 'object',
-        'email': 'object',
+        'user_id': 'str',
+        'username': 'str',
+        'email': 'str',
         'roles': 'list[str]',
         'is_enabled': 'bool'
     }
@@ -77,7 +77,7 @@ class GetTenantUsersQueryResultUserItem(object):
 
 
         :return: The user_id of this GetTenantUsersQueryResultUserItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._user_id
 
@@ -87,7 +87,7 @@ class GetTenantUsersQueryResultUserItem(object):
 
 
         :param user_id: The user_id of this GetTenantUsersQueryResultUserItem.  # noqa: E501
-        :type user_id: object
+        :type user_id: str
         """
 
         self._user_id = user_id
@@ -98,7 +98,7 @@ class GetTenantUsersQueryResultUserItem(object):
 
 
         :return: The username of this GetTenantUsersQueryResultUserItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._username
 
@@ -108,7 +108,7 @@ class GetTenantUsersQueryResultUserItem(object):
 
 
         :param username: The username of this GetTenantUsersQueryResultUserItem.  # noqa: E501
-        :type username: object
+        :type username: str
         """
 
         self._username = username
@@ -119,7 +119,7 @@ class GetTenantUsersQueryResultUserItem(object):
 
 
         :return: The email of this GetTenantUsersQueryResultUserItem.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._email
 
@@ -129,7 +129,7 @@ class GetTenantUsersQueryResultUserItem(object):
 
 
         :param email: The email of this GetTenantUsersQueryResultUserItem.  # noqa: E501
-        :type email: object
+        :type email: str
         """
 
         self._email = email

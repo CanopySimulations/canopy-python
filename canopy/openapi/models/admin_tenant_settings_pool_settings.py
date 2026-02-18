@@ -36,7 +36,7 @@ class AdminTenantSettingsPoolSettings(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'pool_id': 'object',
+        'pool_id': 'str',
         'auto_scale_formula': 'str'
     }
 
@@ -64,7 +64,7 @@ class AdminTenantSettingsPoolSettings(object):
 
 
         :return: The pool_id of this AdminTenantSettingsPoolSettings.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._pool_id
 
@@ -74,7 +74,7 @@ class AdminTenantSettingsPoolSettings(object):
 
 
         :param pool_id: The pool_id of this AdminTenantSettingsPoolSettings.  # noqa: E501
-        :type pool_id: object
+        :type pool_id: str
         """
 
         self._pool_id = pool_id

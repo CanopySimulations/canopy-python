@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **modified_date** | **datetime** |  | [optional] 
-**user_id** | **object** |  | [optional] 
+**user_id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **config_type** | **object** |  | [optional] 
 **hashes** | [**list[ConfigHash]**](ConfigHash.md) |  | [optional] 

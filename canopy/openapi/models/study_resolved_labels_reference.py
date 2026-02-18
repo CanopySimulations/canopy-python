@@ -36,7 +36,7 @@ class StudyResolvedLabelsReference(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'tenant_id': 'object',
+        'tenant_id': 'str',
         'target_id': 'object'
     }
 
@@ -64,7 +64,7 @@ class StudyResolvedLabelsReference(object):
 
 
         :return: The tenant_id of this StudyResolvedLabelsReference.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._tenant_id
 
@@ -74,7 +74,7 @@ class StudyResolvedLabelsReference(object):
 
 
         :param tenant_id: The tenant_id of this StudyResolvedLabelsReference.  # noqa: E501
-        :type tenant_id: object
+        :type tenant_id: str
         """
 
         self._tenant_id = tenant_id

@@ -36,7 +36,7 @@ class DuplicateConfigsData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'source_tenant_id': 'object',
+        'source_tenant_id': 'str',
         'source_worksheet_id': 'object',
         'source_config_ids': 'list[object]',
         'source_default_config_ids': 'list[DefaultConfigId]'
@@ -73,7 +73,7 @@ class DuplicateConfigsData(object):
         The ID of the source tenant.  # noqa: E501
 
         :return: The source_tenant_id of this DuplicateConfigsData.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._source_tenant_id
 
@@ -84,7 +84,7 @@ class DuplicateConfigsData(object):
         The ID of the source tenant.  # noqa: E501
 
         :param source_tenant_id: The source_tenant_id of this DuplicateConfigsData.  # noqa: E501
-        :type source_tenant_id: object
+        :type source_tenant_id: str
         """
 
         self._source_tenant_id = source_tenant_id

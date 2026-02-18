@@ -6,7 +6,7 @@ Represents the data source of an input to a study.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **config_type** | **object** | The config type of the data source. | [optional] 
-**user_id** | **object** | The user ID associated with the data source. | [optional] 
+**user_id** | **str** | The user ID associated with the data source. | [optional] 
 **config_id** | **str** | The ID of the config associated with the data source. | [optional] 
 **name** | **str** | The name of the data source. | [optional] 
 **is_edited** | **bool** | Whether the data source has been edited. | [optional] 
