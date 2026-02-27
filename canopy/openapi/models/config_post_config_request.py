@@ -37,12 +37,12 @@ class ConfigPostConfigRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'config_type': 'object',
+        'config_type': 'NewConfigDataConfigType',
         'properties': 'list[DocumentCustomPropertyData]',
         'config': 'object',
         'notes': 'str',
         'sim_version': 'str',
-        'parent_worksheet_id': 'object'
+        'parent_worksheet_id': 'NewConfigDataParentWorksheetId'
     }
 
     attribute_map = {
@@ -105,10 +105,9 @@ class ConfigPostConfigRequest(object):
     def config_type(self):
         """Gets the config_type of this ConfigPostConfigRequest.  # noqa: E501
 
-        The type of the config.  # noqa: E501
 
         :return: The config_type of this ConfigPostConfigRequest.  # noqa: E501
-        :rtype: object
+        :rtype: NewConfigDataConfigType
         """
         return self._config_type
 
@@ -116,10 +115,9 @@ class ConfigPostConfigRequest(object):
     def config_type(self, config_type):
         """Sets the config_type of this ConfigPostConfigRequest.
 
-        The type of the config.  # noqa: E501
 
         :param config_type: The config_type of this ConfigPostConfigRequest.  # noqa: E501
-        :type config_type: object
+        :type config_type: NewConfigDataConfigType
         """
 
         self._config_type = config_type
@@ -220,10 +218,9 @@ class ConfigPostConfigRequest(object):
     def parent_worksheet_id(self):
         """Gets the parent_worksheet_id of this ConfigPostConfigRequest.  # noqa: E501
 
-        The ID of the parent worksheet for the config.  # noqa: E501
 
         :return: The parent_worksheet_id of this ConfigPostConfigRequest.  # noqa: E501
-        :rtype: object
+        :rtype: NewConfigDataParentWorksheetId
         """
         return self._parent_worksheet_id
 
@@ -231,10 +228,9 @@ class ConfigPostConfigRequest(object):
     def parent_worksheet_id(self, parent_worksheet_id):
         """Sets the parent_worksheet_id of this ConfigPostConfigRequest.
 
-        The ID of the parent worksheet for the config.  # noqa: E501
 
         :param parent_worksheet_id: The parent_worksheet_id of this ConfigPostConfigRequest.  # noqa: E501
-        :type parent_worksheet_id: object
+        :type parent_worksheet_id: NewConfigDataParentWorksheetId
         """
 
         self._parent_worksheet_id = parent_worksheet_id

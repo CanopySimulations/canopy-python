@@ -36,7 +36,7 @@ class SimulationInput(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'config_type': 'object',
+        'config_type': 'CanopyDocumentSubType',
         'is_required': 'bool'
     }
 
@@ -65,7 +65,7 @@ class SimulationInput(object):
 
 
         :return: The config_type of this SimulationInput.  # noqa: E501
-        :rtype: object
+        :rtype: CanopyDocumentSubType
         """
         return self._config_type
 
@@ -75,7 +75,7 @@ class SimulationInput(object):
 
 
         :param config_type: The config_type of this SimulationInput.  # noqa: E501
-        :type config_type: object
+        :type config_type: CanopyDocumentSubType
         """
 
         self._config_type = config_type

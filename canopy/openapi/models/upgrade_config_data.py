@@ -36,7 +36,7 @@ class UpgradeConfigData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'config_type': 'object',
+        'config_type': 'UpgradeConfigDataConfigType',
         'config': 'object',
         'sim_version': 'str'
     }
@@ -66,10 +66,9 @@ class UpgradeConfigData(object):
     def config_type(self):
         """Gets the config_type of this UpgradeConfigData.  # noqa: E501
 
-        The type of the config document.  # noqa: E501
 
         :return: The config_type of this UpgradeConfigData.  # noqa: E501
-        :rtype: object
+        :rtype: UpgradeConfigDataConfigType
         """
         return self._config_type
 
@@ -77,10 +76,9 @@ class UpgradeConfigData(object):
     def config_type(self, config_type):
         """Sets the config_type of this UpgradeConfigData.
 
-        The type of the config document.  # noqa: E501
 
         :param config_type: The config_type of this UpgradeConfigData.  # noqa: E501
-        :type config_type: object
+        :type config_type: UpgradeConfigDataConfigType
         """
 
         self._config_type = config_type

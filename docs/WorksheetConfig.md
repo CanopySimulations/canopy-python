@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | **object** |  | [optional] 
+**config_type** | [**CanopyDocumentSubType**](CanopyDocumentSubType.md) |  | [optional] 
 **inherit_reference** | **bool** |  | [optional] 
 **reference** | [**ConfigResolvedLabelsReference**](ConfigResolvedLabelsReference.md) |  | [optional] 
 

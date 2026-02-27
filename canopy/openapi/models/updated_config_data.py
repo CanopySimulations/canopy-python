@@ -37,7 +37,7 @@ class UpdatedConfigData(object):
     """
     openapi_types = {
         'name': 'str',
-        'config_type': 'object',
+        'config_type': 'UpdatedConfigDataConfigType',
         'properties': 'list[DocumentCustomPropertyData]',
         'config': 'object',
         'notes': 'str',
@@ -101,10 +101,9 @@ class UpdatedConfigData(object):
     def config_type(self):
         """Gets the config_type of this UpdatedConfigData.  # noqa: E501
 
-        The config type.  # noqa: E501
 
         :return: The config_type of this UpdatedConfigData.  # noqa: E501
-        :rtype: object
+        :rtype: UpdatedConfigDataConfigType
         """
         return self._config_type
 
@@ -112,10 +111,9 @@ class UpdatedConfigData(object):
     def config_type(self, config_type):
         """Sets the config_type of this UpdatedConfigData.
 
-        The config type.  # noqa: E501
 
         :param config_type: The config_type of this UpdatedConfigData.  # noqa: E501
-        :type config_type: object
+        :type config_type: UpdatedConfigDataConfigType
         """
 
         self._config_type = config_type

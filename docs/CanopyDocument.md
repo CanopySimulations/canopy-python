@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**document_id** | **object** |  | [optional] 
+**document_id** | [**CanopyDocumentDocumentId**](CanopyDocumentDocumentId.md) |  | [optional] 
 **tenant_id** | **str** |  | [optional] 
 **user_id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
-**sub_type** | **object** |  | [optional] 
+**sub_type** | [**CanopyDocumentSubType**](CanopyDocumentSubType.md) |  | [optional] 
 **sim_version** | **str** |  | [optional] 
 **creation_date** | **datetime** |  | [optional] 
 **modified_date** | **datetime** |  | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **support_session** | [**CanopyDocumentSupportSession**](CanopyDocumentSupportSession.md) |  | [optional] 
 **notes** | **str** |  | [optional] 
 **delete_requested** | **bool** |  | [optional] 
-**parent_worksheet_id** | **object** |  | [optional] 
+**parent_worksheet_id** | [**CanopyDocumentDocumentId**](CanopyDocumentDocumentId.md) |  | [optional] 
 **lower_name** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

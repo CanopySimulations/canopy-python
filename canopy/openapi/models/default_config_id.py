@@ -36,7 +36,7 @@ class DefaultConfigId(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'config_type': 'object',
+        'config_type': 'CanopyDocumentSubType',
         'name': 'str'
     }
 
@@ -64,7 +64,7 @@ class DefaultConfigId(object):
 
 
         :return: The config_type of this DefaultConfigId.  # noqa: E501
-        :rtype: object
+        :rtype: CanopyDocumentSubType
         """
         return self._config_type
 
@@ -74,7 +74,7 @@ class DefaultConfigId(object):
 
 
         :param config_type: The config_type of this DefaultConfigId.  # noqa: E501
-        :type config_type: object
+        :type config_type: CanopyDocumentSubType
         """
 
         self._config_type = config_type

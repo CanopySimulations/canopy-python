@@ -58,6 +58,8 @@ from canopy.openapi.models.availability_result_additional_tests import Availabil
 from canopy.openapi.models.batch_create_configs_result import BatchCreateConfigsResult
 from canopy.openapi.models.blob_access_information import BlobAccessInformation
 from canopy.openapi.models.canopy_document import CanopyDocument
+from canopy.openapi.models.canopy_document_document_id import CanopyDocumentDocumentId
+from canopy.openapi.models.canopy_document_sub_type import CanopyDocumentSubType
 from canopy.openapi.models.canopy_document_support_session import CanopyDocumentSupportSession
 from canopy.openapi.models.channel_import_mapping import ChannelImportMapping
 from canopy.openapi.models.channel_settings import ChannelSettings
@@ -107,11 +109,14 @@ from canopy.openapi.models.deployments_update_subscription_level_request import 
 from canopy.openapi.models.document_custom_property_data import DocumentCustomPropertyData
 from canopy.openapi.models.document_custom_property_group import DocumentCustomPropertyGroup
 from canopy.openapi.models.document_group_result import DocumentGroupResult
+from canopy.openapi.models.document_id import DocumentId
 from canopy.openapi.models.document_name_result import DocumentNameResult
+from canopy.openapi.models.document_sub_type import DocumentSubType
 from canopy.openapi.models.document_type_custom_property_groups import DocumentTypeCustomPropertyGroups
 from canopy.openapi.models.document_user_information import DocumentUserInformation
 from canopy.openapi.models.documents_and_continuation_token import DocumentsAndContinuationToken
 from canopy.openapi.models.duplicate_configs_data import DuplicateConfigsData
+from canopy.openapi.models.duplicate_configs_data_source_worksheet_id import DuplicateConfigsDataSourceWorksheetId
 from canopy.openapi.models.duplicate_configs_result import DuplicateConfigsResult
 from canopy.openapi.models.email_confirmation_data import EmailConfirmationData
 from canopy.openapi.models.encryption_config_permission import EncryptionConfigPermission
@@ -231,9 +236,12 @@ from canopy.openapi.models.multi_factor_authentication_post_multi_factor_authent
 from canopy.openapi.models.name_value_pair import NameValuePair
 from canopy.openapi.models.new_batch_config_data import NewBatchConfigData
 from canopy.openapi.models.new_config_data import NewConfigData
+from canopy.openapi.models.new_config_data_config_type import NewConfigDataConfigType
+from canopy.openapi.models.new_config_data_parent_worksheet_id import NewConfigDataParentWorksheetId
 from canopy.openapi.models.new_sim_version_data import NewSimVersionData
 from canopy.openapi.models.new_study_data import NewStudyData
 from canopy.openapi.models.new_study_data_source import NewStudyDataSource
+from canopy.openapi.models.new_study_data_source_config_type import NewStudyDataSourceConfigType
 from canopy.openapi.models.new_tenant_data import NewTenantData
 from canopy.openapi.models.new_worksheet_data import NewWorksheetData
 from canopy.openapi.models.new_worksheet_data_outline import NewWorksheetDataOutline
@@ -244,6 +252,7 @@ from canopy.openapi.models.pool_settings import PoolSettings
 from canopy.openapi.models.pool_state import PoolState
 from canopy.openapi.models.pool_type import PoolType
 from canopy.openapi.models.post_study_result import PostStudyResult
+from canopy.openapi.models.post_study_result_study_id import PostStudyResultStudyId
 from canopy.openapi.models.query_encrypted_data_query_result import QueryEncryptedDataQueryResult
 from canopy.openapi.models.query_encrypted_data_tenant_result import QueryEncryptedDataTenantResult
 from canopy.openapi.models.registration_data import RegistrationData
@@ -312,6 +321,7 @@ from canopy.openapi.models.updated_admin_tenant_settings import UpdatedAdminTena
 from canopy.openapi.models.updated_admin_tenant_settings_settings import UpdatedAdminTenantSettingsSettings
 from canopy.openapi.models.updated_channel_import_mappings import UpdatedChannelImportMappings
 from canopy.openapi.models.updated_config_data import UpdatedConfigData
+from canopy.openapi.models.updated_config_data_config_type import UpdatedConfigDataConfigType
 from canopy.openapi.models.updated_mfa_enabled import UpdatedMfaEnabled
 from canopy.openapi.models.updated_study_data import UpdatedStudyData
 from canopy.openapi.models.updated_tenant_channel_whitelists import UpdatedTenantChannelWhitelists
@@ -325,6 +335,7 @@ from canopy.openapi.models.updated_worksheet_data_outline import UpdatedWorkshee
 from canopy.openapi.models.updated_worksheet_label_definitions import UpdatedWorksheetLabelDefinitions
 from canopy.openapi.models.updated_worksheet_label_definitions_label_definitions import UpdatedWorksheetLabelDefinitionsLabelDefinitions
 from canopy.openapi.models.upgrade_config_data import UpgradeConfigData
+from canopy.openapi.models.upgrade_config_data_config_type import UpgradeConfigDataConfigType
 from canopy.openapi.models.upgrade_config_query_result import UpgradeConfigQueryResult
 from canopy.openapi.models.user_information import UserInformation
 from canopy.openapi.models.user_role_data import UserRoleData

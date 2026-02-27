@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chart_type** | **object** |  | [optional] 
+**chart_type** | [**CanopyDocumentSubType**](CanopyDocumentSubType.md) |  | [optional] 
 **chart_id** | **str** |  | [optional] 
 **preferred_chart_id** | **str** |  | [optional] 
 **preferred_chart_user_id** | **str** |  | [optional] 

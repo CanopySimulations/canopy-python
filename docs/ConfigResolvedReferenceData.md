@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **modified_date** | **datetime** |  | [optional] 
 **user_id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
-**config_type** | **object** |  | [optional] 
+**config_type** | [**CanopyDocumentSubType**](CanopyDocumentSubType.md) |  | [optional] 
 **hashes** | [**list[ConfigHash]**](ConfigHash.md) |  | [optional] 
 **is_support_session_open** | **bool** |  | [optional] 
 

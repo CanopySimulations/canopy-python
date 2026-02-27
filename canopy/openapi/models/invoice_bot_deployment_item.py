@@ -53,7 +53,8 @@ class InvoiceBotDeploymentItem(object):
         'enabled': 'bool',
         'tenant_id': 'str',
         'credit_rollover': 'bool',
-        'do_not_invoice': 'bool'
+        'do_not_invoice': 'bool',
+        'tenant_ids': 'list[str]'
     }
 
     attribute_map = {
@@ -74,10 +75,11 @@ class InvoiceBotDeploymentItem(object):
         'enabled': 'enabled',
         'tenant_id': 'tenantId',
         'credit_rollover': 'creditRollover',
-        'do_not_invoice': 'doNotInvoice'
+        'do_not_invoice': 'doNotInvoice',
+        'tenant_ids': 'tenantIds'
     }
 
-    def __init__(self, id=None, name=None, commercially_active=None, renewal_date=None, cut_off_date=None, max_nodes=None, compute_credit_limit=None, excess_compute_credit_cost=None, effective_date=None, original_effective_date=None, storage_credit_limit=None, last_invoice_date=None, last_invoice_compute_credit=None, near_storage_limit=None, enabled=None, tenant_id=None, credit_rollover=None, do_not_invoice=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, commercially_active=None, renewal_date=None, cut_off_date=None, max_nodes=None, compute_credit_limit=None, excess_compute_credit_cost=None, effective_date=None, original_effective_date=None, storage_credit_limit=None, last_invoice_date=None, last_invoice_compute_credit=None, near_storage_limit=None, enabled=None, tenant_id=None, credit_rollover=None, do_not_invoice=None, tenant_ids=None, local_vars_configuration=None):  # noqa: E501
         """InvoiceBotDeploymentItem - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -101,6 +103,7 @@ class InvoiceBotDeploymentItem(object):
         self._tenant_id = None
         self._credit_rollover = None
         self._do_not_invoice = None
+        self._tenant_ids = None
         self.discriminator = None
 
         if id is not None:
@@ -128,6 +131,7 @@ class InvoiceBotDeploymentItem(object):
             self.credit_rollover = credit_rollover
         if do_not_invoice is not None:
             self.do_not_invoice = do_not_invoice
+        self.tenant_ids = tenant_ids
 
     @property
     def id(self):
@@ -506,6 +510,27 @@ class InvoiceBotDeploymentItem(object):
         """
 
         self._do_not_invoice = do_not_invoice
+
+    @property
+    def tenant_ids(self):
+        """Gets the tenant_ids of this InvoiceBotDeploymentItem.  # noqa: E501
+
+
+        :return: The tenant_ids of this InvoiceBotDeploymentItem.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._tenant_ids
+
+    @tenant_ids.setter
+    def tenant_ids(self, tenant_ids):
+        """Sets the tenant_ids of this InvoiceBotDeploymentItem.
+
+
+        :param tenant_ids: The tenant_ids of this InvoiceBotDeploymentItem.  # noqa: E501
+        :type tenant_ids: list[str]
+        """
+
+        self._tenant_ids = tenant_ids
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

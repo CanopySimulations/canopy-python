@@ -36,12 +36,12 @@ class GetStudyQueryResultStudy(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'document_id': 'object',
+        'document_id': 'CanopyDocumentDocumentId',
         'tenant_id': 'str',
         'user_id': 'str',
         'name': 'str',
         'type': 'str',
-        'sub_type': 'object',
+        'sub_type': 'CanopyDocumentSubType',
         'sim_version': 'str',
         'creation_date': 'datetime',
         'modified_date': 'datetime',
@@ -50,7 +50,7 @@ class GetStudyQueryResultStudy(object):
         'support_session': 'CanopyDocumentSupportSession',
         'notes': 'str',
         'delete_requested': 'bool',
-        'parent_worksheet_id': 'object',
+        'parent_worksheet_id': 'CanopyDocumentDocumentId',
         'lower_name': 'str'
     }
 
@@ -124,7 +124,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :return: The document_id of this GetStudyQueryResultStudy.  # noqa: E501
-        :rtype: object
+        :rtype: CanopyDocumentDocumentId
         """
         return self._document_id
 
@@ -134,7 +134,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :param document_id: The document_id of this GetStudyQueryResultStudy.  # noqa: E501
-        :type document_id: object
+        :type document_id: CanopyDocumentDocumentId
         """
 
         self._document_id = document_id
@@ -229,7 +229,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :return: The sub_type of this GetStudyQueryResultStudy.  # noqa: E501
-        :rtype: object
+        :rtype: CanopyDocumentSubType
         """
         return self._sub_type
 
@@ -239,7 +239,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :param sub_type: The sub_type of this GetStudyQueryResultStudy.  # noqa: E501
-        :type sub_type: object
+        :type sub_type: CanopyDocumentSubType
         """
 
         self._sub_type = sub_type
@@ -418,7 +418,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :return: The parent_worksheet_id of this GetStudyQueryResultStudy.  # noqa: E501
-        :rtype: object
+        :rtype: CanopyDocumentDocumentId
         """
         return self._parent_worksheet_id
 
@@ -428,7 +428,7 @@ class GetStudyQueryResultStudy(object):
 
 
         :param parent_worksheet_id: The parent_worksheet_id of this GetStudyQueryResultStudy.  # noqa: E501
-        :type parent_worksheet_id: object
+        :type parent_worksheet_id: CanopyDocumentDocumentId
         """
 
         self._parent_worksheet_id = parent_worksheet_id

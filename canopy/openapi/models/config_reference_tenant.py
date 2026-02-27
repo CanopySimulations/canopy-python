@@ -37,7 +37,7 @@ class ConfigReferenceTenant(object):
     """
     openapi_types = {
         'tenant_id': 'str',
-        'target_id': 'object',
+        'target_id': 'CanopyDocumentDocumentId',
         'job_index': 'int'
     }
 
@@ -89,7 +89,7 @@ class ConfigReferenceTenant(object):
 
 
         :return: The target_id of this ConfigReferenceTenant.  # noqa: E501
-        :rtype: object
+        :rtype: CanopyDocumentDocumentId
         """
         return self._target_id
 
@@ -99,7 +99,7 @@ class ConfigReferenceTenant(object):
 
 
         :param target_id: The target_id of this ConfigReferenceTenant.  # noqa: E501
-        :type target_id: object
+        :type target_id: CanopyDocumentDocumentId
         """
 
         self._target_id = target_id

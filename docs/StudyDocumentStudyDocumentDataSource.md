@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | **object** |  | [optional] 
+**config_type** | [**CanopyDocumentSubType**](CanopyDocumentSubType.md) |  | [optional] 
 **user_id** | **str** |  | [optional] 
 **config_id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 

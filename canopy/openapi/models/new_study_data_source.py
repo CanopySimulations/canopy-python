@@ -36,7 +36,7 @@ class NewStudyDataSource(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'config_type': 'object',
+        'config_type': 'NewStudyDataSourceConfigType',
         'user_id': 'str',
         'config_id': 'str',
         'name': 'str',
@@ -75,10 +75,9 @@ class NewStudyDataSource(object):
     def config_type(self):
         """Gets the config_type of this NewStudyDataSource.  # noqa: E501
 
-        The config type of the data source.  # noqa: E501
 
         :return: The config_type of this NewStudyDataSource.  # noqa: E501
-        :rtype: object
+        :rtype: NewStudyDataSourceConfigType
         """
         return self._config_type
 
@@ -86,10 +85,9 @@ class NewStudyDataSource(object):
     def config_type(self, config_type):
         """Sets the config_type of this NewStudyDataSource.
 
-        The config type of the data source.  # noqa: E501
 
         :param config_type: The config_type of this NewStudyDataSource.  # noqa: E501
-        :type config_type: object
+        :type config_type: NewStudyDataSourceConfigType
         """
 
         self._config_type = config_type

@@ -37,8 +37,8 @@ class DuplicateConfigsData(object):
     """
     openapi_types = {
         'source_tenant_id': 'str',
-        'source_worksheet_id': 'object',
-        'source_config_ids': 'list[object]',
+        'source_worksheet_id': 'DuplicateConfigsDataSourceWorksheetId',
+        'source_config_ids': 'list[DocumentId]',
         'source_default_config_ids': 'list[DefaultConfigId]'
     }
 
@@ -93,10 +93,9 @@ class DuplicateConfigsData(object):
     def source_worksheet_id(self):
         """Gets the source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
 
-        The ID of the source worksheet.  # noqa: E501
 
         :return: The source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
-        :rtype: object
+        :rtype: DuplicateConfigsDataSourceWorksheetId
         """
         return self._source_worksheet_id
 
@@ -104,10 +103,9 @@ class DuplicateConfigsData(object):
     def source_worksheet_id(self, source_worksheet_id):
         """Sets the source_worksheet_id of this DuplicateConfigsData.
 
-        The ID of the source worksheet.  # noqa: E501
 
         :param source_worksheet_id: The source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
-        :type source_worksheet_id: object
+        :type source_worksheet_id: DuplicateConfigsDataSourceWorksheetId
         """
 
         self._source_worksheet_id = source_worksheet_id
@@ -119,7 +117,7 @@ class DuplicateConfigsData(object):
         The IDs of the source configs.  # noqa: E501
 
         :return: The source_config_ids of this DuplicateConfigsData.  # noqa: E501
-        :rtype: list[object]
+        :rtype: list[DocumentId]
         """
         return self._source_config_ids
 
@@ -130,7 +128,7 @@ class DuplicateConfigsData(object):
         The IDs of the source configs.  # noqa: E501
 
         :param source_config_ids: The source_config_ids of this DuplicateConfigsData.  # noqa: E501
-        :type source_config_ids: list[object]
+        :type source_config_ids: list[DocumentId]
         """
 
         self._source_config_ids = source_config_ids

@@ -26,14 +26,14 @@ Then import the package:
 import canopy.openapi
 ```
 
-### Install from source
+### Setuptools
 
-Install from source using pip:
+Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
 
 ```sh
-pip install .
+python setup.py install --user
 ```
-(or `sudo pip install .` to install the package for all users)
+(or `sudo python setup.py install` to install the package for all users)
 
 Then import the package:
 ```python
@@ -253,6 +253,8 @@ Class | Method | HTTP request | Description
  - [BatchCreateConfigsResult](docs/BatchCreateConfigsResult.md)
  - [BlobAccessInformation](docs/BlobAccessInformation.md)
  - [CanopyDocument](docs/CanopyDocument.md)
+ - [CanopyDocumentDocumentId](docs/CanopyDocumentDocumentId.md)
+ - [CanopyDocumentSubType](docs/CanopyDocumentSubType.md)
  - [CanopyDocumentSupportSession](docs/CanopyDocumentSupportSession.md)
  - [ChannelImportMapping](docs/ChannelImportMapping.md)
  - [ChannelSettings](docs/ChannelSettings.md)
@@ -302,11 +304,14 @@ Class | Method | HTTP request | Description
  - [DocumentCustomPropertyData](docs/DocumentCustomPropertyData.md)
  - [DocumentCustomPropertyGroup](docs/DocumentCustomPropertyGroup.md)
  - [DocumentGroupResult](docs/DocumentGroupResult.md)
+ - [DocumentId](docs/DocumentId.md)
  - [DocumentNameResult](docs/DocumentNameResult.md)
+ - [DocumentSubType](docs/DocumentSubType.md)
  - [DocumentTypeCustomPropertyGroups](docs/DocumentTypeCustomPropertyGroups.md)
  - [DocumentUserInformation](docs/DocumentUserInformation.md)
  - [DocumentsAndContinuationToken](docs/DocumentsAndContinuationToken.md)
  - [DuplicateConfigsData](docs/DuplicateConfigsData.md)
+ - [DuplicateConfigsDataSourceWorksheetId](docs/DuplicateConfigsDataSourceWorksheetId.md)
  - [DuplicateConfigsResult](docs/DuplicateConfigsResult.md)
  - [EmailConfirmationData](docs/EmailConfirmationData.md)
  - [EncryptionConfigPermission](docs/EncryptionConfigPermission.md)
@@ -426,9 +431,12 @@ Class | Method | HTTP request | Description
  - [NameValuePair](docs/NameValuePair.md)
  - [NewBatchConfigData](docs/NewBatchConfigData.md)
  - [NewConfigData](docs/NewConfigData.md)
+ - [NewConfigDataConfigType](docs/NewConfigDataConfigType.md)
+ - [NewConfigDataParentWorksheetId](docs/NewConfigDataParentWorksheetId.md)
  - [NewSimVersionData](docs/NewSimVersionData.md)
  - [NewStudyData](docs/NewStudyData.md)
  - [NewStudyDataSource](docs/NewStudyDataSource.md)
+ - [NewStudyDataSourceConfigType](docs/NewStudyDataSourceConfigType.md)
  - [NewTenantData](docs/NewTenantData.md)
  - [NewWorksheetData](docs/NewWorksheetData.md)
  - [NewWorksheetDataOutline](docs/NewWorksheetDataOutline.md)
@@ -439,6 +447,7 @@ Class | Method | HTTP request | Description
  - [PoolState](docs/PoolState.md)
  - [PoolType](docs/PoolType.md)
  - [PostStudyResult](docs/PostStudyResult.md)
+ - [PostStudyResultStudyId](docs/PostStudyResultStudyId.md)
  - [QueryEncryptedDataQueryResult](docs/QueryEncryptedDataQueryResult.md)
  - [QueryEncryptedDataTenantResult](docs/QueryEncryptedDataTenantResult.md)
  - [RegistrationData](docs/RegistrationData.md)
@@ -507,6 +516,7 @@ Class | Method | HTTP request | Description
  - [UpdatedAdminTenantSettingsSettings](docs/UpdatedAdminTenantSettingsSettings.md)
  - [UpdatedChannelImportMappings](docs/UpdatedChannelImportMappings.md)
  - [UpdatedConfigData](docs/UpdatedConfigData.md)
+ - [UpdatedConfigDataConfigType](docs/UpdatedConfigDataConfigType.md)
  - [UpdatedMfaEnabled](docs/UpdatedMfaEnabled.md)
  - [UpdatedStudyData](docs/UpdatedStudyData.md)
  - [UpdatedTenantChannelWhitelists](docs/UpdatedTenantChannelWhitelists.md)
@@ -520,6 +530,7 @@ Class | Method | HTTP request | Description
  - [UpdatedWorksheetLabelDefinitions](docs/UpdatedWorksheetLabelDefinitions.md)
  - [UpdatedWorksheetLabelDefinitionsLabelDefinitions](docs/UpdatedWorksheetLabelDefinitionsLabelDefinitions.md)
  - [UpgradeConfigData](docs/UpgradeConfigData.md)
+ - [UpgradeConfigDataConfigType](docs/UpgradeConfigDataConfigType.md)
  - [UpgradeConfigQueryResult](docs/UpgradeConfigQueryResult.md)
  - [UserInformation](docs/UserInformation.md)
  - [UserRoleData](docs/UserRoleData.md)
