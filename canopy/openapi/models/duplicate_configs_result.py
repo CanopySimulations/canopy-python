@@ -36,8 +36,8 @@ class DuplicateConfigsResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'target_config_ids': 'list[DocumentId]',
-        'target_default_config_ids': 'list[DocumentId]'
+        'target_config_ids': 'list[str]',
+        'target_default_config_ids': 'list[str]'
     }
 
     attribute_map = {
@@ -65,7 +65,7 @@ class DuplicateConfigsResult(object):
         The list of cloned config IDs.              This list is in the same order as the supplied source config IDs.  # noqa: E501
 
         :return: The target_config_ids of this DuplicateConfigsResult.  # noqa: E501
-        :rtype: list[DocumentId]
+        :rtype: list[str]
         """
         return self._target_config_ids
 
@@ -76,7 +76,7 @@ class DuplicateConfigsResult(object):
         The list of cloned config IDs.              This list is in the same order as the supplied source config IDs.  # noqa: E501
 
         :param target_config_ids: The target_config_ids of this DuplicateConfigsResult.  # noqa: E501
-        :type target_config_ids: list[DocumentId]
+        :type target_config_ids: list[str]
         """
 
         self._target_config_ids = target_config_ids
@@ -88,7 +88,7 @@ class DuplicateConfigsResult(object):
         The list of cloned default config IDs.              This list is in the same order as the supplied source default config IDs.  # noqa: E501
 
         :return: The target_default_config_ids of this DuplicateConfigsResult.  # noqa: E501
-        :rtype: list[DocumentId]
+        :rtype: list[str]
         """
         return self._target_default_config_ids
 
@@ -99,7 +99,7 @@ class DuplicateConfigsResult(object):
         The list of cloned default config IDs.              This list is in the same order as the supplied source default config IDs.  # noqa: E501
 
         :param target_default_config_ids: The target_default_config_ids of this DuplicateConfigsResult.  # noqa: E501
-        :type target_default_config_ids: list[DocumentId]
+        :type target_default_config_ids: list[str]
         """
 
         self._target_default_config_ids = target_default_config_ids

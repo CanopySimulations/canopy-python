@@ -36,7 +36,7 @@ class WorksheetConfig(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'config_type': 'CanopyDocumentSubType',
+        'config_type': 'str',
         'inherit_reference': 'bool',
         'reference': 'ConfigResolvedLabelsReference'
     }
@@ -69,7 +69,7 @@ class WorksheetConfig(object):
 
 
         :return: The config_type of this WorksheetConfig.  # noqa: E501
-        :rtype: CanopyDocumentSubType
+        :rtype: str
         """
         return self._config_type
 
@@ -79,7 +79,7 @@ class WorksheetConfig(object):
 
 
         :param config_type: The config_type of this WorksheetConfig.  # noqa: E501
-        :type config_type: CanopyDocumentSubType
+        :type config_type: str
         """
 
         self._config_type = config_type

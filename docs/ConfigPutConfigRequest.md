@@ -6,7 +6,7 @@ Represents updated config data.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the config. | [optional] 
-**config_type** | [**UpdatedConfigDataConfigType**](UpdatedConfigDataConfigType.md) |  | [optional] 
+**config_type** | **str** | The config type. | [optional] 
 **properties** | [**list[DocumentCustomPropertyData]**](DocumentCustomPropertyData.md) | The list of custom properties associated with the config. | [optional] 
 **config** | **object** | The JSON contents of the config. | [optional] 
 **notes** | **str** | The notes associated with the config. | [optional] 

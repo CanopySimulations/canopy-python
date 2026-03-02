@@ -37,7 +37,7 @@ class StudyReference(object):
     """
     openapi_types = {
         'tenant_id': 'str',
-        'target_id': 'CanopyDocumentDocumentId'
+        'target_id': 'str'
     }
 
     attribute_map = {
@@ -85,7 +85,7 @@ class StudyReference(object):
 
 
         :return: The target_id of this StudyReference.  # noqa: E501
-        :rtype: CanopyDocumentDocumentId
+        :rtype: str
         """
         return self._target_id
 
@@ -95,7 +95,7 @@ class StudyReference(object):
 
 
         :param target_id: The target_id of this StudyReference.  # noqa: E501
-        :type target_id: CanopyDocumentDocumentId
+        :type target_id: str
         """
 
         self._target_id = target_id

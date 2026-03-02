@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**singular_key** | [**CanopyDocumentSubType**](CanopyDocumentSubType.md) |  | [optional] 
+**singular_key** | **str** |  | [optional] 
 **plural_key** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **title_name** | **str** |  | [optional] 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tenant_id** | **str** |  | [optional] 
 **user_id** | **str** |  | [optional] 
-**worksheet_id** | [**CanopyDocumentDocumentId**](CanopyDocumentDocumentId.md) |  | [optional] 
+**worksheet_id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **outline** | [**WorksheetOutline**](WorksheetOutline.md) |  | [optional] 
 **resolved_labels** | [**WorksheetResolvedLabels**](WorksheetResolvedLabels.md) |  | [optional] 

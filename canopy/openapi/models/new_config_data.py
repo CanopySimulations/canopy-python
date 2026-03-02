@@ -37,12 +37,12 @@ class NewConfigData(object):
     """
     openapi_types = {
         'name': 'str',
-        'config_type': 'NewConfigDataConfigType',
+        'config_type': 'str',
         'properties': 'list[DocumentCustomPropertyData]',
         'config': 'object',
         'notes': 'str',
         'sim_version': 'str',
-        'parent_worksheet_id': 'NewConfigDataParentWorksheetId'
+        'parent_worksheet_id': 'str'
     }
 
     attribute_map = {
@@ -105,9 +105,10 @@ class NewConfigData(object):
     def config_type(self):
         """Gets the config_type of this NewConfigData.  # noqa: E501
 
+        The type of the config.  # noqa: E501
 
         :return: The config_type of this NewConfigData.  # noqa: E501
-        :rtype: NewConfigDataConfigType
+        :rtype: str
         """
         return self._config_type
 
@@ -115,9 +116,10 @@ class NewConfigData(object):
     def config_type(self, config_type):
         """Sets the config_type of this NewConfigData.
 
+        The type of the config.  # noqa: E501
 
         :param config_type: The config_type of this NewConfigData.  # noqa: E501
-        :type config_type: NewConfigDataConfigType
+        :type config_type: str
         """
 
         self._config_type = config_type
@@ -218,9 +220,10 @@ class NewConfigData(object):
     def parent_worksheet_id(self):
         """Gets the parent_worksheet_id of this NewConfigData.  # noqa: E501
 
+        The ID of the parent worksheet for the config.  # noqa: E501
 
         :return: The parent_worksheet_id of this NewConfigData.  # noqa: E501
-        :rtype: NewConfigDataParentWorksheetId
+        :rtype: str
         """
         return self._parent_worksheet_id
 
@@ -228,9 +231,10 @@ class NewConfigData(object):
     def parent_worksheet_id(self, parent_worksheet_id):
         """Sets the parent_worksheet_id of this NewConfigData.
 
+        The ID of the parent worksheet for the config.  # noqa: E501
 
         :param parent_worksheet_id: The parent_worksheet_id of this NewConfigData.  # noqa: E501
-        :type parent_worksheet_id: NewConfigDataParentWorksheetId
+        :type parent_worksheet_id: str
         """
 
         self._parent_worksheet_id = parent_worksheet_id

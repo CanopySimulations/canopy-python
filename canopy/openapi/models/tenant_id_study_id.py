@@ -37,7 +37,7 @@ class TenantIdStudyId(object):
     """
     openapi_types = {
         'tenant_id': 'str',
-        'study_id': 'CanopyDocumentDocumentId'
+        'study_id': 'str'
     }
 
     attribute_map = {
@@ -85,7 +85,7 @@ class TenantIdStudyId(object):
 
 
         :return: The study_id of this TenantIdStudyId.  # noqa: E501
-        :rtype: CanopyDocumentDocumentId
+        :rtype: str
         """
         return self._study_id
 
@@ -95,7 +95,7 @@ class TenantIdStudyId(object):
 
 
         :param study_id: The study_id of this TenantIdStudyId.  # noqa: E501
-        :type study_id: CanopyDocumentDocumentId
+        :type study_id: str
         """
 
         self._study_id = study_id

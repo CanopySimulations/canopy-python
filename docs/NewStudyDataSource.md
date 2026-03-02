@@ -5,7 +5,7 @@ Represents the data source of an input to a study.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | [**NewStudyDataSourceConfigType**](NewStudyDataSourceConfigType.md) |  | [optional] 
+**config_type** | **str** | The config type of the data source. | [optional] 
 **user_id** | **str** | The user ID associated with the data source. | [optional] 
 **config_id** | **str** | The ID of the config associated with the data source. | [optional] 
 **name** | **str** | The name of the data source. | [optional] 

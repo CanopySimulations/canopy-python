@@ -37,8 +37,8 @@ class WorksheetPostDuplicateConfigsRequest(object):
     """
     openapi_types = {
         'source_tenant_id': 'str',
-        'source_worksheet_id': 'DuplicateConfigsDataSourceWorksheetId',
-        'source_config_ids': 'list[DocumentId]',
+        'source_worksheet_id': 'str',
+        'source_config_ids': 'list[str]',
         'source_default_config_ids': 'list[DefaultConfigId]'
     }
 
@@ -93,9 +93,10 @@ class WorksheetPostDuplicateConfigsRequest(object):
     def source_worksheet_id(self):
         """Gets the source_worksheet_id of this WorksheetPostDuplicateConfigsRequest.  # noqa: E501
 
+        The ID of the source worksheet.  # noqa: E501
 
         :return: The source_worksheet_id of this WorksheetPostDuplicateConfigsRequest.  # noqa: E501
-        :rtype: DuplicateConfigsDataSourceWorksheetId
+        :rtype: str
         """
         return self._source_worksheet_id
 
@@ -103,9 +104,10 @@ class WorksheetPostDuplicateConfigsRequest(object):
     def source_worksheet_id(self, source_worksheet_id):
         """Sets the source_worksheet_id of this WorksheetPostDuplicateConfigsRequest.
 
+        The ID of the source worksheet.  # noqa: E501
 
         :param source_worksheet_id: The source_worksheet_id of this WorksheetPostDuplicateConfigsRequest.  # noqa: E501
-        :type source_worksheet_id: DuplicateConfigsDataSourceWorksheetId
+        :type source_worksheet_id: str
         """
 
         self._source_worksheet_id = source_worksheet_id
@@ -117,7 +119,7 @@ class WorksheetPostDuplicateConfigsRequest(object):
         The IDs of the source configs.  # noqa: E501
 
         :return: The source_config_ids of this WorksheetPostDuplicateConfigsRequest.  # noqa: E501
-        :rtype: list[DocumentId]
+        :rtype: list[str]
         """
         return self._source_config_ids
 
@@ -128,7 +130,7 @@ class WorksheetPostDuplicateConfigsRequest(object):
         The IDs of the source configs.  # noqa: E501
 
         :param source_config_ids: The source_config_ids of this WorksheetPostDuplicateConfigsRequest.  # noqa: E501
-        :type source_config_ids: list[DocumentId]
+        :type source_config_ids: list[str]
         """
 
         self._source_config_ids = source_config_ids

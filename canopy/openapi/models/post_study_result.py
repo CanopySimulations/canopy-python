@@ -36,7 +36,7 @@ class PostStudyResult(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'study_id': 'PostStudyResultStudyId'
+        'study_id': 'str'
     }
 
     attribute_map = {
@@ -58,9 +58,10 @@ class PostStudyResult(object):
     def study_id(self):
         """Gets the study_id of this PostStudyResult.  # noqa: E501
 
+        The ID of the study.  # noqa: E501
 
         :return: The study_id of this PostStudyResult.  # noqa: E501
-        :rtype: PostStudyResultStudyId
+        :rtype: str
         """
         return self._study_id
 
@@ -68,9 +69,10 @@ class PostStudyResult(object):
     def study_id(self, study_id):
         """Sets the study_id of this PostStudyResult.
 
+        The ID of the study.  # noqa: E501
 
         :param study_id: The study_id of this PostStudyResult.  # noqa: E501
-        :type study_id: PostStudyResultStudyId
+        :type study_id: str
         """
 
         self._study_id = study_id

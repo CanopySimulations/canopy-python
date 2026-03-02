@@ -5,7 +5,7 @@ Represents the data required to upgrade a config.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | [**UpgradeConfigDataConfigType**](UpgradeConfigDataConfigType.md) |  | [optional] 
+**config_type** | **str** | The type of the config document. | [optional] 
 **config** | **object** | The config data. | [optional] 
 **sim_version** | **str** | The version of the simulation to upgrade to. | [optional] 
 
