@@ -37,8 +37,8 @@ class DuplicateConfigsData(object):
     """
     openapi_types = {
         'source_tenant_id': 'str',
-        'source_worksheet_id': 'object',
-        'source_config_ids': 'list[object]',
+        'source_worksheet_id': 'str',
+        'source_config_ids': 'list[str]',
         'source_default_config_ids': 'list[DefaultConfigId]'
     }
 
@@ -96,7 +96,7 @@ class DuplicateConfigsData(object):
         The ID of the source worksheet.  # noqa: E501
 
         :return: The source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._source_worksheet_id
 
@@ -107,7 +107,7 @@ class DuplicateConfigsData(object):
         The ID of the source worksheet.  # noqa: E501
 
         :param source_worksheet_id: The source_worksheet_id of this DuplicateConfigsData.  # noqa: E501
-        :type source_worksheet_id: object
+        :type source_worksheet_id: str
         """
 
         self._source_worksheet_id = source_worksheet_id
@@ -119,7 +119,7 @@ class DuplicateConfigsData(object):
         The IDs of the source configs.  # noqa: E501
 
         :return: The source_config_ids of this DuplicateConfigsData.  # noqa: E501
-        :rtype: list[object]
+        :rtype: list[str]
         """
         return self._source_config_ids
 
@@ -130,7 +130,7 @@ class DuplicateConfigsData(object):
         The IDs of the source configs.  # noqa: E501
 
         :param source_config_ids: The source_config_ids of this DuplicateConfigsData.  # noqa: E501
-        :type source_config_ids: list[object]
+        :type source_config_ids: list[str]
         """
 
         self._source_config_ids = source_config_ids

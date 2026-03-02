@@ -38,7 +38,7 @@ class Worksheet(object):
     openapi_types = {
         'tenant_id': 'str',
         'user_id': 'str',
-        'worksheet_id': 'object',
+        'worksheet_id': 'str',
         'name': 'str',
         'outline': 'WorksheetOutline',
         'resolved_labels': 'WorksheetResolvedLabels',
@@ -138,7 +138,7 @@ class Worksheet(object):
 
 
         :return: The worksheet_id of this Worksheet.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._worksheet_id
 
@@ -148,7 +148,7 @@ class Worksheet(object):
 
 
         :param worksheet_id: The worksheet_id of this Worksheet.  # noqa: E501
-        :type worksheet_id: object
+        :type worksheet_id: str
         """
 
         self._worksheet_id = worksheet_id

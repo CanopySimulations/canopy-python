@@ -36,7 +36,7 @@ class ChartSettings(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'chart_type': 'object',
+        'chart_type': 'str',
         'chart_id': 'str',
         'preferred_chart_id': 'str',
         'preferred_chart_user_id': 'str'
@@ -72,7 +72,7 @@ class ChartSettings(object):
 
 
         :return: The chart_type of this ChartSettings.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._chart_type
 
@@ -82,7 +82,7 @@ class ChartSettings(object):
 
 
         :param chart_type: The chart_type of this ChartSettings.  # noqa: E501
-        :type chart_type: object
+        :type chart_type: str
         """
 
         self._chart_type = chart_type

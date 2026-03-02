@@ -37,12 +37,12 @@ class ConfigPostConfigRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'config_type': 'object',
+        'config_type': 'str',
         'properties': 'list[DocumentCustomPropertyData]',
         'config': 'object',
         'notes': 'str',
         'sim_version': 'str',
-        'parent_worksheet_id': 'object'
+        'parent_worksheet_id': 'str'
     }
 
     attribute_map = {
@@ -108,7 +108,7 @@ class ConfigPostConfigRequest(object):
         The type of the config.  # noqa: E501
 
         :return: The config_type of this ConfigPostConfigRequest.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._config_type
 
@@ -119,7 +119,7 @@ class ConfigPostConfigRequest(object):
         The type of the config.  # noqa: E501
 
         :param config_type: The config_type of this ConfigPostConfigRequest.  # noqa: E501
-        :type config_type: object
+        :type config_type: str
         """
 
         self._config_type = config_type
@@ -223,7 +223,7 @@ class ConfigPostConfigRequest(object):
         The ID of the parent worksheet for the config.  # noqa: E501
 
         :return: The parent_worksheet_id of this ConfigPostConfigRequest.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._parent_worksheet_id
 
@@ -234,7 +234,7 @@ class ConfigPostConfigRequest(object):
         The ID of the parent worksheet for the config.  # noqa: E501
 
         :param parent_worksheet_id: The parent_worksheet_id of this ConfigPostConfigRequest.  # noqa: E501
-        :type parent_worksheet_id: object
+        :type parent_worksheet_id: str
         """
 
         self._parent_worksheet_id = parent_worksheet_id

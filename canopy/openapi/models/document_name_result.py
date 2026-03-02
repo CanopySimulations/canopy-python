@@ -37,7 +37,7 @@ class DocumentNameResult(object):
     """
     openapi_types = {
         'name': 'str',
-        'config_id': 'object',
+        'config_id': 'str',
         'user_id': 'str'
     }
 
@@ -89,7 +89,7 @@ class DocumentNameResult(object):
 
 
         :return: The config_id of this DocumentNameResult.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._config_id
 
@@ -99,7 +99,7 @@ class DocumentNameResult(object):
 
 
         :param config_id: The config_id of this DocumentNameResult.  # noqa: E501
-        :type config_id: object
+        :type config_id: str
         """
 
         self._config_id = config_id

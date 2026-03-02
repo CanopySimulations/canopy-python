@@ -37,7 +37,7 @@ class ConfigPutConfigRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'config_type': 'object',
+        'config_type': 'str',
         'properties': 'list[DocumentCustomPropertyData]',
         'config': 'object',
         'notes': 'str',
@@ -104,7 +104,7 @@ class ConfigPutConfigRequest(object):
         The config type.  # noqa: E501
 
         :return: The config_type of this ConfigPutConfigRequest.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._config_type
 
@@ -115,7 +115,7 @@ class ConfigPutConfigRequest(object):
         The config type.  # noqa: E501
 
         :param config_type: The config_type of this ConfigPutConfigRequest.  # noqa: E501
-        :type config_type: object
+        :type config_type: str
         """
 
         self._config_type = config_type

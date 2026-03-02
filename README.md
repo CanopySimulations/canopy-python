@@ -193,7 +193,7 @@ Proceed? (y/n):
 
 Note: The `openapi/configuration.py` file will need to be manually modified to add the default API host URL.  
 Note: The `openapi_asyncio/rest.py` file will need to be manually modified to support proxy servers after generation.  
-Note: The `openapi_asyncio/client_api.py` and `openapi/client_api.py` files will need to be manually modified to support numpy array serialization after generation.  
+Note: The `openapi_asyncio/api_client.py` and `openapi/api_client.py` files will need to be manually modified to support numpy array serialization after generation.  
 Note: The `availability_api.py`, `membership_api.py` and `study_api.py` files will need reverting to specify 'Bearer' in AuthSettings  
 
 ## Using a local version of the API as source

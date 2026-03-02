@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config_type** | **object** |  | [optional] 
+**config_type** | **str** |  | [optional] 
 **inherit_reference** | **bool** |  | [optional] 
 **reference** | [**ConfigResolvedLabelsReference**](ConfigResolvedLabelsReference.md) |  | [optional] 
 

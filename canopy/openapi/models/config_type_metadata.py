@@ -36,7 +36,7 @@ class ConfigTypeMetadata(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'singular_key': 'object',
+        'singular_key': 'str',
         'plural_key': 'str',
         'name': 'str',
         'title_name': 'str',
@@ -76,7 +76,7 @@ class ConfigTypeMetadata(object):
 
 
         :return: The singular_key of this ConfigTypeMetadata.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._singular_key
 
@@ -86,7 +86,7 @@ class ConfigTypeMetadata(object):
 
 
         :param singular_key: The singular_key of this ConfigTypeMetadata.  # noqa: E501
-        :type singular_key: object
+        :type singular_key: str
         """
 
         self._singular_key = singular_key

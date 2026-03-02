@@ -39,7 +39,7 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
         'settings': 'GetTenantDefaultCustomPropertyNamesQueryResultSettings',
         'custom_property_groups': 'list[DocumentTypeCustomPropertyGroups]',
         'study_types': 'list[str]',
-        'config_types': 'list[object]'
+        'config_types': 'list[str]'
     }
 
     attribute_map = {
@@ -135,7 +135,7 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
 
 
         :return: The config_types of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
-        :rtype: list[object]
+        :rtype: list[str]
         """
         return self._config_types
 
@@ -145,7 +145,7 @@ class GetTenantDefaultCustomPropertyNamesQueryResult(object):
 
 
         :param config_types: The config_types of this GetTenantDefaultCustomPropertyNamesQueryResult.  # noqa: E501
-        :type config_types: list[object]
+        :type config_types: list[str]
         """
 
         self._config_types = config_types

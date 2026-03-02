@@ -37,7 +37,7 @@ class TenantConfigReference(object):
     """
     openapi_types = {
         'tenant_id': 'str',
-        'target_id': 'object',
+        'target_id': 'str',
         'job_index': 'int'
     }
 
@@ -89,7 +89,7 @@ class TenantConfigReference(object):
 
 
         :return: The target_id of this TenantConfigReference.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._target_id
 
@@ -99,7 +99,7 @@ class TenantConfigReference(object):
 
 
         :param target_id: The target_id of this TenantConfigReference.  # noqa: E501
-        :type target_id: object
+        :type target_id: str
         """
 
         self._target_id = target_id

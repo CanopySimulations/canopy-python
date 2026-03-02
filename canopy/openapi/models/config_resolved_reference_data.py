@@ -39,7 +39,7 @@ class ConfigResolvedReferenceData(object):
         'modified_date': 'datetime',
         'user_id': 'str',
         'name': 'str',
-        'config_type': 'object',
+        'config_type': 'str',
         'hashes': 'list[ConfigHash]',
         'is_support_session_open': 'bool'
     }
@@ -144,7 +144,7 @@ class ConfigResolvedReferenceData(object):
 
 
         :return: The config_type of this ConfigResolvedReferenceData.  # noqa: E501
-        :rtype: object
+        :rtype: str
         """
         return self._config_type
 
@@ -154,7 +154,7 @@ class ConfigResolvedReferenceData(object):
 
 
         :param config_type: The config_type of this ConfigResolvedReferenceData.  # noqa: E501
-        :type config_type: object
+        :type config_type: str
         """
 
         self._config_type = config_type
