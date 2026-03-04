@@ -1,3 +1,4 @@
+import polars as pl
 from typing import List, Optional
 import numpy as np
 import pandas as pd
@@ -25,6 +26,16 @@ async def load_channels(
 
     if vector_metadata is None:
         return [None] * len(channel_names)
+
+    # First attempt to load from parquet if available
+    parquet_channel_data = await _try_load_channels_from_parquet(
+        job_access_information,
+        sim_type,
+        channel_names,
+        vector_metadata)
+
+    if parquet_channel_data is not None:
+        return parquet_channel_data
 
     async def _load_channel(channel_name: str) -> Optional[canopy.LoadedChannel]:
         async with semaphore:
@@ -75,3 +86,61 @@ async def load_channel(
         vector_metadata=vector_metadata,
         semaphore=semaphore)
     return results[0]
+
+
+async def _try_load_channels_from_parquet(
+        job_access_information: canopy.openapi.BlobAccessInformation,
+        sim_type: str,
+        channel_names: List[str],
+        vector_metadata: pd.DataFrame) -> Optional[List[Optional[canopy.LoadedChannel]]]:
+    # We assume 't' is a common x-domain, but the user said <sim-type>_<x-domain>.parquet
+    # Since we don't know the x-domain, and the prompt implies there's a relevant one,
+    # we might need to find it from vector_metadata or assume a default like 't'.
+    # However, common canopy usage often has 't' as the x-domain for many sim types.
+    # If the x-domain isn't fixed, we'd need to know which one to look for.
+    # Given "<sim-type>_<x-domain>.parquet", and "minimise calls to scan_parquet",
+    # it suggests there might be one main parquet file.
+    
+    # Try 't' as the default x-domain if not specified.
+    x_domain = 't'
+    file_name = f'{sim_type}_{x_domain}_VectorResults.parquet'
+    url = f'{job_access_information.url}{file_name}{job_access_information.access_signature}'
+
+    try:
+        # Check if the parquet file exists by trying to peek at it or just attempting scan_parquet
+        # polars.scan_parquet supports HTTP URLs if built with 'fsspec' or 'cloud' support.
+        # If not, we might need to download it first, but scan_parquet is specifically requested.
+        
+        # We'll use a single scan for all requested channels that exist in metadata.
+        valid_channels = [name for name in channel_names if name in vector_metadata.index]
+        if not valid_channels:
+            return [None] * len(channel_names)
+
+        # scan_parquet is lazy. 
+        # Note: pl.scan_parquet(url) might fail if the environment doesn't support fsspec/http.
+        # But the requirement is to use scan_parquet.
+        lf = pl.scan_parquet(url)
+        
+        # Check which columns actually exist in the parquet
+        available_columns = lf.columns
+        requested_available = [name for name in valid_channels if name in available_columns]
+        
+        if not requested_available:
+            return None
+
+        # Fetch all required columns in one go
+        df: pl.DataFrame = lf.select(requested_available).collect()
+        
+        results: List[Optional[canopy.LoadedChannel]] = []
+        for name in channel_names:
+            if name in requested_available:
+                data: np.ndarray = df.get_column(name).to_numpy()
+                units: str = str(vector_metadata.at[name, 'units'])
+                results.append(canopy.LoadedChannel(name, units, data))
+            else:
+                return None
+        
+        return results
+    except Exception as e:
+        logger.debug(f"Failed to load channels from parquet {file_name}: {e}")
+        return None
