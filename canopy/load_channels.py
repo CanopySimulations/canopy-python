@@ -28,16 +28,38 @@ async def load_channels(
         return [None] * len(channel_names)
 
     # First attempt to load from parquet if available
-    parquet_channel_data = await _try_load_channels_from_parquet(
-        job_access_information,
-        sim_type,
-        channel_names,
-        vector_metadata)
+    # We group channels by their x-domain to load from the correct parquet files.
+    parquet_results = {}
+    
+    channels_by_x_domain = {}
+    for name in channel_names:
+        if name in vector_metadata.index:
+            x_domain = vector_metadata.at[name, 'xDomainName']
+            if pd.isna(x_domain) or not x_domain:
+                continue
+            
+            if x_domain not in channels_by_x_domain:
+                channels_by_x_domain[x_domain] = []
+            channels_by_x_domain[x_domain].append(name)
 
-    if parquet_channel_data is not None:
-        return parquet_channel_data
+    # Try loading from parquet for each x-domain
+    for x_domain, domain_channels in channels_by_x_domain.items():
+        loaded_from_parquet = await _try_load_channels_from_parquet(
+            job_access_information,
+            sim_type,
+            x_domain,
+            domain_channels,
+            vector_metadata)
+        
+        if loaded_from_parquet:
+            for channel in loaded_from_parquet:
+                if channel is not None:
+                    parquet_results[channel.name] = channel
 
     async def _load_channel(channel_name: str) -> Optional[canopy.LoadedChannel]:
+        if channel_name in parquet_results:
+            return parquet_results[channel_name]
+
         async with semaphore:
             if channel_name not in vector_metadata.index:
                 logger.debug('Channel not found: %s', channel_name)
@@ -70,55 +92,21 @@ async def load_channels(
     tasks = [asyncio.ensure_future(_load_channel(name)) for name in channel_names]
     return await asyncio.gather(*tasks)
 
-
-async def load_channel(
-        session: canopy.Session,
-        job_access_information: canopy.openapi.BlobAccessInformation,
-        sim_type: str,
-        channel_name: str,
-        vector_metadata: Optional[pd.DataFrame] = None,
-        semaphore: Optional[asyncio.Semaphore] = None) -> Optional[canopy.LoadedChannel]:
-    results = await load_channels(
-        session,
-        job_access_information,
-        sim_type,
-        [channel_name],
-        vector_metadata=vector_metadata,
-        semaphore=semaphore)
-    return results[0]
-
-
 async def _try_load_channels_from_parquet(
         job_access_information: canopy.openapi.BlobAccessInformation,
         sim_type: str,
+        x_domain: str,
         channel_names: List[str],
         vector_metadata: pd.DataFrame) -> Optional[List[Optional[canopy.LoadedChannel]]]:
-    # We assume 't' is a common x-domain, but the user said <sim-type>_<x-domain>.parquet
-    # Since we don't know the x-domain, and the prompt implies there's a relevant one,
-    # we might need to find it from vector_metadata or assume a default like 't'.
-    # However, common canopy usage often has 't' as the x-domain for many sim types.
-    # If the x-domain isn't fixed, we'd need to know which one to look for.
-    # Given "<sim-type>_<x-domain>.parquet", and "minimise calls to scan_parquet",
-    # it suggests there might be one main parquet file.
-    
-    # Try 't' as the default x-domain if not specified.
-    x_domain = 't'
     file_name = f'{sim_type}_{x_domain}_VectorResults.parquet'
     url = f'{job_access_information.url}{file_name}{job_access_information.access_signature}'
 
     try:
-        # Check if the parquet file exists by trying to peek at it or just attempting scan_parquet
-        # polars.scan_parquet supports HTTP URLs if built with 'fsspec' or 'cloud' support.
-        # If not, we might need to download it first, but scan_parquet is specifically requested.
-        
         # We'll use a single scan for all requested channels that exist in metadata.
         valid_channels = [name for name in channel_names if name in vector_metadata.index]
         if not valid_channels:
-            return [None] * len(channel_names)
+            return None
 
-        # scan_parquet is lazy. 
-        # Note: pl.scan_parquet(url) might fail if the environment doesn't support fsspec/http.
-        # But the requirement is to use scan_parquet.
         lf = pl.scan_parquet(url)
         
         # Check which columns actually exist in the parquet
