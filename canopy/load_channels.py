@@ -107,7 +107,7 @@ async def _try_load_channels_from_parquet(
         if not valid_channels:
             return None
 
-        lf = pl.scan_parquet(url, storage_options={ "max_retries": 1, "retry_timeout": 100 })
+        lf = pl.scan_parquet(url, storage_options={ "max_retries": 1, "retry_timeout_ms": 100 })
         
         # Check which columns actually exist in the parquet
         schema = await asyncio.to_thread(lf.collect_schema)
