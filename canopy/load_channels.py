@@ -107,17 +107,18 @@ async def _try_load_channels_from_parquet(
         if not valid_channels:
             return None
 
-        lf = pl.scan_parquet(url)
+        lf = pl.scan_parquet(url, storage_options={ "max_retries": 1, "retry_timeout": 100 })
         
         # Check which columns actually exist in the parquet
-        available_columns = lf.columns
+        schema = await asyncio.to_thread(lf.collect_schema)
+        available_columns = schema.names()
         requested_available = [name for name in valid_channels if name in available_columns]
         
         if not requested_available:
             return None
 
         # Fetch all required columns in one go
-        df: pl.DataFrame = lf.select(requested_available).collect()
+        df: pl.DataFrame = await lf.select(requested_available).collect_async()
         
         results: List[Optional[canopy.LoadedChannel]] = []
         for name in channel_names:
@@ -126,7 +127,7 @@ async def _try_load_channels_from_parquet(
                 units: str = str(vector_metadata.at[name, 'units'])
                 results.append(canopy.LoadedChannel(name, units, data))
             else:
-                return None
+                results.append(None)
         
         return results
     except Exception as e:

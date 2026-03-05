@@ -10,13 +10,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  python.buildVersion: '3.8'
-
-  major: 8
+  python.buildVersion: '3.10'
+  isPullRequest: ${{ eq(variables['Build.Reason'], 'PullRequest') }}
+  major: 9
   minor: $[counter(variables.major, 0)]
-  buildVersion: $[format('{0}.{1}', variables.major, variables.minor)]
-
-  isPullRequest: $[eq(variables['Build.Reason'], 'PullRequest')]
+  ${{ if eq(variables['isPullRequest'], 'True') }}:
+    buildVersion: $[format('{0}.{1}.dev1', variables.major, variables.minor)]
+  ${{ if eq(variables['isPullRequest'], 'False') }}:
+    buildVersion: $[format('{0}.{1}', variables.major, variables.minor)]
 
 name: '$(buildVersion)'
 
@@ -63,7 +64,6 @@ jobs:
 
   - job: Build
     dependsOn: Test
-    condition: and(succeeded(), eq(variables['isPullRequest'], 'False'))
 
     steps:
     - task: UsePythonVersion@0
