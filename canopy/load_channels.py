@@ -88,9 +88,8 @@ async def load_channels(
 
             loaded_channel = canopy.LoadedChannel(channel_name, units, channel_data)
             return loaded_channel
-
-    tasks = [asyncio.ensure_future(_load_channel(name)) for name in channel_names]
-    return await asyncio.gather(*tasks)
+        
+    return await asyncio.gather(*[_load_channel(name) for name in channel_names])
 
 async def _try_load_channels_from_parquet(
         job_access_information: canopy.openapi.BlobAccessInformation,
@@ -107,29 +106,17 @@ async def _try_load_channels_from_parquet(
         if not valid_channels:
             return None
 
-        lf = pl.scan_parquet(url, storage_options={ "max_retries": 1, "retry_timeout_ms": 100 })
-        
-        # Check which columns actually exist in the parquet
-        schema = await asyncio.to_thread(lf.collect_schema)
-        available_columns = schema.names()
-        requested_available = [name for name in valid_channels if name in available_columns]
-        
-        if not requested_available:
-            return None
-
         # Fetch all required columns in one go
-        df: pl.DataFrame = await lf.select(requested_available).collect_async()
+        df: pl.DataFrame = await (pl.scan_parquet(url, parallel="columns", storage_options={ "max_retries": 1, "retry_timeout_ms": 100 })
+                                    .select(valid_channels)
+                                    .collect_async())
         
-        results: List[Optional[canopy.LoadedChannel]] = []
-        for name in channel_names:
-            if name in requested_available:
-                data: np.ndarray = df.get_column(name).to_numpy()
-                units: str = str(vector_metadata.at[name, 'units'])
-                results.append(canopy.LoadedChannel(name, units, data))
-            else:
-                results.append(None)
-        
-        return results
+        return [
+            canopy.LoadedChannel(name, str(vector_metadata.at[name, "units"]), df.get_column(name).to_numpy())
+            if name in valid_channels
+            else None
+            for name in channel_names
+        ]
     except Exception as e:
         logger.debug(f"Failed to load channels from parquet {file_name}: {e}")
         return None
