@@ -23,7 +23,8 @@ dependencies = [
     "urllib3>=1.23",
     "pandas>=0.25.1",
     "aiohttp",
-    "munch"
+    "munch",
+    "polars"
 ]
 
 [tool.setuptools]

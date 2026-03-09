@@ -42,7 +42,7 @@ from canopy.load_config import load_config
 from canopy.update_config import update_config
 from canopy.load_study import load_study
 from canopy.load_study_job import load_study_job
-from canopy.load_channel import load_channel
+from canopy.load_channels import load_channels
 from canopy.load_vector_metadata import load_vector_metadata
 from canopy.get_study_document import get_study_document
 from canopy.job_count_to_simulation_count import job_count_to_simulation_count
