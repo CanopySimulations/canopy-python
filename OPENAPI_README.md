@@ -148,7 +148,6 @@ Class | Method | HTTP request | Description
 *MembershipApi* | [**membership_get_zendesk_token**](docs/MembershipApi.md#membership_get_zendesk_token) | **GET** /membership/zendesk-token/{tenantId}/{userId} | Gets the specified user&#39;s Zendesk token. This is used to provide SSO with Zendesk.
 *MembershipApi* | [**membership_post_email_confirmation**](docs/MembershipApi.md#membership_post_email_confirmation) | **POST** /membership/email-confirmations | Posts an email address confirmation. If successful, the user&#39;s email address will have been confirmed.
 *MembershipApi* | [**membership_post_email_confirmation_request**](docs/MembershipApi.md#membership_post_email_confirmation_request) | **POST** /membership/email-confirmation-requests/{tenantId}/{userId} | Request an email address confirmation for a user. This sends an email to the user which they can use to confirm their email address.
-*MembershipApi* | [**membership_post_identified_user**](docs/MembershipApi.md#membership_post_identified_user) | **POST** /membership/identified-users | This API endpoint is no longer used.
 *MembershipApi* | [**membership_post_initialize**](docs/MembershipApi.md#membership_post_initialize) | **POST** /membership/initialize | This method performs some initialization tasks on a new instance of the platform,  and does nothing on existing instances.
 *MembershipApi* | [**membership_post_password_reset_confirmation**](docs/MembershipApi.md#membership_post_password_reset_confirmation) | **POST** /membership/password-reset-confirmations | Confirms a password reset for a user.
 *MembershipApi* | [**membership_post_password_reset_request**](docs/MembershipApi.md#membership_post_password_reset_request) | **POST** /membership/password-reset-requests | Requests a password reset for a user.  If the user exists they will be send a password reset email containing a link they can click on  to reset their password.  If the user does not exist, nothing happens.
@@ -407,7 +406,6 @@ Class | Method | HTTP request | Description
  - [IPreviousDefinitionSimTypeDefinitionDefinition](docs/IPreviousDefinitionSimTypeDefinitionDefinition.md)
  - [IPreviousDefinitionStudyTypeDefinition](docs/IPreviousDefinitionStudyTypeDefinition.md)
  - [IPreviousDefinitionStudyTypeDefinitionDefinition](docs/IPreviousDefinitionStudyTypeDefinitionDefinition.md)
- - [IdentifiedUserData](docs/IdentifiedUserData.md)
  - [InvoiceBotDeploymentItem](docs/InvoiceBotDeploymentItem.md)
  - [KeyPermissionData](docs/KeyPermissionData.md)
  - [LabelDefinition](docs/LabelDefinition.md)
@@ -417,7 +415,6 @@ Class | Method | HTTP request | Description
  - [ListFilterGroup](docs/ListFilterGroup.md)
  - [ListFilterQuery](docs/ListFilterQuery.md)
  - [MembershipPostEmailConfirmationRequest](docs/MembershipPostEmailConfirmationRequest.md)
- - [MembershipPostIdentifiedUserRequest](docs/MembershipPostIdentifiedUserRequest.md)
  - [MembershipPostPasswordResetConfirmationRequest](docs/MembershipPostPasswordResetConfirmationRequest.md)
  - [MembershipPostPasswordResetRequestRequest](docs/MembershipPostPasswordResetRequestRequest.md)
  - [MembershipPostRegistrationRequest](docs/MembershipPostRegistrationRequest.md)

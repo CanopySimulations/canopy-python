@@ -54,7 +54,11 @@ class GetDeploymentQueryResultDeploymentDTO(object):
         'enabled': 'bool',
         'tenants': 'list[GetDeploymentQueryResultTenantItem]',
         'notes': 'list[GetDeploymentQueryResultNoteItem]',
-        'features': 'list[str]'
+        'features': 'list[str]',
+        'pool_id': 'str',
+        'secondary_pool_id': 'str',
+        'heavy_pool_id': 'str',
+        'document_database_id': 'str'
     }
 
     attribute_map = {
@@ -76,10 +80,14 @@ class GetDeploymentQueryResultDeploymentDTO(object):
         'enabled': 'enabled',
         'tenants': 'tenants',
         'notes': 'notes',
-        'features': 'features'
+        'features': 'features',
+        'pool_id': 'poolId',
+        'secondary_pool_id': 'secondaryPoolId',
+        'heavy_pool_id': 'heavyPoolId',
+        'document_database_id': 'documentDatabaseId'
     }
 
-    def __init__(self, id=None, name=None, commercially_active=None, renewal_date=None, cut_off_date=None, max_nodes=None, compute_credit_limit=None, subscription_level=None, effective_date=None, original_effective_date=None, storage_credit_limit=None, do_not_invoice=None, last_invoice_date=None, last_invoice_compute_credit=None, near_storage_limit=None, enabled=None, tenants=None, notes=None, features=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, commercially_active=None, renewal_date=None, cut_off_date=None, max_nodes=None, compute_credit_limit=None, subscription_level=None, effective_date=None, original_effective_date=None, storage_credit_limit=None, do_not_invoice=None, last_invoice_date=None, last_invoice_compute_credit=None, near_storage_limit=None, enabled=None, tenants=None, notes=None, features=None, pool_id=None, secondary_pool_id=None, heavy_pool_id=None, document_database_id=None, local_vars_configuration=None):  # noqa: E501
         """GetDeploymentQueryResultDeploymentDTO - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -104,6 +112,10 @@ class GetDeploymentQueryResultDeploymentDTO(object):
         self._tenants = None
         self._notes = None
         self._features = None
+        self._pool_id = None
+        self._secondary_pool_id = None
+        self._heavy_pool_id = None
+        self._document_database_id = None
         self.discriminator = None
 
         if id is not None:
@@ -131,6 +143,10 @@ class GetDeploymentQueryResultDeploymentDTO(object):
         self.tenants = tenants
         self.notes = notes
         self.features = features
+        self.pool_id = pool_id
+        self.secondary_pool_id = secondary_pool_id
+        self.heavy_pool_id = heavy_pool_id
+        self.document_database_id = document_database_id
 
     @property
     def id(self):
@@ -530,6 +546,90 @@ class GetDeploymentQueryResultDeploymentDTO(object):
         """
 
         self._features = features
+
+    @property
+    def pool_id(self):
+        """Gets the pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+
+
+        :return: The pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+        :rtype: str
+        """
+        return self._pool_id
+
+    @pool_id.setter
+    def pool_id(self, pool_id):
+        """Sets the pool_id of this GetDeploymentQueryResultDeploymentDTO.
+
+
+        :param pool_id: The pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+        :type pool_id: str
+        """
+
+        self._pool_id = pool_id
+
+    @property
+    def secondary_pool_id(self):
+        """Gets the secondary_pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+
+
+        :return: The secondary_pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+        :rtype: str
+        """
+        return self._secondary_pool_id
+
+    @secondary_pool_id.setter
+    def secondary_pool_id(self, secondary_pool_id):
+        """Sets the secondary_pool_id of this GetDeploymentQueryResultDeploymentDTO.
+
+
+        :param secondary_pool_id: The secondary_pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+        :type secondary_pool_id: str
+        """
+
+        self._secondary_pool_id = secondary_pool_id
+
+    @property
+    def heavy_pool_id(self):
+        """Gets the heavy_pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+
+
+        :return: The heavy_pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+        :rtype: str
+        """
+        return self._heavy_pool_id
+
+    @heavy_pool_id.setter
+    def heavy_pool_id(self, heavy_pool_id):
+        """Sets the heavy_pool_id of this GetDeploymentQueryResultDeploymentDTO.
+
+
+        :param heavy_pool_id: The heavy_pool_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+        :type heavy_pool_id: str
+        """
+
+        self._heavy_pool_id = heavy_pool_id
+
+    @property
+    def document_database_id(self):
+        """Gets the document_database_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+
+
+        :return: The document_database_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+        :rtype: str
+        """
+        return self._document_database_id
+
+    @document_database_id.setter
+    def document_database_id(self, document_database_id):
+        """Sets the document_database_id of this GetDeploymentQueryResultDeploymentDTO.
+
+
+        :param document_database_id: The document_database_id of this GetDeploymentQueryResultDeploymentDTO.  # noqa: E501
+        :type document_database_id: str
+        """
+
+        self._document_database_id = document_database_id
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

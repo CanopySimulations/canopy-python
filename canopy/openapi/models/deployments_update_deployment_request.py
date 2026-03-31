@@ -48,7 +48,11 @@ class DeploymentsUpdateDeploymentRequest(object):
         'do_not_invoice': 'bool',
         'enabled': 'bool',
         'features': 'list[str]',
-        'note': 'str'
+        'note': 'str',
+        'pool_id': 'str',
+        'secondary_pool_id': 'str',
+        'heavy_pool_id': 'str',
+        'document_database_id': 'str'
     }
 
     attribute_map = {
@@ -64,10 +68,14 @@ class DeploymentsUpdateDeploymentRequest(object):
         'do_not_invoice': 'doNotInvoice',
         'enabled': 'enabled',
         'features': 'features',
-        'note': 'note'
+        'note': 'note',
+        'pool_id': 'poolId',
+        'secondary_pool_id': 'secondaryPoolId',
+        'heavy_pool_id': 'heavyPoolId',
+        'document_database_id': 'documentDatabaseId'
     }
 
-    def __init__(self, name=None, commercially_active=None, renewal_date=None, cut_off_date=None, max_nodes=None, compute_credit_limit=None, subscription_level=None, effective_date=None, storage_credit_limit=None, do_not_invoice=None, enabled=None, features=None, note=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, commercially_active=None, renewal_date=None, cut_off_date=None, max_nodes=None, compute_credit_limit=None, subscription_level=None, effective_date=None, storage_credit_limit=None, do_not_invoice=None, enabled=None, features=None, note=None, pool_id=None, secondary_pool_id=None, heavy_pool_id=None, document_database_id=None, local_vars_configuration=None):  # noqa: E501
         """DeploymentsUpdateDeploymentRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -86,6 +94,10 @@ class DeploymentsUpdateDeploymentRequest(object):
         self._enabled = None
         self._features = None
         self._note = None
+        self._pool_id = None
+        self._secondary_pool_id = None
+        self._heavy_pool_id = None
+        self._document_database_id = None
         self.discriminator = None
 
         self.name = name
@@ -105,6 +117,10 @@ class DeploymentsUpdateDeploymentRequest(object):
             self.enabled = enabled
         self.features = features
         self.note = note
+        self.pool_id = pool_id
+        self.secondary_pool_id = secondary_pool_id
+        self.heavy_pool_id = heavy_pool_id
+        self.document_database_id = document_database_id
 
     @property
     def name(self):
@@ -404,6 +420,98 @@ class DeploymentsUpdateDeploymentRequest(object):
         """
 
         self._note = note
+
+    @property
+    def pool_id(self):
+        """Gets the pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+
+        ID of the primary pool.  # noqa: E501
+
+        :return: The pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._pool_id
+
+    @pool_id.setter
+    def pool_id(self, pool_id):
+        """Sets the pool_id of this DeploymentsUpdateDeploymentRequest.
+
+        ID of the primary pool.  # noqa: E501
+
+        :param pool_id: The pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+        :type pool_id: str
+        """
+
+        self._pool_id = pool_id
+
+    @property
+    def secondary_pool_id(self):
+        """Gets the secondary_pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+
+        ID of the secondary pool.  # noqa: E501
+
+        :return: The secondary_pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._secondary_pool_id
+
+    @secondary_pool_id.setter
+    def secondary_pool_id(self, secondary_pool_id):
+        """Sets the secondary_pool_id of this DeploymentsUpdateDeploymentRequest.
+
+        ID of the secondary pool.  # noqa: E501
+
+        :param secondary_pool_id: The secondary_pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+        :type secondary_pool_id: str
+        """
+
+        self._secondary_pool_id = secondary_pool_id
+
+    @property
+    def heavy_pool_id(self):
+        """Gets the heavy_pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+
+        ID of the heavy pool.  # noqa: E501
+
+        :return: The heavy_pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._heavy_pool_id
+
+    @heavy_pool_id.setter
+    def heavy_pool_id(self, heavy_pool_id):
+        """Sets the heavy_pool_id of this DeploymentsUpdateDeploymentRequest.
+
+        ID of the heavy pool.  # noqa: E501
+
+        :param heavy_pool_id: The heavy_pool_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+        :type heavy_pool_id: str
+        """
+
+        self._heavy_pool_id = heavy_pool_id
+
+    @property
+    def document_database_id(self):
+        """Gets the document_database_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+
+        ID of the document database.  # noqa: E501
+
+        :return: The document_database_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._document_database_id
+
+    @document_database_id.setter
+    def document_database_id(self, document_database_id):
+        """Sets the document_database_id of this DeploymentsUpdateDeploymentRequest.
+
+        ID of the document database.  # noqa: E501
+
+        :param document_database_id: The document_database_id of this DeploymentsUpdateDeploymentRequest.  # noqa: E501
+        :type document_database_id: str
+        """
+
+        self._document_database_id = document_database_id
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

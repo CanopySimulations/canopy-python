@@ -10,7 +10,6 @@ Method | HTTP request | Description
 [**membership_get_zendesk_token**](MembershipApi.md#membership_get_zendesk_token) | **GET** /membership/zendesk-token/{tenantId}/{userId} | Gets the specified user&#39;s Zendesk token. This is used to provide SSO with Zendesk.
 [**membership_post_email_confirmation**](MembershipApi.md#membership_post_email_confirmation) | **POST** /membership/email-confirmations | Posts an email address confirmation. If successful, the user&#39;s email address will have been confirmed.
 [**membership_post_email_confirmation_request**](MembershipApi.md#membership_post_email_confirmation_request) | **POST** /membership/email-confirmation-requests/{tenantId}/{userId} | Request an email address confirmation for a user. This sends an email to the user which they can use to confirm their email address.
-[**membership_post_identified_user**](MembershipApi.md#membership_post_identified_user) | **POST** /membership/identified-users | This API endpoint is no longer used.
 [**membership_post_initialize**](MembershipApi.md#membership_post_initialize) | **POST** /membership/initialize | This method performs some initialization tasks on a new instance of the platform,  and does nothing on existing instances.
 [**membership_post_password_reset_confirmation**](MembershipApi.md#membership_post_password_reset_confirmation) | **POST** /membership/password-reset-confirmations | Confirms a password reset for a user.
 [**membership_post_password_reset_request**](MembershipApi.md#membership_post_password_reset_request) | **POST** /membership/password-reset-requests | Requests a password reset for a user.  If the user exists they will be send a password reset email containing a link they can click on  to reset their password.  If the user does not exist, nothing happens.
@@ -397,65 +396,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **membership_post_identified_user**
-> membership_post_identified_user(membership_post_identified_user_request)
-
-This API endpoint is no longer used.
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import canopy.openapi
-from canopy.openapi.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = canopy.openapi.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with canopy.openapi.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = canopy.openapi.MembershipApi(api_client)
-    membership_post_identified_user_request = canopy.openapi.MembershipPostIdentifiedUserRequest() # MembershipPostIdentifiedUserRequest | Information about the identified user.
-
-    try:
-        # This API endpoint is no longer used.
-        api_instance.membership_post_identified_user(membership_post_identified_user_request)
-    except ApiException as e:
-        print("Exception when calling MembershipApi->membership_post_identified_user: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **membership_post_identified_user_request** | [**MembershipPostIdentifiedUserRequest**](MembershipPostIdentifiedUserRequest.md)| Information about the identified user. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: Not defined
 
 ### HTTP response details

@@ -18,6 +18,10 @@ Name | Type | Description | Notes
 **enabled** | **bool** | Whether the deployment is enabled. | [optional] 
 **features** | **list[str]** | The list of feature names. | [optional] 
 **note** | **str** | An optional note to add to the deployment. | [optional] 
+**pool_id** | **str** | ID of the primary pool. | [optional] 
+**secondary_pool_id** | **str** | ID of the secondary pool. | [optional] 
+**heavy_pool_id** | **str** | ID of the heavy pool. | [optional] 
+**document_database_id** | **str** | ID of the document database. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

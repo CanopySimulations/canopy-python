@@ -23,6 +23,10 @@ Name | Type | Description | Notes
 **tenants** | [**list[GetDeploymentQueryResultTenantItem]**](GetDeploymentQueryResultTenantItem.md) |  | [optional] 
 **notes** | [**list[GetDeploymentQueryResultNoteItem]**](GetDeploymentQueryResultNoteItem.md) |  | [optional] 
 **features** | **list[str]** |  | [optional] 
+**pool_id** | **str** |  | [optional] 
+**secondary_pool_id** | **str** |  | [optional] 
+**heavy_pool_id** | **str** |  | [optional] 
+**document_database_id** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
