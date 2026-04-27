@@ -58,6 +58,6 @@ See the [Canopy Python Examples](https://github.com/CanopySimulations/canopy-pyt
 - [Changelog](https://github.com/CanopySimulations/canopy-python/blob/main/CHANGELOG.md)
 - [OpenAPI Client Documentation](https://github.com/CanopySimulations/canopy-python/blob/main/OPENAPI_README.md)
 
-## Licence
+## License
 
 This project is licensed under the [MIT License](https://github.com/CanopySimulations/canopy-python/blob/main/LICENSE.txt).
