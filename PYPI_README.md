@@ -55,8 +55,8 @@ See the [Canopy Python Examples](https://github.com/CanopySimulations/canopy-pyt
 ## Documentation
 
 - [Full README & Developer Guide](https://github.com/CanopySimulations/canopy-python/)
-- [Changelog](https://github.com/CanopySimulations/canopy-python/blob/main/CHANGELOG.md)
-- [OpenAPI Client Documentation](https://github.com/CanopySimulations/canopy-python/blob/main/OPENAPI_README.md)
+- [Changelog](https://github.com/CanopySimulations/canopy-python/blob/master/CHANGELOG.md)
+- [OpenAPI Client Documentation](https://github.com/CanopySimulations/canopy-python/blob/master/OPENAPI_README.md)
 
 ## License
 
