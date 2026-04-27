@@ -1,3 +1,13 @@
+# 8.58 Release
+## New Features
+ - Channel data is now loaded from Parquet files where available, providing improved download performance. The client automatically falls back to legacy binary formats when Parquet files are not present.
+ - Channels are grouped by x-domain and loaded in bulk from a single Parquet file per domain, reducing the number of network requests.
+ - Added `polars` as a dependency for Parquet file support.
+ - Replaced `load_channel` (single channel) with `load_channels` (batch), which loads all requested channels concurrently via `asyncio.gather`.
+
+## Breaking Changes
+ - The `load_channel` function has been removed. Use `load_channels` instead, which accepts a list of channel names and returns a list of results.
+
 # 8.57 Release
 ## New Features
  - The OpenAPI client and docs have been regenerated with the latest generator, adding and updating many API operations and models.
