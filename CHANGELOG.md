@@ -1,4 +1,4 @@
-# 8.58 Release
+# 9.4 Release
 ## New Features
  - Channel data is now loaded from Parquet files where available, providing improved download performance. The client automatically falls back to legacy binary formats when Parquet files are not present.
  - Channels are grouped by x-domain and loaded in bulk from a single Parquet file per domain, reducing the number of network requests.
