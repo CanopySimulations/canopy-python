@@ -84,20 +84,15 @@ async def load_study_job(
 
             if vector_metadata is not None and channel_names is not None:
                 channels_semaphore = asyncio.Semaphore(session.default_blob_storage_concurrency)
-                tasks: List[Future[Optional[canopy.LoadedChannel]]] = []
-                for channel_name in channel_names:
-                    loaded_channel_task = asyncio.ensure_future(canopy.load_channel(
-                        session,
-                        job_access_information,
-                        sim_type,
-                        channel_name,
-                        vector_metadata=vector_metadata,
-                        semaphore=channels_semaphore))
+                loaded_channels = await canopy.load_channels(
+                    session,
+                    job_access_information,
+                    sim_type,
+                    channel_names,
+                    vector_metadata=vector_metadata,
+                    semaphore=channels_semaphore)
 
-                    tasks.append(loaded_channel_task)
-
-                for channel_name, task in zip(channel_names, tasks):
-                    loaded_channel = await task
+                for channel_name, loaded_channel in zip(channel_names, loaded_channels):
                     if loaded_channel is not None:
                         # Convert to a series, which allows the DataFrame to pad with NaNs if
                         # channels happen to be different lengths.
