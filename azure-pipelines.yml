@@ -35,6 +35,8 @@ jobs:
           python.version: '3.13'
         Python314:
           python.version: '3.14'
+        Python315:
+          python.version: '3.15'
 
     steps:
     - task: UsePythonVersion@0
@@ -62,42 +64,42 @@ jobs:
       env:
         CANOPY_PYTHON_INTEGRATION_TEST_CREDENTIALS: $(CanopyPythonIntegrationTestCredentials)
 
-  - job: Build
-    dependsOn: Test
+  # - job: Build
+  #   dependsOn: Test
 
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(python.buildVersion)'
-      displayName: 'Use Python $(python.buildVersion)'
+  #   steps:
+  #   - task: UsePythonVersion@0
+  #     inputs:
+  #       versionSpec: '$(python.buildVersion)'
+  #     displayName: 'Use Python $(python.buildVersion)'
 
-    - script: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install build
-      displayName: 'Install dependencies'
+  #   - script: |
+  #       python -m pip install --upgrade pip
+  #       pip install -r requirements.txt
+  #       pip install build
+  #     displayName: 'Install dependencies'
 
-    - script: |
-        sed -i -e "s/version = \"[0-9.]*\"/version = \"$BUILDVERSION\"/" pyproject.toml
-        cat pyproject.toml
-      displayName: 'Update version'
+  #   - script: |
+  #       sed -i -e "s/version = \"[0-9.]*\"/version = \"$BUILDVERSION\"/" pyproject.toml
+  #       cat pyproject.toml
+  #     displayName: 'Update version'
 
-    - script: |
-        python -m build
-      displayName: 'Artifact creation'
+  #   - script: |
+  #       python -m build
+  #     displayName: 'Artifact creation'
 
-    - script: |
-        pip install twine
-      displayName: 'Install twine'
+  #   - script: |
+  #       pip install twine
+  #     displayName: 'Install twine'
 
-    - task: TwineAuthenticate@1
-      inputs:
-        pythonUploadServiceConnection: 'PyPI'
+  #   - task: TwineAuthenticate@1
+  #     inputs:
+  #       pythonUploadServiceConnection: 'PyPI'
 
-    #- script: |
-    #    cat $(PYPIRC_PATH)
-    #  displayName: 'Output PYPIRC'
+  #   #- script: |
+  #   #    cat $(PYPIRC_PATH)
+  #   #  displayName: 'Output PYPIRC'
 
-    - script: |
-        twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi
-      displayName: 'Upload package'
+  #   - script: |
+  #       twine upload --config-file $(PYPIRC_PATH) dist/* -r pypi
+  #     displayName: 'Upload package'
