@@ -81,7 +81,9 @@ class Authentication(object):
         # === Main OIDC flow with discovery ===
         asyncio.create_task(run_server())
 
-        client = OAuth2Session(client_id="python_client", redirect_uri=REDIRECT_URI_HOST + ':' + str(await port), scope=SCOPE, code_challenge_method='S256')
+        self._client_id = "python_client"
+
+        client = OAuth2Session(client_id=self._client_id, redirect_uri=REDIRECT_URI_HOST + ':' + str(await port), scope=SCOPE, code_challenge_method='S256')
 
         code_verifier = token_urlsafe(48)
         # Generate auth URL
@@ -113,6 +115,10 @@ class Authentication(object):
         self._identity.roles = ', '.join(userinfo['roles'])
         
         self.__update_from_identity()
+
+        self._username = userinfo['name']
+        self._tenant_name = userinfo['tenant']
+
 
     def sign_in(self):
         authentication_data = canopy.prompt_for_authentication(

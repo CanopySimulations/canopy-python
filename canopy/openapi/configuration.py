@@ -86,7 +86,7 @@ class Configuration(object):
 
     _default = None
 
-    def __init__(self, host="https://api.canopysimulations.com",
+    def __init__(self, host="https://localhost:44300",
                  api_key=None, api_key_prefix=None,
                  username=None, password=None,
                  discard_unknown_keys=False,
@@ -157,7 +157,7 @@ class Configuration(object):
         """Debug switch
         """
 
-        self.verify_ssl = True
+        self.verify_ssl = False
         """SSL/TLS verification
            Set this to false to skip verifying SSL certificate when calling API
            from https server.
@@ -189,7 +189,7 @@ class Configuration(object):
         self.proxy_headers = None
         """Proxy headers
         """
-        self.safe_chars_for_path_param = ''
+        self.safe_chars_for_path_param = '/'
         """Safe chars for path_param
         """
         self.retries = None
