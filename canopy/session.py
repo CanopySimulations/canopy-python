@@ -32,7 +32,7 @@ class Session(object):
 
         self._configuration = openapi_configuration if openapi_configuration is not None else canopy.openapi.Configuration()
         if self._configuration.host is None:
-            self._configuration.host = 'https://api.canopysimulations.com'
+            self._configuration.host = 'https://localhost:44300'
         if proxy is not None:
             self._configuration.proxy = proxy.auth_url
             self._configuration.proxy_headers = proxy.headers

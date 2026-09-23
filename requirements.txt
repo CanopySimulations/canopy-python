@@ -8,6 +8,8 @@ pandas >= 0.25.1
 aiohttp
 munch
 polars
+Authlib
+requests
 
 pytest-asyncio
 ipykernel
