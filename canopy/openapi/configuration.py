@@ -86,7 +86,7 @@ class Configuration(object):
 
     _default = None
 
-    def __init__(self, host="https://localhost:44300",
+    def __init__(self, host="https://api.canopysimulations.com",
                  api_key=None, api_key_prefix=None,
                  username=None, password=None,
                  discard_unknown_keys=False,
@@ -97,7 +97,7 @@ class Configuration(object):
                  ):
         """Constructor
         """
-        self._base_path = "http://localhost" if host is None else host
+        self._base_path = "https://api.canopysimulations.com" if host is None else host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -157,7 +157,7 @@ class Configuration(object):
         """Debug switch
         """
 
-        self.verify_ssl = False
+        self.verify_ssl = True
         """SSL/TLS verification
            Set this to false to skip verifying SSL certificate when calling API
            from https server.

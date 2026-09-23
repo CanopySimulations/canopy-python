@@ -44,7 +44,7 @@ class Authentication(object):
 
     async def sign_in_with_browser(self):
         # === Configuration ===
-        DISCOVERY_URL = 'https://127.0.0.1:5001' + '/.well-known/openid-configuration'
+        DISCOVERY_URL = 'https://localhost:5001' + '/.well-known/openid-configuration'
         REDIRECT_URI_HOST = 'http://127.0.0.1'
         SCOPE = "openid profile canopy_api IdentityServerApi offline_access"
 
